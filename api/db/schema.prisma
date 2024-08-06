@@ -80,6 +80,7 @@ model Certificate {
   updatedAt DateTime @updatedAt
 
   name        String
+  description String
   issuingBody String?
   uri         String? @unique
 
