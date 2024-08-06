@@ -26,6 +26,34 @@ model User {
   roles               Role[]    @default([CLIENT])
 }
 
+model WorkRequest {
+  id           String     @id @default(cuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  projectName  String
+  jobProfile   JobProfile @relation(fields: [jobProfileId], references: [id])
+  jobProfileId String
+  startDate    DateTime
+  endDate      DateTime
+  numWorkers   Int
+  location     Address    @relation(fields: [addressId], references: [id])
+  addressId    String
+}
+
+model Address {
+  id                  String        @id @default(cuid())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  street              String
+  houseNumber         String
+  houseNumberAddition String?
+  postalCode          String
+  city                String
+  province            String
+  country             String        @default("Netherlands")
+  workRequest         WorkRequest[]
+}
+
 model JobProfile {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -43,6 +71,7 @@ model JobProfile {
   kmAllowance        Float?
   totalBudgetPerHour Float?
   comment            String?
+  workRequest        WorkRequest[]
 }
 
 model Certificate {
