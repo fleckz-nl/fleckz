@@ -26,6 +26,37 @@ model User {
   roles               Role[]    @default([CLIENT])
 }
 
+model JobProfile {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name               String
+  qualityNeeded      Int
+  yearsOfExp         Int
+  certificates       Certificate[]
+  hourlyWageMin      Float
+  hourlyWageMax      Float
+  maxTravelDistance  Float?
+  isTravelReimbursed Boolean?
+  isCarAvailable     Boolean?
+  kmAllowance        Float?
+  totalBudgetPerHour Float?
+  comment            String?
+}
+
+model Certificate {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  issuingBody String?
+  uri         String? @unique
+
+  jobProfile   JobProfile? @relation(fields: [jobProfileId], references: [id])
+  jobProfileId String?
+}
 
 enum Role {
   CLIENT
