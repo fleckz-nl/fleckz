@@ -46,16 +46,16 @@
   @apply bg-gray-100 p-4;
 }
 .rw-link {
-  @apply text-blue-400 underline;
+  @apply text-accent-darker ;
 }
 .rw-link:hover {
-  @apply text-blue-500;
+  @apply text-accent underline;
 }
 .rw-forgot-link {
-  @apply text-xs text-gray-400 text-right mt-1 underline;
+  @apply text-xs text-gray-400 text-right mt-1;
 }
 .rw-forgot-link:hover {
-  @apply text-blue-500;
+  @apply text-accent underline;
 }
 .rw-heading {
   @apply font-semibold;
@@ -98,10 +98,10 @@
   @apply text-xs rounded-sm py-1 px-2;
 }
 .rw-button.rw-button-green {
-  @apply bg-green-500 text-white;
+  @apply bg-accent-darker text-white;
 }
 .rw-button.rw-button-green:hover {
-  @apply bg-green-700;
+  @apply bg-accent;
 }
 .rw-button.rw-button-blue {
   @apply bg-blue-500 text-white;
@@ -128,33 +128,33 @@
   @apply mt-8;
 }
 .rw-label {
-  @apply block mt-6 text-gray-600 font-semibold text-left;
+  @apply block mt-6 text-alluca-gray font-semibold text-left;
 }
 .rw-label.rw-label-error {
   @apply text-red-600;
 }
 .rw-input {
-  @apply block mt-2 w-full p-2 bg-white border border-gray-200 rounded outline-none;
+  @apply block mt-2 w-full p-2 bg-transparent border text-white border-alluca-primary rounded outline-none;
 }
 .rw-check-radio-items {
   @apply flex justify-items-center;
 }
 .rw-check-radio-item-none {
-  @apply text-gray-600;
+  @apply text-alluca-gray;
 }
 .rw-input[type='checkbox'],
 .rw-input[type='radio'] {
   @apply inline w-4 ml-0 mr-1 mt-1;
 }
 .rw-input:focus {
-  @apply border-gray-400;
+  @apply border-accent-darker;
 }
 .rw-input-error {
   @apply border-red-600 text-red-600;
 }
 .rw-input-error:focus {
   @apply border-red-600 outline-none;
-  box-shadow: 0 0 5px #c53030;
+  box-shadow: 0 0 2px #c53030;
 }
 .rw-field-error {
   @apply block mt-1 font-semibold text-xs text-red-600 uppercase;
@@ -211,11 +211,11 @@
 .rw-table-actions .rw-button:hover {
   @apply bg-gray-500 text-white;
 }
-.rw-table-actions .rw-button-blue {
-  @apply text-blue-500;
+.rw-table-actions .rw-button-accent {
+  @apply text-accent-darker;
 }
-.rw-table-actions .rw-button-blue:hover {
-  @apply bg-blue-500 text-white;
+.rw-table-actions .rw-button-accent:hover {
+  @apply bg-accent text-white;
 }
 .rw-table-actions .rw-button-red {
   @apply text-red-600;
@@ -233,7 +233,7 @@
   @apply w-full text-center;
 }
 .rw-login-link {
-  @apply mt-4 text-gray-600 text-sm text-center w-full;
+  @apply my-4 text-alluca-gray text-sm text-center w-full;
 }
 .rw-webauthn-wrapper {
   @apply mt-6 mx-4 leading-6;
