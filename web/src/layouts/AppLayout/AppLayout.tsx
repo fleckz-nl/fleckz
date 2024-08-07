@@ -6,7 +6,7 @@ type AppLayoutProps = {
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-alluca-primary text-alluca-gray">
       <header className="flex flex-row gap-2">
         <h1>
           <Link to="/">Alluca</Link>
@@ -26,7 +26,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           <div>[User Info]</div>
         </nav>
       </header>
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow bg-alluca-primary">{children}</main>
       <footer>[Footer]</footer>
     </div>
   )
