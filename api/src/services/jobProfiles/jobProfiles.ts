@@ -4,6 +4,8 @@ import type {
   JobProfileRelationResolvers,
 } from 'types/graphql'
 
+import { validate } from '@redwoodjs/api'
+
 import { db } from 'src/lib/db'
 
 export const jobProfiles: QueryResolvers['jobProfiles'] = () => {
@@ -19,6 +21,28 @@ export const jobProfile: QueryResolvers['jobProfile'] = ({ id }) => {
 export const createJobProfile: MutationResolvers['createJobProfile'] = ({
   input,
 }) => {
+  validate(input.qualityNeeded, 'qualityNeeded', {
+    numericality: { greaterThanOrEqual: 1, lessThanOrEqual: 5 },
+  })
+
+  validate(input.yearsOfExp, 'yearsOfExp', {
+    numericality: {
+      greaterThanOrEqual: 0,
+      lessThanOrEqual: 99,
+    },
+  })
+
+  validate(input.hourlyWageMin, 'hourlyWageMin', {
+    numericality: {
+      greaterThanOrEqual: 0,
+    },
+  })
+  validate(input.hourlyWageMax, 'hourlyWageMax', {
+    numericality: {
+      greaterThanOrEqual: 0,
+    },
+  })
+
   return db.jobProfile.create({
     data: input,
   })
