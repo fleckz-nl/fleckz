@@ -70,7 +70,7 @@
   @apply text-gray-600 no-underline;
 }
 .rw-heading .rw-link:hover {
-  @apply text-gray-900 underline;
+  @apply text-foreground underline;
 }
 .rw-cell-error {
   @apply text-sm font-semibold;
@@ -80,7 +80,7 @@
 }
 .rw-cell-error,
 .rw-form-error-wrapper {
-  @apply p-4 bg-red-50 text-red-600 border border-red-100 rounded my-4;
+  @apply p-4 bg-red-500 text-red-600 border border-red-100 rounded my-4;
 }
 .rw-form-error-title {
   @apply m-0 font-semibold;
@@ -89,7 +89,7 @@
   @apply mt-2 list-disc list-inside;
 }
 .rw-button {
-  @apply flex justify-center py-1 px-4 border-0 rounded bg-gray-200 text-gray-500 text-xs font-semibold uppercase tracking-wide leading-loose no-underline cursor-pointer transition duration-100;
+  @apply flex justify-center py-1 px-4 border-0 rounded bg-gray-200 text-muted-foreground text-xs font-semibold uppercase tracking-wide leading-loose no-underline cursor-pointer transition duration-100;
 }
 .rw-button:hover {
   @apply bg-gray-500 text-white;
@@ -101,7 +101,7 @@
   @apply bg-accent-darker text-white;
 }
 .rw-button.rw-button-green:hover {
-  @apply bg-accent;
+  @apply bg-accent text-foreground;
 }
 .rw-button.rw-button-blue {
   @apply bg-blue-500 text-white;
@@ -110,10 +110,10 @@
   @apply bg-blue-700;
 }
 .rw-button.rw-button-red {
-  @apply bg-red-500 text-white;
+  @apply bg-red-800 text-destructive-foreground;
 }
 .rw-button.rw-button-red:hover {
-  @apply bg-red-700 text-white;
+  @apply bg-red-500 text-white;
 }
 .rw-button-icon {
   @apply text-xl leading-5 mr-1;
@@ -131,7 +131,7 @@
   @apply block mt-6 text-alluca-gray font-semibold text-left;
 }
 .rw-label.rw-label-error {
-  @apply text-red-600;
+  @apply text-red-900;
 }
 .rw-input {
   @apply block mt-2 w-full p-2 bg-transparent border text-white border-alluca-primary rounded outline-none;
@@ -150,14 +150,14 @@
   @apply border-accent-darker;
 }
 .rw-input-error {
-  @apply border-red-600 text-red-600;
+  @apply border-red-600 text-red-900;
 }
 .rw-input-error:focus {
   @apply border-red-600 outline-none;
   box-shadow: 0 0 2px #c53030;
 }
 .rw-field-error {
-  @apply block mt-1 font-semibold text-xs text-red-600 uppercase;
+  @apply block mt-1 font-semibold text-xs text-red-900 text-center uppercase;
 }
 .rw-table-wrapper-responsive {
   @apply overflow-x-auto;
@@ -218,10 +218,10 @@
   @apply bg-accent text-white;
 }
 .rw-table-actions .rw-button-red {
-  @apply text-red-600;
+  @apply text-red-800;
 }
 .rw-table-actions .rw-button-red:hover {
-  @apply bg-red-600 text-white;
+  @apply bg-red-800 text-white;
 }
 .rw-text-center {
   @apply text-center;
