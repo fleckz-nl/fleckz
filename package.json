@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "shad": "cd web && npx shadcn-ui@latest add"
+  },
   "workspaces": {
     "packages": [
       "api",
@@ -22,5 +25,8 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
-  "packageManager": "yarn@4.3.0"
+  "packageManager": "yarn@4.3.0",
+  "dependencies": {
+    "tailwind-merge": "^2.4.0"
+  }
 }
