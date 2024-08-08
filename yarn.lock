@@ -18488,6 +18488,7 @@ __metadata:
     "@redwoodjs/core": "npm:7.7.3"
     "@redwoodjs/project-config": "npm:7.7.3"
     prettier-plugin-tailwindcss: "npm:0.4.1"
+    tailwind-merge: "npm:^2.4.0"
   languageName: unknown
   linkType: soft
 
@@ -19769,6 +19770,13 @@ __metadata:
     systeminformation: lib/cli.js
   checksum: 10c0/9817a48a4ab3584b575a796e27f8e898aa87834aa4b566ea2c6cfc637b42f156e1500f6c366db4e2339da1339d8ba08d978e73f0dc70450c482734ede7a45510
   conditions: (os=darwin | os=linux | os=win32 | os=freebsd | os=openbsd | os=netbsd | os=sunos | os=android)
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "tailwind-merge@npm:2.4.0"
+  checksum: 10c0/77bd20647d08db78a0bdf7b57d4b904479aee7727f44570f8834d62a1aa56f42d7ae68ac959e3d610c9f188aa164eeefb6c43df4f0c8bb7cfc3418e1575bfecb
   languageName: node
   linkType: hard
 
