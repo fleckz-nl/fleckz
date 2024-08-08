@@ -5,7 +5,7 @@
     "ui": "src/components/ui",
     "utils": "src/lib/utils"
   },
-  "style": "default",
+  "style": "new-york",
   "tailwind": {
     "baseColor": "neutral",
     "config": "./config/tailwind.config.js",
