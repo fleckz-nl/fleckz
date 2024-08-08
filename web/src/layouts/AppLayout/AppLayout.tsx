@@ -24,14 +24,14 @@ type AppLayoutProps = {
 const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
-      <NavigationMenu className="flex w-full flex-row items-center justify-between">
-        <NavigationMenuList className="mx-4 flex items-center">
+      <NavigationMenu className="flex w-full flex-wrap items-center justify-between">
+        <NavigationMenuList className="mx-4 flex  items-center">
           <NavigationMenuItem>
             <Link to="/">
               <img
                 src={notextlogo}
                 alt="logo"
-                className=" mx-2 my-4 max-w-10 rounded-full transition-all hover:brightness-150"
+                className="my-4 max-w-10 rounded-full transition-all hover:brightness-150"
               />
             </Link>
           </NavigationMenuItem>
@@ -64,7 +64,44 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </Avatar>
           <NavigationMenuItem>
             <NavigationMenuTrigger>[User Info]</NavigationMenuTrigger>
-            <NavigationMenuContent></NavigationMenuContent>
+            <NavigationMenuContent>
+              <ul className="row-span-3 bg-card-foreground p-4 text-card md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <div className="flex flex-row items-center">
+                  <Avatar className="mx-2">
+                    <AvatarImage src={avatar} alt="avatar" />
+                    <AvatarFallback>UI</AvatarFallback>
+                  </Avatar>
+                  <span>Username</span>
+                </div>
+                <NavigationMenuItem>
+                  <Link to="">
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Profiel
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link to="">
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Settings
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link to="">
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Logout
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </ul>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
