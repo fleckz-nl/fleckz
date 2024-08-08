@@ -49,7 +49,7 @@ const HomePage = () => {
     <>
       <Metadata title="Home" description="Home page" />
 
-      <main className="flex min-h-screen w-full flex-wrap items-center justify-center bg-alluca-primary">
+      <main className="flex min-h-screen w-full flex-wrap items-center justify-center bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="m-4 flex w-full max-w-md flex-col">
           <img src={logo} alt="logo" className="mx-auto w-36 rounded-full" />
@@ -104,9 +104,7 @@ const HomePage = () => {
                 Wachtwoord vergeten?
               </Link>
             </div>
-
             <FieldError name="password" className="rw-field-error" />
-
             <div className="rw-button-group">
               <Submit className="rw-button rw-button-green">Inloggen</Submit>
             </div>
