@@ -33,7 +33,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 <img
                   src={notextlogo}
                   alt="logo"
-                  className="my-4 mr-2 max-w-10 rounded-full transition-all hover:brightness-150"
+                  className="my-4 mr-2 max-w-10 rounded-full drop-shadow-sm transition-all hover:brightness-150"
                 />
               </Link>
             </NavigationMenuItem>
@@ -60,7 +60,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             </NavigationMenuItem>
           </NavigationMenuList>
           <NavigationMenuList className="user-profile-section mx-4 flex items-center">
-            <Avatar className="user-avatar mx-2">
+            <Avatar className="user-avatar mx-2 drop-shadow-sm">
               <AvatarImage src={avatar} alt="avatar" />
               <AvatarFallback>UI</AvatarFallback>
             </Avatar>
@@ -70,7 +70,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               </NavigationMenuTrigger>
               <NavigationMenuContent className="user-profile-menu row-span-3 bg-card-foreground p-4 text-card md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <div className="user-profile flex flex-row items-center">
-                  <Avatar className="user-avatar mx-2">
+                  <Avatar className="user-avatar mx-2 drop-shadow-sm">
                     <AvatarImage src={avatar} alt="avatar" />
                     <AvatarFallback>UI</AvatarFallback>
                   </Avatar>
