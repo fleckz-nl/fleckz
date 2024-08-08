@@ -10,8 +10,7 @@ const JobProfilesPage = () => {
   return (
     <>
       <Metadata title="JobProfiles" description="JobProfiles page" />
-
-      <h1 className="font-bold text-white">Functieprofielen</h1>
+      <h1 className="ml-8 text-xl font-bold text-white/90">Functieprofielen</h1>
       <div className="flex justify-center">
         <button
           onClick={() => addJobProfileRef.current.showModal()}
