@@ -4,6 +4,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@radix-ui/react-navigation-menu'
+import { Copyright } from 'lucide-react'
 
 import { Link } from '@redwoodjs/router'
 
@@ -25,7 +26,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
-        <NavigationMenu className="flex w-full flex-wrap items-center justify-between">
+        <NavigationMenu className="mx-2 flex w-full flex-wrap items-center justify-between">
           <NavigationMenuList className="mx-4 flex  items-center">
             <NavigationMenuItem>
               <Link to="/">
@@ -64,7 +65,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <AvatarFallback>UI</AvatarFallback>
             </Avatar>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Username</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="mr-2">
+                Username
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="row-span-3 bg-card-foreground p-4 text-card md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <div className="flex flex-row items-center">
@@ -108,7 +111,30 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         </NavigationMenu>
       </header>
       <main className="flex-grow bg-transparent">{children}</main>
-      <footer>[Footer]</footer>
+      <footer className="mx-2 mb-2 flex items-center justify-between text-accent/40">
+        <div className="copyright-section mx-4 flex gap-2">
+          <Copyright size={24} />
+          <span>2024 Alluca</span>
+        </div>
+        <NavigationMenu className="privacy-and-services-section">
+          <NavigationMenuList className="flex">
+            <NavigationMenuItem>
+              <Link to="">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Privacybeleid
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to="">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Servicevoorwaarden
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </footer>
     </div>
   )
 }
