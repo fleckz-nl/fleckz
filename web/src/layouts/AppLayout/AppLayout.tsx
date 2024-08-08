@@ -7,12 +7,14 @@ import {
 
 import { Link } from '@redwoodjs/router'
 
+import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import {
   NavigationMenuContent,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from 'src/components/ui/navigation-menu'
 
+import avatar from './avatar.png'
 import notextlogo from './notextlogo.png'
 
 type AppLayoutProps = {
@@ -56,6 +58,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </NavigationMenuItem>
         </NavigationMenuList>
         <NavigationMenuList className="mx-4 flex items-center">
+          <Avatar className="mx-2">
+            <AvatarImage src={avatar} alt="avatar" />
+            <AvatarFallback>UI</AvatarFallback>
+          </Avatar>
           <NavigationMenuItem>
             <NavigationMenuTrigger>[User Info]</NavigationMenuTrigger>
             <NavigationMenuContent></NavigationMenuContent>
