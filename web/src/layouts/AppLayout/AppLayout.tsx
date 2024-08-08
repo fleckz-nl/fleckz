@@ -64,8 +64,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <AvatarImage src={avatar} alt="avatar" />
               <AvatarFallback>UI</AvatarFallback>
             </Avatar>
-            <NavigationMenuItem className="user">
-              <NavigationMenuTrigger className="mr-2">
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="username mr-2">
                 Username
               </NavigationMenuTrigger>
               <NavigationMenuContent className="user-profile-menu row-span-3 bg-card-foreground p-4 text-card md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -74,7 +74,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                     <AvatarImage src={avatar} alt="avatar" />
                     <AvatarFallback>UI</AvatarFallback>
                   </Avatar>
-                  <span>Username</span>
+                  <span className="user-name">Username</span>
                 </div>
                 <ul className="user-profile-menu-list">
                   <NavigationMenuItem>
