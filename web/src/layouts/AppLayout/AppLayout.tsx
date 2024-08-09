@@ -2,6 +2,7 @@ import { Copyright } from 'lucide-react'
 
 import { Link } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import {
   NavigationMenu,
@@ -23,13 +24,14 @@ type AppLayoutProps = {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
+  const { logOut } = useAuth()
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
         <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
           <NavigationMenuList className="navigation-links-section mx-4 flex items-center">
             <NavigationMenuItem>
-              <Link to="/">
+              <Link to="/overview">
                 <img
                   src={notextlogo}
                   alt="logo"
@@ -99,6 +101,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                     <Link to="">
                       <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
+                        onClick={logOut}
                       >
                         Logout
                       </NavigationMenuLink>
