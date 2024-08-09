@@ -21,7 +21,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      navigate(routes.overview())
     }
   }, [isAuthenticated])
 
