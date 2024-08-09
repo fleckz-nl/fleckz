@@ -16,10 +16,8 @@ import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from 'src/components/ui/navigation-menu'
 import {
-  NavigationMenuContent,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from 'src/components/ui/navigation-menu'
