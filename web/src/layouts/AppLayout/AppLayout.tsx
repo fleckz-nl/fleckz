@@ -29,7 +29,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
           <NavigationMenuList className="navigation-links-section mx-4 flex items-center">
             <NavigationMenuItem>
-              <Link to="/">
+              <Link to="/overview">
                 <img
                   src={notextlogo}
                   alt="logo"
