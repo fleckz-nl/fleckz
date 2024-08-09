@@ -11,7 +11,10 @@ const JobProfilesPage = () => {
   return (
     <>
       <Metadata title="JobProfiles" description="JobProfiles page" />
-      <h1 className="ml-8 text-xl font-bold text-white/90">Functieprofielen</h1>
+      <h1 className="ml-6 flex items-center gap-1 text-xl font-bold text-white/90 lg:mb-12 lg:ml-36 lg:mt-6">
+        Functieprofielen
+        <SortDesc className="sort-icon text-primary-foreground/80 hover:text-muted-foreground" />
+      </h1>
       <div className="flex justify-center">
         <Button
           variant="default"
