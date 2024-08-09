@@ -5,6 +5,7 @@ import { CirclePlus, SortDesc } from 'lucide-react'
 import { Metadata } from '@redwoodjs/web'
 
 import AddJobProfileModal from 'src/components/AddJobProfileModal/AddJobProfileModal'
+import JobProfileCell from 'src/components/JobProfilesCell'
 import { Button } from 'src/components/ui/button'
 const JobProfilesPage = () => {
   const addJobProfileRef = useRef<HTMLDialogElement>(null)
@@ -15,7 +16,8 @@ const JobProfilesPage = () => {
         Functieprofielen
         <SortDesc className="sort-icon text-primary-foreground/80 hover:text-muted-foreground" />
       </h1>
-      <div className="flex justify-center">
+      <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4">
+        <JobProfileCell />
         <Button
           variant="default"
           onClick={() => addJobProfileRef.current.showModal()}
