@@ -25,6 +25,7 @@ export async function seedCertificates(db: PrismaClient) {
 
   await db.certificate.createMany({
     data: CERTIFICATES,
+    skipDuplicates: true,
   })
   console.log('✅ Seeded certificates')
 }
