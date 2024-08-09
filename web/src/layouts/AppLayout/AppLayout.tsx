@@ -1,9 +1,17 @@
-import { Copyright } from 'lucide-react'
+import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
 import { Link } from '@redwoodjs/router'
 
 import { useAuth } from 'src/auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from 'src/components/ui/dropdown-menu'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -62,54 +70,44 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             </NavigationMenuItem>
           </NavigationMenuList>
           <NavigationMenuList className="user-profile-section mx-4 flex items-center">
-            <Avatar className="user-avatar drop-shadow-sm">
-              <AvatarImage src={avatar} alt="avatar" />
-              <AvatarFallback>UI</AvatarFallback>
-            </Avatar>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="username mr-2 hover:text-foreground focus:bg-foreground/60">
-                Username
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="user-profile-menu row-span-3 bg-card-foreground p-4 text-card md:w-[200px] lg:w-[250px] lg:grid-cols-[.75fr_1fr]">
-                <div className="user-profile flex flex-row items-center">
-                  <Avatar className="user-avatar mx-2 drop-shadow-sm">
-                    <AvatarImage src={avatar} alt="avatar" />
-                    <AvatarFallback>UI</AvatarFallback>
-                  </Avatar>
-                  <span className="user-name">Username</span>
-                </div>
-                <ul className="user-profile-menu-list">
-                  <NavigationMenuItem>
-                    <Link to="">
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Profiel
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link to="">
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        Settings
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <Link to="">
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                        onClick={logOut}
-                      >
-                        Logout
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="font-medium hover:text-accent">
+                <Avatar className="user-avatar drop-shadow-sm hover:brightness-105">
+                  <AvatarImage src={avatar} alt="avatar" />
+                  <AvatarFallback>UI</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="user-profile-menu relative -top-12 row-span-3 mr-3 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
+                <DropdownMenuLabel>
+                  <div className="user-profile  flex flex-row items-center">
+                    <Avatar className="user-avatar mr-2 drop-shadow-sm">
+                      <AvatarImage src={avatar} alt="avatar" />
+                      <AvatarFallback>UI</AvatarFallback>
+                    </Avatar>
+                    <span className="user-name pr-2 opacity-70">Username</span>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator className=" bg-accent/30" />
+                <DropdownMenuItem>
+                  <a href="" className="flex">
+                    <User2Icon size={16} className="mr-1" />
+                    Profiel
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <a href="" className="flex">
+                    <LucideSettings size={16} className="mr-1" />
+                    Settings
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <a href="/" className="flex" onClick={logOut}>
+                    <LogOutIcon size={16} className="mr-1" />
+                    Logout
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </NavigationMenuList>
         </NavigationMenu>
       </header>
