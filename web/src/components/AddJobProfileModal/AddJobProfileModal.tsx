@@ -18,6 +18,7 @@ import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 import { Switch } from 'src/components/ui/switch'
 
 import RatingStars from '../RatingStars/RatingStars'
+import { Separator } from '../ui/separator'
 
 const CREATE_JOB_PROFILE = gql`
   mutation CreateJobProfileMutation($input: CreateJobProfileInput!) {
@@ -198,8 +199,11 @@ const AddJobProfileModal = ({
               >
                 Reiskosten vergoeding
               </Label>
-              <Switch name="isTravelReimbursed" className="mr-4" />
+              <Switch name="isTravelReimbursed" />
             </fieldset>
+            <div>
+              <Separator orientation="vertical" className="mx-4" />
+            </div>
             <fieldset className="flex items-center gap-2">
               <Label
                 name="isCarAvailable"
