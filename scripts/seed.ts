@@ -2,6 +2,7 @@
 import { db } from 'api/src/lib/db'
 
 import { seedCertificates } from './utils/seedCertificates'
+import { seedJobProfiles } from './utils/seedJobProfiles'
 
 // Manually apply seeds via the `yarn rw prisma db seed` command.
 //
@@ -13,6 +14,7 @@ import { seedCertificates } from './utils/seedCertificates'
 export default async () => {
   try {
     seedCertificates(db)
+    seedJobProfiles(db)
   } catch (error) {
     console.error(error)
   }
