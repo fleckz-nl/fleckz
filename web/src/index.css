@@ -92,6 +92,10 @@
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
+
+.error-message {
+  @apply text-xs text-right text-red-600;
+}
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
