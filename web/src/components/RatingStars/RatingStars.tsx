@@ -1,12 +1,9 @@
-import { useState } from 'react'
-
 import { StarFilledIcon, StarIcon } from '@radix-ui/react-icons'
 
 import { cn } from 'src/lib/utils'
 
-type OneToFiveRange = 1 | 2 | 3 | 4 | 5
 type RatingStarsProps = {
-  defaultValue: OneToFiveRange
+  value: number
   onChange: (value: number) => void
   className?: string
 }
@@ -14,20 +11,18 @@ type RatingStarsProps = {
 const MAX_STARS = 5
 
 const RatingStars = ({
-  defaultValue,
+  value,
   onChange = () => {},
   className,
 }: RatingStarsProps) => {
-  const [rating, setRating] = useState(defaultValue)
-
   const stars = Array.from({ length: MAX_STARS }, (_, k) => {
-    if (k + 1 <= rating)
+    if (k + 1 <= value)
       return (
         <StarFilledIcon
           key={k}
           className="h-auto w-auto cursor-pointer"
           onClick={() => {
-            setRating((k + 1) as OneToFiveRange)
+            onChange(k + 1)
             onChange(k + 1)
           }}
         />
@@ -37,7 +32,7 @@ const RatingStars = ({
         key={k}
         className="h-auto w-auto cursor-pointer"
         onClick={() => {
-          setRating((k + 1) as OneToFiveRange)
+          onChange(k + 1)
           onChange(k + 1)
         }}
       />

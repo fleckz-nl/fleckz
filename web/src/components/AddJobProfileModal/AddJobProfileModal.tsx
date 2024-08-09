@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react'
+import { MutableRefObject, useState } from 'react'
 
 import { X } from 'lucide-react'
 
@@ -15,6 +15,7 @@ import {
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+import RatingStars from '../RatingStars/RatingStars'
 
 const CREATE_JOB_PROFILE = gql`
   mutation CreateJobProfileMutation($input: CreateJobProfileInput!) {
@@ -44,6 +45,8 @@ const AddJobProfileModal = ({
       toast.success('Success')
     },
   })
+  const DEFAULT_QUALITY_NEEDED = 3
+  const [qualityNeeded, setQualityNeeded] = useState(DEFAULT_QUALITY_NEEDED)
 
   function onSubmit(data) {
     create({ variables: { input: data } })
@@ -88,19 +91,25 @@ const AddJobProfileModal = ({
           <Label name="qualityNeeded" className="mr-2">
             Gewenste kwaliteit
           </Label>
-          <NumberField
-            name="qualityNeeded"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            validation={{
-              required: {
-                value: true,
-                message: 'Gewenste kwaliteit is verplicht',
-              },
-            }}
-            min={1}
-            max={5}
-          />
+              value={qualityNeeded}
+              onChange={setQualityNeeded}
+            ></RatingStars>
+            <NumberField
+              name="qualityNeeded"
+              className="rw-input w-auto"
+              errorClassName="rw-input rw-input-error w-auto"
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Gewenste kwaliteit is verplicht',
+                },
+                min: { value: 1, message: 'Minimaal is 1' },
+                max: { value: 5, message: 'Maximum is 5' },
+              }}
+              min={1}
+              max={5}
+              value={qualityNeeded}
+              onChange={(e) => setQualityNeeded(Number(e.target.value))}
         </span>
         <FieldError name="qualityNeeded" className="text-xs text-yellow-500" />
         <div>
