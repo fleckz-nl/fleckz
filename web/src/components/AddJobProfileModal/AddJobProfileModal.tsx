@@ -187,7 +187,7 @@ const AddJobProfileModal = ({
                 errorClassName="rw-input rw-input-error w-auto"
                 min={0}
               />
-              <span className="text-lg opacity-90">km</span>
+              <span className="text-lg opacity-70">km</span>
             </div>
           </span>
           <div className="my-4 flex justify-between">
@@ -221,7 +221,7 @@ const AddJobProfileModal = ({
                 className="rw-input w-auto"
                 errorClassName="rw-input rw-input-error"
               />
-              <span className="text-lg opacity-90">km</span>
+              <span className="text-lg opacity-70">km</span>
             </span>
           </div>
         </legend>
