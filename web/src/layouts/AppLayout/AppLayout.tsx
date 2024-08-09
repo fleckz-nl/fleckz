@@ -75,15 +75,14 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                   <AvatarFallback>UI</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="user-profile-menu relative -top-12 row-span-3 mr-2 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
+              <DropdownMenuContent className="user-profile-menu row-span-3 mr-4 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
                 <DropdownMenuLabel>
-                  <div className="user-profile  flex flex-row items-center">
-                    <Avatar className="user-avatar mr-2 drop-shadow-sm">
-                      <AvatarImage src={avatar} alt="avatar" />
-                      <AvatarFallback>UI</AvatarFallback>
-                    </Avatar>
+                  <div className="user-profile flex flex-col items-center">
                     <span className="user-name pr-2 text-muted-foreground/80">
                       Username
+                    </span>
+                    <span className="email text-xs font-thin text-muted/70">
+                      yan@somemail.com
                     </span>
                   </div>
                 </DropdownMenuLabel>
