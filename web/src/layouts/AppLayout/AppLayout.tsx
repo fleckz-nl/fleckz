@@ -30,7 +30,7 @@ type AppLayoutProps = {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const { logOut } = useAuth()
+  const { logOut, currentUser } = useAuth()
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
@@ -72,17 +72,17 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <DropdownMenuTrigger className="font-medium hover:text-accent">
                 <Avatar className="user-avatar drop-shadow-sm hover:brightness-105">
                   <AvatarImage src={avatar} alt="avatar" />
-                  <AvatarFallback>UI</AvatarFallback>
+                  <AvatarFallback>MJ</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="user-profile-menu row-span-3 mr-4 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
                 <DropdownMenuLabel>
                   <div className="user-profile flex flex-col items-center">
                     <span className="user-name pr-2 text-muted-foreground/80">
-                      Username
+                      Meneer Jansen
                     </span>
                     <span className="email text-xs font-thin text-muted/70">
-                      yan@somemail.com
+                      {currentUser.email}
                     </span>
                   </div>
                 </DropdownMenuLabel>
