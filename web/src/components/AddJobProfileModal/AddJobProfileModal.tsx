@@ -15,6 +15,9 @@ import {
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+
+import { Switch } from 'src/components/ui/switch'
+
 import RatingStars from '../RatingStars/RatingStars'
 
 const CREATE_JOB_PROFILE = gql`
@@ -164,49 +167,8 @@ const AddJobProfileModal = ({
             }}
           />
         </fieldset>
-        <FieldError name="hourlyWageMin" className="text-yellow-500" />
-        <FieldError name="hourlyWageMax" className="text-yellow-500" />
-
-        <span>
-          <Label name="maxTravelDistance" className="mr-2">
-            Maximale reisafstand
-          </Label>
-          <NumberField
-            name="maxTravelDistance"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            min={0}
-          />
-        </span>
-
-        <fieldset>
-          <Label name="isTravelReimbursed" className="mr-2">
-            Reiskosten vergoeding
-          </Label>
-          <CheckboxField name="isTravelReimbursed" />
-        </fieldset>
-
-        <fieldset>
-          <Label name="isCarAvailable" className="mr-2">
-            Auto beschikbaar
-          </Label>
-          <CheckboxField name="isCarAvailable" />
-        </fieldset>
-
-        <span>
-          <Label name="kmAllowance" className="mr-2">
-            Kilometervergoeding
-          </Label>
-          <NumberField
-            name="kmAllowance"
-            min={0}
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-          />
-        </span>
-
-        <span>
-          <Label name="totalBudgetPerHour" className="mr-2">
+              <Switch name="isTravelReimbursed" className="mr-4" />
+              <Switch name="isCarAvailable" />
             Budget bruto per uur
           </Label>
           <NumberField
