@@ -19,9 +19,9 @@ const JobProfilesPage = () => {
         <Button
           variant="default"
           onClick={() => addJobProfileRef.current.showModal()}
-          className="mt-8 flex gap-1 py-6 text-lg font-bold"
+          className="mt-8 flex gap-1 py-6 text-lg font-bold transition-colors"
         >
-          <CirclePlus size={30} className="text-accent hover:text-accent/30" />
+          <CirclePlus size={30} className="text-accent" />
           Aanmaken
         </Button>
         <dialog ref={addJobProfileRef} className="rounded-xl bg-black">
