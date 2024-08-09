@@ -37,13 +37,13 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
         <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
-          <NavigationMenuList className="navigation-links-section mx-4 flex items-center">
+          <NavigationMenuList className="navigation-links-section mx-4 flex items-center gap-1">
             <NavigationMenuItem>
               <Link to="/overview">
                 <img
                   src={notextlogo}
                   alt="logo"
-                  className="my-4 mr-2 max-w-10 rounded-full drop-shadow-sm transition-all hover:brightness-150"
+                  className="my-4 mr-0 max-w-10 rounded-full drop-shadow-sm transition-all hover:brightness-150"
                 />
               </Link>
             </NavigationMenuItem>
@@ -77,7 +77,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                   <AvatarFallback>UI</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="user-profile-menu relative -top-12 row-span-3 mr-3 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
+              <DropdownMenuContent className="user-profile-menu relative -top-12 row-span-3 mr-2 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
                 <DropdownMenuLabel>
                   <div className="user-profile  flex flex-row items-center">
                     <Avatar className="user-avatar mr-2 drop-shadow-sm">
@@ -115,12 +115,12 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         {children}
       </main>
       <footer className="mx-2 mb-2 flex items-center justify-between text-accent/40">
-        <div className="copyright-section mx-4 flex gap-2">
-          <Copyright size={24} />
-          <span>2024 Alluca</span>
+        <div className="copyright-section mx-4 flex items-center gap-0.5">
+          <Copyright size={20} />
+          <span className="text-nowrap font-medium">2024 Alluca</span>
         </div>
         <NavigationMenu className="privacy-and-services-section">
-          <NavigationMenuList className="flex">
+          <NavigationMenuList className="mr-2 flex gap-1">
             <NavigationMenuItem>
               <Link to="">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
