@@ -10,7 +10,6 @@ import {
   Label,
   TextAreaField,
   FieldError,
-  CheckboxField,
   FormError,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
