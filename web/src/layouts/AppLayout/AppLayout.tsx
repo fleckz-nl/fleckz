@@ -43,7 +43,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 <img
                   src={notextlogo}
                   alt="logo"
-                  className="my-4 mr-0 max-w-10 rounded-full drop-shadow-sm transition-all hover:brightness-150"
+                  className="my-4 mr-0 max-w-10 rounded-full drop-shadow-sm transition-all hover:brightness-110"
                 />
               </Link>
             </NavigationMenuItem>
