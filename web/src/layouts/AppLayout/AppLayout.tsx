@@ -1,14 +1,14 @@
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@radix-ui/react-navigation-menu'
 import { Copyright } from 'lucide-react'
 
 import { Link } from '@redwoodjs/router'
 
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from 'src/components/ui/navigation-menu'
 import {
   NavigationMenuContent,
   NavigationMenuLink,
@@ -26,7 +26,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
-        <NavigationMenu className="navigation-bar mx-2 flex w-full flex-wrap items-center justify-between">
+        <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
           <NavigationMenuList className="navigation-links-section mx-4 flex items-center">
             <NavigationMenuItem>
               <Link to="/">
@@ -60,15 +60,15 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             </NavigationMenuItem>
           </NavigationMenuList>
           <NavigationMenuList className="user-profile-section mx-4 flex items-center">
-            <Avatar className="user-avatar mx-2 drop-shadow-sm">
+            <Avatar className="user-avatar drop-shadow-sm">
               <AvatarImage src={avatar} alt="avatar" />
               <AvatarFallback>UI</AvatarFallback>
             </Avatar>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="username mr-2">
+              <NavigationMenuTrigger className="username mr-2 hover:text-foreground focus:bg-foreground/60">
                 Username
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="user-profile-menu row-span-3 bg-card-foreground p-4 text-card md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              <NavigationMenuContent className="user-profile-menu row-span-3 bg-card-foreground p-4 text-card md:w-[200px] lg:w-[250px] lg:grid-cols-[.75fr_1fr]">
                 <div className="user-profile flex flex-row items-center">
                   <Avatar className="user-avatar mx-2 drop-shadow-sm">
                     <AvatarImage src={avatar} alt="avatar" />
