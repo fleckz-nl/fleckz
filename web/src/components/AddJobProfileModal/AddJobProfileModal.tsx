@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react'
+import { MutableRefObject, useState } from 'react'
 
 import { X } from 'lucide-react'
 
@@ -10,11 +10,15 @@ import {
   Label,
   TextAreaField,
   FieldError,
-  CheckboxField,
   FormError,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+
+import { Switch } from 'src/components/ui/switch'
+
+import RatingStars from '../RatingStars/RatingStars'
+import { Separator } from '../ui/separator'
 
 const CREATE_JOB_PROFILE = gql`
   mutation CreateJobProfileMutation($input: CreateJobProfileInput!) {
@@ -45,35 +49,37 @@ const AddJobProfileModal = ({
     },
   })
 
+  const DEFAULT_QUALITY_NEEDED = 3
+  const [qualityNeeded, setQualityNeeded] = useState(DEFAULT_QUALITY_NEEDED)
+
   function onSubmit(data) {
     create({ variables: { input: data } })
   }
+
   return (
-    <div className="max-w-xl rounded-xl bg-black p-2 text-alluca-gray">
+    <div className="max-w-xl rounded-xl bg-black p-6 text-primary-foreground/80">
       <X
-        className="absolute right-1 top-1 text-white hover:cursor-pointer"
+        className="absolute right-1 top-2 text-primary-foreground hover:cursor-pointer hover:text-red-900"
         onClick={() => dialogRef.current.close()}
       />
       <Toaster />
       <Form
         onSubmit={onSubmit}
-        className="flex flex-col gap-1"
-        config={{ mode: 'onBlur' }}
+        className="rw-form-wrapper flex flex-col gap-1"
+        config={{ mode: 'onChange' }}
       >
         <FormError error={error} wrapperClassName="bg-red-400" />
-        <h2 className="font-bold text-accent">Functieprofielen aanmaken</h2>
-        <span>
-          <Label
-            name="name"
-            className="mr-2"
-            errorClassName="mr-2 text-yellow-500"
-          >
+        <h2 className="absolute top-2 text-lg font-bold text-muted-foreground/80">
+          Functieprofielen aanmaken
+        </h2>
+        <span className="mt-6">
+          <Label name="name" className="rw-label">
             Functienaam
           </Label>
           <TextField
             name="name"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
             validation={{
               required: {
                 value: true,
@@ -82,36 +88,46 @@ const AddJobProfileModal = ({
             }}
           />
         </span>
-        <FieldError name="name" className="text-xs text-yellow-500" />
-
-        <span>
-          <Label name="qualityNeeded" className="mr-2">
+        <FieldError name="name" className="error-message" />
+        <span className="flex items-center justify-between">
+          <Label name="qualityNeeded" className="rw-label my-0">
             Gewenste kwaliteit
           </Label>
-          <NumberField
-            name="qualityNeeded"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            validation={{
-              required: {
-                value: true,
-                message: 'Gewenste kwaliteit is verplicht',
-              },
-            }}
-            min={1}
-            max={5}
-          />
+          <div className="flex items-center gap-2">
+            <RatingStars
+              className="flex h-8 gap-2 text-accent/70 hover:text-accent/90"
+              value={qualityNeeded}
+              onChange={setQualityNeeded}
+            ></RatingStars>
+            <NumberField
+              name="qualityNeeded"
+              className="rw-input w-auto"
+              errorClassName="rw-input rw-input-error w-auto"
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Gewenste kwaliteit is verplicht',
+                },
+                min: { value: 1, message: 'Minimaal is 1' },
+                max: { value: 5, message: 'Maximum is 5' },
+              }}
+              min={1}
+              max={5}
+              value={qualityNeeded}
+              onChange={(e) => setQualityNeeded(Number(e.target.value))}
+            />
+          </div>
         </span>
-        <FieldError name="qualityNeeded" className="text-xs text-yellow-500" />
-        <div>
-          <Label name="yearsOfExp" className="mr-2">
+        <FieldError name="qualityNeeded" className="error-message" />
+        <div className="flex items-center justify-between">
+          <Label name="yearsOfExp" className="rw-label my-0">
             Aantal jaar werkervaring
           </Label>
           <NumberField
             name="yearsOfExp"
             min={0}
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
+            className="rw-input w-auto"
+            errorClassName="rw-input rw-input-error w-auto"
             validation={{
               required: {
                 value: true,
@@ -121,106 +137,121 @@ const AddJobProfileModal = ({
             }}
           />
         </div>
-        <FieldError name="yearsOfExp" className="text-xs text-yellow-500" />
+        <FieldError name="yearsOfExp" className="error-message" />
 
         {/* <Label name="certificates">Certificaten</Label>
         <TextField name="certificates" /> */}
 
         <fieldset>
-          <legend>Salaris indicatie</legend>
-          <span>€</span>
-          <NumberField
-            name="hourlyWageMin"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            min={0}
-            validation={{
-              required: {
-                value: true,
-                message: 'Salaris indicatie (min) is verplicht',
-              },
-            }}
-          />
-          —<span>€</span>
-          <NumberField
-            name="hourlyWageMax"
-            min={0}
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            validation={{
-              required: {
-                value: true,
-                message: 'Salaris indicatie (max) is verplicht',
-              },
-            }}
-          />
+          <legend className="rw-label">Salaris indicatie</legend>
+          <div className="flex items-center gap-1">
+            <span className="text-lg opacity-90">€</span>
+            <NumberField
+              name="hourlyWageMin"
+              className="rw-input w-auto"
+              errorClassName="rw-input rw-input-error w-auto"
+              min={0}
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Salaris indicatie (min) is verplicht',
+                },
+              }}
+            />
+            <span className="text-accent">—</span>
+            <span className="text-lg opacity-90">€</span>
+            <NumberField
+              name="hourlyWageMax"
+              min={0}
+              className="rw-input w-auto"
+              errorClassName="rw-input rw-input-error w-auto"
+              validation={{
+                required: {
+                  value: true,
+                  message: 'Salaris indicatie (max) is verplicht',
+                },
+              }}
+            />
+          </div>
         </fieldset>
-        <FieldError name="hourlyWageMin" className="text-yellow-500" />
-        <FieldError name="hourlyWageMax" className="text-yellow-500" />
-
-        <span>
-          <Label name="maxTravelDistance" className="mr-2">
-            Maximale reisafstand
-          </Label>
-          <NumberField
-            name="maxTravelDistance"
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-            min={0}
-          />
-        </span>
-
-        <fieldset>
-          <Label name="isTravelReimbursed" className="mr-2">
-            Reiskosten vergoeding
-          </Label>
-          <CheckboxField name="isTravelReimbursed" />
-        </fieldset>
-
-        <fieldset>
-          <Label name="isCarAvailable" className="mr-2">
-            Auto beschikbaar
-          </Label>
-          <CheckboxField name="isCarAvailable" />
-        </fieldset>
-
-        <span>
-          <Label name="kmAllowance" className="mr-2">
-            Kilometervergoeding
-          </Label>
-          <NumberField
-            name="kmAllowance"
-            min={0}
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-          />
-        </span>
-
-        <span>
-          <Label name="totalBudgetPerHour" className="mr-2">
+        <FieldError name="hourlyWageMin" className="error-message" />
+        <FieldError name="hourlyWageMax" className="error-message" />
+        <legend className="travel-section rw-input block border p-4">
+          <span className="flex items-center justify-between">
+            <Label name="maxTravelDistance" className="rw-label mt-0">
+              Maximale reisafstand
+            </Label>
+            <div className="flex items-end gap-1">
+              <NumberField
+                name="maxTravelDistance"
+                className="rw-input w-auto"
+                errorClassName="rw-input rw-input-error w-auto"
+                min={0}
+              />
+              <span className="text-lg opacity-70">km</span>
+            </div>
+          </span>
+          <div className="my-4 flex justify-between">
+            <fieldset className="flex items-center gap-2">
+              <Label
+                name="isTravelReimbursed"
+                className="rw-label mt-0 text-center"
+              >
+                Reiskosten vergoeding
+              </Label>
+              <Switch name="isTravelReimbursed" />
+            </fieldset>
+            <div>
+              <Separator orientation="vertical" className="mx-4" />
+            </div>
+            <fieldset className="flex items-center gap-2">
+              <Label
+                name="isCarAvailable"
+                className="rw-label mt-0 text-center"
+              >
+                Auto beschikbaar
+              </Label>
+              <Switch name="isCarAvailable" />
+            </fieldset>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <Label name="kmAllowance" className="rw-label mt-0">
+              Kilometervergoeding
+            </Label>
+            <span className="flex items-end gap-1">
+              <NumberField
+                name="kmAllowance"
+                min={0}
+                className="rw-input w-auto"
+                errorClassName="rw-input rw-input-error"
+              />
+              <span className="text-lg opacity-70">km</span>
+            </span>
+          </div>
+        </legend>
+        <span className="flex items-center justify-between gap-2">
+          <Label name="totalBudgetPerHour" className="rw-label mt-0">
             Budget bruto per uur
           </Label>
-          <NumberField
-            name="totalBudgetPerHour"
-            min={0}
-            className="rounded-md border border-accent bg-black px-1 text-white"
-            errorClassName="bg-black border-yellow-500 border-2"
-          />
+          <div className="flex items-center gap-1">
+            <span className="text-lg opacity-90">€</span>
+            <NumberField
+              name="totalBudgetPerHour"
+              min={0}
+              className="rw-input w-auto"
+              errorClassName="rw-input rw-input-error w-auto"
+            />
+          </div>
         </span>
-
-        <Label name="comment">
+        <Label name="comment" className="rw-label mt-2">
           Eventueel standaardbericht voor uitzendbureaus
         </Label>
         <TextAreaField
           name="comment"
-          className="rounded-md border border-accent bg-black px-1 text-white"
-          errorClassName="bg-black border-yellow-500 border-2"
+          className="rw-input w-auto"
+          errorClassName="rw-input rw-input-error w-auto"
         />
-
-        <Submit
-          disabled={loading}
-          className="bg-accent text-white hover:cursor-pointer"
-        >
+        <Submit disabled={loading} className="rw-button rw-button-green mt-2">
           Aanmaken
         </Submit>
       </Form>
