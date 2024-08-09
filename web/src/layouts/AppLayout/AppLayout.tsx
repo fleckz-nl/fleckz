@@ -82,7 +82,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                       <AvatarImage src={avatar} alt="avatar" />
                       <AvatarFallback>UI</AvatarFallback>
                     </Avatar>
-                    <span className="user-name pr-2 opacity-70">Username</span>
+                    <span className="user-name pr-2 text-muted-foreground/80">
+                      Username
+                    </span>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className=" bg-accent/30" />
