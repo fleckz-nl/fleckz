@@ -1,4 +1,4 @@
-import { Briefcase, Car, Edit } from 'lucide-react'
+import { Car, Edit } from 'lucide-react'
 import type { JobProfilesQuery, JobProfilesQueryVariables } from 'types/graphql'
 
 import type {
