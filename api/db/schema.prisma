@@ -27,17 +27,25 @@ model User {
 }
 
 model WorkRequest {
-  id           String     @id @default(cuid())
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  id           String            @id @default(cuid())
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
   projectName  String
-  jobProfile   JobProfile @relation(fields: [jobProfileId], references: [id])
+  jobProfile   JobProfile        @relation(fields: [jobProfileId], references: [id])
   jobProfileId String
   startDate    DateTime
   endDate      DateTime
   numWorkers   Int
-  location     Address    @relation(fields: [addressId], references: [id])
+  location     Address           @relation(fields: [addressId], references: [id])
   addressId    String
+  status       WorkRequestStatus @default(DRAFT)
+}
+
+enum WorkRequestStatus {
+  DRAFT
+  SUBMITTED
+  CONFIRMED
+  DONE
 }
 
 model Address {
