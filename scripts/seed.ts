@@ -1,9 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { db } from 'api/src/lib/db'
 
-import { seedCertificates } from './utils/seedCertificates'
-import { seedJobProfiles } from './utils/seedJobProfiles'
-
 // Manually apply seeds via the `yarn rw prisma db seed` command.
 //
 // Seeds automatically run the first time you run the `yarn rw prisma migrate dev`
@@ -13,8 +10,9 @@ import { seedJobProfiles } from './utils/seedJobProfiles'
 
 export default async () => {
   try {
-    seedCertificates(db)
-    seedJobProfiles(db)
+    console.log(
+      '🈳 No seeding data for production DB is configured yet. If you want to generate fake data for development, run yarn rw exec seedFakeData'
+    )
   } catch (error) {
     console.error(error)
   }
