@@ -4,7 +4,7 @@ import { cn } from 'src/lib/utils'
 
 type RatingStarsProps = {
   value: number
-  onChange: (value: number) => void
+  onChange?: (value: number) => void
   className?: string
 }
 
