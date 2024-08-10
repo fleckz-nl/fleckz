@@ -18,14 +18,16 @@ const JobProfilesPage = () => {
       </h1>
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
         <JobProfileCell />
-        <Button
-          variant="default"
-          onClick={() => addJobProfileRef.current.showModal()}
-          className="my-auto flex gap-1 py-8 text-lg font-bold transition-colors"
-        >
-          <CirclePlus size={30} className="text-accent" />
-          Aanmaken
-        </Button>
+        <div className="col-span-full flex items-center justify-center">
+          <Button
+            variant="default"
+            onClick={() => addJobProfileRef.current.showModal()}
+            className="col-span-3 mt-4 flex gap-1 px-16 py-8 text-lg font-bold transition-colors"
+          >
+            <CirclePlus size={30} className="text-accent" />
+            Aanmaken
+          </Button>
+        </div>
         <dialog ref={addJobProfileRef} className="rounded-xl bg-black">
           <AddJobProfileModal dialogRef={addJobProfileRef} />
         </dialog>
