@@ -12,7 +12,6 @@ import { Badge } from '../ui/badge'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -56,52 +55,53 @@ export const Success = ({
     <>
       {jobProfiles.map((item) => {
         return (
+          <Card key={item.id}>
             <CardHeader className="relative flex justify-between">
               <CardTitle className="w-4/5 break-words">{item.name}</CardTitle>
               <Edit className="absolute right-4 top-4 text-muted-foreground hover:cursor-pointer hover:text-accent/70" />
             </CardHeader>
             <CardContent>
-              <div className="flex justify-between">
-                <div>
+              <div className="-mt-2 flex flex-wrap items-center justify-between">
+                <div className="font-semibold">
                   €{item.hourlyWageMin}–€{item.hourlyWageMax}
+                  <RatingStars value={item.qualityNeeded}></RatingStars>
                 </div>
-                <div>{item.yearsOfExp} jaren+</div>
+                <div className="text-lg font-semibold text-accent-darker">
+                  {item.yearsOfExp} jaren
+                  <span className="relative -top-1">+</span>
+                </div>
               </div>
-              <RatingStars value={item.qualityNeeded}></RatingStars>
-              <div className="flex justify-between"></div>
-              <Separator className="my-4" />
-              <div className="flex justify-between">
+              <Separator className="my-4 bg-primary-foreground/70" />
+              <div className="flex flex-wrap items-center gap-2 pb-4">
                 <Car />
-                <div className="flex gap-2">
-                  {item.isCarAvailable && (
-                    <Badge className={'bg-muted text-muted-foreground'}>
-                      Auto
-                    </Badge>
-                  )}
-                  {item.isTravelReimbursed && (
-                    <Badge className="bg-muted text-muted-foreground">
-                      Vergoed
-                    </Badge>
-                  )}
+                <div className="flex flex-wrap gap-2">
+                  {item.isCarAvailable && <Badge>Auto</Badge>}
+                  {item.isTravelReimbursed && <Badge>Vergoed</Badge>}
                 </div>
               </div>
               {item.isTravelReimbursed}
               <div>
-                <span className="text-primary-foreground">
-                  Max. reisafstand:
-                </span>{' '}
-                {item.maxTravelDistance} km.
+                <span>Max. reisafstand: </span>
+                <span className="font-semibold">
+                  {item.maxTravelDistance} km.
+                </span>
               </div>
               {item.kmAllowance && (
-                <div>Km. vergoeding: €{item.kmAllowance}</div>
+                <div>
+                  Km. vergoeding:{' '}
+                  <span className="font-semibold"> €{item.kmAllowance}</span>
+                </div>
               )}
-              <Separator className="my-4" />
+              <Separator className="my-4 bg-primary-foreground/70" />
               {item.totalBudgetPerHour && (
-                <div>Budget {item.totalBudgetPerHour}/uur</div>
+                <div className="font-semibold">
+                  Budget €{item.totalBudgetPerHour}/uur
+                </div>
               )}
             </CardContent>
-
-            <CardFooter className="text-sm">{item.comment}</CardFooter>
+            <CardFooter className="-mt-2 hyphens-auto text-sm">
+              {item.comment}
+            </CardFooter>
           </Card>
         )
       })}
