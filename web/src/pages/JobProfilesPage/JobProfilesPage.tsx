@@ -12,16 +12,16 @@ const JobProfilesPage = () => {
   return (
     <>
       <Metadata title="JobProfiles" description="JobProfiles page" />
-      <h1 className="ml-6 flex items-center gap-1 text-xl font-bold text-white/90 lg:mb-12 lg:ml-36 lg:mt-6">
+      <h1 className="md:ml-4auto sticky mb-6 flex items-center gap-1 text-xl font-bold text-white/90 sm:ml-auto lg:ml-40">
         Functieprofielen
         <SortDesc className="sort-icon text-primary-foreground/80 hover:text-muted-foreground" />
       </h1>
-      <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
         <JobProfileCell />
         <Button
           variant="default"
           onClick={() => addJobProfileRef.current.showModal()}
-          className="mt-8 flex gap-1 py-6 text-lg font-bold transition-colors"
+          className="my-auto flex gap-1 py-8 text-lg font-bold transition-colors"
         >
           <CirclePlus size={30} className="text-accent" />
           Aanmaken
