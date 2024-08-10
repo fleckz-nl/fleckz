@@ -46,25 +46,28 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="/overview">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Overzicht
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                href="/overview"
+              >
+                Overzicht
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="/plan">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Plan
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                href="/plan"
+              >
+                Plan
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="/job-profiles">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Functieprofielen
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                href="/job-profiles"
+              >
+                Functieprofielen
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
           <NavigationMenuList className="user-profile-section mx-4 flex items-center">
@@ -121,18 +124,20 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <NavigationMenu className="privacy-and-services-section">
           <NavigationMenuList className="mr-2 flex gap-1">
             <NavigationMenuItem>
-              <Link to="">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Privacybeleid
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                href=""
+              >
+                Privacybeleid
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link to="">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Servicevoorwaarden
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                href=""
+              >
+                Servicevoorwaarden
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
