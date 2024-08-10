@@ -1,7 +1,7 @@
 import type { Prisma, PrismaClient } from '@prisma/client'
 
 export async function seedCertificates(db: PrismaClient) {
-  const CERTIFICATES = [
+  const CERTIFICATES: Prisma.CertificateCreateManyInput[] = [
     {
       name: 'Heftruck certificaat',
       uri: 'https://www.wikidata.org/wiki/Q95660745',
@@ -17,15 +17,11 @@ export async function seedCertificates(db: PrismaClient) {
       description: 'Basisveiligheid VCA',
       uri: 'https://www.vca.nl/diplomas-certificaten/b-vca',
     },
-    {
-      name: 'Basis hygiene',
-      description: '',
-    },
-  ] as Prisma.CertificateCreateManyInput[]
+  ]
 
-  await db.certificate.createMany({
+  const results = await db.certificate.createMany({
     data: CERTIFICATES,
     skipDuplicates: true,
   })
-  console.log('✅ Seeded certificates')
+  console.log(`✅ Created ${results.count} certificates`)
 }
