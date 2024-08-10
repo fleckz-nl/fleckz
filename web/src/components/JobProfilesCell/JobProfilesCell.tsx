@@ -56,14 +56,9 @@ export const Success = ({
     <>
       {jobProfiles.map((item) => {
         return (
-          <Card
-            key={item.id}
-            className="bg-transparent text-primary-foreground"
-          >
-            <CardHeader className="relative">
-              <Edit className="absolute right-4 text-muted-foreground" />
-              <CardTitle>{item.name}</CardTitle>
-              <CardDescription></CardDescription>
+            <CardHeader className="relative flex justify-between">
+              <CardTitle className="w-4/5 break-words">{item.name}</CardTitle>
+              <Edit className="absolute right-4 top-4 text-muted-foreground hover:cursor-pointer hover:text-accent/70" />
             </CardHeader>
             <CardContent>
               <div className="flex justify-between">
