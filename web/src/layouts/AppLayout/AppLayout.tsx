@@ -91,22 +91,22 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className=" bg-accent/30" />
                 <DropdownMenuItem>
-                  <a href="" className="flex">
+                  <button className="flex">
                     <User2Icon size={16} className="mr-1" />
                     Profiel
-                  </a>
+                  </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <a href="" className="flex">
+                  <button className="flex">
                     <LucideSettings size={16} className="mr-1" />
                     Settings
-                  </a>
+                  </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <a href="/" className="flex" onClick={logOut}>
+                  <button className="flex" onClick={logOut}>
                     <LogOutIcon size={16} className="mr-1" />
                     Logout
-                  </a>
+                  </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
