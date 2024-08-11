@@ -41,7 +41,7 @@ const SignupPage = () => {
       toast.error(response.error)
     } else {
       // user is signed in automatically
-      toast.success('Welcome!')
+      toast.success('Welkom!')
     }
   }
 
