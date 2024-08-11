@@ -102,7 +102,7 @@ const PlanWorkComponent = () => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <div>
+          <div className="bg-red-200 text-red-600">
             <FormError error={error} />
           </div>
           <form onSubmit={form.handleSubmit(onSubmit)}>
