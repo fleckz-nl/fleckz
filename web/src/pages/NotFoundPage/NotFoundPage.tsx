@@ -1,5 +1,5 @@
 export default () => (
-  <main className="bg-primary">
+  <main className="bg-black">
     <style
       dangerouslySetInnerHTML={{
         __html: `
@@ -35,11 +35,11 @@ export default () => (
             `,
       }}
     />
-    <section className="relative flex min-h-screen items-center justify-center bg-transparent p-2">
+    <section className="relative flex items-center justify-center rounded-full bg-black/10 p-4 transition-all">
       <img
         src="https://picsum.photos/800?random"
         alt=""
-        className="rounded-full py-2 blur-md brightness-50 drop-shadow-sm grayscale transition-all hover:blur-0"
+        className="m-0 rounded-full blur-md brightness-50 grayscale transition-all hover:blur-0"
       />
       <div className="absolute flex flex-col break-words px-10 brightness-150">
         <span className="text-3xl font-light text-accent/50 md:text-6xl">
