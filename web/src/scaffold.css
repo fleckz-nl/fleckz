@@ -1,5 +1,5 @@
 .rw-scaffold {
-  @apply bg-black text-gray-200 rounded-md drop-shadow-sm;
+  @apply bg-black text-gray-200 rounded-md drop-shadow-sm w-full max-w-full;
 }
 .rw-scaffold h1,
 .rw-scaffold h2 {
