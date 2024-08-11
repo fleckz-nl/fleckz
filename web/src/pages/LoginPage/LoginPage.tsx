@@ -119,7 +119,7 @@ const LoginPage = () => {
               </div>
             </div>
           </div>
-          <div className="rw-login-link">
+          <div className="rw-login-link mb-8 flex flex-wrap justify-center px-4">
             <span>Nieuw op de website?</span>{' '}
             <Link to={routes.signup()} className="rw-link">
               Maak account aan!
