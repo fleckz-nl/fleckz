@@ -24,7 +24,7 @@
   @apply flex justify-between px-8 py-4;
 }
 .rw-main {
-  @apply mx-4 pb-4;
+  @apply mx-4 -mt-6 pb-4;
 }
 .rw-segment {
   @apply w-full overflow-hidden rounded-lg bg-black mt-2;
