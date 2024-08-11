@@ -4,6 +4,7 @@ import { Check, ChevronsUpDown } from 'lucide-react'
 import type { JobProfilesQuery, JobProfilesQueryVariables } from 'types/graphql'
 
 import { ControllerRenderProps, UseFormReturn } from '@redwoodjs/forms'
+import { Link, routes } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -84,9 +85,18 @@ export const Success = ({
         </PopoverTrigger>
         <PopoverContent className="p-0">
           <Command>
-            <CommandInput placeholder="Search framework..." />
+            <CommandInput placeholder="Zoek profiel..." />
             <CommandList>
-              <CommandEmpty>No framework found.</CommandEmpty>
+              <CommandEmpty>
+                Geen profiel gevonden.{' '}
+                <Link
+                  to={routes.jobProfiles()}
+                  className="hover:underline"
+                  target="_blank"
+                >
+                  Maak er een aan.
+                </Link>
+              </CommandEmpty>
               <CommandGroup>
                 {jobProfiles.map((profile) => (
                   <CommandItem
