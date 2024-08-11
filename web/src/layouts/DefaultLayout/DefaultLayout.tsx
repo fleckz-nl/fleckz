@@ -18,7 +18,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           />
         </Link>
       </header>
-      <main className="-mt-6 w-full max-w-sm flex-grow">{children}</main>
+      <main className="-mt-6 w-full flex-grow justify-center">{children}</main>
     </div>
   )
 }
