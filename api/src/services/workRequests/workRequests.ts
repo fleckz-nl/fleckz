@@ -4,6 +4,8 @@ import type {
   WorkRequestRelationResolvers,
 } from 'types/graphql'
 
+import { validate } from '@redwoodjs/api'
+
 import { db } from 'src/lib/db'
 
 export const workRequests: QueryResolvers['workRequests'] = () => {
@@ -19,6 +21,16 @@ export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
 export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
   input,
 }) => {
+  validate(input.startDate, 'startDate', {
+    custom: {
+      with: () => {
+        if (input.startDate.valueOf() > input.endDate.valueOf()) {
+          throw new Error('Start date is after the end date')
+        }
+      },
+    },
+  })
+
   return db.workRequest.create({
     data: input,
   })
