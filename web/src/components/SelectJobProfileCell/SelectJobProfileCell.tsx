@@ -28,7 +28,7 @@ export const QUERY: TypedDocumentNode<
   JobProfilesQuery,
   JobProfilesQueryVariables
 > = gql`
-  query JobProfilesQuery {
+  query SelectJobProfileQuery {
     jobProfiles {
       id
       name
