@@ -45,7 +45,7 @@ const ForgotPasswordPage = () => {
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
-            <header className="rw-segment-header">
+            <header className="rw-segment-header flex justify-center">
               <h2 className="rw-heading rw-heading-secondary">
                 Wachtwoord vergeten?
               </h2>
@@ -79,7 +79,7 @@ const ForgotPasswordPage = () => {
                   </div>
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Submit</Submit>
+                    <Submit className="rw-button rw-button-green">
                       Indienen
                     </Submit>
                   </div>
