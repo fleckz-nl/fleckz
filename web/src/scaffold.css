@@ -1,5 +1,5 @@
 .rw-scaffold {
-  @apply bg-white text-gray-600;
+  @apply bg-black text-gray-200 rounded-md drop-shadow-sm;
 }
 .rw-scaffold h1,
 .rw-scaffold h2 {
@@ -27,7 +27,7 @@
   @apply mx-4 pb-4;
 }
 .rw-segment {
-  @apply w-full overflow-hidden rounded-lg border border-gray-200;
+  @apply w-full overflow-hidden rounded-lg bg-black mt-2;
   scrollbar-color: rgb(85, 119, 119) transparent;
 }
 .rw-segment::-webkit-scrollbar {
@@ -40,10 +40,10 @@
   @apply rounded-full border-[3px] border-solid border-transparent bg-cyan-900 bg-clip-content;
 }
 .rw-segment-header {
-  @apply bg-gray-200 px-4 py-3 text-gray-700;
+  @apply  px-4 py-3 mt-2 -mb-4 text-muted-foreground;
 }
 .rw-segment-main {
-  @apply bg-gray-100 p-4;
+  @apply  p-4;
 }
 .rw-link {
   @apply text-accent-darker;
