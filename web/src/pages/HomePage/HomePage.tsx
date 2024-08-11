@@ -62,7 +62,7 @@ const HomePage = () => {
             <p>Alluca essence tagline</p>
           </section>
         </div>
-        <div className="form-wrapper m-4 mx-4 flex min-h-96 w-full max-w-sm flex-col bg-black drop-shadow-sm">
+        <div className="form-wrapper m-4 mx-4 flex min-h-96 w-full max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
           <Form onSubmit={onSubmit} className="rw-form-wrapper m-2 p-4">
             <Label
               name="email"
