@@ -51,10 +51,9 @@ const LoginPage = () => {
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Login</h2>
+            <header className="rw-segment-header flex justify-center">
+              <h2 className="rw-heading rw-heading-secondary">Inloggen</h2>
             </header>
-
             <div className="rw-segment-main">
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
@@ -73,7 +72,7 @@ const LoginPage = () => {
                     validation={{
                       required: {
                         value: true,
-                        message: 'Email is required',
+                        message: 'Email is verplicht',
                       },
                     }}
                   />
@@ -85,17 +84,17 @@ const LoginPage = () => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
-                    Password
+                    Wachtwoord
                   </Label>
                   <PasswordField
                     name="password"
-                    className="rw-input"
+                    className="rw-input text-accent"
                     errorClassName="rw-input rw-input-error"
                     autoComplete="current-password"
                     validation={{
                       required: {
                         value: true,
-                        message: 'Password is required',
+                        message: 'Wachtwoord is verplicht',
                       },
                     }}
                   />
@@ -105,23 +104,25 @@ const LoginPage = () => {
                       to={routes.forgotPassword()}
                       className="rw-forgot-link"
                     >
-                      Forgot Password?
+                      Wachtwoord vergeten?
                     </Link>
                   </div>
 
                   <FieldError name="password" className="rw-field-error" />
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
+                    <Submit className="rw-button rw-button-green">
+                      Inloggen
+                    </Submit>
                   </div>
                 </Form>
               </div>
             </div>
           </div>
-          <div className="rw-login-link">
-            <span>Don&apos;t have an account?</span>{' '}
+          <div className="rw-login-link mb-8 flex flex-wrap justify-center gap-1 px-4">
+            <span>Nieuw op de website?</span>{' '}
             <Link to={routes.signup()} className="rw-link">
-              Sign up!
+              Maak account aan!
             </Link>
           </div>
         </div>

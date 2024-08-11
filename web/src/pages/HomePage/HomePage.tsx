@@ -51,18 +51,18 @@ const HomePage = () => {
 
       <main className="flex min-h-screen w-full flex-wrap items-center justify-center bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="m-4 flex w-full max-w-md flex-col">
+        <div className="m-0 flex w-full max-w-md flex-col md:-mt-36">
           <img
             src={logo}
             alt="logo"
             className="mx-auto w-36 rounded-full drop-shadow-sm"
           />
-          <section className="mt-6 text-center text-2xl text-white drop-shadow-sm">
+          <section className="mt-2 text-center text-2xl text-white drop-shadow-sm">
             <p>Two liner</p>
             <p>Alluca essence tagline</p>
           </section>
         </div>
-        <div className="form-wrapper m-4 mx-4 flex min-h-96 w-full max-w-sm flex-col bg-black drop-shadow-sm">
+        <div className="form-wrapper m-0 flex min-h-96 w-full max-w-sm flex-col rounded-md bg-black drop-shadow-sm md:-mt-32 ">
           <Form onSubmit={onSubmit} className="rw-form-wrapper m-2 p-4">
             <Label
               name="email"
@@ -113,9 +113,9 @@ const HomePage = () => {
               <Submit className="rw-button rw-button-green">Inloggen</Submit>
             </div>
           </Form>
-          <div className="rw-login-link mb-8 flex flex-wrap justify-center px-4">
+          <div className="rw-login-link mb-8 flex flex-wrap justify-center gap-1 px-4">
             <span>Nieuw op de website?</span>{' '}
-            <Link to={routes.signup()} className="rw-link ml-2">
+            <Link to={routes.signup()} className="rw-link">
               Maak account aan!
             </Link>
           </div>
