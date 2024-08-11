@@ -131,7 +131,7 @@
   @apply mt-6 block text-left font-semibold text-alluca-gray;
 }
 .rw-label.rw-label-error {
-  @apply text-red-900;
+  @apply text-red-200/40;
 }
 .rw-input {
   @apply mt-2 block w-full rounded border border-alluca-primary bg-transparent p-2 text-white outline-none;
@@ -151,7 +151,7 @@
   @apply border-accent-darker;
 }
 .rw-input-error {
-  @apply border-red-600 text-red-900;
+  @apply border-red-600/50 text-red-900;
 }
 .rw-input-error:focus {
   @apply border-red-600 outline-none;
