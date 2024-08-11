@@ -39,7 +39,7 @@ export default () => (
       <img
         src="https://picsum.photos/800?random"
         alt=""
-        className="m-0 rounded-full blur-md brightness-50 grayscale transition-all hover:blur-0"
+        className="m-0 rounded-full brightness-50 grayscale transition-all md:blur-md md:hover:blur-0"
       />
       <div className="absolute flex flex-col break-words px-10 brightness-150">
         <span className="text-3xl font-light text-accent/50 md:text-6xl">
