@@ -51,18 +51,18 @@ const HomePage = () => {
 
       <main className="flex min-h-screen w-full flex-wrap items-center justify-center bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="m-4 flex w-full max-w-md flex-col">
+        <div className="m-0 flex w-full max-w-md flex-col md:-mt-12">
           <img
             src={logo}
             alt="logo"
             className="mx-auto w-36 rounded-full drop-shadow-sm"
           />
-          <section className="mt-6 text-center text-2xl text-white drop-shadow-sm">
+          <section className="mt-2 text-center text-2xl text-white drop-shadow-sm">
             <p>Two liner</p>
             <p>Alluca essence tagline</p>
           </section>
         </div>
-        <div className="form-wrapper m-4 mx-4 flex min-h-96 w-full max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
+        <div className="form-wrapper m-0 -mt-8 flex min-h-96 w-full max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
           <Form onSubmit={onSubmit} className="rw-form-wrapper m-2 p-4">
             <Label
               name="email"
