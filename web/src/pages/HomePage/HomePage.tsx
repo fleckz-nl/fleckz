@@ -113,9 +113,9 @@ const HomePage = () => {
               <Submit className="rw-button rw-button-green">Inloggen</Submit>
             </div>
           </Form>
-          <div className="rw-login-link mb-8 flex flex-wrap justify-center px-4">
+          <div className="rw-login-link mb-8 flex flex-wrap justify-center gap-1 px-4">
             <span>Nieuw op de website?</span>{' '}
-            <Link to={routes.signup()} className="rw-link ml-2">
+            <Link to={routes.signup()} className="rw-link">
               Maak account aan!
             </Link>
           </div>
