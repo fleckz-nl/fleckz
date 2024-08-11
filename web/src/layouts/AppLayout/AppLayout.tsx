@@ -1,6 +1,6 @@
 import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
-import { Link } from '@redwoodjs/router'
+import { Link, routes } from '@redwoodjs/router'
 
 import { useAuth } from 'src/auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
@@ -37,7 +37,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
           <NavigationMenuList className="navigation-links-section mx-4 flex items-center gap-1">
             <NavigationMenuItem>
-              <Link to="/overview">
+              <Link to={routes.overview()}>
                 <img
                   src={notextlogo}
                   alt="logo"
@@ -48,25 +48,25 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                href="/overview"
+                asChild
               >
-                Overzicht
+                <Link to={routes.overview()}>Overzicht</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                href="/plan"
+                asChild
               >
-                Plan
+                <Link to={routes.plan()}>Plan</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
+                asChild
                 className={navigationMenuTriggerStyle()}
-                href="/job-profiles"
               >
-                Functieprofielen
+                <Link to={routes.jobProfiles()}>Functieprofielen</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
