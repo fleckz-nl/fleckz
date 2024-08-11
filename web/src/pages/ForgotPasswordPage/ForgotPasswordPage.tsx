@@ -47,7 +47,7 @@ const ForgotPasswordPage = () => {
           <div className="rw-segment">
             <header className="rw-segment-header">
               <h2 className="rw-heading rw-heading-secondary">
-                Forgot Password
+                Wachtwoord vergeten?
               </h2>
             </header>
 
@@ -70,7 +70,7 @@ const ForgotPasswordPage = () => {
                       validation={{
                         required: {
                           value: true,
-                          message: 'Email is required',
+                          message: 'Email is verplicht',
                         },
                       }}
                     />
@@ -80,6 +80,8 @@ const ForgotPasswordPage = () => {
 
                   <div className="rw-button-group">
                     <Submit className="rw-button rw-button-blue">Submit</Submit>
+                      Indienen
+                    </Submit>
                   </div>
                 </Form>
               </div>
