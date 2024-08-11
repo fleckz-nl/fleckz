@@ -1,5 +1,5 @@
 export default () => (
-  <main>
+  <main className="bg-black">
     <style
       dangerouslySetInnerHTML={{
         __html: `
@@ -35,10 +35,23 @@ export default () => (
             `,
       }}
     />
-    <section>
-      <h1>
-        <span>404 Page Not Found</span>
-      </h1>
+    <section className="relative flex items-center justify-center rounded-full bg-black/10 p-4 transition-all">
+      <img
+        src="https://picsum.photos/800?random"
+        alt=""
+        className="m-0 rounded-full brightness-50 grayscale transition-all md:blur-sm md:hover:blur-0"
+      />
+      <div className="absolute flex flex-col break-words px-10 brightness-150">
+        <span className="text-3xl font-light text-accent/50 md:text-6xl">
+          404
+        </span>
+        <span className="text-center text-xl text-muted md:text-4xl">
+          Pagina niet gevonden
+        </span>
+        <p className="text-lg font-semibold text-accent">
+          Helaas bestaat de pagina die u zocht niet.
+        </p>
+      </div>
     </section>
   </main>
 )

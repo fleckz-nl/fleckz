@@ -65,9 +65,9 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
-            <header className="rw-segment-header">
+            <header className="rw-segment-header flex justify-center">
               <h2 className="rw-heading rw-heading-secondary">
-                Reset Password
+                Wachtwoord opnieuw instellen
               </h2>
             </header>
 
@@ -80,19 +80,19 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
                       className="rw-label"
                       errorClassName="rw-label rw-label-error"
                     >
-                      New Password
+                      Nieuw wachtwoord
                     </Label>
                     <PasswordField
                       name="password"
                       autoComplete="new-password"
-                      className="rw-input"
+                      className="rw-input text-accent"
                       errorClassName="rw-input rw-input-error"
                       disabled={!enabled}
                       ref={passwordRef}
                       validation={{
                         required: {
                           value: true,
-                          message: 'New Password is required',
+                          message: 'Een nieuw wachtwoord is vereist',
                         },
                       }}
                     />
@@ -102,10 +102,10 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
 
                   <div className="rw-button-group">
                     <Submit
-                      className="rw-button rw-button-blue"
+                      className="rw-button rw-button-green"
                       disabled={!enabled}
                     >
-                      Submit
+                      Indienen
                     </Submit>
                   </div>
                 </Form>
