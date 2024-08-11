@@ -1,13 +1,17 @@
+import { useState } from 'react'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { FormError } from '@redwoodjs/forms'
 import { routes } from '@redwoodjs/router'
 import { Link } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
+import SelectAddressCell from 'src/components/SelectAddressCell'
 import SelectJobProfileCell from 'src/components/SelectJobProfileCell'
 import { Button } from 'src/components/ui/button'
 import {
@@ -44,11 +48,7 @@ const CREATE_WORK_REQUEST_GQL = gql`
 `
 
 const PlanWorkComponent = () => {
-  const [create, { loading, error }] = useMutation(CREATE_WORK_REQUEST_GQL, {
-    onCompleted: () => {
-      toast.success('Success')
-    },
-  })
+  const [open, setOpen] = useState(false)
   const formSchema = z.object({
     projectName: z.string().min(1),
     startDate: z.string().min(1),
@@ -68,8 +68,14 @@ const PlanWorkComponent = () => {
       numWorkers: 1,
     },
   })
+  const [create, { loading, error }] = useMutation(CREATE_WORK_REQUEST_GQL, {
+    onCompleted: () => {
+      toast.success('Success')
+      form.reset()
+      setOpen(false)
+    },
+  })
   function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data)
     create({
       variables: {
         input: {
@@ -83,7 +89,7 @@ const PlanWorkComponent = () => {
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <Toaster />
       <DialogTrigger asChild>
         <Button variant="outline">Werk Uitzetten</Button>
@@ -96,6 +102,9 @@ const PlanWorkComponent = () => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
+          <div>
+            <FormError error={error} />
+          </div>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
@@ -120,16 +129,12 @@ const PlanWorkComponent = () => {
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormLabel>Functieprofiel</FormLabel>
-
-                  <div>
-                    <SelectJobProfileCell
-                      field={field}
-                      form={form}
-                      // TODO: Fix this typescript error
-                      className={fieldState.error && 'border-red-500'}
-                    />
-                  </div>
-
+                  <SelectJobProfileCell
+                    field={field}
+                    form={form}
+                    // TODO: Fix this typescript error
+                    className={fieldState.error && 'border-red-500'}
+                  />
                   <FormDescription>
                     Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
                     <Link to={routes.jobProfiles()} className="hover:underline">
@@ -145,19 +150,19 @@ const PlanWorkComponent = () => {
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormLabel>Locatie</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      className={fieldState.error && 'border-red-500'}
-                    />
-                  </FormControl>
+                  <SelectAddressCell
+                    field={field}
+                    form={form}
+                    // TODO: Fix this typescript error
+                    className={fieldState.error && 'border-red-500'}
+                  />
                   <FormDescription>
                     Waar wilt u dat de werknemer werkt?
                   </FormDescription>
                 </FormItem>
               )}
             />
-            <div className="flex items-center justify-between">
+            <fieldset className="flex flex-col items-center justify-between sm:flex-row">
               <FormField
                 control={form.control}
                 name="startDate"
@@ -166,10 +171,11 @@ const PlanWorkComponent = () => {
                     <FormLabel>Van</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder=""
                         {...field}
                         type="datetime-local"
-                        className={fieldState.error && 'border-red-500'}
+                        className={`min-w-48 ${
+                          fieldState.error && 'border-red-500'
+                        }`}
                       />
                     </FormControl>
                     <FormDescription></FormDescription>
@@ -184,17 +190,18 @@ const PlanWorkComponent = () => {
                     <FormLabel>Tot</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder=""
                         {...field}
                         type="datetime-local"
-                        className={fieldState.error && 'border-red-500'}
+                        className={`min-w-48 ${
+                          fieldState.error && 'border-red-500'
+                        }`}
                       />
                     </FormControl>
                     <FormDescription></FormDescription>
                   </FormItem>
                 )}
               />
-            </div>
+            </fieldset>
             <FormField
               control={form.control}
               name="numWorkers"
@@ -219,7 +226,9 @@ const PlanWorkComponent = () => {
               )}
             />
             <DialogFooter>
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={loading}>
+                Submit
+              </Button>
             </DialogFooter>
           </form>
         </Form>
