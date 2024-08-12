@@ -96,7 +96,9 @@ const PlanWorkComponent = () => {
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>
-          <DialogTitle>Werk Uitzetten</DialogTitle>
+          <DialogTitle className="font-bold text-primary/80">
+            Werk Uitzetten
+          </DialogTitle>
           <DialogDescription>
             Vul de details in over uw werkaanvraag
           </DialogDescription>
@@ -114,7 +116,9 @@ const PlanWorkComponent = () => {
               name="projectName"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>Projectnaam</FormLabel>
+                  <FormLabel className="font-semibold text-primary/90">
+                    Projectnaam
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Nieuwe project"
@@ -131,13 +135,9 @@ const PlanWorkComponent = () => {
               name="jobProfileId"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>Functieprofiel</FormLabel>
-                  <SelectJobProfileCell
-                    field={field}
-                    form={form}
-                    // TODO: Fix this typescript error
-                    className={fieldState.error && 'border-red-500'}
-                  />
+                  <FormLabel className="font-semibold text-primary/90">
+                    Functieprofiel
+                  </FormLabel>
                   <FormDescription>
                     Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
                     <Link to={routes.jobProfiles()} className="hover:underline">
@@ -152,7 +152,9 @@ const PlanWorkComponent = () => {
               name="addressId"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>Locatie</FormLabel>
+                  <FormLabel className="font-semibold text-primary/90">
+                    Locatie
+                  </FormLabel>
                   <SelectAddressCell
                     field={field}
                     form={form}
@@ -170,8 +172,9 @@ const PlanWorkComponent = () => {
                 control={form.control}
                 name="startDate"
                 render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Van</FormLabel>
+                    <FormLabel className="font-semibold text-primary/90">
+                      Van
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -189,8 +192,9 @@ const PlanWorkComponent = () => {
                 control={form.control}
                 name="endDate"
                 render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Tot</FormLabel>
+                    <FormLabel className="font-semibold text-primary/90">
+                      Tot
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -210,7 +214,7 @@ const PlanWorkComponent = () => {
               name="numWorkers"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="flex-grow">
+                  <FormLabel className="flex flex-grow items-center font-semibold text-primary/90">
                     Aantal medewerkers
                     <Users className="ml-2 inline" size={'1rem'} />
                   </FormLabel>
