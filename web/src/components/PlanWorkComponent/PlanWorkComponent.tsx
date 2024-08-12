@@ -251,7 +251,7 @@ const PlanWorkComponent = () => {
               <Button
                 type="submit"
                 disabled={loading}
-                className="text-accent brightness-200 hover:brightness-100"
+                className="uppercase text-accent brightness-200 hover:brightness-100"
               >
                 Indienen
               </Button>
