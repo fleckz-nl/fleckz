@@ -142,7 +142,10 @@ const PlanWorkComponent = () => {
                   </FormLabel>
                   <FormDescription>
                     Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
-                    <Link to={routes.jobProfiles()} className="hover:underline">
+                    <Link
+                      to={routes.jobProfiles()}
+                      className="text-accent hover:text-primary/80 hover:underline"
+                    >
                       Maak er een aan.
                     </Link>
                   </FormDescription>
