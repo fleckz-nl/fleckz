@@ -84,7 +84,7 @@ export const Success = ({
           </FormControl>
         </PopoverTrigger>
         <PopoverContent className="p-0">
-          <Command>
+          <Command className="bg-foreground text-muted-foreground">
             <CommandInput placeholder="Zoek profiel..." />
             <CommandList>
               <CommandEmpty>
