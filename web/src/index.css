@@ -88,7 +88,7 @@
     @apply border-border;
   }
   html {
-    @apply bg-primary
+    @apply bg-primary;
   }
   body {
     @apply bg-background text-foreground;
@@ -97,8 +97,12 @@
 }
 
 .error-message {
-  @apply text-xs text-right text-red-600;
+  @apply text-right text-xs text-red-600;
 }
+
+input[type='datetime-local']::-webkit-datetime-edit-text { color: darkcyan; padding: 0 0.3em; }
+
+
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
