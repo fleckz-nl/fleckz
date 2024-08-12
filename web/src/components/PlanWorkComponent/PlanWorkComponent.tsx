@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Users } from 'lucide-react'
+import { MessageSquareWarningIcon, Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -102,9 +102,12 @@ const PlanWorkComponent = () => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <div className="bg-red-200 text-red-600">
-            <FormError error={error} />
-          </div>
+          {error && (
+            <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
+              <MessageSquareWarningIcon className="" />
+              <FormError error={error} />
+            </div>
+          )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
