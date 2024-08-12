@@ -144,7 +144,7 @@ const PlanWorkComponent = () => {
                     Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
                     <Link
                       to={routes.jobProfiles()}
-                      className="text-accent hover:text-primary/80 hover:underline"
+                      className="text-primary/90 hover:text-accent hover:underline"
                     >
                       Maak er een aan.
                     </Link>
