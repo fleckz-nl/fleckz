@@ -73,7 +73,7 @@ export const Success = ({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="justify-between"
+              className="justify-between text-primary-foreground"
             >
               {field.value
                 ? jobProfiles.find((profile) => profile.id === field.value)
