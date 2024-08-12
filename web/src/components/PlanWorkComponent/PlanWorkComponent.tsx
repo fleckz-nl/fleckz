@@ -248,8 +248,12 @@ const PlanWorkComponent = () => {
               )}
             />
             <DialogFooter>
-              <Button type="submit" disabled={loading}>
-                Submit
+              <Button
+                type="submit"
+                disabled={loading}
+                className="text-accent brightness-200 hover:brightness-100"
+              >
+                Indienen
               </Button>
             </DialogFooter>
           </form>
