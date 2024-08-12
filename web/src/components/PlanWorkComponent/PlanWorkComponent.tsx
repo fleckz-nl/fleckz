@@ -94,7 +94,7 @@ const PlanWorkComponent = () => {
       <DialogTrigger asChild>
         <Button variant="outline">Werk Uitzetten</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>Werk Uitzetten</DialogTitle>
           <DialogDescription>
