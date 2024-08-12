@@ -119,6 +119,7 @@ const PlanWorkComponent = () => {
                   <FormLabel className="font-semibold text-primary/90">
                     Projectnaam
                   </FormLabel>
+                  <FormDescription>Hoe heet uw project?</FormDescription>
                   <FormControl>
                     <Input
                       placeholder="Nieuwe project"
@@ -155,6 +156,9 @@ const PlanWorkComponent = () => {
                   <FormLabel className="font-semibold text-primary/90">
                     Locatie
                   </FormLabel>
+                  <FormDescription>
+                    Waar wilt u dat de werknemer werkt?
+                  </FormDescription>
                   <SelectAddressCell
                     field={field}
                     form={form}
@@ -218,6 +222,7 @@ const PlanWorkComponent = () => {
                     Aantal medewerkers
                     <Users className="ml-2 inline" size={'1rem'} />
                   </FormLabel>
+                  <FormDescription>Hoeveel medewerkers nodig?</FormDescription>
                   <FormControl>
                     <Input
                       placeholder=""
