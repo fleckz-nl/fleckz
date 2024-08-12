@@ -124,10 +124,11 @@ const PlanWorkComponent = () => {
                     <Input
                       placeholder="Nieuwe project"
                       {...field}
-                      className={fieldState.error && 'border-red-500'}
+                      className={`relative -top-4 ${
+                        fieldState.error && ' border-red-500'
+                      }`}
                     />
                   </FormControl>
-                  <FormDescription>Hoe heet uw project?</FormDescription>
                 </FormItem>
               )}
             />
@@ -145,6 +146,14 @@ const PlanWorkComponent = () => {
                       Maak er een aan.
                     </Link>
                   </FormDescription>
+                  <SelectJobProfileCell
+                    field={field}
+                    form={form}
+                    // TODO: Fix this typescript error
+                    className={`relative -top-4 py-4 pl-3 ${
+                      fieldState.error && ' border-red-500'
+                    }`}
+                  />
                 </FormItem>
               )}
             />
@@ -163,11 +172,10 @@ const PlanWorkComponent = () => {
                     field={field}
                     form={form}
                     // TODO: Fix this typescript error
-                    className={fieldState.error && 'border-red-500'}
+                    className={`relative -top-4 py-4 pl-3 ${
+                      fieldState.error && ' border-red-500'
+                    }`}
                   />
-                  <FormDescription>
-                    Waar wilt u dat de werknemer werkt?
-                  </FormDescription>
                 </FormItem>
               )}
             />
@@ -176,6 +184,7 @@ const PlanWorkComponent = () => {
                 control={form.control}
                 name="startDate"
                 render={({ field, fieldState }) => (
+                  <FormItem className="-mt-1 mb-2">
                     <FormLabel className="font-semibold text-primary/90">
                       Van
                     </FormLabel>
@@ -183,7 +192,7 @@ const PlanWorkComponent = () => {
                       <Input
                         {...field}
                         type="datetime-local"
-                        className={`min-w-48 ${
+                        className={`relative -top-2 min-w-48 ${
                           fieldState.error && 'border-red-500'
                         }`}
                       />
@@ -196,6 +205,7 @@ const PlanWorkComponent = () => {
                 control={form.control}
                 name="endDate"
                 render={({ field, fieldState }) => (
+                  <FormItem className="-mt-1 mb-2">
                     <FormLabel className="font-semibold text-primary/90">
                       Tot
                     </FormLabel>
@@ -203,7 +213,7 @@ const PlanWorkComponent = () => {
                       <Input
                         {...field}
                         type="datetime-local"
-                        className={`min-w-48 ${
+                        className={`relative -top-2 min-w-48 ${
                           fieldState.error && 'border-red-500'
                         }`}
                       />
@@ -229,11 +239,11 @@ const PlanWorkComponent = () => {
                       {...field}
                       type="number"
                       min={0}
-                      className={fieldState.error && 'border-red-500'}
+                      className={`relative -top-4 ${
+                        fieldState.error && ' border-red-500'
+                      }`}
                     />
                   </FormControl>
-
-                  <FormDescription>Hoeveel medewerkers nodig?</FormDescription>
                 </FormItem>
               )}
             />
