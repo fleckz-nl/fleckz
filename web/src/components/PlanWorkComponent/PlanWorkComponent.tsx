@@ -32,6 +32,7 @@ import {
   FormLabel,
 } from 'src/components/ui/form'
 import { Input } from 'src/components/ui/input'
+import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
@@ -74,6 +75,7 @@ const PlanWorkComponent = () => {
       form.reset()
       setOpen(false)
     },
+    refetchQueries: [{ query: WorkSchedularQuery }],
   })
   function onSubmit(data: z.infer<typeof formSchema>) {
     create({
