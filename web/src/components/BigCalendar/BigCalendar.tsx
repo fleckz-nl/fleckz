@@ -48,7 +48,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
   const [selectedEvent, setSelectedEvent] =
     useState<Partial<CreateWorkRequestInput>>()
 
-  function handleSelect(props: SlotInfo) {
+  function handleSelectSlot(props: SlotInfo) {
     setSelectedEvent({
       startDate: props.start.toISOString(),
       endDate: props.end.toISOString(),
@@ -71,7 +71,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
         localizer={localizer}
         startAccessor={'start'}
         endAccessor={'end'}
-        onSelectSlot={handleSelect}
+        onSelectSlot={handleSelectSlot}
         events={events}
         scrollToTime={addHours(startOfToday(), 8)}
         selectable
