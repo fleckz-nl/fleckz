@@ -1,24 +1,29 @@
-import { MutableRefObject, useState } from 'react'
+import { useState } from 'react'
 
-import { X } from 'lucide-react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CirclePlus, MessageSquareWarningIcon } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-import {
-  Form,
-  Submit,
-  TextField,
-  NumberField,
-  Label,
-  TextAreaField,
-  FieldError,
-  FormError,
-} from '@redwoodjs/forms'
+import { FormError } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
 import { Switch } from 'src/components/ui/switch'
 
 import RatingStars from '../RatingStars/RatingStars'
-import { Separator } from '../ui/separator'
+import { Button } from '../ui/button'
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../ui/dialog'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
+import { Input } from '../ui/input'
+import { Textarea } from '../ui/textarea'
 
 const CREATE_JOB_PROFILE = gql`
   mutation CreateJobProfileMutation($input: CreateJobProfileInput!) {
