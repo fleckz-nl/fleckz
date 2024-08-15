@@ -1,5 +1,3 @@
-import { useEffect, useMemo } from 'react'
-
 import {
   type WorkSchedularQuery,
   type WorkSchedularQueryVariables,
@@ -21,8 +19,12 @@ export const QUERY: TypedDocumentNode<
     workRequests: workRequests {
       id
       projectName
+      jobProfileId
       startDate
       endDate
+      numWorkers
+      addressId
+      status
     }
   }
 `
