@@ -24,34 +24,42 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-type Event = {
-  title?: string
-  start?: Date
-  end?: Date
-}
-
 type BigCalendarProps = {
   defaultEvents?: WorkSchedularQuery['workRequests']
 }
 
 const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
-  const events = useMemo<Event[]>(() => {
+  const events = useMemo(() => {
     if (defaultEvents == null) return []
     return defaultEvents.map((e) => ({
       title: e.projectName,
       start: new Date(e.startDate),
       end: new Date(e.endDate),
+      workRequestData: e,
     }))
   }, [defaultEvents])
 
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedEvent, setSelectedEvent] =
-    useState<Partial<CreateWorkRequestInput>>()
+    useState<Partial<CreateWorkRequestInput & { id: string }>>()
 
   function handleSelectSlot(props: SlotInfo) {
     setSelectedEvent({
       startDate: props.start.toISOString(),
       endDate: props.end.toISOString(),
+    })
+    setOpenDialog(true)
+  }
+
+  function handleSelectEvent(props: (typeof events)[0]) {
+    setSelectedEvent({
+      id: props.workRequestData.id,
+      startDate: props.start.toISOString(),
+      endDate: props.end.toISOString(),
+      projectName: props.workRequestData.projectName,
+      jobProfileId: props.workRequestData.jobProfileId,
+      addressId: props.workRequestData.addressId,
+      numWorkers: props.workRequestData.numWorkers,
     })
     setOpenDialog(true)
   }
@@ -72,6 +80,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
         startAccessor={'start'}
         endAccessor={'end'}
         onSelectSlot={handleSelectSlot}
+        onSelectEvent={handleSelectEvent}
         events={events}
         scrollToTime={addHours(startOfToday(), 8)}
         selectable
