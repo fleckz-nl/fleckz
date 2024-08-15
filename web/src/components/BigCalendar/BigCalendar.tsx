@@ -58,11 +58,13 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
 
   return (
     <div className="mx-auto h-[600px] max-w-4xl">
-      <PlanWorkComponent
-        open={openDialog}
-        setOpen={setOpenDialog}
-        defaultValues={selectedEvent}
-      />
+      <div className="mt-4 flex items-center justify-center">
+        <PlanWorkComponent
+          open={openDialog}
+          setOpen={setOpenDialog}
+          defaultValues={selectedEvent}
+        />
+      </div>
       <Calendar
         className="m-2 bg-white p-2"
         defaultView="week"

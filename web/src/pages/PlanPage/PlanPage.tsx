@@ -1,6 +1,6 @@
 import { Metadata } from '@redwoodjs/web'
 
-import PlanWorkComponent from 'src/components/PlanWorkComponent/PlanWorkComponent'
+import WorkSchedularCell from 'src/components/WorkSchedularCell'
 
 const PlanPage = () => {
   return (
@@ -13,10 +13,8 @@ const PlanPage = () => {
           </h1>
           <p>Klik in de agenda en plan het werk in</p>
         </div>
-        <div className="mt-4 flex items-center justify-center">
-          <PlanWorkComponent />
-        </div>
       </div>
+      <WorkSchedularCell />
     </>
   )
 }
