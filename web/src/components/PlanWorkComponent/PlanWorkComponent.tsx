@@ -50,8 +50,22 @@ const CREATE_WORK_REQUEST_GQL = gql`
   }
 `
 
+const UPDATE_WORK_REQUEST_GQL = gql`
+  mutation UpdateWorkRequest($id: String!, $input: UpdateWorkRequestInput!) {
+    updateWorkRequest(id: $id, input: $input) {
+      projectName
+      jobProfileId
+      startDate
+      endDate
+      numWorkers
+      addressId
+      status
+    }
+  }
+`
+
 type PlanWorkComponentProps = {
-  defaultValues?: Partial<CreateWorkRequestInput>
+  defaultValues?: Partial<CreateWorkRequestInput & { id: string }>
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -66,7 +80,10 @@ const PlanWorkComponent = ({
   open,
   setOpen,
 }: PlanWorkComponentProps) => {
+  const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
+
   const formSchema = z.object({
+    id: z.string().cuid().optional(),
     projectName: z.string().min(1),
     startDate: z.string().min(1),
     endDate: z.string().min(1),
@@ -77,6 +94,7 @@ const PlanWorkComponent = ({
 
   const currentDefaultValues = useMemo<z.infer<typeof formSchema>>(
     () => ({
+      id: defaultValues?.id || '',
       projectName: defaultValues?.projectName || '',
       startDate: formatToDatetimeLocal(defaultValues?.startDate) || '',
       endDate: formatToDatetimeLocal(defaultValues?.endDate) || '',
@@ -101,7 +119,34 @@ const PlanWorkComponent = ({
     refetchQueries: [{ query: WorkSchedularQuery }],
   })
 
+  const [update, { loading: updateLoading, error: updateError }] = useMutation(
+    UPDATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Updated')
+        form.reset()
+        setOpen(false)
+      },
+      refetchQueries: [{ query: WorkSchedularQuery }],
+    }
+  )
+
   function onSubmit(data: z.infer<typeof formSchema>) {
+    if (isEditing) {
+      const { id, ...restData } = data
+      update({
+        variables: {
+          id,
+          input: {
+            ...restData,
+            startDate: new Date(data.startDate),
+            endDate: new Date(data.endDate),
+          },
+        },
+      })
+      return
+    }
+
     create({
       variables: {
         input: {
@@ -134,10 +179,10 @@ const PlanWorkComponent = ({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          {error && (
+          {(error || updateError) && (
             <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
               <MessageSquareWarningIcon className="" />
-              <FormError error={error} />
+              <FormError error={error || updateError} />
             </div>
           )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -283,10 +328,10 @@ const PlanWorkComponent = ({
             <DialogFooter>
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={loading || updateLoading}
                 className="uppercase text-accent brightness-200 hover:brightness-100"
               >
-                Indienen
+                {isEditing ? 'Update' : 'Indienen'}
               </Button>
             </DialogFooter>
           </form>
