@@ -94,7 +94,7 @@ const PlanWorkComponent = ({
 
   const currentDefaultValues = useMemo<z.infer<typeof formSchema>>(
     () => ({
-      id: defaultValues?.id || '',
+      id: defaultValues?.id,
       projectName: defaultValues?.projectName || '',
       startDate: formatToDatetimeLocal(defaultValues?.startDate) || '',
       endDate: formatToDatetimeLocal(defaultValues?.endDate) || '',
