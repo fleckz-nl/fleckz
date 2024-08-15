@@ -114,7 +114,15 @@ const AddJobProfileModal = () => {
             Functieprofielen Aanmaken
           </DialogTitle>
         </DialogHeader>
+        <Form {...form}>
+          {error && (
+            <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
+              <MessageSquareWarningIcon className="" />
+              <FormError error={error} />
+            </div>
+          )}
               name="totalBudgetPerHour"
+        </Form>
       </DialogContent>
     </Dialog>
 
