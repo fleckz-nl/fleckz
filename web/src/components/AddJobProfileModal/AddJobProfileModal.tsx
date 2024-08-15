@@ -152,7 +152,7 @@ const AddJobProfileModal = () => {
                     className="my-0 flex h-8 gap-2 text-accent/70 hover:text-accent/90"
                     value={qualityNeeded}
                     onChange={setQualityNeeded}
-                  ></RatingStars>
+                  />
                   <FormControl>
                     <Input
                       placeholder=""
