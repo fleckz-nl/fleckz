@@ -47,7 +47,7 @@ const AddJobProfileModal = () => {
   const [open, setOpen] = useState(false)
   const formSchema = z.object({
     name: z.string().min(1),
-    qualityNeeded: z.number().min(1),
+    qualityNeeded: z.number().min(1).max(5),
     yearsOfExp: z.number().min(1),
     hourlyWageMin: z.number().min(1),
     hourlyWageMax: z.number().min(1),
