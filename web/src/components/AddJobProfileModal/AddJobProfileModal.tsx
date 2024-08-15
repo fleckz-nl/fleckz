@@ -121,7 +121,9 @@ const AddJobProfileModal = () => {
               <FormError error={error} />
             </div>
           )}
+          <form onSubmit={form.handleSubmit(onSubmit)}>
               name="totalBudgetPerHour"
+          </form>
         </Form>
       </DialogContent>
     </Dialog>
