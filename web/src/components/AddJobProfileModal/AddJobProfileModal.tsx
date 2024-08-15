@@ -164,7 +164,13 @@ const AddJobProfileModal = () => {
                         fieldState.error && ' border-red-500'
                       }`}
                       value={qualityNeeded}
-                      onChange={(e) => setQualityNeeded(Number(e.target.value))}
+                      onChange={(e) => {
+                        const coercedValue = Math.max(
+                          1,
+                          Math.min(5, parseInt(e.target.value) || 1)
+                        )
+                        setQualityNeeded(Number(coercedValue))
+                      }}
                     />
                   </FormControl>
                 </FormItem>
