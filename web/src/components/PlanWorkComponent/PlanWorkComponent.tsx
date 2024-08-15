@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { formatDate } from 'date-fns'
 import { MessageSquareWarningIcon, Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { CreateWorkRequestInput } from 'types/graphql'
 import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
@@ -48,8 +50,22 @@ const CREATE_WORK_REQUEST_GQL = gql`
   }
 `
 
-const PlanWorkComponent = () => {
-  const [open, setOpen] = useState(false)
+type PlanWorkComponentProps = {
+  defaultValues?: Partial<CreateWorkRequestInput>
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function formatToDatetimeLocal(date: Date | string) {
+  if (date == null) return
+  return formatDate(date, "yyyy-MM-dd'T'HH:mm")
+}
+
+const PlanWorkComponent = ({
+  defaultValues,
+  open,
+  setOpen,
+}: PlanWorkComponentProps) => {
   const formSchema = z.object({
     projectName: z.string().min(1),
     startDate: z.string().min(1),
@@ -58,17 +74,24 @@ const PlanWorkComponent = () => {
     addressId: z.string().min(1),
     numWorkers: z.number().min(1),
   })
+
+  const currentDefaultValues = useMemo<z.infer<typeof formSchema>>(
+    () => ({
+      projectName: defaultValues?.projectName || '',
+      startDate: formatToDatetimeLocal(defaultValues?.startDate) || '',
+      endDate: formatToDatetimeLocal(defaultValues?.endDate) || '',
+      jobProfileId: defaultValues?.jobProfileId || '',
+      addressId: defaultValues?.addressId || '',
+      numWorkers: 1,
+    }),
+    [defaultValues]
+  )
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      projectName: '',
-      startDate: '',
-      endDate: '',
-      jobProfileId: '',
-      addressId: '',
-      numWorkers: 1,
-    },
+    defaultValues: currentDefaultValues,
   })
+
   const [create, { loading, error }] = useMutation(CREATE_WORK_REQUEST_GQL, {
     onCompleted: () => {
       toast.success('Success')
@@ -77,6 +100,7 @@ const PlanWorkComponent = () => {
     },
     refetchQueries: [{ query: WorkSchedularQuery }],
   })
+
   function onSubmit(data: z.infer<typeof formSchema>) {
     create({
       variables: {
@@ -89,6 +113,10 @@ const PlanWorkComponent = () => {
       },
     })
   }
+
+  useEffect(() => {
+    form.reset(currentDefaultValues)
+  }, [form, currentDefaultValues])
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
