@@ -77,6 +77,8 @@ const AddJobProfileModal = () => {
   const [create, { loading, error }] = useMutation(CREATE_JOB_PROFILE, {
     onCompleted: () => {
       toast.success('Success')
+      form.reset()
+      setOpen(false)
     },
   })
 
