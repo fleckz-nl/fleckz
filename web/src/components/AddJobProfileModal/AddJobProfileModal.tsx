@@ -43,11 +43,37 @@ const CREATE_JOB_PROFILE = gql`
   }
 `
 
-const AddJobProfileModal = ({
-  dialogRef,
-}: {
-  dialogRef: MutableRefObject<HTMLDialogElement>
-}) => {
+const AddJobProfileModal = () => {
+  const [open, setOpen] = useState(false)
+  const formSchema = z.object({
+    name: z.string().min(1),
+    qualityNeeded: z.number().min(1),
+    yearsOfExp: z.number().min(1),
+    hourlyWageMin: z.number().min(1),
+    hourlyWageMax: z.number().min(1),
+    maxTravelDistance: z.number().min(1),
+    isTravelReimbursed: z.boolean(),
+    isCarAvailable: z.boolean(),
+    kmAllowance: z.number().min(1),
+    totalBudgetPerHour: z.number().min(1),
+    comment: z.string().min(1),
+  })
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      qualityNeeded: 3,
+      yearsOfExp: 0,
+      hourlyWageMin: 0,
+      hourlyWageMax: 0,
+      maxTravelDistance: 0,
+      isTravelReimbursed: false,
+      isCarAvailable: false,
+      kmAllowance: 0,
+      totalBudgetPerHour: 0,
+      comment: '',
+    },
+  })
   const [create, { loading, error }] = useMutation(CREATE_JOB_PROFILE, {
     onCompleted: () => {
       toast.success('Success')
