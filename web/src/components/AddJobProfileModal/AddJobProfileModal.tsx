@@ -85,8 +85,15 @@ const AddJobProfileModal = () => {
   const DEFAULT_QUALITY_NEEDED = 3
   const [qualityNeeded, setQualityNeeded] = useState(DEFAULT_QUALITY_NEEDED)
 
-  function onSubmit(data) {
-    create({ variables: { input: data } })
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    create({
+      variables: {
+        input: {
+          ...data,
+          status: 'SUBMITTED',
+        },
+      },
+    })
   }
 
   return (
