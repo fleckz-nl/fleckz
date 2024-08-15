@@ -237,25 +237,20 @@ const AddJobProfileModal = ({
             <span className="text-lg opacity-90">€</span>
             <NumberField
               name="totalBudgetPerHour"
-              min={0}
-              className="rw-input w-auto"
-              errorClassName="rw-input rw-input-error w-auto"
-            />
-          </div>
-        </span>
-        <Label name="comment" className="rw-label mt-2">
-          Eventueel standaardbericht voor uitzendbureaus
-        </Label>
-        <TextAreaField
-          name="comment"
-          className="rw-input w-auto"
-          errorClassName="rw-input rw-input-error w-auto"
-        />
-        <Submit disabled={loading} className="rw-button rw-button-green mt-2">
-          Aanmaken
-        </Submit>
-      </Form>
-    </div>
+    // TODO: Check onchange react hook forms
+    //           validation={{
+    //             required: {
+    //               value: true,
+    //               message: 'Gewenste kwaliteit is verplicht',
+    //             },
+    //             min: { value: 1, message: 'Minimaal is 1' },
+    //             max: { value: 5, message: 'Maximum is 5' },
+    //           }}
+    //           min={1}
+    //           max={5}
+    //           value={qualityNeeded}
+    //           onChange={(e) => setQualityNeeded(Number(e.target.value))}
+    //         />
   )
 }
 
