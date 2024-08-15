@@ -122,7 +122,279 @@ const AddJobProfileModal = () => {
             </div>
           )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field, fieldState }) => (
+                <FormItem className="space-y-5">
+                  <FormLabel className="font-semibold">Functienaam</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className={`relative -top-4 ${
+                        fieldState.error && ' border-red-500'
+                      }`}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="qualityNeeded"
+              render={({ field, fieldState }) => (
+                <FormItem className="flex items-center justify-between gap-2">
+                  <FormLabel className="mt-2 font-semibold">
+                    Gewenste kwaliteit
+                  </FormLabel>
+                  <RatingStars
+                    className="my-0 flex h-8 gap-2 text-accent/70 hover:text-accent/90"
+                    value={qualityNeeded}
+                    onChange={setQualityNeeded}
+                  ></RatingStars>
+                  <FormControl>
+                    <Input
+                      placeholder=""
+                      {...field}
+                      type="number"
+                      min={1}
+                      max={5}
+                      className={`w-14 ${
+                        fieldState.error && ' border-red-500'
+                      }`}
+                      value={qualityNeeded}
+                      onChange={(e) => setQualityNeeded(Number(e.target.value))}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="yearsOfExp"
+              render={({ field, fieldState }) => (
+                <FormItem className="mt-2 flex items-center justify-between gap-2">
+                  <FormLabel className="mt-1 font-semibold">
+                    Aantal jaar werkervaring
+                  </FormLabel>
+                  <div className="flex items-center gap-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder=""
+                        type="number"
+                        min={0}
+                        className={`w-28 ${
+                          fieldState.error && ' border-red-500'
+                        }`}
+                      />
+                    </FormControl>
+                    <div className="flex text-primary/80">
+                      <span>jaren</span>
+                      <span className="relative -top-1">+</span>
+                    </div>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <div className="mt-4 flex flex-wrap items-center justify-between">
+              <FormLabel className="mt-1 font-semibold">
+                Salaris indicatie
+              </FormLabel>
+              <div className="mt-2 flex items-center gap-1 md:mt-0">
+                <span className=" text-lg text-primary/80 opacity-90">€</span>
+                <FormField
+                  control={form.control}
+                  name="hourlyWageMin"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="space-y-5">
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="number"
+                          min={0}
+                          className={`w-28 ${
+                            fieldState.error && ' border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <span className=" text-accent">—</span>
+                <span className="text-lg text-primary/80 opacity-90">€</span>
+                <FormField
+                  control={form.control}
+                  name="hourlyWageMax"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="space-y-5">
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="number"
+                          min={0}
+                          className={`w-28 ${
+                            fieldState.error && ' border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex flex-col rounded-md border border-primary-foreground bg-muted-foreground/30 sm:w-full">
+              <div className="flex items-center px-2">
+                <FormField
+                  control={form.control}
+                  name="maxTravelDistance"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="mt-2 flex items-center justify-between gap-2">
+                      <FormLabel className="mt-1 font-semibold">
+                        Maximale reisafstand
+                      </FormLabel>
+                      <div className="flex items-center gap-1">
+                        <FormControl>
+                          <Input
+                            placeholder=""
+                            {...field}
+                            type="number"
+                            min={0}
+                            className={`w-28 ${
+                              fieldState.error && ' border-red-500'
+                            }`}
+                          />
+                        </FormControl>
+                        <span className="text-primary/80">km</span>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex flex-wrap justify-between px-2">
+                <FormField
+                  control={form.control}
+                  name="isTravelReimbursed"
+                  render={({ fieldState }) => (
+                    <FormItem className="mt-2 flex items-center gap-2">
+                      <FormLabel className="mt-1 font-semibold">
+                        Reiskosten vergoeding
+                      </FormLabel>
+                      <FormControl>
+                        <Switch
+                          name="isTravelReimbursed"
+                          className={` ${
+                            fieldState.error && ' border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="isTravelReimbursed"
+                  render={({ fieldState }) => (
+                    <FormItem className="mt-2 flex items-center gap-2">
+                      <FormLabel className="mt-1 font-semibold">
+                        Auto beschikbaar
+                      </FormLabel>
+                      <FormControl>
+                        <Switch
+                          name="isTravelReimbursed"
+                          className={` ${
+                            fieldState.error && ' border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex items-center px-2 pb-4">
+                <FormField
+                  control={form.control}
+                  name="kmAllowance"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="mt-2 flex items-center justify-between gap-2">
+                      <FormLabel className="mt-1 flex flex-wrap font-semibold">
+                        <span>Kilometer</span>
+                        <span>vergoeding</span>
+                      </FormLabel>
+                      <div className="flex items-center gap-1">
+                        <FormControl>
+                          <Input
+                            placeholder=""
+                            {...field}
+                            type="number"
+                            min={0}
+                            className={`w-28 ${
+                              fieldState.error && ' border-red-500'
+                            }`}
+                          />
+                        </FormControl>
+                        <span className="text-primary/80">km</span>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <FormField
+              control={form.control}
               name="totalBudgetPerHour"
+              render={({ field, fieldState }) => (
+                <FormItem className="mt-2 flex items-center justify-between gap-2">
+                  <FormLabel className="mt-1 font-semibold">
+                    Budget bruto per uur
+                  </FormLabel>
+                  <div className="flex items-center gap-1">
+                    <span className="text-lg text-primary/80 opacity-90">
+                      €
+                    </span>
+                    <FormControl>
+                      <Input
+                        placeholder=""
+                        {...field}
+                        type="number"
+                        min={0}
+                        className={`w-28 ${
+                          fieldState.error && ' border-red-500'
+                        }`}
+                      />
+                    </FormControl>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="comment"
+              render={({ field, fieldState }) => (
+                <FormItem className="mt-2 space-y-5">
+                  <FormLabel className="font-semibold">
+                    Eventueel standaardbericht voor uitzendbureaus
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      className={`relative -top-4 border-muted-foreground focus:border-accent ${
+                        fieldState.error && ' border-red-500'
+                      }`}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <DialogFooter>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="uppercase text-accent brightness-200 hover:brightness-100"
+              >
+                Aanmaken
+              </Button>
+            </DialogFooter>
           </form>
         </Form>
       </DialogContent>
