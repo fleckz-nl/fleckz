@@ -1,6 +1,7 @@
 import { MutableRefObject, useState } from 'react'
 
 import { X } from 'lucide-react'
+import { CreateJobProfileInput } from 'types/graphql'
 
 import {
   Form,
@@ -15,6 +16,7 @@ import {
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
+import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
 import { Switch } from 'src/components/ui/switch'
 
 import RatingStars from '../RatingStars/RatingStars'
@@ -47,12 +49,13 @@ const AddJobProfileModal = ({
     onCompleted: () => {
       toast.success('Success')
     },
+    refetchQueries: [{ query: JobProfilesQuery }],
   })
 
   const DEFAULT_QUALITY_NEEDED = 3
   const [qualityNeeded, setQualityNeeded] = useState(DEFAULT_QUALITY_NEEDED)
 
-  function onSubmit(data) {
+  function onSubmit(data: CreateJobProfileInput) {
     create({ variables: { input: data } })
   }
 
