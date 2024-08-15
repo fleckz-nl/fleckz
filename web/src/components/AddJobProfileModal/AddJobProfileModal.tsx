@@ -73,6 +73,7 @@ const AddJobProfileModal = () => {
       totalBudgetPerHour: 0,
       comment: '',
     },
+    mode: 'onChange',
   })
   const [create, { loading, error }] = useMutation(CREATE_JOB_PROFILE, {
     onCompleted: () => {
