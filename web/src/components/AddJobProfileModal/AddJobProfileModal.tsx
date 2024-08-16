@@ -341,17 +341,17 @@ const AddJobProfileModal = () => {
                         Kilometervergoeding
                       </FormLabel>
                       <div className="flex items-center gap-1">
-                        <span className="text-lg text-primary/80 opacity-90">
-                          €
-                        </span>
                         <FormControl>
-                          <Input
-                            {...field}
-                            type="number"
-                            min={0}
+                          <CurrencyInput
                             className={`w-28 ${
                               fieldState.error && ' border-red-500'
                             }`}
+                            onValueChange={({ floatValue }) =>
+                              field.onChange(floatValue)
+                            }
+                            value={field.value}
+                            ref={field.ref}
+                            onFocusCapture={(e) => e.target.select()}
                             disabled={!form.getValues('isTravelReimbursed')}
                           />
                         </FormControl>
