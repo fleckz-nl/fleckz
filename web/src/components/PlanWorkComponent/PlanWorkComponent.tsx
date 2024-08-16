@@ -36,6 +36,8 @@ import {
 import { Input } from 'src/components/ui/input'
 import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
+import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
+
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
     createWorkRequest(input: $input) {
@@ -60,6 +62,14 @@ const UPDATE_WORK_REQUEST_GQL = gql`
       numWorkers
       addressId
       status
+    }
+  }
+`
+
+const DELETE_WORK_REQUEST_GQL = gql`
+  mutation DeleteWorkRequest($id: String!) {
+    deleteWorkRequest(id: $id) {
+      id
     }
   }
 `
@@ -131,6 +141,16 @@ const PlanWorkComponent = ({
     }
   )
 
+  const [deleteRequest, { loading: deleteLoading, error: deleteError }] =
+    useMutation(DELETE_WORK_REQUEST_GQL, {
+      onCompleted: () => {
+        toast.success('Verwijderd')
+        form.reset()
+        setOpen(false)
+      },
+      refetchQueries: [{ query: WorkSchedularQuery }],
+    })
+
   function onSubmit(data: z.infer<typeof formSchema>) {
     if (isEditing) {
       const { id, ...restData } = data
@@ -157,6 +177,13 @@ const PlanWorkComponent = ({
         },
       },
     })
+  }
+
+  function handleDelete(id: string) {
+    deleteRequest({
+      variables: { id },
+    })
+    setOpen(false)
   }
 
   useEffect(() => {
@@ -326,6 +353,13 @@ const PlanWorkComponent = ({
               )}
             />
             <DialogFooter>
+              {isEditing && (
+                <ConfirmDeleteWork
+                  onConfirm={() => handleDelete(form.getValues('id'))}
+                  error={deleteError}
+                  loading={deleteLoading}
+                />
+              )}
               <Button
                 type="submit"
                 disabled={loading || updateLoading}
