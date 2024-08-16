@@ -328,6 +328,9 @@ const AddJobProfileModal = () => {
                         Kilometervergoeding
                       </FormLabel>
                       <div className="flex items-center gap-1">
+                        <span className="text-lg text-primary/80 opacity-90">
+                          €
+                        </span>
                         <FormControl>
                           <Input
                             {...field}
@@ -338,7 +341,6 @@ const AddJobProfileModal = () => {
                             }`}
                           />
                         </FormControl>
-                        <span className="text-primary/80">km</span>
                       </div>
                     </FormItem>
                   )}
