@@ -47,15 +47,15 @@ const AddJobProfileModal = () => {
   const [open, setOpen] = useState(false)
   const formSchema = z.object({
     name: z.string().min(1),
-    qualityNeeded: z.number().min(1),
-    yearsOfExp: z.number().min(1),
-    hourlyWageMin: z.number().min(1),
-    hourlyWageMax: z.number().min(1),
-    maxTravelDistance: z.number().min(1),
+    qualityNeeded: z.coerce.number().min(1).max(5),
+    yearsOfExp: z.coerce.number().min(1),
+    hourlyWageMin: z.coerce.number().min(1),
+    hourlyWageMax: z.coerce.number().min(1),
+    maxTravelDistance: z.coerce.number().min(1),
     isTravelReimbursed: z.boolean(),
     isCarAvailable: z.boolean(),
-    kmAllowance: z.number().min(1),
-    totalBudgetPerHour: z.number().min(1),
+    kmAllowance: z.coerce.number().min(1),
+    totalBudgetPerHour: z.coerce.number().min(1),
     comment: z.string().min(1),
   })
   const form = useForm<z.infer<typeof formSchema>>({
@@ -73,6 +73,7 @@ const AddJobProfileModal = () => {
       totalBudgetPerHour: 0,
       comment: '',
     },
+    mode: 'onChange',
   })
   const [create, { loading, error }] = useMutation(CREATE_JOB_PROFILE, {
     onCompleted: () => {
@@ -151,7 +152,7 @@ const AddJobProfileModal = () => {
                     className="my-0 flex h-8 gap-2 text-accent/70 hover:text-accent/90"
                     value={qualityNeeded}
                     onChange={setQualityNeeded}
-                  ></RatingStars>
+                  />
                   <FormControl>
                     <Input
                       placeholder=""
@@ -163,7 +164,13 @@ const AddJobProfileModal = () => {
                         fieldState.error && ' border-red-500'
                       }`}
                       value={qualityNeeded}
-                      onChange={(e) => setQualityNeeded(Number(e.target.value))}
+                      onChange={(e) => {
+                        const coercedValue = Math.max(
+                          1,
+                          Math.min(5, parseInt(e.target.value) || 1)
+                        )
+                        setQualityNeeded(Number(coercedValue))
+                      }}
                     />
                   </FormControl>
                 </FormItem>
