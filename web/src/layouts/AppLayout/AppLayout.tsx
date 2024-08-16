@@ -117,8 +117,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <main className="max-w-full flex-grow flex-col break-words bg-transparent p-4">
         {children}
       </main>
-      <footer className="mx-2 mb-2 flex items-center justify-between text-accent/40">
-        <div className="copyright-section mx-4 flex items-center gap-0.5">
+      <footer className="flex flex-wrap items-center justify-between px-4 pb-2 text-accent/40">
+        <div className="copyright-section flex items-center gap-0.5">
           <Copyright size={20} />
           <span className="text-nowrap font-medium">2024 Alluca</span>
         </div>
