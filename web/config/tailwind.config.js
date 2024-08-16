@@ -12,6 +12,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: '576px',
+      },
       colors: {
         'accent-darker': '#346660',
         'alluca-primary': '#013B35',
