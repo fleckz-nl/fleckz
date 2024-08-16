@@ -1,14 +1,11 @@
-import { useRef } from 'react'
-
-import { CirclePlus, SortDesc } from 'lucide-react'
+import { SortDesc } from 'lucide-react'
 
 import { Metadata } from '@redwoodjs/web'
 
 import AddJobProfileModal from 'src/components/AddJobProfileModal/AddJobProfileModal'
 import JobProfileCell from 'src/components/JobProfilesCell'
-import { Button } from 'src/components/ui/button'
+
 const JobProfilesPage = () => {
-  const addJobProfileRef = useRef<HTMLDialogElement>(null)
   return (
     <>
       <Metadata title="JobProfiles" description="JobProfiles page" />
@@ -19,18 +16,8 @@ const JobProfilesPage = () => {
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
         <JobProfileCell />
         <div className="col-span-full flex items-center justify-center">
-          <Button
-            variant="default"
-            onClick={() => addJobProfileRef.current.showModal()}
-            className="col-span-3 mt-4 flex gap-1 px-16 py-8 text-lg font-bold transition-colors"
-          >
-            <CirclePlus size={30} className="text-accent" />
-            Aanmaken
-          </Button>
+          <AddJobProfileModal />
         </div>
-        <dialog ref={addJobProfileRef} className="rounded-xl bg-black">
-          <AddJobProfileModal dialogRef={addJobProfileRef} />
-        </dialog>
       </div>
     </>
   )
