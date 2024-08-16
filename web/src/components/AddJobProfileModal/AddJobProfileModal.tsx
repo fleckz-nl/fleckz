@@ -229,7 +229,7 @@ const AddJobProfileModal = () => {
                     </FormItem>
                   )}
                 />
-                <span className=" text-accent">—</span>
+                <span className="text-accent">—</span>
                 <span className="text-lg text-primary/80 opacity-90">€</span>
                 <FormField
                   control={form.control}
