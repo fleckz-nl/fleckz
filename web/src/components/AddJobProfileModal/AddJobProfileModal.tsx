@@ -51,7 +51,7 @@ const AddJobProfileModal = () => {
     yearsOfExp: z.coerce.number().min(1),
     hourlyWageMin: z.coerce.number().min(1),
     hourlyWageMax: z.coerce.number().min(1),
-    maxTravelDistance: z.coerce.number().min(1),
+    maxTravelDistance: z.coerce.number(),
     isTravelReimbursed: z.boolean(),
     isCarAvailable: z.boolean(),
     kmAllowance: z.coerce.number().min(1),
