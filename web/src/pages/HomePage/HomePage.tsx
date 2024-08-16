@@ -51,8 +51,8 @@ const HomePage = () => {
 
       <main className="min-h-screen w-full bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="flex flex-wrap items-center justify-center gap-2 pb-28 pt-8 md:pt-20">
-          <div className="flex w-full max-w-lg flex-col">
+        <div className="flex flex-wrap items-center justify-center gap-2 py-8 sm:py-24 md:py-36 lg:py-52">
+          <div className="flex w-full max-w-sm flex-col">
             <img
               src={logo}
               alt="logo"
