@@ -39,7 +39,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <NavigationMenu className="navigation-bar flex max-w-full flex-wrap items-center justify-between px-2 pt-4 md:pt-0">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <HamburgerMenuIcon className="visible-mobile hover:pointer mx-2 h-7 w-7 transition-colors hover:text-accent" />
+              <HamburgerMenuIcon className="hover:pointer mx-2 block h-7 w-7 transition-colors hover:text-accent xs:hidden" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="ml-4 border-none bg-primary-foreground p-2">
               <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
@@ -53,7 +53,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <NavigationMenuList className="navigation-links-section hidden-mobile mx-4 flex items-center gap-1">
+          <NavigationMenuList className="navigation-links-section mx-4 hidden items-center gap-1 xs:flex">
             <NavigationMenuItem>
               <Link to={routes.overview()}>
                 <img
@@ -139,7 +139,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           <Copyright size={20} />
           <span className="text-nowrap font-medium">2024 Alluca</span>
         </div>
-        <Separator className="visible-mobile opacity-10"></Separator>
+        <Separator className="opacity-10 xs:hidden"></Separator>
         <NavigationMenu className="privacy-and-services-section">
           <NavigationMenuList className="mr-2 flex gap-1">
             <NavigationMenuItem>
