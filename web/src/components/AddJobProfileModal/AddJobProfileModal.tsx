@@ -302,18 +302,20 @@ const AddJobProfileModal = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="isTravelReimbursed"
-                  render={({ fieldState }) => (
+                  name="isCarAvailable"
+                  render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center gap-2">
                       <FormLabel className="mt-1 font-semibold">
                         Auto beschikbaar
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          name="isTravelReimbursed"
+                          name="isCarAvailable"
                           className={` ${
                             fieldState.error && ' border-red-500'
                           }`}
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
                         />
                       </FormControl>
                     </FormItem>
