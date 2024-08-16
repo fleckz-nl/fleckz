@@ -42,10 +42,10 @@ export default () => (
         className="rounded-full brightness-50 grayscale transition-all md:max-w-lg md:blur-sm md:hover:blur-0"
       />
       <div className="absolute flex flex-col break-words px-10 brightness-150">
-        <span className="text-3xl font-light text-accent/50 md:text-6xl">
+        <span className="text-4xl font-light text-accent/80 md:text-6xl">
           404
         </span>
-        <span className="text-center text-xl text-muted md:text-4xl">
+        <span className="text-center text-xl text-muted md:text-3xl">
           Pagina niet gevonden
         </span>
         <p className="text-lg font-semibold text-accent">
