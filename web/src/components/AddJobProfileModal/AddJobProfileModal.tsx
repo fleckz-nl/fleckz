@@ -283,14 +283,15 @@ const AddJobProfileModal = () => {
                 <FormField
                   control={form.control}
                   name="isTravelReimbursed"
-                  render={({ fieldState }) => (
+                  render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center gap-2">
                       <FormLabel className="mt-1 font-semibold">
                         Reiskosten vergoeding
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          name="isTravelReimbursed"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
                           className={` ${
                             fieldState.error && ' border-red-500'
                           }`}
