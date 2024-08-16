@@ -46,19 +46,26 @@ const CREATE_JOB_PROFILE = gql`
 
 const AddJobProfileModal = () => {
   const [open, setOpen] = useState(false)
-  const formSchema = z.object({
-    name: z.string().min(1),
-    qualityNeeded: z.coerce.number().min(1).max(5),
-    yearsOfExp: z.coerce.number().min(1),
-    hourlyWageMin: z.coerce.number().min(1),
-    hourlyWageMax: z.coerce.number().min(1),
-    maxTravelDistance: z.coerce.number(),
-    isTravelReimbursed: z.boolean(),
-    isCarAvailable: z.boolean(),
-    kmAllowance: z.coerce.number(),
-    totalBudgetPerHour: z.coerce.number(),
-    comment: z.string(),
-  })
+  const formSchema = z
+    .object({
+      name: z.string().min(1),
+      qualityNeeded: z.coerce.number().min(1).max(5),
+      yearsOfExp: z.coerce.number().min(1),
+      hourlyWageMin: z.coerce.number().min(1),
+      hourlyWageMax: z.coerce.number().min(1),
+      maxTravelDistance: z.coerce.number(),
+      isTravelReimbursed: z.boolean(),
+      isCarAvailable: z.boolean(),
+      kmAllowance: z.coerce.number(),
+      totalBudgetPerHour: z.coerce.number(),
+      comment: z.string(),
+    })
+    .refine((data) => data.hourlyWageMin <= data.hourlyWageMax, {
+      message:
+        'Het minimumuurloon moet lager zijn dan of gelijk zijn aan het maximumuurloon',
+      path: ['hourlyWageMin'],
+    })
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
