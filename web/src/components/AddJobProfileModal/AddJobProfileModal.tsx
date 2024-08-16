@@ -23,7 +23,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { Input } from '../ui/input'
+import { CurrencyInput, Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 
 const CREATE_JOB_PROFILE = gql`
@@ -208,40 +208,44 @@ const AddJobProfileModal = () => {
                 Salaris indicatie
               </FormLabel>
               <div className="mt-2 flex items-center gap-1 md:mt-0">
-                <span className=" text-lg text-primary/80 opacity-90">€</span>
                 <FormField
                   control={form.control}
                   name="hourlyWageMin"
                   render={({ field, fieldState }) => (
                     <FormItem className="space-y-5">
                       <FormControl>
-                        <Input
-                          {...field}
-                          type="number"
-                          min={0}
+                        <CurrencyInput
                           className={`w-28 ${
                             fieldState.error && ' border-red-500'
                           }`}
+                          onValueChange={({ floatValue }) =>
+                            field.onChange(floatValue)
+                          }
+                          value={field.value}
+                          ref={field.ref}
+                          onFocusCapture={(e) => e.target.select()}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
                 <span className="text-accent">—</span>
-                <span className="text-lg text-primary/80 opacity-90">€</span>
                 <FormField
                   control={form.control}
                   name="hourlyWageMax"
                   render={({ field, fieldState }) => (
                     <FormItem className="space-y-5">
                       <FormControl>
-                        <Input
-                          {...field}
-                          type="number"
-                          min={0}
+                        <CurrencyInput
                           className={`w-28 ${
                             fieldState.error && ' border-red-500'
                           }`}
+                          onValueChange={({ floatValue }) =>
+                            field.onChange(floatValue)
+                          }
+                          value={field.value}
+                          ref={field.ref}
+                          onFocusCapture={(e) => e.target.select()}
                         />
                       </FormControl>
                     </FormItem>
