@@ -343,6 +343,7 @@ const AddJobProfileModal = () => {
                             className={`w-28 ${
                               fieldState.error && ' border-red-500'
                             }`}
+                            disabled={!form.getValues('isTravelReimbursed')}
                           />
                         </FormControl>
                       </div>
