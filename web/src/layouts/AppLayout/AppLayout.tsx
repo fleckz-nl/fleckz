@@ -36,6 +36,22 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
         <NavigationMenu className="navigation-bar flex max-w-full flex-wrap items-center justify-between px-2 pt-4 md:pt-0">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <HamburgerMenuIcon className="visible-mobile hover:pointer mx-2 h-7 w-7 transition-colors hover:text-accent" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="ml-4 border-none bg-primary-foreground p-2">
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.overview()}>Overzicht</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.plan()}>Plan</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.jobProfiles()}>Functieprofielen</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <NavigationMenuList className="navigation-links-section hidden-mobile mx-4 flex items-center gap-1">
             <NavigationMenuItem>
               <Link to={routes.overview()}>
