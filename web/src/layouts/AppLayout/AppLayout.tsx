@@ -1,3 +1,4 @@
+import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
