@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { formatDate } from 'date-fns'
 import { MessageSquareWarningIcon, Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { CreateWorkRequestInput } from 'types/graphql'
 import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
@@ -32,6 +34,9 @@ import {
   FormLabel,
 } from 'src/components/ui/form'
 import { Input } from 'src/components/ui/input'
+import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
+
+import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
 
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
@@ -47,9 +52,48 @@ const CREATE_WORK_REQUEST_GQL = gql`
   }
 `
 
-const PlanWorkComponent = () => {
-  const [open, setOpen] = useState(false)
+const UPDATE_WORK_REQUEST_GQL = gql`
+  mutation UpdateWorkRequest($id: String!, $input: UpdateWorkRequestInput!) {
+    updateWorkRequest(id: $id, input: $input) {
+      projectName
+      jobProfileId
+      startDate
+      endDate
+      numWorkers
+      addressId
+      status
+    }
+  }
+`
+
+const DELETE_WORK_REQUEST_GQL = gql`
+  mutation DeleteWorkRequest($id: String!) {
+    deleteWorkRequest(id: $id) {
+      id
+    }
+  }
+`
+
+type PlanWorkComponentProps = {
+  defaultValues?: Partial<CreateWorkRequestInput & { id: string }>
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+function formatToDatetimeLocal(date: Date | string) {
+  if (date == null) return
+  return formatDate(date, "yyyy-MM-dd'T'HH:mm")
+}
+
+const PlanWorkComponent = ({
+  defaultValues,
+  open,
+  setOpen,
+}: PlanWorkComponentProps) => {
+  const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
+
   const formSchema = z.object({
+    id: z.string().cuid().optional(),
     projectName: z.string().min(1),
     startDate: z.string().min(1),
     endDate: z.string().min(1),
@@ -57,25 +101,72 @@ const PlanWorkComponent = () => {
     addressId: z.string().min(1),
     numWorkers: z.number().min(1),
   })
+
+  const currentDefaultValues = useMemo<z.infer<typeof formSchema>>(
+    () => ({
+      id: defaultValues?.id,
+      projectName: defaultValues?.projectName || '',
+      startDate: formatToDatetimeLocal(defaultValues?.startDate) || '',
+      endDate: formatToDatetimeLocal(defaultValues?.endDate) || '',
+      jobProfileId: defaultValues?.jobProfileId || '',
+      addressId: defaultValues?.addressId || '',
+      numWorkers: 1,
+    }),
+    [defaultValues]
+  )
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      projectName: '',
-      startDate: '',
-      endDate: '',
-      jobProfileId: '',
-      addressId: '',
-      numWorkers: 1,
-    },
+    defaultValues: currentDefaultValues,
   })
+
   const [create, { loading, error }] = useMutation(CREATE_WORK_REQUEST_GQL, {
     onCompleted: () => {
       toast.success('Success')
       form.reset()
       setOpen(false)
     },
+    refetchQueries: [{ query: WorkSchedularQuery }],
   })
+
+  const [update, { loading: updateLoading, error: updateError }] = useMutation(
+    UPDATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Updated')
+        form.reset()
+        setOpen(false)
+      },
+      refetchQueries: [{ query: WorkSchedularQuery }],
+    }
+  )
+
+  const [deleteRequest, { loading: deleteLoading, error: deleteError }] =
+    useMutation(DELETE_WORK_REQUEST_GQL, {
+      onCompleted: () => {
+        toast.success('Verwijderd')
+        form.reset()
+        setOpen(false)
+      },
+      refetchQueries: [{ query: WorkSchedularQuery }],
+    })
+
   function onSubmit(data: z.infer<typeof formSchema>) {
+    if (isEditing) {
+      const { id, ...restData } = data
+      update({
+        variables: {
+          id,
+          input: {
+            ...restData,
+            startDate: new Date(data.startDate),
+            endDate: new Date(data.endDate),
+          },
+        },
+      })
+      return
+    }
+
     create({
       variables: {
         input: {
@@ -87,6 +178,17 @@ const PlanWorkComponent = () => {
       },
     })
   }
+
+  function handleDelete(id: string) {
+    deleteRequest({
+      variables: { id },
+    })
+    setOpen(false)
+  }
+
+  useEffect(() => {
+    form.reset(currentDefaultValues)
+  }, [form, currentDefaultValues])
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
@@ -104,10 +206,10 @@ const PlanWorkComponent = () => {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          {error && (
+          {(error || updateError) && (
             <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
               <MessageSquareWarningIcon className="" />
-              <FormError error={error} />
+              <FormError error={error || updateError} />
             </div>
           )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -251,12 +353,19 @@ const PlanWorkComponent = () => {
               )}
             />
             <DialogFooter>
+              {isEditing && (
+                <ConfirmDeleteWork
+                  onConfirm={() => handleDelete(form.getValues('id'))}
+                  error={deleteError}
+                  loading={deleteLoading}
+                />
+              )}
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={loading || updateLoading}
                 className="uppercase text-accent brightness-200 hover:brightness-100"
               >
-                Indienen
+                {isEditing ? 'Update' : 'Indienen'}
               </Button>
             </DialogFooter>
           </form>

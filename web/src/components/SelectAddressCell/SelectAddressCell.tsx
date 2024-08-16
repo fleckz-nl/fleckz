@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 
-import { add } from 'date-fns'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import type {
   Address,
@@ -75,6 +74,7 @@ export const Success = ({
   function formatToOneLine(
     address: Omit<Address, 'createdAt' | 'updatedAt' | 'workRequest'>
   ) {
+    if (address == null) return
     const { street, houseNumber, houseNumberAddition, city, postalCode } =
       address
     return `${street} ${houseNumber}${
