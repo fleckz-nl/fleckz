@@ -113,9 +113,6 @@ input[type='datetime-local']::-webkit-datetime-edit-text { color: darkcyan; }
   }
 }
 
-.hidden {
-  display: none;
-}
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
