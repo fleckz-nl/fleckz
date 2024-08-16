@@ -114,6 +114,7 @@ const AddJobProfileModal = () => {
           <DialogTitle className="font-semibold text-primary/80">
             Functieprofielen Aanmaken
           </DialogTitle>
+          <DialogDescription>Maak een functieprofiel aan</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           {error && (
