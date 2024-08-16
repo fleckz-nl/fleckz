@@ -131,7 +131,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </NavigationMenuList>
         </NavigationMenu>
       </header>
-      <main className="max-w-full flex-grow flex-col break-words bg-transparent px-4 pb-32 pt-2">
+      <main className="max-w-full flex-grow flex-col break-words bg-transparent px-4 pb-20 pt-2">
         {children}
       </main>
       <footer className="flex flex-wrap items-center justify-center gap-2 p-4 text-accent/20 sm:justify-between">
