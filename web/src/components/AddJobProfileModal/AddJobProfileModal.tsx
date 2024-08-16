@@ -54,9 +54,9 @@ const AddJobProfileModal = () => {
     maxTravelDistance: z.coerce.number(),
     isTravelReimbursed: z.boolean(),
     isCarAvailable: z.boolean(),
-    kmAllowance: z.coerce.number().min(1),
-    totalBudgetPerHour: z.coerce.number().min(1),
-    comment: z.string().min(1),
+    kmAllowance: z.coerce.number(),
+    totalBudgetPerHour: z.coerce.number(),
+    comment: z.string(),
   })
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
