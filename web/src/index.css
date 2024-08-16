@@ -100,17 +100,8 @@
   @apply text-right text-xs text-red-600;
 }
 
-input[type='datetime-local']::-webkit-datetime-edit-text { color: darkcyan; }
-
-@media (max-width: 576px) {
-  .hidden-mobile {
-    display: none;
-  }
-}
-@media (min-width: 576px) {
-  .visible-mobile {
-    display: none;
-  }
+input[type='datetime-local']::-webkit-datetime-edit-text {
+  color: darkcyan;
 }
 
 /**
