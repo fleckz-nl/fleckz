@@ -35,7 +35,7 @@ export default () => (
             `,
       }}
     />
-    <section className="relative flex items-center justify-center rounded-full bg-black/10 p-4 transition-all">
+    <div className="sm:py-30 relative flex h-full w-full items-center justify-center overflow-hidden p-5">
       <img
         src="https://picsum.photos/800?random"
         alt=""
@@ -52,6 +52,6 @@ export default () => (
           Helaas bestaat de pagina die u zocht niet.
         </p>
       </div>
-    </section>
+    </div>
   </main>
 )
