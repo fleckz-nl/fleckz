@@ -49,7 +49,7 @@ const HomePage = () => {
     <>
       <Metadata title="Home" description="Home page" />
 
-      <main className="flex min-h-screen w-full flex-wrap items-center justify-center bg-primary">
+      <main className="min-h-screen w-full bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="m-0 flex w-full max-w-md flex-col md:-mt-36">
           <img
