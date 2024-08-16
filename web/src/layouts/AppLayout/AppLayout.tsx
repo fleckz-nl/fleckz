@@ -35,8 +35,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
-        <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
-          <NavigationMenuList className="navigation-links-section mx-4 flex items-center gap-1">
+          <NavigationMenuList className="navigation-links-section hidden-mobile mx-4 flex items-center gap-1">
             <NavigationMenuItem>
               <Link to={routes.overview()}>
                 <img
