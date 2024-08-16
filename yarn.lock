@@ -21580,6 +21580,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-number-format@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "react-number-format@npm:5.4.0"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/19785cbf7fcb6db7e34d29136ac8daf1708b46bba2a38e2e8851a65bd1e9c6463b13c31f17de156afbf681da43a2934565be9d8955aec23084a19a8d45f79149
+  languageName: node
+  linkType: hard
+
 "react-overlays@npm:^5.2.1":
   version: 5.2.1
   resolution: "react-overlays@npm:5.2.1"
@@ -25309,6 +25321,7 @@ __metadata:
     react-day-picker: "npm:8.10.1"
     react-dom: "npm:18.2.0"
     react-hook-form: "npm:^7.52.2"
+    react-number-format: "npm:^5.4.0"
     tailwindcss: "npm:^3.4.8"
     tailwindcss-animate: "npm:^1.0.7"
     zod: "npm:^3.23.8"
