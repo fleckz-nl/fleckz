@@ -47,15 +47,15 @@ const AddJobProfileModal = () => {
   const [open, setOpen] = useState(false)
   const formSchema = z.object({
     name: z.string().min(1),
-    qualityNeeded: z.number().min(1).max(5),
-    yearsOfExp: z.number().min(1),
-    hourlyWageMin: z.number().min(1),
-    hourlyWageMax: z.number().min(1),
-    maxTravelDistance: z.number().min(1),
+    qualityNeeded: z.coerce.number().min(1).max(5),
+    yearsOfExp: z.coerce.number().min(1),
+    hourlyWageMin: z.coerce.number().min(1),
+    hourlyWageMax: z.coerce.number().min(1),
+    maxTravelDistance: z.coerce.number().min(1),
     isTravelReimbursed: z.boolean(),
     isCarAvailable: z.boolean(),
-    kmAllowance: z.number().min(1),
-    totalBudgetPerHour: z.number().min(1),
+    kmAllowance: z.coerce.number().min(1),
+    totalBudgetPerHour: z.coerce.number().min(1),
     comment: z.string().min(1),
   })
   const form = useForm<z.infer<typeof formSchema>>({
