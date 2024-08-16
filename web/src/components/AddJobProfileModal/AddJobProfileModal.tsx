@@ -91,10 +91,7 @@ const AddJobProfileModal = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     create({
       variables: {
-        input: {
-          ...data,
-          status: 'SUBMITTED',
-        },
+        input: data,
       },
     })
   }
