@@ -330,7 +330,6 @@ const AddJobProfileModal = () => {
                       <div className="flex items-center gap-1">
                         <FormControl>
                           <Input
-                            placeholder=""
                             {...field}
                             type="number"
                             min={0}
