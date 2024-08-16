@@ -1,5 +1,5 @@
 export default () => (
-  <main className="bg-black">
+  <main className="min-h-screen bg-black">
     <style
       dangerouslySetInnerHTML={{
         __html: `
