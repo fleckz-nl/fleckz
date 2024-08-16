@@ -22,6 +22,7 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from 'src/components/ui/navigation-menu'
+import { Separator } from 'src/components/ui/separator'
 
 import avatar from './avatar.png'
 import notextlogo from './notextlogo.png'
@@ -138,6 +139,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           <Copyright size={20} />
           <span className="text-nowrap font-medium">2024 Alluca</span>
         </div>
+        <Separator className="visible-mobile opacity-10"></Separator>
         <NavigationMenu className="privacy-and-services-section">
           <NavigationMenuList className="mr-2 flex gap-1">
             <NavigationMenuItem>
