@@ -1,3 +1,9 @@
+import { ArrowLeftCircleIcon } from 'lucide-react'
+
+import { Link, routes } from '@redwoodjs/router'
+
+import { Button } from 'src/components/ui/button'
+
 export default () => (
   <main className="min-h-screen bg-black">
     <style
@@ -51,6 +57,15 @@ export default () => (
         <p className="text-lg font-semibold text-accent">
           Helaas bestaat de pagina die u zocht niet.
         </p>
+        <Button
+          variant="secondary"
+          className="bg-black py-4 text-white opacity-50 hover:text-black"
+        >
+          <Link to={routes.overview()} className="flex items-center">
+            <ArrowLeftCircleIcon className="mx-2" />
+            Terug naar Alluca
+          </Link>
+        </Button>
       </div>
     </div>
   </main>
