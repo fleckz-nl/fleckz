@@ -325,8 +325,7 @@ const AddJobProfileModal = () => {
                   render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center justify-between gap-2">
                       <FormLabel className="mt-1 flex flex-wrap font-semibold">
-                        <span>Kilometer</span>
-                        <span>vergoeding</span>
+                        Kilometervergoeding
                       </FormLabel>
                       <div className="flex items-center gap-1">
                         <FormControl>
