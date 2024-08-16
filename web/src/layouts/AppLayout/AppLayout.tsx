@@ -1,3 +1,4 @@
+import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -21,6 +22,7 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from 'src/components/ui/navigation-menu'
+import { Separator } from 'src/components/ui/separator'
 
 import avatar from './avatar.png'
 import notextlogo from './notextlogo.png'
@@ -34,8 +36,24 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
-        <NavigationMenu className="navigation-bar mx-2 flex max-w-full flex-wrap items-center justify-between">
-          <NavigationMenuList className="navigation-links-section mx-4 flex items-center gap-1">
+        <NavigationMenu className="navigation-bar flex max-w-full flex-wrap items-center justify-between px-2 pt-4 md:pt-0">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <HamburgerMenuIcon className="hover:pointer mx-2 block h-7 w-7 transition-colors hover:text-accent xs:hidden" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="ml-4 border-none bg-primary-foreground p-2">
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.overview()}>Overzicht</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.plan()}>Plan</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
+                <Link to={routes.jobProfiles()}>Functieprofielen</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <NavigationMenuList className="navigation-links-section mx-4 hidden items-center gap-1 xs:flex">
             <NavigationMenuItem>
               <Link to={routes.overview()}>
                 <img
@@ -113,14 +131,15 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </NavigationMenuList>
         </NavigationMenu>
       </header>
-      <main className="mx-6 my-4 flex-grow flex-col bg-transparent">
+      <main className="max-w-full flex-grow flex-col break-words bg-transparent px-4 pb-20 pt-2">
         {children}
       </main>
-      <footer className="mx-2 mb-2 flex items-center justify-between text-accent/40">
-        <div className="copyright-section mx-4 flex items-center gap-0.5">
+      <footer className="flex flex-wrap items-center justify-center gap-2 p-4 text-accent/20 sm:justify-between">
+        <div className="copyright-section flex items-center gap-0.5">
           <Copyright size={20} />
           <span className="text-nowrap font-medium">2024 Alluca</span>
         </div>
+        <Separator className="opacity-10 xs:hidden"></Separator>
         <NavigationMenu className="privacy-and-services-section">
           <NavigationMenuList className="mr-2 flex gap-1">
             <NavigationMenuItem>

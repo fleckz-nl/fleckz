@@ -100,8 +100,9 @@
   @apply text-right text-xs text-red-600;
 }
 
-input[type='datetime-local']::-webkit-datetime-edit-text { color: darkcyan; }
-
+input[type='datetime-local']::-webkit-datetime-edit-text {
+  color: darkcyan;
+}
 
 /**
  * END --- SETUP TAILWINDCSS EDIT
