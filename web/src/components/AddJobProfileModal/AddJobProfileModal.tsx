@@ -214,7 +214,7 @@ const AddJobProfileModal = () => {
               <FormLabel className="mt-1 font-semibold">
                 Salaris indicatie
               </FormLabel>
-              <div className="mt-2 flex items-center gap-1 md:mt-0">
+              <div className="mt-4 flex w-full items-center justify-center gap-1">
                 <FormField
                   control={form.control}
                   name="hourlyWageMin"
@@ -222,9 +222,7 @@ const AddJobProfileModal = () => {
                     <FormItem className="space-y-5">
                       <FormControl>
                         <CurrencyInput
-                          className={`w-28 ${
-                            fieldState.error && ' border-red-500'
-                          }`}
+                          className={`${fieldState.error && ' border-red-500'}`}
                           onValueChange={({ floatValue }) =>
                             field.onChange(floatValue)
                           }
@@ -244,9 +242,7 @@ const AddJobProfileModal = () => {
                     <FormItem className="space-y-5">
                       <FormControl>
                         <CurrencyInput
-                          className={`w-28 ${
-                            fieldState.error && ' border-red-500'
-                          }`}
+                          className={`${fieldState.error && ' border-red-500'}`}
                           onValueChange={({ floatValue }) =>
                             field.onChange(floatValue)
                           }
