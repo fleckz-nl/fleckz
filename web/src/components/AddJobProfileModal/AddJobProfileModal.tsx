@@ -9,6 +9,7 @@ import { FormError } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
+import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
 import { Switch } from 'src/components/ui/switch'
 
 import RatingStars from '../RatingStars/RatingStars'
@@ -81,6 +82,7 @@ const AddJobProfileModal = () => {
       form.reset()
       setOpen(false)
     },
+    refetchQueries: [{ query: JobProfilesQuery }],
   })
 
   const DEFAULT_QUALITY_NEEDED = 3
@@ -89,10 +91,7 @@ const AddJobProfileModal = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     create({
       variables: {
-        input: {
-          ...data,
-          status: 'SUBMITTED',
-        },
+        input: data,
       },
     })
   }
