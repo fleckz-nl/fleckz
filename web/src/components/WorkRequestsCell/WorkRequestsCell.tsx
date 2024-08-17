@@ -1,3 +1,4 @@
+import { CheckCircle2, Hourglass } from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
@@ -9,7 +10,12 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
-import { Card } from '../ui/card'
+import OverviewSection, {
+  OverviewContent,
+  OverviewHeader,
+} from '../OverviewSection/OverviewSection'
+import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
+import { Card, CardHeader } from '../ui/card'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsQuery,
@@ -24,13 +30,19 @@ export const QUERY: TypedDocumentNode<
       status
       numWorkers
       location {
+        id
         street
         houseNumber
         city
+        province
+        country
         postalCode
       }
       jobProfile {
         name
+        hourlyWageMin
+        hourlyWageMax
+        qualityNeeded
       }
     }
   }
@@ -47,12 +59,44 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   workRequests,
 }: CellSuccessProps<WorkRequestsQuery>) => {
+  const confirmedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
+
+  const otherRequests = workRequests.filter((r) => r.status !== 'CONFIRMED')
+
+  function NoResultsCard() {
+    return (
+      <Card className="bg-transparent text-secondary">
+        <CardHeader>Geen Resultaten</CardHeader>
+      </Card>
+    )
+  }
+
   return (
-    <ul>
-      {workRequests.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
-      })}
-      <Card />
-    </ul>
+    <>
+      <OverviewSection>
+        <OverviewHeader>
+          <CheckCircle2 className="mr-2 inline" />
+          Geaccepteerd
+        </OverviewHeader>
+        <OverviewContent>
+          {confirmedRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {confirmedRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+      <OverviewSection>
+        <OverviewHeader>
+          <Hourglass className="mr-2 inline" />
+          Aanhangig
+        </OverviewHeader>
+        <OverviewContent>
+          {otherRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {otherRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+    </>
   )
 }
