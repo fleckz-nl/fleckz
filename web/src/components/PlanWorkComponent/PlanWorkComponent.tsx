@@ -99,7 +99,7 @@ const PlanWorkComponent = ({
     endDate: z.string().min(1),
     jobProfileId: z.string().min(1),
     addressId: z.string().min(1),
-    numWorkers: z.number().min(1),
+    numWorkers: z.coerce.number().min(1),
   })
 
   const currentDefaultValues = useMemo<z.infer<typeof formSchema>>(
