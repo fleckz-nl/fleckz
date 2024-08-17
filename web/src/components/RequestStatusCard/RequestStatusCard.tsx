@@ -11,7 +11,6 @@ import { Badge } from '../ui/badge'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -25,9 +24,8 @@ const RequestStatusCard = ({ request }: RequestStatusCardProps) => {
     <Card>
       <CardHeader className="relative">
         <CardTitle>{request.jobProfile.name}</CardTitle>
-        <CardDescription>
-          <RatingStars value={request.jobProfile.qualityNeeded} />
-        </CardDescription>
+
+        <RatingStars value={request.jobProfile.qualityNeeded} />
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
