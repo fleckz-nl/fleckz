@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
-import { CalendarDays, Clock, Euro, MapPin } from 'lucide-react'
+import { CalendarDays, Clock, Euro, MapPin, Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { formatAddress } from 'src/lib/formatAddress'
@@ -47,6 +47,9 @@ const RequestStatusCard = ({ request }: RequestStatusCardProps) => {
           <Euro className="inline" />{' '}
           {formatToEuros(request.jobProfile.hourlyWageMin)}&ndash;
           {formatToEuros(request.jobProfile.hourlyWageMin)}/uur
+        </div>
+        <div>
+          <Users className="inline" /> {request.numWorkers} medewerkers
         </div>
       </CardContent>
       <CardFooter></CardFooter>
