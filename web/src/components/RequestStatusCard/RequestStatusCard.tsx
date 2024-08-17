@@ -1,13 +1,58 @@
-const RequestStatusCard = () => {
+import { format } from 'date-fns'
+import { nl } from 'date-fns/locale/nl'
+import { CalendarDays, Clock, Euro, MapPin } from 'lucide-react'
+import { WorkRequestsQuery } from 'types/graphql'
+
+import { formatAddress } from 'src/lib/formatAddress'
+import { formatToEuros } from 'src/lib/formatToEuros'
+
+import RatingStars from '../RatingStars/RatingStars'
+import { Badge } from '../ui/badge'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card'
+
+type RequestStatusCardProps = {
+  request: WorkRequestsQuery['workRequests'][0]
+}
+const RequestStatusCard = ({ request }: RequestStatusCardProps) => {
   return (
-    <div>
-      <h2>{'RequestStatusCard'}</h2>
-      <p>
-        {
-          'Find me in ./web/src/components/RequestStatusCard/RequestStatusCard.tsx'
-        }
-      </p>
-    </div>
+    <Card>
+      <CardHeader className="relative">
+        <CardTitle>{request.jobProfile.name}</CardTitle>
+        <CardDescription>
+          <RatingStars value={request.jobProfile.qualityNeeded} />
+        </CardDescription>
+        <Badge className="absolute right-4 top-2">{request.status}</Badge>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <div>
+          <CalendarDays className="inline" />{' '}
+          {format(request.startDate, 'EEEE d MMMM, yyyy', {
+            locale: nl,
+          })}
+        </div>
+        <div>
+          <Clock className="inline" /> {format(request.startDate, 'HH:mm')}
+          &ndash;
+          {format(request.endDate, 'HH:mm')}
+        </div>
+        <div>
+          <MapPin className="inline" /> {formatAddress(request.location)}
+        </div>
+        <div>
+          <Euro className="inline" />{' '}
+          {formatToEuros(request.jobProfile.hourlyWageMin)}&ndash;
+          {formatToEuros(request.jobProfile.hourlyWageMin)}/uur
+        </div>
+      </CardContent>
+      <CardFooter></CardFooter>
+    </Card>
   )
 }
 
