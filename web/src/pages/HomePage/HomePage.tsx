@@ -31,10 +31,12 @@ const HomePage = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    const loadingToast = toast.loading('Laden...')
     const response = await logIn({
       username: data.email,
       password: data.password,
     })
+    toast.dismiss(loadingToast)
 
     if (response.message) {
       toast(response.message)
