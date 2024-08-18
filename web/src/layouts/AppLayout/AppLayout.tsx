@@ -2,6 +2,7 @@ import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
@@ -161,6 +162,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </NavigationMenuList>
         </NavigationMenu>
       </footer>
+      <Toaster />
     </div>
   )
 }
