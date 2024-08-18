@@ -84,6 +84,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
         events={events}
         scrollToTime={addHours(startOfToday(), 8)}
         selectable
+        views={['week']}
       />
     </div>
   )
