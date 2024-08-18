@@ -109,19 +109,19 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className=" bg-accent/30" />
                 <DropdownMenuItem>
-                  <button className="flex">
+                  <button className="flex w-full">
                     <User2Icon size={16} className="mr-1" />
                     Profiel
                   </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <button className="flex">
+                  <button className="flex w-full">
                     <LucideSettings size={16} className="mr-1" />
                     Settings
                   </button>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <button className="flex" onClick={logOut}>
+                  <button className="flex w-full" onClick={logOut}>
                     <LogOutIcon size={16} className="mr-1" />
                     Logout
                   </button>
