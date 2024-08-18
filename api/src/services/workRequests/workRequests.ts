@@ -9,7 +9,9 @@ import { validate } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
 
 export const workRequests: QueryResolvers['workRequests'] = () => {
-  return db.workRequest.findMany()
+  return db.workRequest.findMany({
+    include: { location: true, jobProfile: true },
+  })
 }
 
 export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
