@@ -1,9 +1,9 @@
-import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
 
 import { useAuth } from 'src/auth'
+import DrawerMenu from 'src/components/DrawerMenu/DrawerMenu'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import {
   DropdownMenu,
@@ -37,22 +37,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
       <header>
         <NavigationMenu className="navigation-bar flex max-w-full flex-wrap items-center justify-between px-2 pt-4 md:pt-0">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <HamburgerMenuIcon className="hover:pointer mx-2 block h-7 w-7 transition-colors hover:text-accent xs:hidden" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="ml-4 border-none bg-primary-foreground p-2">
-              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
-                <Link to={routes.overview()}>Overzicht</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
-                <Link to={routes.plan()}>Plan</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="focus:bg-black/30 focus:text-accent">
-                <Link to={routes.jobProfiles()}>Functieprofielen</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <DrawerMenu />
           <NavigationMenuList className="navigation-links-section mx-4 hidden items-center gap-1 xs:flex">
             <NavigationMenuItem>
               <Link to={routes.overview()}>
