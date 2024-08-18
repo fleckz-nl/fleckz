@@ -28,10 +28,10 @@ const DrawerMenu = () => {
         <HamburgerMenuIcon className="hover:pointer mx-2 block h-7 w-7 transition-colors hover:text-accent xs:hidden" />
       </DrawerTrigger>
       <DrawerContent className="h-screen w-5/6 rounded-tl-none outline-none">
+        <DrawerClose>
+          <X className="ml-4" />
+        </DrawerClose>
         <DrawerHeader>
-          <DrawerClose>
-            <X />
-          </DrawerClose>
           <DrawerTitle>Alluca</DrawerTitle>
           <DrawerDescription>Uitzendbureau App</DrawerDescription>
           <ul className="mt-5 space-y-5 text-2xl">
