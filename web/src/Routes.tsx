@@ -22,6 +22,7 @@ const Routes = () => {
           <Route path="/overview" page={OverviewPage} name="overview" />
           <Route path="/plan" page={PlanPage} name="plan" />
           <Route path="/job-profiles" page={JobProfilesPage} name="jobProfiles" />
+          <Route path="/profile" page={ProfilePage} name="profile" />
         </Set>
       </PrivateSet>
       <Set wrap={DefaultLayout}>
