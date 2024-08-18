@@ -18,10 +18,11 @@ import {
 
 type RequestStatusCardProps = {
   request: WorkRequestsQuery['workRequests'][0]
+  className?: string
 }
-const RequestStatusCard = ({ request }: RequestStatusCardProps) => {
+const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader className="relative">
         <CardTitle>{request.jobProfile.name}</CardTitle>
 
