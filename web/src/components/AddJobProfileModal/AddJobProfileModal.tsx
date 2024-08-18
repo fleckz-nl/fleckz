@@ -17,13 +17,14 @@ import { Button } from '../ui/button'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { Input } from '../ui/input'
+import { CurrencyInput, Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 
 const CREATE_JOB_PROFILE = gql`
@@ -46,19 +47,26 @@ const CREATE_JOB_PROFILE = gql`
 
 const AddJobProfileModal = () => {
   const [open, setOpen] = useState(false)
-  const formSchema = z.object({
-    name: z.string().min(1),
-    qualityNeeded: z.coerce.number().min(1).max(5),
-    yearsOfExp: z.coerce.number().min(1),
-    hourlyWageMin: z.coerce.number().min(1),
-    hourlyWageMax: z.coerce.number().min(1),
-    maxTravelDistance: z.coerce.number().min(1),
-    isTravelReimbursed: z.boolean(),
-    isCarAvailable: z.boolean(),
-    kmAllowance: z.coerce.number().min(1),
-    totalBudgetPerHour: z.coerce.number().min(1),
-    comment: z.string().min(1),
-  })
+  const formSchema = z
+    .object({
+      name: z.string().min(1),
+      qualityNeeded: z.coerce.number().min(1).max(5),
+      yearsOfExp: z.coerce.number().min(1),
+      hourlyWageMin: z.coerce.number().min(1),
+      hourlyWageMax: z.coerce.number().min(1),
+      maxTravelDistance: z.coerce.number(),
+      isTravelReimbursed: z.boolean(),
+      isCarAvailable: z.boolean(),
+      kmAllowance: z.coerce.number(),
+      totalBudgetPerHour: z.coerce.number(),
+      comment: z.string(),
+    })
+    .refine((data) => data.hourlyWageMin <= data.hourlyWageMax, {
+      message:
+        'Het minimumuurloon moet lager zijn dan of gelijk zijn aan het maximumuurloon',
+      path: ['hourlyWageMin'],
+    })
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -113,6 +121,7 @@ const AddJobProfileModal = () => {
           <DialogTitle className="font-semibold text-primary/80">
             Functieprofielen Aanmaken
           </DialogTitle>
+          <DialogDescription>Maak een functieprofiel aan</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           {error && (
@@ -207,41 +216,41 @@ const AddJobProfileModal = () => {
               <FormLabel className="mt-1 font-semibold">
                 Salaris indicatie
               </FormLabel>
-              <div className="mt-2 flex items-center gap-1 md:mt-0">
-                <span className=" text-lg text-primary/80 opacity-90">€</span>
+              <div className="mt-4 flex w-full items-center justify-center gap-1">
                 <FormField
                   control={form.control}
                   name="hourlyWageMin"
                   render={({ field, fieldState }) => (
                     <FormItem className="space-y-5">
                       <FormControl>
-                        <Input
-                          {...field}
-                          type="number"
-                          min={0}
-                          className={`w-28 ${
-                            fieldState.error && ' border-red-500'
-                          }`}
+                        <CurrencyInput
+                          className={`${fieldState.error && ' border-red-500'}`}
+                          onValueChange={({ floatValue }) =>
+                            field.onChange(floatValue)
+                          }
+                          value={field.value}
+                          ref={field.ref}
+                          onFocusCapture={(e) => e.target.select()}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
-                <span className=" text-accent">—</span>
-                <span className="text-lg text-primary/80 opacity-90">€</span>
+                <span className="text-accent">—</span>
                 <FormField
                   control={form.control}
                   name="hourlyWageMax"
                   render={({ field, fieldState }) => (
                     <FormItem className="space-y-5">
                       <FormControl>
-                        <Input
-                          {...field}
-                          type="number"
-                          min={0}
-                          className={`w-28 ${
-                            fieldState.error && ' border-red-500'
-                          }`}
+                        <CurrencyInput
+                          className={`${fieldState.error && ' border-red-500'}`}
+                          onValueChange={({ floatValue }) =>
+                            field.onChange(floatValue)
+                          }
+                          value={field.value}
+                          ref={field.ref}
+                          onFocusCapture={(e) => e.target.select()}
                         />
                       </FormControl>
                     </FormItem>
@@ -281,14 +290,15 @@ const AddJobProfileModal = () => {
                 <FormField
                   control={form.control}
                   name="isTravelReimbursed"
-                  render={({ fieldState }) => (
+                  render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center gap-2">
                       <FormLabel className="mt-1 font-semibold">
                         Reiskosten vergoeding
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          name="isTravelReimbursed"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
                           className={` ${
                             fieldState.error && ' border-red-500'
                           }`}
@@ -299,18 +309,20 @@ const AddJobProfileModal = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="isTravelReimbursed"
-                  render={({ fieldState }) => (
+                  name="isCarAvailable"
+                  render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center gap-2">
                       <FormLabel className="mt-1 font-semibold">
                         Auto beschikbaar
                       </FormLabel>
                       <FormControl>
                         <Switch
-                          name="isTravelReimbursed"
+                          name="isCarAvailable"
                           className={` ${
                             fieldState.error && ' border-red-500'
                           }`}
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
                         />
                       </FormControl>
                     </FormItem>
@@ -324,22 +336,23 @@ const AddJobProfileModal = () => {
                   render={({ field, fieldState }) => (
                     <FormItem className="mt-2 flex items-center justify-between gap-2">
                       <FormLabel className="mt-1 flex flex-wrap font-semibold">
-                        <span>Kilometer</span>
-                        <span>vergoeding</span>
+                        Kilometervergoeding
                       </FormLabel>
                       <div className="flex items-center gap-1">
                         <FormControl>
-                          <Input
-                            placeholder=""
-                            {...field}
-                            type="number"
-                            min={0}
+                          <CurrencyInput
                             className={`w-28 ${
                               fieldState.error && ' border-red-500'
                             }`}
+                            onValueChange={({ floatValue }) =>
+                              field.onChange(floatValue)
+                            }
+                            value={field.value}
+                            ref={field.ref}
+                            onFocusCapture={(e) => e.target.select()}
+                            disabled={!form.getValues('isTravelReimbursed')}
                           />
                         </FormControl>
-                        <span className="text-primary/80">km</span>
                       </div>
                     </FormItem>
                   )}
@@ -355,18 +368,15 @@ const AddJobProfileModal = () => {
                     Budget bruto per uur
                   </FormLabel>
                   <div className="flex items-center gap-1">
-                    <span className="text-lg text-primary/80 opacity-90">
-                      €
-                    </span>
                     <FormControl>
-                      <Input
-                        placeholder=""
-                        {...field}
-                        type="number"
-                        min={0}
-                        className={`w-28 ${
-                          fieldState.error && ' border-red-500'
-                        }`}
+                      <CurrencyInput
+                        className={`${fieldState.error && ' border-red-500'}`}
+                        onValueChange={({ floatValue }) =>
+                          field.onChange(floatValue)
+                        }
+                        value={field.value}
+                        ref={field.ref}
+                        onFocusCapture={(e) => e.target.select()}
                       />
                     </FormControl>
                   </div>
