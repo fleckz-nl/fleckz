@@ -74,7 +74,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
         />
       </div>
       <Calendar
-        className="m-2 bg-white p-2"
+        className="m-2 rounded-lg bg-emerald-50 p-3"
         defaultView="week"
         localizer={localizer}
         startAccessor={'start'}
@@ -84,6 +84,7 @@ const BigCalendar = ({ defaultEvents }: BigCalendarProps) => {
         events={events}
         scrollToTime={addHours(startOfToday(), 8)}
         selectable
+        views={['week']}
       />
     </div>
   )
