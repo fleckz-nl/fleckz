@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import { LoaderCircle } from 'lucide-react'
 
 import {
   Form,
@@ -18,6 +20,7 @@ import logo from './logo.png'
 
 const HomePage = () => {
   const { isAuthenticated, logIn } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -31,6 +34,7 @@ const HomePage = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    setIsLoading(true)
     const loadingToast = toast.loading('Laden...')
     const response = await logIn({
       username: data.email,
@@ -45,6 +49,7 @@ const HomePage = () => {
     } else {
       toast.success('Welkom terug!')
     }
+    setIsLoading(false)
   }
 
   return (
@@ -113,7 +118,17 @@ const HomePage = () => {
               </div>
               <FieldError name="password" className="rw-field-error" />
               <div className="rw-button-group">
-                <Submit className="rw-button rw-button-green">Inloggen</Submit>
+                <Submit
+                  className="rw-button rw-button-green w-fit"
+                  disabled={isLoading}
+                >
+                  {isLoading && (
+                    <LoaderCircle className="absolute animate-spin" />
+                  )}
+                  <span className={`${isLoading && 'invisible'}`}>
+                    Inloggen
+                  </span>
+                </Submit>
               </div>
             </Form>
             <div className="rw-login-link mb-8 flex flex-wrap justify-center gap-1 px-4">
