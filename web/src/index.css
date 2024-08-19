@@ -104,9 +104,10 @@ input[type='datetime-local']::-webkit-datetime-edit-text {
   color: darkcyan;
 }
 
-a:focus {
+a:focus-visible, button:focus-visible {
   outline-style: dashed;
   outline-color: var(--muted-foreground);
+  outline-offset: .25ch;
 }
 
 /**
