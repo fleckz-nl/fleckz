@@ -76,7 +76,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </NavigationMenuList>
           <NavigationMenuList className="user-profile-section mx-4 flex items-center">
             <DropdownMenu>
-              <DropdownMenuTrigger className="font-medium hover:text-accent">
+              <DropdownMenuTrigger className="font-medium hover:text-accent focus:outline-dashed focus:outline-muted-foreground">
                 <Avatar className="user-avatar drop-shadow-sm hover:brightness-105">
                   <AvatarImage src={avatar} alt="avatar" />
                   <AvatarFallback>MJ</AvatarFallback>

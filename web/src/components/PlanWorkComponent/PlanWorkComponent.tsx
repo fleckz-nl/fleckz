@@ -224,7 +224,7 @@ const PlanWorkComponent = ({
                   <FormDescription>Hoe heet uw project?</FormDescription>
                   <FormControl>
                     <Input
-                      placeholder="Nieuwe project"
+                      placeholder="Nieuw project"
                       {...field}
                       className={`relative -top-4 ${
                         fieldState.error && ' border-red-500'
