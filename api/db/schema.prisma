@@ -15,15 +15,19 @@ generator client {
 }
 
 model User {
-  id                  String    @id @default(cuid())
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-  email               String    @unique
+  id                  String        @id @default(cuid())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  email               String        @unique
   hashedPassword      String
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
-  roles               Role[]    @default([CLIENT])
+  roles               Role[]        @default([CLIENT])
+  workRequest         WorkRequest[]
+  address             Address[]
+  jobProfile          JobProfile[]
+  certificate         Certificate[]
 }
 
 model WorkRequest {
@@ -39,6 +43,8 @@ model WorkRequest {
   location     Address           @relation(fields: [addressId], references: [id])
   addressId    String
   status       WorkRequestStatus @default(DRAFT)
+  createdBy    User              @relation(fields: [userId], references: [id])
+  userId       String
 }
 
 enum WorkRequestStatus {
@@ -60,6 +66,8 @@ model Address {
   province            String
   country             String        @default("Netherlands")
   workRequest         WorkRequest[]
+  createdBy           User          @relation(fields: [userId], references: [id])
+  userId              String
 }
 
 model JobProfile {
@@ -80,6 +88,8 @@ model JobProfile {
   totalBudgetPerHour Float?
   comment            String?
   workRequest        WorkRequest[]
+  createdBy          User          @relation(fields: [userId], references: [id])
+  userId             String
 }
 
 model Certificate {
@@ -94,6 +104,9 @@ model Certificate {
 
   jobProfile   JobProfile? @relation(fields: [jobProfileId], references: [id])
   jobProfileId String?
+
+  createdBy User   @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 enum Role {
