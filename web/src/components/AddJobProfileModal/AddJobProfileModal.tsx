@@ -406,7 +406,7 @@ const AddJobProfileModal = () => {
               <Button
                 type="submit"
                 disabled={loading}
-                className="uppercase text-accent brightness-200 hover:brightness-100"
+                className="text-accent brightness-200 hover:brightness-100"
               >
                 Aanmaken
               </Button>

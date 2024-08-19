@@ -89,7 +89,7 @@
   @apply mt-2 list-inside list-disc;
 }
 .rw-button {
-  @apply flex cursor-pointer justify-center rounded border-0 bg-gray-200 px-4 py-1 text-xs font-semibold uppercase leading-loose tracking-wide text-muted-foreground no-underline transition duration-100;
+  @apply flex cursor-pointer justify-center rounded border-0 bg-gray-200 px-4 py-1 text-xs font-semibold leading-loose tracking-wide text-muted-foreground no-underline transition duration-100;
 }
 .rw-button:hover {
   @apply bg-gray-500 text-white;
@@ -158,7 +158,7 @@
   box-shadow: 0 0 2px #c53030;
 }
 .rw-field-error {
-  @apply mt-1 block text-center text-xs font-semibold uppercase text-red-900;
+  @apply mt-1 block text-center text-xs font-semibold text-red-900;
 }
 .rw-table-wrapper-responsive {
   @apply overflow-x-auto;
