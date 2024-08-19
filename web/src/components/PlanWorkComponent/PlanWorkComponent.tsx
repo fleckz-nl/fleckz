@@ -363,7 +363,7 @@ const PlanWorkComponent = ({
               <Button
                 type="submit"
                 disabled={loading || updateLoading}
-                className="uppercase text-accent brightness-200 hover:brightness-100"
+                className="text-accent brightness-200 hover:brightness-100"
               >
                 {isEditing ? 'Update' : 'Indienen'}
               </Button>
