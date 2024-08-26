@@ -21,6 +21,7 @@ const Routes = () => {
         <Set wrap={AppLayout}>
           <Route path="/overview" page={OverviewPage} name="overview" />
           <Route path="/plan" page={PlanPage} name="plan" />
+          <Route path="/work-request/{id}" page={WorkRequestPage} name="workRequest" />
           <Route path="/job-profiles" page={JobProfilesPage} name="jobProfiles" />
         </Set>
       </PrivateSet>
