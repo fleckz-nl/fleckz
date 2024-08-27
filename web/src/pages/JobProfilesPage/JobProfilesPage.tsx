@@ -14,7 +14,7 @@ const JobProfilesPage = () => {
           Functieprofielen
           <SortDesc className="sort-icon text-primary-foreground/80 hover:text-muted-foreground" />
         </h1>
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 pt-4 md:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 pt-4 md:grid-cols-3">
           <JobProfileCell />
           <div className="col-span-full flex items-center justify-center">
             <AddJobProfileModal />
