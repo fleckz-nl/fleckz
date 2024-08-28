@@ -24,6 +24,7 @@ import {
 } from '../ui/command'
 import { FormControl } from '../ui/form'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Skeleton } from '../ui/skeleton'
 
 export const QUERY: TypedDocumentNode<
   JobProfilesQuery,
@@ -37,7 +38,25 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <Popover>
+    <PopoverTrigger
+      asChild
+      className="relative -top-4 w-full bg-primary/10 py-4"
+    >
+      <FormControl>
+        <Button
+          variant="outline"
+          role="combobox"
+          className="justify-between text-primary/70"
+        >
+          <Skeleton className="bg-transparent">Loading...</Skeleton>
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </FormControl>
+    </PopoverTrigger>
+  </Popover>
+)
 
 export const Empty = () => <div>Empty</div>
 
