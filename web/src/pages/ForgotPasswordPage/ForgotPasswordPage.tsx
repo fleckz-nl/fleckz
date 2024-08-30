@@ -79,7 +79,7 @@ const ForgotPasswordPage = () => {
                   </div>
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-accent">
+                    <Submit className="rw-button rw-button-green">
                       Indienen
                     </Submit>
                   </div>
