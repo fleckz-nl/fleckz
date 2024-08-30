@@ -63,7 +63,7 @@ const HomePage = () => {
             <img
               src={logo}
               alt="logo"
-              className="mx-auto w-36 rounded-full drop-shadow-sm"
+              className="mx-auto w-48 drop-shadow-sm"
             />
             <section className="m-2 text-center text-2xl text-white drop-shadow-sm">
               <p>Two liner</p>
