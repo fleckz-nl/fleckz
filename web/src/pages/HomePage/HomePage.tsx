@@ -119,7 +119,7 @@ const HomePage = () => {
               <FieldError name="password" className="rw-field-error" />
               <div className="rw-button-group">
                 <Submit
-                  className="rw-button rw-button-green w-fit"
+                  className="rw-button rw-button-accent w-fit"
                   disabled={isLoading}
                 >
                   {isLoading && (

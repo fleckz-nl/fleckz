@@ -102,7 +102,8 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
 
                   <div className="rw-button-group">
                     <Submit
-                      className="rw-button rw-button-green"
+                      className="rw-button rw-button-accent
+                      "
                       disabled={!enabled}
                     >
                       Indienen
