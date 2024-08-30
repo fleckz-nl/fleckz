@@ -16,7 +16,7 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 
-import logo from './logo.png'
+import logo from './logo-white-text.png'
 
 const HomePage = () => {
   const { isAuthenticated, logIn } = useAuth()
