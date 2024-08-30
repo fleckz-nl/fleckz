@@ -1,6 +1,6 @@
 import { Link } from '@redwoodjs/router'
 
-import logo from 'src/pages/HomePage/logo.png'
+import logo from 'src/pages/HomePage/logo-white-text.png'
 
 type DefaultLayoutProps = {
   children?: React.ReactNode
