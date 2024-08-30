@@ -65,7 +65,7 @@ const HomePage = () => {
               alt="logo"
               className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="m-2 text-center text-2xl text-white drop-shadow-sm">
+            <section className="mb-0 mt-2 text-center text-xl text-white drop-shadow-sm">
               <p>Two liner</p>
               <p>Alluca essence tagline</p>
             </section>
