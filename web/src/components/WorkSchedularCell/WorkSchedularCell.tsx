@@ -29,7 +29,11 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div className="animate-pulse grayscale">
+    <BigCalendar />
+  </div>
+)
 
 export const Empty = () => <BigCalendar />
 

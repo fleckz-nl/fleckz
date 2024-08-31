@@ -103,7 +103,7 @@ const SignupPage = () => {
                   <FieldError name="password" className="rw-field-error" />
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-green">
+                    <Submit className="rw-button rw-button-accent">
                       Aanmelden
                     </Submit>
                   </div>

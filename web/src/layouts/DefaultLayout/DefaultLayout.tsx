@@ -1,6 +1,6 @@
 import { Link } from '@redwoodjs/router'
 
-import logo from 'src/pages/HomePage/logo.png'
+import logo from 'src/pages/HomePage/logo-white-text.png'
 
 type DefaultLayoutProps = {
   children?: React.ReactNode
@@ -14,7 +14,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           <img
             src={logo}
             alt="logo"
-            className="w-20 rounded-full drop-shadow-sm transition-all hover:brightness-110"
+            className="w-28  drop-shadow-sm transition-all hover:brightness-110"
           />
         </Link>
       </header>

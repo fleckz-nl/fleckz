@@ -16,7 +16,7 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 
-import logo from './logo.png'
+import logo from './logo-white-text.png'
 
 const HomePage = () => {
   const { isAuthenticated, logIn } = useAuth()
@@ -63,9 +63,9 @@ const HomePage = () => {
             <img
               src={logo}
               alt="logo"
-              className="mx-auto w-36 rounded-full drop-shadow-sm"
+              className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="m-2 text-center text-2xl text-white drop-shadow-sm">
+            <section className="mb-0 mt-2 text-center text-xl text-white drop-shadow-sm">
               <p>Two liner</p>
               <p>Alluca essence tagline</p>
             </section>
@@ -119,7 +119,7 @@ const HomePage = () => {
               <FieldError name="password" className="rw-field-error" />
               <div className="rw-button-group">
                 <Submit
-                  className="rw-button rw-button-green w-fit"
+                  className="rw-button rw-button-accent w-fit"
                   disabled={isLoading}
                 >
                   {isLoading && (

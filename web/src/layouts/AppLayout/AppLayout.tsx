@@ -26,7 +26,7 @@ import {
 import { Separator } from 'src/components/ui/separator'
 
 import avatar from './avatar.png'
-import notextlogo from './notextlogo.png'
+import notextlogo from './logo-no-text.png'
 
 type AppLayoutProps = {
   children?: React.ReactNode
