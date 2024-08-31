@@ -111,7 +111,7 @@ export const Success = ({
                   €{item.hourlyWageMin}–€{item.hourlyWageMax}
                   <RatingStars value={item.qualityNeeded}></RatingStars>
                 </div>
-                <div className="text-lg font-semibold text-accent-darker">
+                <div className="text-lg font-semibold">
                   {item.yearsOfExp} jaren
                   <span className="relative -top-1">+</span>
                 </div>
