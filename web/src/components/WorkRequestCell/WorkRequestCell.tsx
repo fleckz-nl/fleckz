@@ -11,8 +11,7 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
-import { formatToEuros } from 'src/lib/formatToEuros'
-
+import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import WorkRequestCommentSection from '../WorkRequestCommentSection/WorkRequestCommentSection'
 
@@ -95,73 +94,7 @@ export const Success = ({
               <p>16 August 2024 02:00 pm</p>
             </div>
           </section>
-          <section id="profile-table" className="ml-4 max-w-md">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col" className="w-2/3"></th>
-                  <th scope="col" className="w-1/3"></th>
-                </tr>
-              </thead>
-              <tbody className="leading-10">
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Aantal jaar werkervaring
-                  </th>
-                  <td className="text-primary">
-                    {workRequest.jobProfile.yearsOfExp} jaren+
-                  </td>
-                </tr>
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Salaris
-                  </th>
-                  <td className="text-primary">
-                    {formatToEuros(workRequest.jobProfile.hourlyWageMin)}-{' '}
-                    {formatToEuros(workRequest.jobProfile.hourlyWageMax)}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Max. Reisafstand
-                  </th>
-                  <td className="text-primary">
-                    {workRequest.jobProfile.maxTravelDistance} km
-                  </td>
-                </tr>
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Auto beschikbaar?
-                  </th>
-                  <td className="text-primary">
-                    {workRequest.jobProfile.isCarAvailable ? 'Ja' : 'Nee'}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Kilometervergoeding
-                  </th>
-                  <td className="text-primary">
-                    {formatToEuros(workRequest.jobProfile.kmAllowance)} /km
-                  </td>
-                </tr>
-                <tr>
-                  <th className="font-normal" scope="row" align="left">
-                    Budget bruto per uur
-                  </th>
-                  <td className="text-primary">
-                    {formatToEuros(workRequest.jobProfile.totalBudgetPerHour)}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="mt-4">
-              <h3>Opmerking</h3>
-              <p className="mx-2 mt-2 rounded-md border border-secondary/30 px-4 py-4 text-primary">
-                {workRequest.jobProfile.comment}
-              </p>
-            </div>
-          </section>
+          <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
         </div>
       </div>
       <WorkRequestCommentSection />
