@@ -12,6 +12,7 @@ import { Router, Route, Set, PrivateSet } from '@redwoodjs/router'
 import { useAuth } from './auth'
 import AppLayout from './layouts/AppLayout/AppLayout'
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout'
+import WorkRequestPageLayout from './layouts/WorkRequestPageLayout/WorkRequestPageLayout'
 
 const Routes = () => {
   return (
@@ -21,8 +22,10 @@ const Routes = () => {
         <Set wrap={AppLayout}>
           <Route path="/overview" page={OverviewPage} name="overview" />
           <Route path="/plan" page={PlanPage} name="plan" />
-          <Route path="/work-request/{id}" page={WorkRequestPage} name="workRequest" />
           <Route path="/job-profiles" page={JobProfilesPage} name="jobProfiles" />
+        </Set>
+        <Set wrap={WorkRequestPageLayout}>
+          <Route path="/requests/{id}" page={WorkRequestPage} name="workRequest" />
         </Set>
       </PrivateSet>
       <Set wrap={DefaultLayout}>
