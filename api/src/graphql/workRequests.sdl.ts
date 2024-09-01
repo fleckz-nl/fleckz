@@ -12,6 +12,8 @@ export const schema = gql`
     location: Address!
     addressId: String!
     status: WorkRequestStatus!
+    createdBy: User
+    userId: String
   }
 
   enum WorkRequestStatus {
