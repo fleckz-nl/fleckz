@@ -10,7 +10,6 @@ const WorkRequestPage = ({ id }: WorkRequestPageProps) => {
   return (
     <>
       <Metadata title="WorkRequest" description="WorkRequest page" />
-
       <WorkRequestCell id={id} />
     </>
   )
