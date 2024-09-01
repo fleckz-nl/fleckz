@@ -16,9 +16,6 @@ module.exports = {
         xs: '576px',
       },
       colors: {
-        'accent-darker': '#346660',
-        'alluca-primary': '#013B35',
-        'alluca-gray': '#a6a6a6',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
