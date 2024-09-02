@@ -3,6 +3,8 @@ import { nl } from 'date-fns/locale/nl'
 import { Building2, CalendarDays, Clock, MapPin, Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
+import { Link, routes } from '@redwoodjs/router'
+
 import { formatAddress } from 'src/lib/formatAddress'
 
 import { Badge } from '../ui/badge'
@@ -23,7 +25,12 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
   return (
     <Card className={className}>
       <CardHeader className="relative">
-        <CardTitle>{request.jobProfile.name}</CardTitle>
+        <CardTitle>
+          <Link to={routes.workRequest({ id: request.id })}>
+            {request.jobProfile.name}
+          </Link>
+        </CardTitle>
+        <RatingStars value={request.jobProfile.qualityNeeded} />
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
