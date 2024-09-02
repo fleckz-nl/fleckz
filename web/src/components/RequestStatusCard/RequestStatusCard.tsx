@@ -35,13 +35,13 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
-        <div>
+        <div className="font-semibold">
           <CalendarDays className="inline" />{' '}
           {format(request.startDate, 'EEEE d MMMM, yyyy', {
             locale: nl,
           })}
         </div>
-        <div>
+        <div className="font-semibold">
           <Clock className="inline" /> {format(request.startDate, 'HH:mm')}
           &ndash;
           {format(request.endDate, 'HH:mm')}
