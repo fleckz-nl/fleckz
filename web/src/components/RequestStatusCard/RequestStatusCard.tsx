@@ -30,7 +30,6 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
             {request.jobProfile.name}
           </Link>
         </CardTitle>
-        <RatingStars value={request.jobProfile.qualityNeeded} />
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
