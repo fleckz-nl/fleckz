@@ -1,6 +1,13 @@
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
-import { Building2, CalendarDays, Clock, MapPin, Users } from 'lucide-react'
+import {
+  BriefcaseBusiness,
+  CalendarDays,
+  Clock,
+  MapPin,
+  MousePointerClick,
+  Users,
+} from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -46,7 +53,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         </div>
         <Separator className="opacity-40" />
         <div className="flex items-center gap-1">
-          <Building2 /> {request.projectName}
+          <BriefcaseBusiness /> {request.projectName}
         </div>
         <div className="flex items-center gap-1">
           <MapPin /> {formatAddress(request.location)}
