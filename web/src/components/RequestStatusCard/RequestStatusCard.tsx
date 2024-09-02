@@ -21,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
+import { Separator } from '../ui/separator'
 
 type RequestStatusCardProps = {
   request: WorkRequestsQuery['workRequests'][0]
@@ -45,12 +46,14 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           &ndash;
           {format(request.endDate, 'HH:mm')}
         </div>
+        <Separator className="opacity-40" />
         <div>
           <Building2 className="inline" /> {request.projectName}
         </div>
         <div>
           <MapPin className="inline" /> {formatAddress(request.location)}
         </div>
+        <Separator className="opacity-40" />
         <div>
           <Euro className="inline" />{' '}
           {formatToEuros(request.jobProfile.hourlyWageMin)}&ndash;
