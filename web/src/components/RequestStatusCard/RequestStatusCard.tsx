@@ -6,7 +6,6 @@ import { WorkRequestsQuery } from 'types/graphql'
 import { formatAddress } from 'src/lib/formatAddress'
 import { formatToEuros } from 'src/lib/formatToEuros'
 
-import RatingStars from '../RatingStars/RatingStars'
 import { Badge } from '../ui/badge'
 import {
   Card,
@@ -25,8 +24,6 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
     <Card className={className}>
       <CardHeader className="relative">
         <CardTitle>{request.jobProfile.name}</CardTitle>
-
-        <RatingStars value={request.jobProfile.qualityNeeded} />
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
