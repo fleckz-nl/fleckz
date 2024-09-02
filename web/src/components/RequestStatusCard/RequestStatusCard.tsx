@@ -33,7 +33,10 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
     <Card className={className}>
       <CardHeader className="relative">
         <CardTitle>
-          <Link to={routes.workRequest({ id: request.id })}>
+          <Link
+            className="hover:text-accent"
+            to={routes.workRequest({ id: request.id })}
+          >
             {request.jobProfile.name}
             <MousePointerClick className="relative -top-2 ml-1 inline size-5 text-accent" />
           </Link>
