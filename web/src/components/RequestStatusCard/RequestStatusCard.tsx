@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
+import { Progress } from '../ui/progress'
 import { Separator } from '../ui/separator'
 
 type RequestStatusCardProps = {
@@ -74,8 +75,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         </div>
         <div className="flex w-4/5 items-center justify-center gap-2">
           <Users className="size-8" />
-          <div className="flex flex-col">
-            <span className="text-sm font-semibold">2 van 3</span>
+            <Progress className="" value={33}></Progress>
           </div>
         </div>
       </CardContent>
