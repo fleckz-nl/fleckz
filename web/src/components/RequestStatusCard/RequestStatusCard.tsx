@@ -65,16 +65,16 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         </div>
         <Separator className="opacity-40" />
         <div>
-          <div className="flex items-center gap-1">
-            <Users /> Gevraagde medewerkers
-          </div>
-          <div className="flex items-center gap-1 font-medium">
+          <span>Gevraagde medewerkers</span>
+          <div className="flex items-center gap-1 font-semibold">
             <span className="pl-7">Aantal:</span>
             {request.numWorkers}
           </div>
         </div>
-        <div className="flex w-4/5 items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <Users className="size-8" />
+          <div className="flex w-full flex-col">
+            <span className="text-right text-sm font-semibold">1 van 3</span>
             <Progress className="" value={33}></Progress>
           </div>
         </div>
