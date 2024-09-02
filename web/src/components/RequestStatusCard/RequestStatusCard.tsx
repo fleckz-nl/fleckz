@@ -1,6 +1,13 @@
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
-import { CalendarDays, Clock, Euro, MapPin, Users } from 'lucide-react'
+import {
+  Building2,
+  CalendarDays,
+  Clock,
+  Euro,
+  MapPin,
+  Users,
+} from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { formatAddress } from 'src/lib/formatAddress'
@@ -37,6 +44,9 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           <Clock className="inline" /> {format(request.startDate, 'HH:mm')}
           &ndash;
           {format(request.endDate, 'HH:mm')}
+        </div>
+        <div>
+          <Building2 className="inline" /> {request.projectName}
         </div>
         <div>
           <MapPin className="inline" /> {formatAddress(request.location)}
