@@ -55,11 +55,6 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         </div>
         <Separator className="opacity-40" />
         <div>
-          <Euro className="inline" />{' '}
-          {formatToEuros(request.jobProfile.hourlyWageMin)}&ndash;
-          {formatToEuros(request.jobProfile.hourlyWageMin)}/uur
-        </div>
-        <div>
           <Users className="inline" /> {request.numWorkers} medewerkers
         </div>
       </CardContent>
