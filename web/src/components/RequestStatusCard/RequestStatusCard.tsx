@@ -33,23 +33,23 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
       </CardHeader>
       <CardContent className="space-y-2">
-        <div className="font-semibold">
-          <CalendarDays className="inline" />{' '}
+        <div className="flex items-center gap-1 font-semibold">
+          <CalendarDays />
           {format(request.startDate, 'EEEE d MMMM, yyyy', {
             locale: nl,
           })}
         </div>
-        <div className="font-semibold">
-          <Clock className="inline" /> {format(request.startDate, 'HH:mm')}
+        <div className="flex items-center gap-1 font-semibold">
+          <Clock /> {format(request.startDate, 'HH:mm')}
           &ndash;
           {format(request.endDate, 'HH:mm')}
         </div>
         <Separator className="opacity-40" />
-        <div>
-          <Building2 className="inline" /> {request.projectName}
+        <div className="flex items-center gap-1">
+          <Building2 /> {request.projectName}
         </div>
-        <div>
-          <MapPin className="inline" /> {formatAddress(request.location)}
+        <div className="flex items-center gap-1">
+          <MapPin /> {formatAddress(request.location)}
         </div>
         <Separator className="opacity-40" />
         <div>
