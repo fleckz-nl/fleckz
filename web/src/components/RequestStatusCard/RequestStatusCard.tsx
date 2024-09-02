@@ -1,17 +1,9 @@
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
-import {
-  Building2,
-  CalendarDays,
-  Clock,
-  Euro,
-  MapPin,
-  Users,
-} from 'lucide-react'
+import { Building2, CalendarDays, Clock, MapPin, Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { formatAddress } from 'src/lib/formatAddress'
-import { formatToEuros } from 'src/lib/formatToEuros'
 
 import { Badge } from '../ui/badge'
 import {
