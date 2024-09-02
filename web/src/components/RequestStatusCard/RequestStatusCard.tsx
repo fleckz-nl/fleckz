@@ -53,7 +53,19 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         </div>
         <Separator className="opacity-40" />
         <div>
-          <Users className="inline" /> {request.numWorkers} medewerkers
+          <div className="flex items-center gap-1">
+            <Users /> Gevraagde medewerkers
+          </div>
+          <div className="flex items-center gap-1 font-medium">
+            <span className="pl-7">Aantal:</span>
+            {request.numWorkers}
+          </div>
+        </div>
+        <div className="flex w-4/5 items-center justify-center gap-2">
+          <Users className="size-8" />
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold">2 van 3</span>
+          </div>
         </div>
       </CardContent>
       <CardFooter></CardFooter>
