@@ -2,7 +2,12 @@ import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formatDate } from 'date-fns'
-import { MessageSquareWarningIcon, Users } from 'lucide-react'
+import {
+  LoaderCircle,
+  MessageSquareWarningIcon,
+  Trash2,
+  Users,
+} from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { CreateWorkRequestInput } from 'types/graphql'
 import { z } from 'zod'
@@ -120,14 +125,17 @@ const PlanWorkComponent = ({
     defaultValues: currentDefaultValues,
   })
 
-  const [create, { loading, error }] = useMutation(CREATE_WORK_REQUEST_GQL, {
-    onCompleted: () => {
-      toast.success('Success')
-      form.reset()
-      setOpen(false)
-    },
-    refetchQueries: [{ query: WorkSchedularQuery }],
-  })
+  const [create, { loading: createLoading, error }] = useMutation(
+    CREATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Verzoek aangemaakt')
+        form.reset()
+        setOpen(false)
+      },
+      refetchQueries: [{ query: WorkSchedularQuery }],
+    }
+  )
 
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_WORK_REQUEST_GQL,
@@ -144,7 +152,10 @@ const PlanWorkComponent = ({
   const [deleteRequest, { loading: deleteLoading, error: deleteError }] =
     useMutation(DELETE_WORK_REQUEST_GQL, {
       onCompleted: () => {
-        toast.success('Verwijderd')
+        toast('Verwijderd', {
+          icon: <Trash2 className="size-4 text-destructive" />,
+          duration: 2000,
+        })
         form.reset()
         setOpen(false)
       },
@@ -152,6 +163,8 @@ const PlanWorkComponent = ({
     })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    const loadingToast = toast.loading('Laden...')
+
     if (isEditing) {
       const { id, ...restData } = data
       update({
@@ -164,19 +177,20 @@ const PlanWorkComponent = ({
           },
         },
       })
-      return
+    } else {
+      create({
+        variables: {
+          input: {
+            ...data,
+            startDate: new Date(data.startDate),
+            endDate: new Date(data.endDate),
+            status: 'SUBMITTED',
+          },
+        },
+      })
     }
 
-    create({
-      variables: {
-        input: {
-          ...data,
-          startDate: new Date(data.startDate),
-          endDate: new Date(data.endDate),
-          status: 'SUBMITTED',
-        },
-      },
-    })
+    toast.dismiss(loadingToast)
   }
 
   function handleDelete(id: string) {
@@ -358,14 +372,24 @@ const PlanWorkComponent = ({
                   onConfirm={() => handleDelete(form.getValues('id'))}
                   error={deleteError}
                   loading={deleteLoading}
+                  disabled={createLoading || updateLoading}
                 />
               )}
               <Button
                 type="submit"
-                disabled={loading || updateLoading}
-                className="text-accent brightness-200 hover:brightness-100"
+                disabled={createLoading || updateLoading}
+                className="relative text-accent brightness-200 hover:brightness-100"
               >
-                {isEditing ? 'Update' : 'Indienen'}
+                {(createLoading || updateLoading) && (
+                  <LoaderCircle className="absolute animate-spin" />
+                )}
+                <span
+                  className={`${
+                    (createLoading || updateLoading) && 'invisible'
+                  }`}
+                >
+                  {isEditing ? 'Update' : 'Indienen'}
+                </span>
               </Button>
             </DialogFooter>
           </form>
