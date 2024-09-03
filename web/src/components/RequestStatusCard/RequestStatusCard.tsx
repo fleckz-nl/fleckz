@@ -71,13 +71,15 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
             {request.numWorkers}
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <Users className="size-8" />
-          <div className="flex w-full flex-col">
-            <span className="text-right text-sm font-semibold">1 van 3</span>
-            <Progress className="" value={33}></Progress>
+        {request.status === 'SUBMITTED' && (
+          <div className="flex items-center justify-center gap-2">
+            <Users className="size-8" />
+            <div className="flex w-full flex-col">
+              <span className="text-right text-sm font-semibold">1 van 3</span>
+              <Progress className="" value={33}></Progress>
+            </div>
           </div>
-        </div>
+        )}
       </CardContent>
       <CardFooter></CardFooter>
     </Card>
