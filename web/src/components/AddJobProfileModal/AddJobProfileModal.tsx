@@ -12,7 +12,6 @@ import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
 import { Switch } from 'src/components/ui/switch'
 
-import RatingStars from '../RatingStars/RatingStars'
 import { Button } from '../ui/button'
 import {
   Dialog,
@@ -31,7 +30,6 @@ const CREATE_JOB_PROFILE = gql`
   mutation CreateJobProfileMutation($input: CreateJobProfileInput!) {
     createJobProfile(input: $input) {
       name
-      qualityNeeded
       yearsOfExp
       hourlyWageMin
       hourlyWageMax
@@ -50,7 +48,6 @@ const AddJobProfileModal = () => {
   const formSchema = z
     .object({
       name: z.string().min(1),
-      qualityNeeded: z.coerce.number().min(1).max(5),
       yearsOfExp: z.coerce.number().min(1),
       hourlyWageMin: z.coerce.number().min(1),
       hourlyWageMax: z.coerce.number().min(1),
@@ -71,7 +68,6 @@ const AddJobProfileModal = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      qualityNeeded: 3,
       yearsOfExp: 0,
       hourlyWageMin: 0,
       hourlyWageMax: 0,
@@ -92,9 +88,6 @@ const AddJobProfileModal = () => {
     },
     refetchQueries: [{ query: JobProfilesQuery }],
   })
-
-  const DEFAULT_QUALITY_NEEDED = 3
-  const [qualityNeeded, setQualityNeeded] = useState(DEFAULT_QUALITY_NEEDED)
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     create({
@@ -143,42 +136,6 @@ const AddJobProfileModal = () => {
                       className={`relative -top-4 ${
                         fieldState.error && ' border-red-500'
                       }`}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="qualityNeeded"
-              render={({ field, fieldState }) => (
-                <FormItem className="flex items-center justify-between gap-2">
-                  <FormLabel className="mt-2 font-semibold">
-                    Gewenste kwaliteit
-                  </FormLabel>
-                  <RatingStars
-                    className="my-0 flex h-8 gap-2 text-accent/70 hover:text-accent/90"
-                    value={qualityNeeded}
-                    onChange={setQualityNeeded}
-                  />
-                  <FormControl>
-                    <Input
-                      placeholder=""
-                      {...field}
-                      type="number"
-                      min={1}
-                      max={5}
-                      className={`w-14 ${
-                        fieldState.error && ' border-red-500'
-                      }`}
-                      value={qualityNeeded}
-                      onChange={(e) => {
-                        const coercedValue = Math.max(
-                          1,
-                          Math.min(5, parseInt(e.target.value) || 1)
-                        )
-                        setQualityNeeded(Number(coercedValue))
-                      }}
                     />
                   </FormControl>
                 </FormItem>
