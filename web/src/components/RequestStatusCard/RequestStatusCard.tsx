@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { PopoverContent } from '@radix-ui/react-popover'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
@@ -18,6 +20,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 import { formatAddress } from 'src/lib/formatAddress'
 
+import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
@@ -30,6 +33,8 @@ type RequestStatusCardProps = {
   className?: string
 }
 const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
+  const [editOpen, setEditOpen] = useState(false)
+
   return (
     <Card className={className}>
       <CardHeader className="relative">
@@ -43,13 +48,25 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </Link>
         </CardTitle>
         {request.status === 'DRAFT' && (
-          <Badge
-            variant="outline"
-            className="absolute right-4 top-2 hover:cursor-pointer"
-          >
-            Concept <Edit className="ml-1 size-3" />
-          </Badge>
-          // this badge will open the work request form
+          <>
+            <Badge
+              variant="outline"
+              className="absolute right-4 top-2 hover:cursor-pointer"
+              onClick={() => setEditOpen(true)}
+            >
+              Concept <Edit className="ml-1 size-3" />
+            </Badge>
+            <PlanWorkComponent
+              defaultValues={{
+                ...request,
+                addressId: request.location.id,
+                jobProfileId: request.jobProfile.id,
+              }}
+              open={editOpen}
+              setOpen={setEditOpen}
+              hideTrigger
+            />
+          </>
         )}
         {request.status === 'SUBMITTED' && (
           <Badge className="absolute right-4 top-2 bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
