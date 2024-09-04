@@ -45,6 +45,10 @@ export const QUERY: TypedDocumentNode<
         hourlyWageMax
         qualityNeeded
       }
+      shifts {
+        id
+        status
+      }
     }
   }
 `
