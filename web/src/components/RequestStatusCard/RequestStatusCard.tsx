@@ -36,7 +36,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
   return (
     <Card className={className}>
       <CardHeader className="relative">
-        <CardTitle>
+        <CardTitle className="hyphens-auto sm:w-2/3">
           <Link
             className="hover:text-accent"
             to={routes.workRequest({ id: request.id })}
