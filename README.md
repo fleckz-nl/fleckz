@@ -1,4 +1,4 @@
-# Alluca App
+# Fleckz App
 
 
 ## How to develop
