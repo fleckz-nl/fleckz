@@ -42,7 +42,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
             to={routes.workRequest({ id: request.id })}
           >
             {request.jobProfile.name}
-            <MousePointerClick className="relative -top-2 ml-1 inline size-5 text-accent" />
+            <MousePointerClick className="relative -top-1 ml-1 inline size-5 text-accent" />
           </Link>
         </CardTitle>
         <Badge className="absolute right-4 top-2">{request.status}</Badge>
