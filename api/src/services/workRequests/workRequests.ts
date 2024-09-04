@@ -34,7 +34,12 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
   })
 
   return db.workRequest.create({
-    data: input,
+    data: {
+      ...input,
+      shifts: {
+        createMany: { data: Array(input.numWorkers).fill({}) },
+      },
+    },
   })
 }
 
