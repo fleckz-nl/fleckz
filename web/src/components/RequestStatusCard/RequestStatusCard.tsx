@@ -72,13 +72,31 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </div>
         </div>
         {request.status === 'SUBMITTED' && (
-          <div className="flex items-center justify-center gap-2">
-            <Users className="size-8" />
-            <div className="flex w-full flex-col">
-              <span className="text-right text-sm font-semibold">1 van 3</span>
-              <Progress className="" value={33}></Progress>
-            </div>
-          </div>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline">UitzendbureauNaam</Button>
+                </PopoverTrigger>
+                <PopoverContent className="my-1 min-w-fit rounded-md bg-gray-900 px-4 py-2 text-sm text-primary-foreground">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="mb-1 text-accent">UitzendbureauNaam</h3>
+                    <div className="flex items-center gap-1">
+                      <MapPin className="size-4" />
+                      {/* Uitzendbureau adres */}
+                      {formatAddress(request.location)}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Phone className="size-4" />
+                      06 89 6478
+                      {/* Uitzenbureau telefoon nummer */}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Mail className="size-4" />
+                      Uitzendbureau@mail.comment
+                      {/* Uitzendbureau mail */}
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
         )}
       </CardContent>
     </Card>
