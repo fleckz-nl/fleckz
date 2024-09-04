@@ -230,171 +230,170 @@ const PlanWorkComponent = ({
             </div>
           )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name="projectName"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-primary/90">
-                    Projectnaam
-                  </FormLabel>
-                  <FormDescription>Hoe heet uw project?</FormDescription>
-                  <FormControl>
-                    <Input
-                      placeholder="Nieuw project"
-                      {...field}
-                      className={`relative -top-4 ${
-                        fieldState.error && ' border-red-500'
-                      }`}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="jobProfileId"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-primary/90">
-                    Functieprofiel
-                  </FormLabel>
-                  <FormDescription>
-                    Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
-                    <Link
-                      to={routes.jobProfiles()}
-                      className="text-primary/90 hover:text-accent hover:underline"
-                    >
-                      Maak er een aan.
-                    </Link>
-                  </FormDescription>
-                  <SelectJobProfileCell
-                    field={field}
-                    form={form}
-                    // TODO: Fix this typescript error
-                    className={`relative -top-4 py-4 pl-3 ${
-                      fieldState.error && ' border-red-500'
-                    }`}
-                  />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="addressId"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold text-primary/90">
-                    Locatie
-                  </FormLabel>
-                  <FormDescription>
-                    Waar wilt u dat de werknemer werkt?
-                  </FormDescription>
-                  <SelectAddressCell
-                    field={field}
-                    form={form}
-                    // TODO: Fix this typescript error
-                    className={`relative -top-4 py-4 pl-3 ${
-                      fieldState.error && ' border-red-500'
-                    }`}
-                  />
-                </FormItem>
-              )}
-            />
-            <fieldset className="flex flex-col items-center justify-between sm:flex-row">
+            <fieldset disabled={anyLoading}>
               <FormField
                 control={form.control}
-                name="startDate"
+                name="projectName"
                 render={({ field, fieldState }) => (
-                  <FormItem className="-mt-1 mb-2">
+                  <FormItem>
                     <FormLabel className="font-semibold text-primary/90">
-                      Van
+                      Projectnaam
                     </FormLabel>
+                    <FormDescription>Hoe heet uw project?</FormDescription>
                     <FormControl>
                       <Input
+                        placeholder="Nieuw project"
                         {...field}
-                        type="datetime-local"
-                        className={`relative -top-2 min-w-48 ${
-                          fieldState.error && 'border-red-500'
+                        className={`relative -top-4 ${
+                          fieldState.error && ' border-red-500'
                         }`}
                       />
                     </FormControl>
-                    <FormDescription></FormDescription>
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="endDate"
+                name="jobProfileId"
                 render={({ field, fieldState }) => (
-                  <FormItem className="-mt-1 mb-2">
+                  <FormItem>
                     <FormLabel className="font-semibold text-primary/90">
-                      Tot
+                      Functieprofiel
                     </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="datetime-local"
-                        className={`relative -top-2 min-w-48 ${
-                          fieldState.error && 'border-red-500'
-                        }`}
-                      />
-                    </FormControl>
-                    <FormDescription></FormDescription>
-                  </FormItem>
-                )}
-              />
-            </fieldset>
-            <FormField
-              control={form.control}
-              name="numWorkers"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel className="flex flex-grow items-center font-semibold text-primary/90">
-                    Aantal medewerkers
-                    <Users className="ml-2 inline" size={'1rem'} />
-                  </FormLabel>
-                  <FormDescription>Hoeveel medewerkers nodig?</FormDescription>
-                  <FormControl>
-                    <Input
-                      placeholder=""
-                      {...field}
-                      type="number"
-                      min={0}
-                      className={`relative -top-4 ${
+                    <FormDescription>
+                      Voor welk functieprofiel zoekt u werk? Geen profiel?{' '}
+                      <Link
+                        to={routes.jobProfiles()}
+                        className="text-primary/90 hover:text-accent hover:underline"
+                      >
+                        Maak er een aan.
+                      </Link>
+                    </FormDescription>
+                    <SelectJobProfileCell
+                      field={field}
+                      form={form}
+                      // TODO: Fix this typescript error
+                      className={`relative -top-4 py-4 pl-3 ${
                         fieldState.error && ' border-red-500'
                       }`}
                     />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <DialogFooter>
-              {isEditing && (
-                <ConfirmDeleteWork
-                  onConfirm={() => handleDelete(form.getValues('id'))}
-                  error={deleteError}
-                  loading={deleteLoading}
-                  disabled={createLoading || updateLoading}
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="addressId"
+                render={({ field, fieldState }) => (
+                  <FormItem>
+                    <FormLabel className="font-semibold text-primary/90">
+                      Locatie
+                    </FormLabel>
+                    <FormDescription>
+                      Waar wilt u dat de werknemer werkt?
+                    </FormDescription>
+                    <SelectAddressCell
+                      field={field}
+                      form={form}
+                      // TODO: Fix this typescript error
+                      className={`relative -top-4 py-4 pl-3 ${
+                        fieldState.error && ' border-red-500'
+                      }`}
+                    />
+                  </FormItem>
+                )}
+              />
+              <fieldset className="flex flex-col items-center justify-between sm:flex-row">
+                <FormField
+                  control={form.control}
+                  name="startDate"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="-mt-1 mb-2">
+                      <FormLabel className="font-semibold text-primary/90">
+                        Van
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="datetime-local"
+                          className={`relative -top-2 min-w-48 ${
+                            fieldState.error && 'border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                      <FormDescription></FormDescription>
+                    </FormItem>
+                  )}
                 />
-              )}
-              <Button
-                type="submit"
-                disabled={createLoading || updateLoading}
-                className="relative text-accent brightness-200 hover:brightness-100"
-              >
-                {(createLoading || updateLoading) && (
-                  <LoaderCircle className="absolute animate-spin" />
+                <FormField
+                  control={form.control}
+                  name="endDate"
+                  render={({ field, fieldState }) => (
+                    <FormItem className="-mt-1 mb-2">
+                      <FormLabel className="font-semibold text-primary/90">
+                        Tot
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="datetime-local"
+                          className={`relative -top-2 min-w-48 ${
+                            fieldState.error && 'border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </fieldset>
+              <FormField
+                control={form.control}
+                name="numWorkers"
+                render={({ field, fieldState }) => (
+                  <FormItem>
+                    <FormLabel className="flex flex-grow items-center font-semibold text-primary/90">
+                      Aantal medewerkers
+                      <Users className="ml-2 inline" size={'1rem'} />
+                    </FormLabel>
+                    <FormDescription>
+                      Hoeveel medewerkers nodig?
+                    </FormDescription>
+                    <FormControl>
+                      <Input
+                        placeholder=""
+                        {...field}
+                        type="number"
+                        min={0}
+                        className={`relative -top-4 ${
+                          fieldState.error && ' border-red-500'
+                        }`}
+                      />
+                    </FormControl>
+                  </FormItem>
                 )}
-                <span
-                  className={`${
-                    (createLoading || updateLoading) && 'invisible'
-                  }`}
+              />
+              <DialogFooter>
+                {isEditing && (
+                  <ConfirmDeleteWork
+                    onConfirm={() => handleDelete(form.getValues('id'))}
+                    error={deleteError}
+                    loading={deleteLoading}
+                    disabled={anyLoading}
+                  />
+                )}
+                <Button
+                  type="submit"
+                  disabled={anyLoading}
+                  className="relative text-accent brightness-200 hover:brightness-100"
                 >
-                  {isEditing ? 'Update' : 'Indienen'}
-                </span>
-              </Button>
-            </DialogFooter>
+                  {anyLoading && (
+                    <LoaderCircle className="absolute animate-spin" />
+                  )}
+                  <span className={`${anyLoading && 'invisible'}`}>
+                    {isEditing ? 'Update' : 'Indienen'}
+                  </span>
+                </Button>
+              </DialogFooter>
+            </fieldset>
           </form>
         </Form>
       </DialogContent>
