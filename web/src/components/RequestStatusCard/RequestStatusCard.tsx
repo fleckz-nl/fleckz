@@ -1,3 +1,4 @@
+import { PopoverContent } from '@radix-ui/react-popover'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale/nl'
 import {
@@ -18,7 +19,9 @@ import { Link, routes } from '@redwoodjs/router'
 import { formatAddress } from 'src/lib/formatAddress'
 
 import { Badge } from '../ui/badge'
+import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { Popover, PopoverTrigger } from '../ui/popover'
 import { Progress } from '../ui/progress'
 import { Separator } from '../ui/separator'
 
