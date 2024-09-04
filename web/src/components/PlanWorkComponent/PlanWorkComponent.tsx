@@ -191,6 +191,11 @@ const PlanWorkComponent = ({
     }
   }
 
+  const anyLoading = useMemo(
+    () => createLoading || updateLoading || deleteLoading,
+    [createLoading, updateLoading, deleteLoading]
+  )
+
   function handleDelete(id: string) {
     deleteRequest({
       variables: { id },
