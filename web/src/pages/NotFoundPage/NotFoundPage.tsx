@@ -63,7 +63,7 @@ export default () => (
         >
           <Link to={routes.overview()} className="flex items-center">
             <ArrowLeftCircleIcon className="mx-2" />
-            Terug naar Alluca
+            Terug naar Fleckz
           </Link>
         </Button>
       </div>
