@@ -116,7 +116,7 @@ const PlanWorkComponent = ({
       endDate: formatToDatetimeLocal(defaultValues?.endDate) || '',
       jobProfileId: defaultValues?.jobProfileId || '',
       addressId: defaultValues?.addressId || '',
-      numWorkers: 1,
+      numWorkers: defaultValues?.numWorkers || 1,
     }),
     [defaultValues]
   )

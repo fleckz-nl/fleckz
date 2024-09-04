@@ -53,10 +53,9 @@ export const Loading = () =>
           <div className="-mt-2 flex flex-wrap items-center justify-between">
             <div>
               <Skeleton className="h-4 w-20" />
-              <Skeleton className="mt-1 h-4 w-20" />
             </div>
             <div>
-              <Skeleton className="-mr-2 h-6 w-20" />
+              <Skeleton className="-mr-2 h-4 w-20" />
             </div>
           </div>
           <Separator className="my-4 animate-pulse bg-primary/10" />
