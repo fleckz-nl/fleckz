@@ -27,7 +27,7 @@ const JobProfileCard = ({ item }: JobProfileCardProps) => {
           <div className="font-semibold">
             €{item.hourlyWageMin}–€{item.hourlyWageMax}
           </div>
-          <div className="text-lg font-semibold text-accent-darker">
+          <div className="font-semibold">
             {item.yearsOfExp} jaren
             <span className="relative -top-1">+</span>
           </div>
