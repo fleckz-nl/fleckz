@@ -10,7 +10,7 @@ import { db } from 'src/lib/db'
 
 export const workRequests: QueryResolvers['workRequests'] = () => {
   return db.workRequest.findMany({
-    include: { location: true, jobProfile: true },
+    include: { location: true, jobProfile: true, shifts: true },
   })
 }
 
