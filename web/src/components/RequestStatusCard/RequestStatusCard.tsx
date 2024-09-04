@@ -18,13 +18,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { formatAddress } from 'src/lib/formatAddress'
 
 import { Badge } from '../ui/badge'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import { Progress } from '../ui/progress'
 import { Separator } from '../ui/separator'
 
@@ -84,7 +78,6 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </div>
         )}
       </CardContent>
-      <CardFooter></CardFooter>
     </Card>
   )
 }
