@@ -42,7 +42,33 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
             <MousePointerClick className="relative -top-1 ml-1 inline size-5 text-accent" />
           </Link>
         </CardTitle>
-        <Badge className="absolute right-4 top-2">{request.status}</Badge>
+        {request.status === 'DRAFT' && (
+          <Badge
+            variant="outline"
+            className="absolute right-4 top-2 hover:cursor-pointer"
+          >
+            Concept <Edit className="ml-1 size-3" />
+          </Badge>
+          // this badge will open the work request form
+        )}
+        {request.status === 'SUBMITTED' && (
+          <Badge className="absolute right-4 top-2 bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
+            In uitvoering
+          </Badge>
+        )}
+        {request.status === 'CONFIRMED' && (
+          <Badge variant="secondary" className="absolute right-4 top-2">
+            Geaccepteerd
+          </Badge>
+        )}
+        {request.status === 'DONE' && (
+          <Badge
+            variant="secondary"
+            className="absolute right-4 top-2 bg-primary/30 hover:bg-primary/50"
+          >
+            Afgerond
+          </Badge>
+        )}
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="flex items-center gap-1 font-semibold">
