@@ -54,6 +54,15 @@ export const QUERY: TypedDocumentNode<
         id
         # TODO: Get user names
       }
+      shifts {
+        id
+        status
+        tempAgency {
+          id
+          email
+          phone
+        }
+      }
     }
   }
 `
