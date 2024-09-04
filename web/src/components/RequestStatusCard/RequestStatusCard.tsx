@@ -132,9 +132,20 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
               <Users className="size-8" />
               <div className="flex w-full flex-col">
                 <span className="text-right text-sm font-semibold">
-                  1 van 3
+                  {
+                    request.shifts?.filter((s) => s.status == 'FULFILLED')
+                      .length
+                  }{' '}
+                  van {request.numWorkers}
                 </span>
-                <Progress className="" value={33}></Progress>
+                <Progress
+                  value={
+                    (request.shifts?.filter((s) => s.status === 'FULFILLED')
+                      .length /
+                      request.numWorkers) *
+                    100
+                  }
+                ></Progress>
               </div>
             </div>
           </>
