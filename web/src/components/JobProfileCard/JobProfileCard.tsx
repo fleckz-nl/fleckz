@@ -1,7 +1,6 @@
 import { Car, Edit } from 'lucide-react'
 import { JobProfilesQuery } from 'types/graphql'
 
-import RatingStars from '../RatingStars/RatingStars'
 import { Badge } from '../ui/badge'
 import {
   Card,
@@ -27,7 +26,6 @@ const JobProfileCard = ({ item }: JobProfileCardProps) => {
         <div className="-mt-2 flex flex-wrap items-center justify-between">
           <div className="font-semibold">
             €{item.hourlyWageMin}–€{item.hourlyWageMax}
-            <RatingStars value={item.qualityNeeded}></RatingStars>
           </div>
           <div className="text-lg font-semibold text-accent-darker">
             {item.yearsOfExp} jaren
