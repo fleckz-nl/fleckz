@@ -358,7 +358,6 @@ const PlanWorkComponent = ({
                     </FormDescription>
                     <FormControl>
                       <Input
-                        placeholder=""
                         {...field}
                         type="number"
                         min={0}
