@@ -9,6 +9,7 @@ export async function seedShifts(db: PrismaClient) {
       status: 'UNFULFILLED',
       workRequestId: 'ckoyr8d3v0001vujyh8rn3kz1',
       rating: null,
+      tempAgencyId: 'agency_1',
     },
     {
       id: 'ckl01p2ve00002ab123457',
@@ -17,6 +18,7 @@ export async function seedShifts(db: PrismaClient) {
       status: 'FULFILLED',
       workRequestId: 'ckoyr8d3v0001vujyh8rn3kz1',
       rating: null,
+      tempAgencyId: 'agency_1',
     },
     {
       id: 'ckl01p2ve00003ab123458',
@@ -25,6 +27,7 @@ export async function seedShifts(db: PrismaClient) {
       status: 'FULFILLED',
       workRequestId: 'ckoyr8d3v0002vujyh8rn3kz2',
       rating: null,
+      tempAgencyId: 'agency_2',
     },
     {
       id: 'ckl01p2ve00004ab123459',
@@ -33,6 +36,7 @@ export async function seedShifts(db: PrismaClient) {
       status: 'FULFILLED',
       workRequestId: 'ckoyr8d3v0002vujyh8rn3kz2',
       rating: null,
+      tempAgencyId: 'agency_2',
     },
     {
       id: 'ckl01p2ve00005ab123450',
@@ -41,9 +45,13 @@ export async function seedShifts(db: PrismaClient) {
       status: 'UNFULFILLED',
       workRequestId: 'ckoyr8d3v0002vujyh8rn3kz2',
       rating: null,
+      tempAgencyId: 'agency_3',
     },
   ]
 
+  await db.shift.deleteMany({
+    where: { id: { in: mockShifts.map((s) => s.id) } },
+  })
   const results = await db.shift.createMany({
     data: mockShifts,
     skipDuplicates: true,
