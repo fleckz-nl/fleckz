@@ -176,7 +176,7 @@ const PlanWorkComponent = ({
             endDate: new Date(data.endDate),
           },
         },
-      })
+      }).finally(() => toast.dismiss(loadingToast))
     } else {
       create({
         variables: {
@@ -187,10 +187,8 @@ const PlanWorkComponent = ({
             status: 'SUBMITTED',
           },
         },
-      })
+      }).finally(() => toast.dismiss(loadingToast))
     }
-
-    toast.dismiss(loadingToast)
   }
 
   function handleDelete(id: string) {
