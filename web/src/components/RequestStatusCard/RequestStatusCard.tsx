@@ -4,8 +4,11 @@ import {
   BriefcaseBusiness,
   CalendarDays,
   Clock,
+  Edit,
+  Mail,
   MapPin,
   MousePointerClick,
+  Phone,
   Users,
 } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
