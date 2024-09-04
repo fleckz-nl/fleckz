@@ -32,7 +32,7 @@ const DrawerMenu = () => {
           <X className="ml-4" />
         </DrawerClose>
         <DrawerHeader>
-          <DrawerTitle>Alluca</DrawerTitle>
+          <DrawerTitle>Fleckz</DrawerTitle>
           <DrawerDescription>Uitzendbureau App</DrawerDescription>
           <ul className="mt-5 space-y-5 text-2xl">
             <li>

@@ -123,7 +123,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <footer className="flex flex-wrap items-center justify-center gap-2 p-4 text-accent/20 sm:justify-between">
         <div className="copyright-section flex items-center gap-0.5">
           <Copyright size={20} />
-          <span className="text-nowrap font-medium">2024 Alluca</span>
+          <span className="text-nowrap font-medium">2024 Fleckz</span>
         </div>
         <Separator className="opacity-10 xs:hidden"></Separator>
         <NavigationMenu className="privacy-and-services-section">

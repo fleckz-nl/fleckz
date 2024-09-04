@@ -6,7 +6,7 @@ FSL-1.1-MIT
 
 ## Notice
 
-Copyright 2024 Alluca Team
+Copyright 2024 Fleckz Team
 
 ## Terms and Conditions
 
