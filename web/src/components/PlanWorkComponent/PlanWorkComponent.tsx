@@ -82,6 +82,7 @@ type PlanWorkComponentProps = {
   defaultValues?: Partial<CreateWorkRequestInput & { id: string }>
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  hideTrigger?: boolean
 }
 
 function formatToDatetimeLocal(date: Date | string) {
@@ -93,6 +94,7 @@ const PlanWorkComponent = ({
   defaultValues,
   open,
   setOpen,
+  hideTrigger,
 }: PlanWorkComponentProps) => {
   const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
 
@@ -210,7 +212,7 @@ const PlanWorkComponent = ({
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <Toaster />
       <DialogTrigger asChild>
-        <Button variant="outline">Werk Uitzetten</Button>
+        {!hideTrigger && <Button variant="outline">Werk Uitzetten</Button>}
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>
