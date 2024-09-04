@@ -1,7 +1,5 @@
 import { ApolloError } from '@apollo/client/errors'
 
-import { FormError } from '@redwoodjs/forms'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,23 +11,25 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
-import { Button } from '../ui/button'
+import { Button, buttonVariants } from '../ui/button'
 
 type ConfirmDeleteWorkProps = {
   onConfirm: () => void
   error: ApolloError
   loading: boolean
+  disabled?: boolean
 }
 
 const ConfirmDeleteWork = ({
   onConfirm,
   error,
   loading,
+  disabled,
 }: ConfirmDeleteWorkProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button type="button" variant="destructive">
+        <Button type="button" variant="destructive" disabled={disabled}>
           Verwijderen
         </Button>
       </AlertDialogTrigger>
@@ -44,15 +44,14 @@ const ConfirmDeleteWork = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction asChild>
-            <Button
-              type="button"
-              onClick={onConfirm}
-              variant="destructive"
-              disabled={loading}
-            >
-              Verwijderen
-            </Button>
+          <AlertDialogAction
+            className={buttonVariants({
+              variant: 'destructive',
+            })}
+            onClick={onConfirm}
+            disabled={loading}
+          >
+            Verwijderen
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
