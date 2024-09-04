@@ -5,6 +5,7 @@ import { seedAddresses } from './utils/seedAddresses'
 import { seedCertificates } from './utils/seedCertificates'
 import { seedJobProfiles } from './utils/seedJobProfiles'
 import { seedTempAgencies } from './utils/seedTempAgencies'
+import { seedWorkRequests } from './utils/seedWorkRequests'
 
 export default async () => {
   try {
@@ -12,6 +13,7 @@ export default async () => {
     seedJobProfiles(db)
     seedAddresses(db)
     seedTempAgencies(db)
+    seedWorkRequests(db)
   } catch (error) {
     console.error(error)
   }
