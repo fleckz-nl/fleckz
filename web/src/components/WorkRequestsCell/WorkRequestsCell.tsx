@@ -39,6 +39,7 @@ export const QUERY: TypedDocumentNode<
         postalCode
       }
       jobProfile {
+        id
         name
         hourlyWageMin
         hourlyWageMax
