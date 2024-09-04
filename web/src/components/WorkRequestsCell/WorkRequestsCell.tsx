@@ -48,6 +48,11 @@ export const QUERY: TypedDocumentNode<
       shifts {
         id
         status
+        tempAgency {
+          id
+          email
+          phone
+        }
       }
     }
   }

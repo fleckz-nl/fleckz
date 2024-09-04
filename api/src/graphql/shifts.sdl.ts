@@ -7,6 +7,7 @@ export const schema = gql`
     workRequest: WorkRequest
     workRequestId: String
     rating: Int
+    tempAgency: TempAgency
   }
 
   enum ShiftStatus {
