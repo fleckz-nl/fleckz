@@ -97,6 +97,8 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
                   </div>
                 </PopoverContent>
               </Popover>
+              <Button className="text-accent">Voeg een recencie</Button>
+              {/* This button will open a form that will add ratings after shifts are fulfilled. Form should have the number of hours fufilled and then the rating stars */}
         )}
       </CardContent>
     </Card>
