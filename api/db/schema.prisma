@@ -127,6 +127,7 @@ model TempAgency {
   email     String
   address   Address? @relation(fields: [addressId], references: [id])
   addressId String?
+  shifts    Shift[]
 }
 
 model Shift {
@@ -137,6 +138,8 @@ model Shift {
   workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id])
   workRequestId String?
   rating        Int?
+  tempAgency    TempAgency?  @relation(fields: [tempAgencyId], references: [id])
+  tempAgencyId  String?
 }
 
 enum ShiftStatus {
