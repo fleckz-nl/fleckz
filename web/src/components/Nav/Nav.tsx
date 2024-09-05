@@ -1,6 +1,6 @@
 import { LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
 import avatar from 'web/public/images/avatar.png'
-import notextlogo from 'web/public/images/logo-no-text.png'
+import noTextLogo from 'web/public/images/logo-no-text.png'
 
 import { Link, routes } from '@redwoodjs/router'
 
@@ -35,7 +35,7 @@ const Nav = () => {
           <NavigationMenuItem>
             <Link to={routes.overview()}>
               <img
-                src={notextlogo}
+                src={noTextLogo}
                 alt="logo"
                 className="size-10 rounded-full drop-shadow-sm transition-all hover:brightness-125"
               />
@@ -78,7 +78,7 @@ const Nav = () => {
               <DropdownMenuLabel>
                 <div className="user-profile flex flex-col items-center">
                   <span className="user-name pr-2 text-muted-foreground/80">
-                    Meneer Jansen
+                    {currentUser?.firstName}
                   </span>
                   <span className="email text-xs font-thin text-muted/70">
                     {currentUser?.email}
