@@ -39,10 +39,28 @@ export const QUERY: TypedDocumentNode<
         postalCode
       }
       jobProfile {
+        id
         name
         hourlyWageMin
         hourlyWageMax
         qualityNeeded
+      }
+      shifts {
+        id
+        status
+        tempAgency {
+          id
+          name
+          email
+          phone
+          address {
+            street
+            houseNumber
+            houseNumberAddition
+            postalCode
+            city
+          }
+        }
       }
     }
   }
