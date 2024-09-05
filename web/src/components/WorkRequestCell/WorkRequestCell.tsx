@@ -59,8 +59,16 @@ export const QUERY: TypedDocumentNode<
         status
         tempAgency {
           id
+          name
           email
           phone
+          address {
+            street
+            houseNumber
+            houseNumberAddition
+            postalCode
+            city
+          }
         }
       }
     }
