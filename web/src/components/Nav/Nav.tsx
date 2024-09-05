@@ -93,10 +93,12 @@ const Nav = () => {
                 </button>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <button className="flex w-full">
-                  <LucideSettings size={16} className="mr-1" />
-                  Settings
-                </button>
+                <Link to={routes.settings()}>
+                  <button className="flex w-full">
+                    <LucideSettings size={16} className="mr-1" />
+                    Settings
+                  </button>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <button className="flex w-full" onClick={logOut}>
