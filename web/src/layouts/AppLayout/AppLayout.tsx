@@ -1,19 +1,9 @@
-import { Copyright, LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
+import { Copyright } from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
-import { useAuth } from 'src/auth'
-import DrawerMenu from 'src/components/DrawerMenu/DrawerMenu'
-import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from 'src/components/ui/dropdown-menu'
+import Nav from 'src/components/Nav/Nav'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -25,17 +15,14 @@ import {
 } from 'src/components/ui/navigation-menu'
 import { Separator } from 'src/components/ui/separator'
 
-import avatar from './avatar.png'
-import notextlogo from './logo-no-text.png'
-
 type AppLayoutProps = {
   children?: React.ReactNode
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const { logOut, currentUser } = useAuth()
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
+      <Nav />
       <header>
         <NavigationMenu className="navigation-bar flex max-w-full flex-wrap items-center justify-between px-2 pt-4 md:pt-0">
           <DrawerMenu />
