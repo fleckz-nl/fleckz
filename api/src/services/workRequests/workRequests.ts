@@ -21,7 +21,7 @@ export const workRequests: QueryResolvers['workRequests'] = () => {
 export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
   return db.workRequest.findUnique({
     where: { id },
-    include: { shifts: true },
+    include: { shifts: { include: { tempAgency: true } } },
   })
 }
 
