@@ -175,42 +175,46 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
               <Users />
               <h3>Toegewezen medewerkers</h3>
             </div>
-            {agenciesWithShiftCounts.map((agency) => {
-              return (
-                <div
-                  key={agency.id}
-                  className="mx-auto flex flex-wrap items-center justify-evenly font-semibold"
-                >
-                  {request.numWorkers}{' '}
-                  <span className="text-sm font-normal">van</span>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline">{agency.name}</Button>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      side="top"
-                      className="my-1 min-w-fit rounded-md bg-gray-900 px-4 py-2 text-sm text-primary-foreground"
-                    >
-                      <div className="flex flex-col gap-1">
-                        <h3 className="mb-1 text-accent">{agency.name}</h3>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="size-4" />
-                          {formatAddress(agency.address)}
+            <div className="ml-10 flex flex-col gap-2">
+              {agenciesWithShiftCounts.map((agency) => {
+                return (
+                  <div
+                    key={agency.id}
+                    className="flex items-center gap-5 font-semibold"
+                  >
+                    {request.numWorkers}{' '}
+                    <span className="text-sm font-normal">van</span>
+                    <Popover>
+                      <PopoverTrigger className="hover:underline">
+                        {agency.name}
+                      </PopoverTrigger>
+                      <PopoverContent
+                        side="top"
+                        className="my-1 min-w-fit rounded-md bg-gray-900 px-4 py-2 text-sm text-primary-foreground"
+                      >
+                        <div className="flex flex-col gap-1">
+                          <h3 className="mb-1 text-accent">{agency.name}</h3>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="size-4" />
+                            {formatAddress(agency.address)}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Phone className="size-4" />
+                            <a href={`tel:${agency.phone}`}>{agency.phone}</a>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Mail className="size-4" />
+                            <a href={`mailto:${agency.email}`}>
+                              {agency.email}
+                            </a>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Phone className="size-4" />
-                          <a href={`tel:${agency.phone}`}>{agency.phone}</a>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Mail className="size-4" />
-                          <a href={`mailto:${agency.email}`}>{agency.email}</a>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              )
-            })}
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                )
+              })}
+            </div>
           </>
         )}
         {request.status === 'DONE' && (
