@@ -17,6 +17,7 @@ import WorkRequestPageLayout from './layouts/WorkRequestPageLayout/WorkRequestPa
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/settings" page={SettingsPage} name="settings" />
       <Route path="/" page={HomePage} name="home" />
       <PrivateSet unauthenticated="home">
         <Set wrap={AppLayout}>
