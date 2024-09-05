@@ -10,13 +10,18 @@ import { db } from 'src/lib/db'
 
 export const workRequests: QueryResolvers['workRequests'] = () => {
   return db.workRequest.findMany({
-    include: { location: true, jobProfile: true },
+    include: {
+      location: true,
+      jobProfile: true,
+      shifts: { include: { tempAgency: true } },
+    },
   })
 }
 
 export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
   return db.workRequest.findUnique({
     where: { id },
+    include: { shifts: { include: { tempAgency: true } } },
   })
 }
 
@@ -34,7 +39,12 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
   })
 
   return db.workRequest.create({
-    data: input,
+    data: {
+      ...input,
+      shifts: {
+        createMany: { data: Array(input.numWorkers).fill({}) },
+      },
+    },
   })
 }
 

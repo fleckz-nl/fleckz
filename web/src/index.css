@@ -105,10 +105,9 @@ input[type='datetime-local']::-webkit-datetime-edit-text {
 }
 
 a:focus-visible, button:focus-visible {
-  outline-style: dashed;
-  outline-color: var(--muted-foreground);
-  outline-offset: .25ch;
+  @apply outline-dashed outline-muted-foreground outline-offset-2 rounded-3xl outline-1
 }
+
 
 /**
  * END --- SETUP TAILWINDCSS EDIT
