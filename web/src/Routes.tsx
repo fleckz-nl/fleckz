@@ -29,6 +29,7 @@ const Routes = () => {
           <Route path="/requests/{id}" page={WorkRequestPage} name="workRequest" />
         </Set>
         <Set wrap={SettingLayout}>
+          <Route path="/settings" redirect="/settings/profile" />
           <Route path="/settings/profile" page={ProfilePage} name="profile" />
         </Set>
       </PrivateSet>
