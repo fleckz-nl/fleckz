@@ -101,7 +101,7 @@ const Nav = () => {
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem>
-                <button className="flex w-full" onClick={logOut}>
+                <button className="flex w-full items-center" onClick={logOut}>
                   <LogOutIcon size={16} className="mr-1" />
                   Uitloggen
                 </button>
