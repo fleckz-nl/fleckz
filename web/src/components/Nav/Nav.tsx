@@ -92,14 +92,14 @@ const Nav = () => {
                   Profiel
                 </button>
               </DropdownMenuItem> */}
-              <DropdownMenuItem>
-                <Link to={routes.settings()}>
+              <Link to={routes.settings()}>
+                <DropdownMenuItem>
                   <button className="flex w-full">
                     <LucideSettings size={16} className="mr-1" />
                     Settings
                   </button>
-                </Link>
-              </DropdownMenuItem>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <button className="flex w-full" onClick={logOut}>
                   <LogOutIcon size={16} className="mr-1" />
