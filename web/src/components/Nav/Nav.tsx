@@ -1,4 +1,4 @@
-import { LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
+import { LogOutIcon, LucideSettings } from 'lucide-react'
 import avatar from 'web/public/images/avatar.png'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
