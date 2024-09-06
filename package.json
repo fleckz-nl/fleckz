@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "shad": "cd web && npx shadcn-ui@latest add"
+    "shad": "cd web && npx shadcn@latest add"
   },
   "workspaces": {
     "packages": [
