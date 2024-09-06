@@ -109,6 +109,12 @@ a:focus-visible, button:focus-visible {
 }
 
 
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center
+  }
+}
+
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
