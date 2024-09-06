@@ -96,14 +96,14 @@ const Nav = () => {
                 <DropdownMenuItem>
                   <button className="flex w-full">
                     <LucideSettings size={16} className="mr-1" />
-                    Settings
+                    App-instellingen
                   </button>
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem>
                 <button className="flex w-full" onClick={logOut}>
                   <LogOutIcon size={16} className="mr-1" />
-                  Logout
+                  Uitloggen
                 </button>
               </DropdownMenuItem>
             </DropdownMenuContent>
