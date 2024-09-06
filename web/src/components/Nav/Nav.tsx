@@ -94,7 +94,7 @@ const Nav = () => {
               </DropdownMenuItem> */}
               <Link to={routes.settings()}>
                 <DropdownMenuItem>
-                  <button className="flex w-full">
+                  <button className="flex w-full items-center">
                     <LucideSettings size={16} className="mr-1" />
                     App-instellingen
                   </button>
