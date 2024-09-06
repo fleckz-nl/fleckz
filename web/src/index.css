@@ -108,6 +108,11 @@ a:focus-visible, button:focus-visible {
   @apply outline-dashed outline-muted-foreground outline-offset-2 rounded-3xl outline-1
 }
 
+@layer components {
+  aside ul li a {
+    @apply focus-visible:outline-none xs:focus-visible:bg-black/20 flex gap-2 py-1 xs:px-2 focus-visible:text-accent items-center
+  }
+}
 
 @layer utilities {
   .center {
