@@ -23,4 +23,27 @@ export default meta
 
 type Story = StoryObj<typeof ShiftTable>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    data: [
+      {
+        id: 'test_row_1',
+        shiftName: 'Shift 1',
+        status: 'UNFULFILLED',
+        agency: 'Agency 1',
+      },
+      {
+        id: 'test_row_2',
+        shiftName: 'Shift 2',
+        status: 'UNFULFILLED',
+        agency: 'Agency 1',
+      },
+      {
+        id: 'test_row_3',
+        shiftName: 'Shift 3',
+        status: 'UNFULFILLED',
+        agency: 'Agency 1',
+      },
+    ],
+  },
+}
