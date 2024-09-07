@@ -7,7 +7,7 @@ export async function seedWorkRequests(db: PrismaClient) {
   })
   const mockRequests: Prisma.WorkRequestCreateManyInput[] = [
     {
-      id: 'ckoyr8d3v0001vujyh8rn3kz1',
+      id: 'mock_work_request_1',
       createdAt: '2024-09-04T08:00:00Z',
       updatedAt: '2024-09-04T08:00:00Z',
       projectName: 'Renovatie van kantoorgebouw',
@@ -19,7 +19,7 @@ export async function seedWorkRequests(db: PrismaClient) {
       status: 'DRAFT',
     },
     {
-      id: 'ckoyr8d3v0002vujyh8rn3kz2',
+      id: 'mock_work_request_2',
       createdAt: '2024-09-03T12:30:00Z',
       updatedAt: '2024-09-03T12:30:00Z',
       projectName: 'Schilderen van de school',
