@@ -1,6 +1,7 @@
 import { Metadata } from '@redwoodjs/web'
   Tabs,
   TabsList,
+  TabsTrigger,
 
 const ProfilePage = () => {
   return (
