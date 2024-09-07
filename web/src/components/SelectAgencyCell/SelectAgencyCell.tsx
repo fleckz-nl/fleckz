@@ -57,7 +57,7 @@ export const Success = ({
   selectedAgency?: TempAgency
 }) => {
   const [open, setOpen] = useState(false)
-  const [agencyId, setAgencyId] = useState(selectedAgency.id || '')
+  const [agencyId, setAgencyId] = useState(selectedAgency?.id || '')
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
