@@ -33,25 +33,37 @@ const SideNav = ({ className }) => {
           <Separator />
           <ul className="flex w-full min-w-fit flex-col items-center pt-2 xs:items-start">
             <li className="w-full py-1 pl-1 xs:pl-0">
-              <Link to={routes.profile()}>
+              <Link
+                to={routes.profile()}
+                className="flex items-center gap-2 py-1 xs:px-2"
+              >
                 <User className="size-5" />{' '}
                 <h4 className="hidden text-left xs:block">Profiel</h4>
               </Link>
             </li>
             <li className="w-full py-1 pl-1 xs:pl-0">
-              <Link to={routes.profile()}>
+              <Link
+                to={routes.profile()}
+                className="flex items-center gap-2 py-1 xs:px-2"
+              >
                 <Building2 className="size-5" />{' '}
                 <h4 className="hidden text-left xs:block">Werkplekken</h4>
               </Link>
             </li>
             <li className="w-full py-1 pl-1 xs:pl-0">
-              <Link to={routes.profile()}>
+              <Link
+                to={routes.profile()}
+                className="flex items-center gap-2 py-1 xs:px-2"
+              >
                 <CreditCard className="size-5" />{' '}
                 <h4 className="hidden text-left xs:block">Factuurgegevens</h4>
               </Link>
             </li>
             <li className="w-full py-1 pl-1 xs:pl-0">
-              <Link to={routes.profile()}>
+              <Link
+                to={routes.profile()}
+                className="flex items-center gap-2 py-1 xs:px-2"
+              >
                 <Earth className="size-5" />{' '}
                 <h4 className="hidden text-left xs:block">Tijd en Locatie</h4>
               </Link>
