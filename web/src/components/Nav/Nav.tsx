@@ -86,12 +86,6 @@ const Nav = () => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator className=" bg-accent/30" />
-              {/* <DropdownMenuItem>
-                <button className="flex w-full">
-                  <User2Icon size={16} className="mr-1" />
-                  Profiel
-                </button>
-              </DropdownMenuItem> */}
               <Link to={routes.profile()}>
                 <DropdownMenuItem>
                   <button className="flex w-full items-center">
