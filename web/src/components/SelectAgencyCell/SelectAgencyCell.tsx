@@ -1,5 +1,12 @@
-import { ChevronsUpDown } from 'lucide-react'
-import type { AgenciesQuery, AgenciesQueryVariables } from 'types/graphql'
+import { useState } from 'react'
+
+import { CommandEmpty } from 'cmdk'
+import { Check, ChevronsUpDown } from 'lucide-react'
+import type {
+  AgenciesQuery,
+  AgenciesQueryVariables,
+  TempAgency,
+} from 'types/graphql'
 
 import type {
   CellSuccessProps,
@@ -7,12 +14,12 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
+import { cn } from 'src/lib/utils'
+
+import { Button } from '../ui/button'
+import { Command, CommandInput, CommandItem, CommandList } from '../ui/command'
+import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Skeleton } from '../ui/skeleton'
 
 export const QUERY: TypedDocumentNode<
@@ -45,17 +52,48 @@ export const Failure = ({
 
 export const Success = ({
   tempAgencies,
-}: CellSuccessProps<AgenciesQuery, AgenciesQueryVariables>) => {
+  selectedAgency,
+}: CellSuccessProps<AgenciesQuery, AgenciesQueryVariables> & {
+  selectedAgency?: TempAgency
+}) => {
+  const [open, setOpen] = useState(false)
+  const [agencyId, setAgencyId] = useState(selectedAgency.id || '')
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        {'Kies uitzendbureau...'} <ChevronsUpDown className="inline size-4" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {tempAgencies.map((agency) => (
-          <DropdownMenuItem key={agency.id}>{agency.name}</DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button variant="outline" role="combobox" aria-expanded={open}>
+          {tempAgencies.find((agency) => agency.id === agencyId)?.name ||
+            'Kies uitzendbureau...'}
+          <ChevronsUpDown className="size-4" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <Command>
+          <CommandInput placeholder="Zoek..." />
+          <CommandList>
+            <CommandEmpty>Geen bureau gevonden.</CommandEmpty>
+            {tempAgencies.map((agency) => (
+              <CommandItem
+                key={agency.id}
+                value={agency.id}
+                onSelect={(currentValue) => {
+                  setAgencyId(currentValue)
+                  setOpen(false)
+                }}
+              >
+                <Check
+                  className={cn(
+                    'mr-2 h-4 w-4',
+                    agencyId === agency.id ? 'opacity-100' : 'opacity-0'
+                  )}
+                />
+                {agency.name}
+              </CommandItem>
+            ))}
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   )
 }
