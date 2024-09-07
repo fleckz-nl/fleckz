@@ -1,4 +1,5 @@
 import { Metadata } from '@redwoodjs/web'
+  Tabs,
 
 const ProfilePage = () => {
   return (
@@ -11,6 +12,8 @@ const ProfilePage = () => {
           </h1>
           <p className="font-thin">Beheer uw profiel</p>
         </div>
+        <Tabs defaultValue="account" className="w-full">
+        </Tabs>
       </div>
     </>
   )
