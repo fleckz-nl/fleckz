@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
+import { Skeleton } from '../ui/skeleton'
 
 export const QUERY: TypedDocumentNode<
   AgenciesQuery,
@@ -26,7 +27,13 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <DropdownMenu>
+    <DropdownMenuTrigger>
+      <Skeleton className="h-8 min-w-40" />
+    </DropdownMenuTrigger>
+  </DropdownMenu>
+)
 
 export const Empty = () => <div>Empty</div>
 
