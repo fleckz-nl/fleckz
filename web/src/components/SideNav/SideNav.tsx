@@ -1,4 +1,11 @@
 import { Link, routes } from '@redwoodjs/router'
+import { cn } from 'src/lib/utils'
+const SideNav = ({ className }) => {
+    <nav
+      className={cn(
+        'fixed z-30 -ml-4 h-[calc(100vh-3.5rem)] min-w-fit bg-accent/20 xs:sticky xs:top-14 xs:-ml-2 xs:block xs:w-full',
+        className
+      )}
             <li className="w-full py-1 pl-1 xs:pl-0">
               <Link to={routes.profile()}>
                 <User className="size-5" />{' '}
