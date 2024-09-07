@@ -1,24 +1,11 @@
-import { ShiftStatus } from '@prisma/client'
 import { ColumnDef } from '@tanstack/react-table'
-import { ChevronsUpDown } from 'lucide-react'
+import { FindWorkRequestQuery } from 'types/graphql'
 
 import { DataTable } from '../DataTable/DataTable'
+import SelectAgencyCell from '../SelectAgencyCell'
 import { Checkbox } from '../ui/checkbox'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
 
-export type Shift = {
-  id: string
-  shiftName: string
-  status: ShiftStatus
-  agency: string
-}
-
-export const columns: ColumnDef<Shift>[] = [
+export const columns: ColumnDef<ShiftTableProps['data'][0]>[] = [
   {
     accessorKey: 'id',
     header: ({ table }) => (
@@ -42,35 +29,29 @@ export const columns: ColumnDef<Shift>[] = [
   {
     accessorKey: 'shiftName',
     header: 'Shift',
+    cell: ({ row }) => <>Shift {row.index + 1}</>,
   },
   {
     accessorKey: 'status',
     header: 'Status',
   },
   {
+    accessorKey: 'tempAgency',
+  },
+  {
     accessorKey: 'agency',
     header: 'Uitzendbureau',
-    cell: ({ row }) => {
-      const isFulfilled =
-        (row.getValue('status') as string) === ShiftStatus['FULFILLED']
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            {isFulfilled ? '' : 'Kies uitzendbureau...'}{' '}
-            <ChevronsUpDown className="inline size-4" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>one</DropdownMenuItem>
-            <DropdownMenuItem>two</DropdownMenuItem>
-            <DropdownMenuItem>three</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
-    },
+    cell: ({ row }) => (
+      <SelectAgencyCell selectedAgency={row.getValue('tempAgency')} />
+    ),
   },
 ]
 
-const ShiftTable = ({ data }) => {
+type ShiftTableProps = {
+  data: FindWorkRequestQuery['workRequest']['shifts']
+}
+
+const ShiftTable = ({ data }: ShiftTableProps) => {
   return (
     <DataTable
       columns={columns}
@@ -78,6 +59,7 @@ const ShiftTable = ({ data }) => {
       initialState={{
         columnVisibility: {
           status: false,
+          tempAgency: false,
         },
       }}
     />
