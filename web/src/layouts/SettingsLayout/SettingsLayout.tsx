@@ -1,5 +1,5 @@
-import Aside from 'src/components/Aside/Aside'
 import Nav from 'src/components/Nav/Nav'
+import SideNav from 'src/components/SideNav/SideNav'
 
 type SettingLayoutProps = {
   children?: React.ReactNode
@@ -14,7 +14,7 @@ const SettingLayout = ({ children }: SettingLayoutProps) => {
           <div className="flex min-h-screen flex-col">
             <div className="flex-1">
               <div className="grid gap-4 px-2 xs:grid-cols-[140px_minmax(0,1fr)] xs:px-4 md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-8">
-                <Aside />
+                <SideNav className="text-white/80" />
                 <main className="relative ml-10 bg-stone-800 py-6 xs:ml-8 md:ml-0 md:gap-8 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
                   <div className="center container mx-auto min-h-screen min-w-0">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
