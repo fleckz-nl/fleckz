@@ -36,7 +36,7 @@ describe('SelectAgencyCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success tempAgencies={standard().sampleAgencies} />)
+      render(<Success tempAgencies={standard().tempAgencies} />)
     }).not.toThrow()
   })
 })
