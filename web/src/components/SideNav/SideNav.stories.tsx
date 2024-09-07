@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Aside from './Aside'
+import SideNav from './SideNav'
 
-const meta: Meta<typeof Aside> = {
-  component: Aside,
+const meta: Meta<typeof SideNav> = {
+  component: SideNav,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof Aside>
+type Story = StoryObj<typeof SideNav>
 
 export const Primary: Story = {}

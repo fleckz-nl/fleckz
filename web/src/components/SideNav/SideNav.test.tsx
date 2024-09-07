@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import Aside from './Aside'
+import SideNav from './SideNav'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('Aside', () => {
+describe('SideNav', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Aside />)
+      render(<SideNav />)
     }).not.toThrow()
   })
 })
