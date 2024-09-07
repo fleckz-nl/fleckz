@@ -13,6 +13,7 @@ import type {
 
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
+import ShiftTable from '../ShiftTable/ShiftTable'
 import WorkRequestCommentSection from '../WorkRequestCommentSection/WorkRequestCommentSection'
 
 export const QUERY: TypedDocumentNode<
@@ -96,22 +97,27 @@ export const Success = ({
   SuccessProps) => {
   return (
     <div className="flex max-w-7xl flex-grow flex-wrap gap-4 bg-white">
-      <div className="flex flex-col">
-        <div className="bg-white py-4 pl-2 text-xl font-bold">
-          <Link to={routes.overview()} className="flex items-center">
-            <ArrowLeft className="mr-1 inline" /> Overzicht
-          </Link>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col">
+          <div className="bg-white py-4 pl-2 text-xl font-bold">
+            <Link to={routes.overview()} className="flex items-center">
+              <ArrowLeft className="mr-1 inline" /> Overzicht
+            </Link>
+          </div>
+          <div className="ml-4 flex flex-col md:flex-row">
+            <section>
+              <RequestStatusCard request={workRequest} className={className} />
+              <div className="mt-2 text-right">
+                <h3>Op verzoek van:</h3>
+                <p>Jos Janssen</p>
+                <p>16 August 2024 02:00 pm</p>
+              </div>
+            </section>
+            <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+          </div>
         </div>
-        <div className="ml-4 flex flex-col md:flex-row">
-          <section>
-            <RequestStatusCard request={workRequest} className={className} />
-            <div className="mt-2 text-right">
-              <h3>Op verzoek van:</h3>
-              <p>Jos Janssen</p>
-              <p>16 August 2024 02:00 pm</p>
-            </div>
-          </section>
-          <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+        <div className="my-6">
+          <ShiftTable data={workRequest.shifts} />
         </div>
       </div>
       <WorkRequestCommentSection />
