@@ -109,8 +109,9 @@ a:focus-visible, button:focus-visible {
 }
 
 @layer components {
-  nav ul li a {
-    @apply focus-visible:outline-none xs:focus-visible:bg-black/20 flex gap-2 py-1 xs:px-2 focus-visible:text-accent items-center
+  nav ul li a:focus-visible,
+  nav ul li a:hover {
+    @apply rounded-full text-accent outline-none xs:bg-black/20;
   }
 }
 
