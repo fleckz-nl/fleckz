@@ -1,4 +1,4 @@
-import { LogOutIcon, LucideSettings, User2Icon } from 'lucide-react'
+import { LogOutIcon, LucideSettings } from 'lucide-react'
 import avatar from 'web/public/images/avatar.png'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
@@ -86,22 +86,18 @@ const Nav = () => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator className=" bg-accent/30" />
+              <Link to={routes.profile()}>
+                <DropdownMenuItem>
+                  <button className="flex w-full items-center">
+                    <LucideSettings size={16} className="mr-1" />
+                    App-instellingen
+                  </button>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
-                <button className="flex w-full">
-                  <User2Icon size={16} className="mr-1" />
-                  Profiel
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="flex w-full">
-                  <LucideSettings size={16} className="mr-1" />
-                  Settings
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <button className="flex w-full" onClick={logOut}>
+                <button className="flex w-full items-center" onClick={logOut}>
                   <LogOutIcon size={16} className="mr-1" />
-                  Logout
+                  Uitloggen
                 </button>
               </DropdownMenuItem>
             </DropdownMenuContent>

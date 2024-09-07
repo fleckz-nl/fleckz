@@ -104,10 +104,23 @@ input[type='datetime-local']::-webkit-datetime-edit-text {
   color: cadetblue;
 }
 
-a:focus-visible, button:focus-visible {
-  @apply outline-dashed outline-muted-foreground outline-offset-2 rounded-3xl outline-1
+a:focus-visible,
+button:focus-visible {
+  @apply rounded-3xl outline-dashed outline-1 outline-offset-2 outline-muted-foreground;
 }
 
+@layer components {
+  nav ul li a:focus-visible,
+  nav ul li a:hover {
+    @apply rounded-full text-accent outline-none xs:bg-black/20;
+  }
+}
+
+@layer utilities {
+  .center {
+    @apply flex items-center justify-center;
+  }
+}
 
 /**
  * END --- SETUP TAILWINDCSS EDIT
