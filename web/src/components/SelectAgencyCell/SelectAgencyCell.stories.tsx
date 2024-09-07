@@ -1,20 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { AgenciesQuery } from 'types/graphql'
 
 import { Loading, Empty, Failure, Success } from './SelectAgencyCell'
 import { standard } from './SelectAgencyCell.mock'
 
-export const sampleAgencies: AgenciesQuery['tempAgencies'] = [
-  { id: 'agency_1', name: 'Sample Agency 1', __typename: 'TempAgency' },
-  { id: 'agency_2', name: 'Sample Agency 2', __typename: 'TempAgency' },
-  { id: 'agency_3', name: 'Sample Agency 3', __typename: 'TempAgency' },
-  { id: 'agency_4', name: 'Sample Agency 4', __typename: 'TempAgency' },
-]
-
 const meta: Meta = {
   title: 'Cells/SelectAgencyCell',
   tags: ['autodocs'],
-  args: { tempAgencies: sampleAgencies },
 }
 
 export default meta
