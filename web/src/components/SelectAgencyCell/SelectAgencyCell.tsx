@@ -35,7 +35,7 @@ export const Loading = () => (
   </DropdownMenu>
 )
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => <div>No Agencies Found</div>
 
 export const Failure = ({
   error,
