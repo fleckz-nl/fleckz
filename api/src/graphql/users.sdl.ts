@@ -8,6 +8,8 @@ export const schema = gql`
     workRequest: [WorkRequest]!
     address: [Address]!
     jobProfile: [JobProfile]!
+    firstName: String
+    lastName: String
     # certificate: [Certificate]!
   }
 
@@ -19,5 +21,14 @@ export const schema = gql`
   type Query {
     users: [User!]! @requireAuth
     user(id: String!): User @requireAuth
+  }
+
+  input UpdateUserInput {
+    firstName: String
+    lastName: String
+  }
+
+  type Mutation {
+    updateUser(id: String!, input: UpdateUserInput!): User! @requireAuth
   }
 `
