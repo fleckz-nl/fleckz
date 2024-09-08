@@ -1,3 +1,5 @@
+import { Toaster } from '@redwoodjs/web/dist/toast'
+
 import Nav from 'src/components/Nav/Nav'
 import SideNav from 'src/components/SideNav/SideNav'
 
@@ -19,6 +21,7 @@ const SettingLayout = ({ children }: SettingLayoutProps) => {
           </div>
         </section>
       </div>
+      <Toaster />
     </>
   )
 }
