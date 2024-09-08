@@ -4,8 +4,10 @@ import type {
   UserRelationResolvers,
 } from 'types/graphql'
 
+import { hashPassword } from '@redwoodjs/auth-dbauth-api'
 import { ForbiddenError } from '@redwoodjs/graphql-server'
 
+import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
 export const users: QueryResolvers['users'] = () => {
@@ -57,6 +59,23 @@ export const updateUserEmail: MutationResolvers['updateUserEmail'] = ({
 }) => {
   return db.user.update({
     data: { email: newEmail },
+    where: { id },
+  })
+}
+
+export const updatePassword: MutationResolvers['updatePassword'] = ({
+  id,
+  newPassword,
+}) => {
+  requireAuth()
+
+  const [hashedPassword, salt] = hashPassword(newPassword)
+
+  return db.user.update({
+    data: {
+      hashedPassword,
+      salt,
+    },
     where: { id },
   })
 }

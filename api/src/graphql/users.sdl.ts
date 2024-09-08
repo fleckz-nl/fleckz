@@ -32,5 +32,6 @@ export const schema = gql`
     updateUser(id: String!, input: UpdateUserInput!): User! @requireAuth
     updateAvatarUrl(id: String!, newAvatarUrl: String!): User! @requireAuth
     updateUserEmail(id: String!, newEmail: String!): User! @requireAuth
+    updatePassword(id: String!, newPassword: String!): User! @requireAuth
   }
 `
