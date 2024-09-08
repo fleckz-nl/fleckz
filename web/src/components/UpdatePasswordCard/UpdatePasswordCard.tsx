@@ -40,10 +40,10 @@ const UpdatePasswordCard = () => {
   const formSchema = z
     .object({
       id: z.string().cuid(),
-      password: z.string().min(8),
+      newPassword: z.string().min(8),
       confirmPassword: z.string(),
     })
-    .refine((data) => data.password === data.confirmPassword, {
+    .refine((data) => data.newPassword === data.confirmPassword, {
       message: 'Wachtwoorden komen niet overeen.',
       path: ['confirmPassword'],
     })
@@ -51,7 +51,7 @@ const UpdatePasswordCard = () => {
   const defaultValues = useMemo<z.infer<typeof formSchema>>(
     () => ({
       id: currentUser.id,
-      password: '',
+      newPassword: '',
       confirmPassword: '',
     }),
     [currentUser]
@@ -73,7 +73,7 @@ const UpdatePasswordCard = () => {
     await update({
       variables: {
         id: currentUser.id,
-        newPassword: data.password,
+        newPassword: data.newPassword,
       },
     })
     await reauthenticate()
@@ -98,12 +98,12 @@ const UpdatePasswordCard = () => {
             )}
             <div className="flex flex-col gap-4">
               <FormField
-                name="password"
+                name="newPassword"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel
-                      htmlFor="password"
+                      htmlFor="newPassword"
                       className="font-semibold text-primary-foreground"
                     >
                       Nieuw wachtwoord
@@ -111,8 +111,8 @@ const UpdatePasswordCard = () => {
                     <FormControl>
                       <Input
                         {...field}
-                        id="password"
-                        name="password"
+                        id="newPassword"
+                        name="newPassword"
                         disabled={loading}
                         type="password"
                         className={`relative text-white ${
