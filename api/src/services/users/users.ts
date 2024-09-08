@@ -51,6 +51,16 @@ export const updateAvatarUrl: MutationResolvers['updateAvatarUrl'] = ({
   })
 }
 
+export const updateUserEmail: MutationResolvers['updateUserEmail'] = ({
+  id,
+  newEmail,
+}) => {
+  return db.user.update({
+    data: { email: newEmail },
+    where: { id },
+  })
+}
+
 export const User: UserRelationResolvers = {
   workRequest: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).workRequest()
