@@ -8,6 +8,7 @@ import {
 } from 'src/components/ui/tabs'
 import UpdateAccountCard from 'src/components/UpdateAccountCard/UpdateAccountCard'
 import UpdateEmailCard from 'src/components/UpdateEmailCard/UpdateEmailCard'
+import UpdatePasswordCard from 'src/components/UpdatePasswordCard/UpdatePasswordCard'
 
 const ProfilePage = () => {
   return (
@@ -31,6 +32,9 @@ const ProfilePage = () => {
           </TabsContent>
           <TabsContent value="email">
             <UpdateEmailCard />
+          </TabsContent>
+          <TabsContent value="password">
+            <UpdatePasswordCard />
           </TabsContent>
         </Tabs>
       </div>
