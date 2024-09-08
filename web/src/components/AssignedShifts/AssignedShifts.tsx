@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { Mail, MapPin, Phone, Users } from 'lucide-react'
-import { WorkRequestsQuery } from 'types/graphql'
+import { TempAgency, WorkRequestsQuery } from 'types/graphql'
 
 import { formatAddress } from 'src/lib/formatAddress'
 
@@ -14,23 +14,26 @@ type AssignedShiftsProps = {
 }
 
 const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
-  const agenciesWithShiftCounts = useMemo(() => {
-    if (request?.shifts == null) return
-    return request.shifts.reduce((acc, current) => {
-      const currentAgencyId = current.tempAgency.id
-      const existingAgency = acc.find((agency) => agency.id === currentAgencyId)
+  const agenciesWithShiftCounts: (TempAgency & { count: number })[] =
+    useMemo(() => {
+      if (request?.shifts == null) return
+      return request.shifts.reduce((acc, current) => {
+        const currentAgencyId = current.tempAgency.id
+        const existingAgency = acc.find(
+          (agency) => agency.id === currentAgencyId
+        )
 
-      if (existingAgency) {
-        existingAgency.count++
-      } else {
-        acc.push({
-          ...current.tempAgency,
-          count: 1,
-        })
-      }
-      return acc
-    }, [])
-  }, [request])
+        if (existingAgency) {
+          existingAgency.count++
+        } else {
+          acc.push({
+            ...current.tempAgency,
+            count: 1,
+          })
+        }
+        return acc
+      }, [])
+    }, [request])
 
   return (
     <>
@@ -47,8 +50,7 @@ const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
                 key={agency.id}
                 className="flex items-center gap-5 font-semibold"
               >
-                {request.numWorkers}{' '}
-                <span className="text-sm font-normal">van</span>
+                {agency.count} <span className="text-sm font-normal">van</span>
                 <Popover>
                   <PopoverTrigger className="hover:underline">
                     {agency.name}
