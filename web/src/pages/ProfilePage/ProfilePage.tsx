@@ -52,7 +52,7 @@ const ProfilePage = () => {
                   <div className="flex flex-col items-start">
                     <div className="flex flex-wrap gap-4">
                       <div>
-                        <Label htmlFor="fisrtName" className="font-semibold">
+                        <Label htmlFor="firstName" className="font-semibold">
                           Voornaam
                         </Label>
                         <Input id="firstName" className="text-white" />
