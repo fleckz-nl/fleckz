@@ -61,7 +61,7 @@ export const Success = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className="gap-2 hover:bg-white/40">
         <Button variant="outline" role="combobox" aria-expanded={open}>
           {tempAgencies.find((agency) => agency.id === agencyId)?.name ||
             'Kies uitzendbureau...'}
