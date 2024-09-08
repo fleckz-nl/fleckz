@@ -7,6 +7,7 @@ import {
   TabsTrigger,
 } from 'src/components/ui/tabs'
 import UpdateAccountCard from 'src/components/UpdateAccountCard/UpdateAccountCard'
+import UpdateEmailCard from 'src/components/UpdateEmailCard/UpdateEmailCard'
 
 const ProfilePage = () => {
   return (
@@ -27,6 +28,9 @@ const ProfilePage = () => {
           </TabsList>
           <TabsContent value="account">
             <UpdateAccountCard />
+          </TabsContent>
+          <TabsContent value="email">
+            <UpdateEmailCard />
           </TabsContent>
         </Tabs>
       </div>
