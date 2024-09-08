@@ -10,7 +10,7 @@ type AppLayoutProps = {
 const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
-      <Nav />
+      <Nav className="bg-gray-900/90" />
       <main className="max-w-full flex-grow flex-col break-words bg-transparent px-4 py-20">
         {children}
       </main>
