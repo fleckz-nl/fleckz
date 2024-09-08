@@ -1,8 +1,21 @@
-import { ImageUp, User } from 'lucide-react'
+import { useMemo } from 'react'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  ImageUp,
+  LoaderCircle,
+  MessageSquareWarningIcon,
+  User,
+} from 'lucide-react'
+import { useForm } from 'react-hook-form'
 import avatar from 'web/public/images/avatar.png'
+import { z } from 'zod'
 
-import { Metadata } from '@redwoodjs/web'
+import { FormError } from '@redwoodjs/forms'
+import { Metadata, useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
 
+import { useAuth } from 'src/auth'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import {
@@ -12,8 +25,14 @@ import {
   CardHeader,
   CardTitle,
 } from 'src/components/ui/card'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from 'src/components/ui/form'
 import { Input } from 'src/components/ui/input'
-import { Label } from 'src/components/ui/label'
 import { Separator } from 'src/components/ui/separator'
 import {
   Tabs,
@@ -22,7 +41,61 @@ import {
   TabsTrigger,
 } from 'src/components/ui/tabs'
 
+const UPDATE_ACCOUNT_INFO = gql`
+  mutation UpdateUser($id: String!, $input: UpdateUserInput!) {
+    updateUser(id: $id, input: $input) {
+      firstName
+      lastName
+    }
+  }
+`
+
 const ProfilePage = () => {
+  const { currentUser, reauthenticate } = useAuth()
+
+  const formSchema = z.object({
+    id: z.string().cuid().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+  })
+
+  const defaultValues = useMemo<z.infer<typeof formSchema>>(
+    () => ({
+      id: currentUser.id,
+      firstName: currentUser.firstName || '',
+      lastName: currentUser.lastName || '',
+    }),
+    [currentUser]
+  )
+
+  const accountForm = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues,
+  })
+
+  async function onAccountFormSubmit(data) {
+    const loadingToast = toast.loading('Laden...')
+    const { id, ...restData } = data
+    await updateAccount({
+      variables: {
+        id,
+        input: {
+          ...restData,
+        },
+      },
+    })
+    await reauthenticate()
+    toast.dismiss(loadingToast)
+  }
+  const [
+    updateAccount,
+    { loading: updateAccountLoading, error: updateAccountError },
+  ] = useMutation(UPDATE_ACCOUNT_INFO, {
+    onCompleted: () => {
+      toast.success('Accountgegevens bijgewerkt')
+    },
+  })
+
   return (
     <>
       <Metadata title="Profile" description="Profile page" />
@@ -50,32 +123,79 @@ const ProfilePage = () => {
               <CardContent className="space-y-2">
                 <div className="mb-5 flex w-full flex-wrap items-center justify-between gap-4 space-y-1">
                   <div className="flex flex-col items-start">
-                    <div className="flex flex-wrap gap-4">
-                      <div>
-                        <Label htmlFor="firstName" className="font-semibold">
-                          Voornaam
-                        </Label>
-                        <Input id="firstName" className="text-white" />
-                      </div>
-                      <div>
-                        <Label htmlFor="lastName" className="font-semibold">
-                          Achternaam
-                        </Label>
-                        <Input id="lastName" className="text-white" />
-                      </div>
-                    </div>
-                    <div className="mt-2">
-                      <Label htmlFor="username" className="font-semibold">
-                        Gebruikersnaam
-                      </Label>
-                      <Input id="username" className="text-white" />
-                    </div>
-                    <Button
-                      variant="outline"
-                      className="mt-4 self-end bg-accent text-black"
-                    >
-                      Wijzigingen opslaan
-                    </Button>
+                    <Form {...accountForm}>
+                      {updateAccountError && (
+                        <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
+                          <MessageSquareWarningIcon />
+                          <FormError error={updateAccountError} />
+                        </div>
+                      )}
+                      <form
+                        onSubmit={accountForm.handleSubmit(onAccountFormSubmit)}
+                      >
+                        <div className="flex flex-wrap gap-4">
+                          <FormField
+                            name="firstName"
+                            control={accountForm.control}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel
+                                  htmlFor="firstName"
+                                  className="font-semibold text-primary-foreground"
+                                >
+                                  Voornaam
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    {...field}
+                                    id="firstName"
+                                    name="firstName"
+                                    className="text-white"
+                                    disabled={updateAccountLoading}
+                                  />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            name="lastName"
+                            control={accountForm.control}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel
+                                  htmlFor="lastName"
+                                  className="font-semibold text-primary-foreground"
+                                >
+                                  Achternaam
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    {...field}
+                                    id="lastName"
+                                    className="text-white"
+                                    disabled={updateAccountLoading}
+                                  />
+                                </FormControl>
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <Button
+                          variant="outline"
+                          type="submit"
+                          className="relative mt-4 self-end bg-accent text-black"
+                        >
+                          {updateAccountLoading && (
+                            <LoaderCircle className="absolute animate-spin" />
+                          )}
+                          <span
+                            className={`${updateAccountLoading && 'invisible'}`}
+                          >
+                            Wijzigingen opslaan
+                          </span>
+                        </Button>
+                      </form>
+                    </Form>
                   </div>
                   <div className="mx-auto">
                     <div className="relative my-4">
