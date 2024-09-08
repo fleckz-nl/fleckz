@@ -11,6 +11,8 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import { cn } from 'src/lib/utils'
+
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import ShiftTable from '../ShiftTable/ShiftTable'
