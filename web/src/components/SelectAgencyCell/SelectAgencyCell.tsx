@@ -72,7 +72,9 @@ export const Success = ({
         <Command>
           <CommandInput placeholder="Zoek..." />
           <CommandList>
-            <CommandEmpty>Geen bureau gevonden.</CommandEmpty>
+            <CommandEmpty className="text-sm text-red-700">
+              Geen bureau gevonden.
+            </CommandEmpty>
             {tempAgencies.map((agency) => (
               <CommandItem
                 key={agency.id}
