@@ -5662,6 +5662,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-tabs@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@radix-ui/react-tabs@npm:1.1.0"
+  dependencies:
+    "@radix-ui/primitive": "npm:1.1.0"
+    "@radix-ui/react-context": "npm:1.1.0"
+    "@radix-ui/react-direction": "npm:1.1.0"
+    "@radix-ui/react-id": "npm:1.1.0"
+    "@radix-ui/react-presence": "npm:1.1.0"
+    "@radix-ui/react-primitive": "npm:2.0.0"
+    "@radix-ui/react-roving-focus": "npm:1.1.0"
+    "@radix-ui/react-use-controllable-state": "npm:1.1.0"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/d6cb742c36a6918dd37c6a3c531b1f6832916dde26855f6c94baf4a17d20bbb17ffd8ba9844539c568a4484a39bbdf5fc528d44534d1d46d094840836c9ff47d
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-toggle-group@npm:1.1.0":
   version: 1.1.0
   resolution: "@radix-ui/react-toggle-group@npm:1.1.0"
@@ -7774,6 +7800,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@symbiotejs/symbiote@npm:^1.11.7":
+  version: 1.11.7
+  resolution: "@symbiotejs/symbiote@npm:1.11.7"
+  checksum: 10c0/4cae3f98988185ad61561f37187c60a980e6b07a316e50858207b26e99b9d294a3105534d9eec03c5a0b786679cc85b43c60506c57bfcf588e4c3986e7ec7837
+  languageName: node
+  linkType: hard
+
 "@szmarczak/http-timer@npm:^1.1.2":
   version: 1.1.2
   resolution: "@szmarczak/http-timer@npm:1.1.2"
@@ -8813,6 +8846,56 @@ __metadata:
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
   checksum: 10c0/8209c937cb39119f44eb63cf90c0b73e7c754209a6411c707be08e50e29ee81356dca1a848a405c8bdeebfe2f5e4f831ad310ae1689eeef65e7445c090c6657d
+  languageName: node
+  linkType: hard
+
+"@uploadcare/file-uploader@npm:^1.2.0":
+  version: 1.6.0
+  resolution: "@uploadcare/file-uploader@npm:1.6.0"
+  dependencies:
+    "@symbiotejs/symbiote": "npm:^1.11.7"
+    "@uploadcare/image-shrink": "npm:^6.14.1"
+    "@uploadcare/upload-client": "npm:^6.14.1"
+    keyux: "npm:^0.7.1"
+  checksum: 10c0/34931a74f99f875e5a98d5dff9c1dbd475f4005cc2f9b76f3b7cce7be55c490a1d4662b3e8f08a72177e52630ea274f8774f3f96a48af944af7ece166f4e92da
+  languageName: node
+  linkType: hard
+
+"@uploadcare/image-shrink@npm:^6.14.1":
+  version: 6.14.1
+  resolution: "@uploadcare/image-shrink@npm:6.14.1"
+  checksum: 10c0/de3479f0f04e4945c180e3614cec1cb87951faad40756f181cdf93f923153f37fb10f5a2eabca4d9c3f3d9eeeb53ba1c9bd9f903b34c7086b5aa784c7c167d08
+  languageName: node
+  linkType: hard
+
+"@uploadcare/react-adapter@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@uploadcare/react-adapter@npm:0.3.0"
+  peerDependencies:
+    "@types/react": 17 || 18
+  checksum: 10c0/848b83a851c08b5da9427facd8cc7b201dcbf51fa3b9b5a2cf26a36c5cec07241b29cbdb552a46f97d20b5facb5074c2992d74e76bed76c4201d32e8a3a04822
+  languageName: node
+  linkType: hard
+
+"@uploadcare/react-uploader@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@uploadcare/react-uploader@npm:1.0.0"
+  dependencies:
+    "@uploadcare/file-uploader": "npm:^1.2.0"
+    "@uploadcare/react-adapter": "npm:^0.3.0"
+  peerDependencies:
+    "@types/react": 17 || 18
+  checksum: 10c0/162eda1ca45f1b53852ac00be95c60a2c076d8ff444d19755f7cfd94917f673ce892b54f7837e344837ebfeed4651e257a7f29725d8d4afd6097ef13819f23ae
+  languageName: node
+  linkType: hard
+
+"@uploadcare/upload-client@npm:^6.14.1":
+  version: 6.14.1
+  resolution: "@uploadcare/upload-client@npm:6.14.1"
+  dependencies:
+    form-data: "npm:^4.0.0"
+    ws: "npm:^8.2.3"
+  checksum: 10c0/4bc3845995e19dbd085d70d5e5555e06fa1dd33bc8b8bedfabd3137d937c8c8c6e9470e42a5ed9fc7996ccb424b69b3fcf09cd6382948512ae13eab66edcbc6c
   languageName: node
   linkType: hard
 
@@ -18031,6 +18114,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"keyux@npm:^0.7.1":
+  version: 0.7.2
+  resolution: "keyux@npm:0.7.2"
+  checksum: 10c0/31e52969214c9afdd35bb45bdb5343b9d96b081d45be131e25c5418cd02fe0f3cab4a645c3386b3c67d4cbdfedab6e3f8cb17785e5b8c96eb15817f8cd14ad41
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -25595,6 +25685,7 @@ __metadata:
     "@radix-ui/react-separator": "npm:^1.1.0"
     "@radix-ui/react-slot": "npm:^1.1.0"
     "@radix-ui/react-switch": "npm:^1.1.0"
+    "@radix-ui/react-tabs": "npm:^1.1.0"
     "@radix-ui/react-tooltip": "npm:^1.1.2"
     "@redwoodjs/auth-dbauth-web": "npm:7.7.3"
     "@redwoodjs/forms": "npm:7.7.3"
@@ -25604,6 +25695,7 @@ __metadata:
     "@types/react": "npm:^18.2.55"
     "@types/react-big-calendar": "npm:^1"
     "@types/react-dom": "npm:^18.2.19"
+    "@uploadcare/react-uploader": "npm:^1.0.0"
     autoprefixer: "npm:^10.4.20"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.1.1"

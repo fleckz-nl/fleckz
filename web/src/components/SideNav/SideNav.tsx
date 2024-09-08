@@ -54,7 +54,8 @@ const SideNav = ({ className }: SideNavProps) => {
                 <h4 className="hidden text-left xs:block">Werkplekken</h4>
               </Link>
             </li>
-            <li className="w-full py-1 pl-1 xs:pl-0">
+            {/* TODO: Bring this back when we need billing information */}
+            {/* <li className="w-full py-1 pl-1 xs:pl-0">
               <Link
                 to={routes.profile()}
                 className="flex items-center gap-2 py-1 xs:px-2"
@@ -62,16 +63,7 @@ const SideNav = ({ className }: SideNavProps) => {
                 <CreditCard className="size-5" />{' '}
                 <h4 className="hidden text-left xs:block">Factuurgegevens</h4>
               </Link>
-            </li>
-            <li className="w-full py-1 pl-1 xs:pl-0">
-              <Link
-                to={routes.profile()}
-                className="flex items-center gap-2 py-1 xs:px-2"
-              >
-                <Earth className="size-5" />{' '}
-                <h4 className="hidden text-left xs:block">Tijd en Locatie</h4>
-              </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

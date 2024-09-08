@@ -1,5 +1,4 @@
 import { LogOutIcon, LucideSettings, User } from 'lucide-react'
-import avatar from 'web/public/images/avatar.png'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -70,7 +69,7 @@ const Nav = ({ className }: NavProps) => {
         <DropdownMenu>
           <DropdownMenuTrigger className="font-medium hover:text-accent focus:outline-none focus:outline-muted-foreground">
             <Avatar className="user-avatar drop-shadow-sm hover:brightness-110">
-              <AvatarImage src={avatar} alt="avatar" />
+              <AvatarImage src={currentUser?.avatarUrl} alt="avatar" />
               <AvatarFallback className="bg-secondary/80">
                 <User className="size-8 text-primary" />
               </AvatarFallback>
