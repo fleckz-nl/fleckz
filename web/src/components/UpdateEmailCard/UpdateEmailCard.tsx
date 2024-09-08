@@ -91,34 +91,32 @@ const UpdateEmailCard = () => {
             </div>
           )}
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex flex-wrap gap-4">
-              <FormField
-                name="email"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel
-                      htmlFor="firstName"
-                      className="font-semibold text-primary-foreground"
-                    >
-                      E-mail
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        id="email"
-                        name="email"
-                        disabled={loading}
-                        className={`relative text-white ${
-                          fieldState.error && ' border-red-500'
-                        }`}
-                      />
-                    </FormControl>
-                    {fieldState?.error?.message}
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  <FormLabel
+                    htmlFor="firstName"
+                    className="font-semibold text-primary-foreground"
+                  >
+                    E-mail
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="email"
+                      name="email"
+                      disabled={loading}
+                      className={`relative text-white ${
+                        fieldState.error && ' border-red-500'
+                      }`}
+                    />
+                  </FormControl>
+                  {fieldState?.error?.message}
+                </FormItem>
+              )}
+            />
             <Button
               variant="outline"
               type="submit"
