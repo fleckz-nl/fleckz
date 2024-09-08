@@ -7,7 +7,11 @@ import { cn } from 'src/lib/utils'
 
 import { Separator } from '../ui/separator'
 
-const SideNav = ({ className }) => {
+type SideNavProps = {
+  className?: string
+}
+
+const SideNav = ({ className }: SideNavProps) => {
   const { currentUser } = useAuth()
   return (
     <nav
