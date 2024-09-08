@@ -14,8 +14,8 @@ export default async () => {
     seedJobProfiles(db)
     seedAddresses(db)
     seedTempAgencies(db)
-    seedWorkRequests(db)
-    seedShifts(db)
+    await seedWorkRequests(db)
+    await seedShifts(db)
   } catch (error) {
     console.error(error)
   }
