@@ -35,6 +35,8 @@ import {
 import { Input } from 'src/components/ui/input'
 import { Separator } from 'src/components/ui/separator'
 
+import UpdateAvatar from '../UpdateAvatar/UpdateAvatar'
+
 const UPDATE_ACCOUNT_INFO = gql`
   mutation UpdateUser($id: String!, $input: UpdateUserInput!) {
     updateUser(id: $id, input: $input) {
@@ -171,15 +173,7 @@ const UpdateAccountCard = () => {
             </Form>
           </div>
           <div className="mx-auto">
-            <div className="relative my-4">
-              <Avatar className="h-32 w-32">
-                <AvatarImage src={avatar}></AvatarImage>
-                <AvatarFallback className="bg-secondary text-black">
-                  <User className="size-28 stroke-1" />
-                </AvatarFallback>
-              </Avatar>
-              <ImageUp className="absolute bottom-2 right-[26] text-white shadow-sm shadow-accent" />
-            </div>
+            <UpdateAvatar />
           </div>
         </div>
         <Separator className="bg-white/10" />
