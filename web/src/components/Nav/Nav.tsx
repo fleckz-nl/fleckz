@@ -26,7 +26,11 @@ import {
 } from 'src/components/ui/navigation-menu'
 import { cn } from 'src/lib/utils'
 
-const Nav = ({ className }) => {
+type NavProps = {
+  className?: string
+}
+
+const Nav = ({ className }: NavProps) => {
   const { logOut, currentUser } = useAuth()
   return (
     <NavigationMenu
