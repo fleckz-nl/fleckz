@@ -123,11 +123,11 @@ export const Success = ({
             <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
           </div>
           <Separator className="xs:hidden" />
-          <div className="mb-20 flex w-full flex-col gap-2 bg-muted/20 py-4">
+          <div className="mb-20 flex w-full flex-col gap-2 xs:py-4">
             <h3 className="relative w-max text-lg font-semibold text-primary xs:left-28">
               Ploegendienst toewijzen
             </h3>
-            <div className="w-full p-2 xs:mx-auto xs:max-w-3xl xs:p-4">
+            <div className="w-full xs:mx-auto xs:max-w-3xl xs:p-4">
               <ShiftTable data={workRequest.shifts} />
             </div>
           </div>
