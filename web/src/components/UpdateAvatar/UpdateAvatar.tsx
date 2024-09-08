@@ -62,6 +62,10 @@ const UpdateAvatar = () => {
     setAvatarUrl(avatarUrl)
   }
 
+  function handleAvatarClick() {
+    uploaderRef.current.api.initFlow()
+  }
+
   return (
     <>
       <div className="relative my-4">
@@ -71,11 +75,7 @@ const UpdateAvatar = () => {
             <FormError error={error} />
           </div>
         )}
-        <button
-          onClick={() => {
-            uploaderRef.current.api.initFlow()
-          }}
-        >
+        <button onClick={handleAvatarClick}>
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             {loading && <LoaderCircle className="size-16 animate-spin" />}
           </div>
@@ -96,6 +96,7 @@ const UpdateAvatar = () => {
         className="invisible"
         onDoneClick={handleUploadcareDone}
         multiple={false}
+        imgOnly={true}
       />
     </>
   )
