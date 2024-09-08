@@ -70,8 +70,8 @@ const Nav = () => {
           <DropdownMenu>
             <DropdownMenuTrigger className="font-medium hover:text-accent focus:outline-none focus:outline-muted-foreground">
               <Avatar className="user-avatar drop-shadow-sm hover:brightness-110">
-                <AvatarImage src={avatar} alt="avatar" />
-                <AvatarFallback>MJ</AvatarFallback>
+                <AvatarImage src={currentUser?.avatarUrl} alt="avatar" />
+                <AvatarFallback>{currentUser?.firstName[0]}</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="user-profile-menu row-span-3 mr-4 w-[180px] bg-card-foreground py-1 text-card lg:grid-cols-[.75fr_1fr]">
