@@ -1,14 +1,8 @@
 import { useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  ImageUp,
-  LoaderCircle,
-  MessageSquareWarningIcon,
-  User,
-} from 'lucide-react'
+import { LoaderCircle, MessageSquareWarningIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import avatar from 'web/public/images/avatar.png'
 import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
@@ -16,7 +10,6 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
-import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import {
   Card,
