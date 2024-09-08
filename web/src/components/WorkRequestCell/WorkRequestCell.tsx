@@ -14,6 +14,7 @@ import type {
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import ShiftTable from '../ShiftTable/ShiftTable'
+import { Separator } from '../ui/separator'
 import WorkRequestCommentSection from '../WorkRequestCommentSection/WorkRequestCommentSection'
 
 export const QUERY: TypedDocumentNode<
@@ -113,11 +114,9 @@ export const Success = ({
                 <p>16 August 2024 02:00 pm</p>
               </div>
             </section>
+            <Separator className="xs:hidden" />
             <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
-          </div>
-        </div>
-        <div className="my-6">
-          <ShiftTable data={workRequest.shifts} />
+          <Separator className="xs:hidden" />
         </div>
       </div>
       <WorkRequestCommentSection />
