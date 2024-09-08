@@ -50,8 +50,7 @@ const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
                 key={agency.id}
                 className="flex items-center gap-5 font-semibold"
               >
-                {request.numWorkers}{' '}
-                <span className="text-sm font-normal">van</span>
+                {agency.count} <span className="text-sm font-normal">van</span>
                 <Popover>
                   <PopoverTrigger className="hover:underline">
                     {agency.name}
