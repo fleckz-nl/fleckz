@@ -1,6 +1,7 @@
 import { render } from '@redwoodjs/testing/web'
 
-import IndividualWorkPlaceCard from './IndividualWorkPlaceCard'
+import IndividualWorkPlaceCard from './UpdateIndividualWorkPlaceCard'
+import UpdateIndividualWorkPlaceCard from './UpdateIndividualWorkPlaceCard'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +9,7 @@ import IndividualWorkPlaceCard from './IndividualWorkPlaceCard'
 describe('IndividualWorkPlaceCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<IndividualWorkPlaceCard />)
+      render(<UpdateIndividualWorkPlaceCard />)
     }).not.toThrow()
   })
 })

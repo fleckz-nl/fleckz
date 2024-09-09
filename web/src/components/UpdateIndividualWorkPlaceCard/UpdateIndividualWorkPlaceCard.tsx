@@ -1,4 +1,4 @@
-const IndividualWorkPlaceCard = () => {
+const UpdateIndividualWorkPlaceCard = () => {
   return (
     <div>
       <h2>{'IndividualWorkPlaceCard'}</h2>
@@ -11,4 +11,4 @@ const IndividualWorkPlaceCard = () => {
   )
 }
 
-export default IndividualWorkPlaceCard
+export default UpdateIndividualWorkPlaceCard
