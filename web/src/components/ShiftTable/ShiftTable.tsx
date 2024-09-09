@@ -1,61 +1,77 @@
+import { useMemo } from 'react'
+
 import { ColumnDef } from '@tanstack/react-table'
-import { FindWorkRequestQuery } from 'types/graphql'
+import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
 import { DataTable } from '../DataTable/DataTable'
-import SelectAgencyCell from '../SelectAgencyCell'
+import SelectAgency from '../SelectAgency/SelectAgency'
 import { Checkbox } from '../ui/checkbox'
 
-export const columns: ColumnDef<ShiftTableProps['data'][0]>[] = [
-  {
-    accessorKey: 'id',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          (table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')) as boolean
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-  },
-  {
-    accessorKey: 'shiftName',
-    header: 'Ploegendienst',
-    cell: ({ row }) => <>Ploegdienst {row.index + 1}</>,
-  },
-  {
-    accessorKey: 'status',
-    header: 'Status',
-  },
-  {
-    accessorKey: 'tempAgency',
-  },
-  {
-    accessorKey: 'agency',
-    header: 'Uitzendbureau',
-    cell: ({ row }) => (
-      <SelectAgencyCell selectedAgency={row.getValue('tempAgency')} />
-    ),
-  },
-]
-
 type ShiftTableProps = {
-  data: FindWorkRequestQuery['workRequest']['shifts']
+  request: FindWorkRequestQuery['workRequest']
+  tempAgencies: AgenciesQuery['tempAgencies']
 }
 
-const ShiftTable = ({ data }: ShiftTableProps) => {
+const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
+  const { shifts } = request
+  const columns: ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[] =
+    useMemo(
+      () => [
+        {
+          accessorKey: 'id',
+          header: ({ table }) => (
+            <Checkbox
+              checked={
+                (table.getIsAllPageRowsSelected() ||
+                  (table.getIsSomePageRowsSelected() &&
+                    'indeterminate')) as boolean
+              }
+              onCheckedChange={(value) =>
+                table.toggleAllPageRowsSelected(!!value)
+              }
+              aria-label="Select all"
+            />
+          ),
+          cell: ({ row }) => (
+            <Checkbox
+              checked={row.getIsSelected()}
+              onCheckedChange={(value) => row.toggleSelected(!!value)}
+              aria-label="Select row"
+            />
+          ),
+        },
+        {
+          accessorKey: 'shiftName',
+          header: 'Ploegendienst',
+          cell: ({ row }) => <>Ploegdienst {row.index + 1}</>,
+        },
+        {
+          accessorKey: 'status',
+          header: 'Status',
+        },
+        {
+          accessorKey: 'tempAgency',
+        },
+        {
+          accessorKey: 'agency',
+          header: 'Uitzendbureau',
+          cell: ({ row }) => (
+            <SelectAgency
+              tempAgencies={tempAgencies}
+              selectedAgency={row.getValue('tempAgency')}
+              shiftId={row.getValue('id')}
+              request={request}
+            />
+          ),
+        },
+      ],
+      [tempAgencies, request]
+    )
+
   return (
     <DataTable
       columns={columns}
-      data={data}
+      data={shifts}
       initialState={{
         columnVisibility: {
           status: false,
