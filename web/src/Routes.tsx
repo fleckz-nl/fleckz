@@ -14,6 +14,7 @@ import AppLayout from './layouts/AppLayout/AppLayout'
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout'
 import SettingLayout from './layouts/SettingsLayout/SettingsLayout'
 import WorkRequestPageLayout from './layouts/WorkRequestPageLayout/WorkRequestPageLayout'
+import BusinessPage from './pages/BusinessPage/BusinessPage'
 
 const Routes = () => {
   return (
@@ -31,7 +32,7 @@ const Routes = () => {
         <Set wrap={SettingLayout}>
           <Route path="/settings" redirect="/settings/profile" />
           <Route path="/settings/profile" page={ProfilePage} name="profile" />
-          <Route path="/settings/work-places" page={WorkPlacesPage} name="workPlaces" />
+          <Route path="/settings/business" page={BusinessPage} name="business" />
         </Set>
       </PrivateSet>
       <Set wrap={DefaultLayout}>
