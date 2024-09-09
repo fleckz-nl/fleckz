@@ -30,12 +30,7 @@ const UpdateBusinessCard = () => {
           type="submit"
           className="relative right-8 mt-4 w-fit self-end bg-accent text-black"
         >
-          {/* {updateAccountLoading && (
-          <LoaderCircle className="absolute animate-spin" />
-        )}
-        <span className={`${updateAccountLoading && 'invisible'}`}> */}
           Wijzigingen opslaan
-          {/* </span> */}
         </Button>
         <Separator className="mb-4 mt-2 bg-white/10" />
       </div>
