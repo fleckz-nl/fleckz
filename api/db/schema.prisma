@@ -133,6 +133,7 @@ model TempAgency {
 
 model Shift {
   id            String       @id @default(cuid())
+  name          String?
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   status        ShiftStatus  @default(UNFULFILLED)
