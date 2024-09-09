@@ -9,9 +9,9 @@ const WorkPlacesPage = () => {
       <div className="xs:container xs:max-w-3xl">
         <div className="relative -top-7 -mb-5">
           <h1 className="text-xl font-semibold tracking-tight text-white">
-            Uw Werkplekken
+            Mijn Bedrijf
           </h1>
-          <p className="font-thin">Beheer uw werkplekken</p>
+          <p className="font-thin">Beheer uw bedrijf</p>
         </div>
         <WorkPlacesCard />
       </div>
