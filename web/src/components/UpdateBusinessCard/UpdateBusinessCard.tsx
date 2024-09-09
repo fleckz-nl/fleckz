@@ -1,4 +1,4 @@
-import { Building2, Edit, Ellipsis, MapPin, Plus } from 'lucide-react'
+import { Building2, Edit, Plus } from 'lucide-react'
 
 import BusinessAddressCell from '../BusinessAddressCell/BusinessAddressCell'
 import { Button } from '../ui/button'
