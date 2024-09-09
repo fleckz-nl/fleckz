@@ -60,6 +60,7 @@ export const QUERY: TypedDocumentNode<
       }
       shifts {
         id
+        name
         status
         tempAgency {
           id
