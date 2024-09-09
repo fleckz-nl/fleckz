@@ -58,7 +58,7 @@ const UpdateBusinessCard = () => {
           Wijzigingen opslaan
           {/* </span> */}
         </Button>
-        <Separator className="mt-2 bg-white/10" />
+        <Separator className="mb-4 mt-2 bg-white/10" />
       </div>
     </>
   )
