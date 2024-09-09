@@ -34,8 +34,14 @@ const ConfirmAssignAgency = ({
         <AlertDialogHeader>
           <AlertDialogTitle>Bevestig toewijzing uitzendbureau</AlertDialogTitle>
           <AlertDialogDescription>
-            Bevestig dat u het uitzendbureau wilt wijzigen naar{' '}
-            <span className="font-bold text-primary">{newAgency}</span>.
+            {newAgency ? (
+              <>
+                Bevestig dat u het uitzendbureau wilt wijzigen naar{' '}
+                <span className="font-bold text-primary">{newAgency}</span>.
+              </>
+            ) : (
+              'Bevestig het opheffen van de toewijzing van het uitzendbureau'
+            )}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
