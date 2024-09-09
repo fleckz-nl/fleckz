@@ -1,6 +1,7 @@
 import { render } from '@redwoodjs/testing/web'
 
-import WorkPlacesPage from './WorkPlacesPage'
+import WorkPlacesPage from './BusinessPage'
+import BusinessPage from './BusinessPage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
@@ -8,7 +9,7 @@ import WorkPlacesPage from './WorkPlacesPage'
 describe('WorkPlacesPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<WorkPlacesPage />)
+      render(<BusinessPage />)
     }).not.toThrow()
   })
 })

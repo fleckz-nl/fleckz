@@ -1,8 +1,6 @@
 import { Metadata } from '@redwoodjs/web'
 
-import WorkPlacesCard from 'src/components/WorkPlacesCard/WorkPlacesCard'
-
-const WorkPlacesPage = () => {
+const BusinessPage = () => {
   return (
     <>
       <Metadata title="WorkPlaces" description="WorkPlaces page" />
@@ -13,10 +11,9 @@ const WorkPlacesPage = () => {
           </h1>
           <p className="font-thin">Beheer uw bedrijf</p>
         </div>
-        <WorkPlacesCard />
       </div>
     </>
   )
 }
 
-export default WorkPlacesPage
+export default BusinessPage
