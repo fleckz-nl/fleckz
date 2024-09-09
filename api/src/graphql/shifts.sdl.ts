@@ -3,6 +3,7 @@ export const schema = gql`
     id: String!
     createdAt: DateTime!
     updatedAt: DateTime!
+    name: String
     status: ShiftStatus!
     workRequest: WorkRequest
     workRequestId: String
