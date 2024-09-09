@@ -15,6 +15,7 @@ type ConfirmAssignAgencyProps = {
   onOpenChange?: () => void
   hideTrigger?: boolean
   onConfirm: () => void
+  onCancel: () => void
   newAgency: string
 }
 
@@ -23,6 +24,7 @@ const ConfirmAssignAgency = ({
   onOpenChange,
   hideTrigger,
   onConfirm,
+  onCancel,
   newAgency,
 }: ConfirmAssignAgencyProps) => {
   return (
@@ -37,7 +39,7 @@ const ConfirmAssignAgency = ({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Annuleren</AlertDialogCancel>
+          <AlertDialogCancel onClick={onCancel}>Annuleren</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm}>Bevestigen</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

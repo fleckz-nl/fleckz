@@ -85,6 +85,7 @@ const SelectAgency = ({
                   key={agency.id}
                   value={agency.id}
                   onSelect={(currentValue) => {
+                    if (currentValue === agencyId) return setOpen(false)
                     setConfirmOpen(true)
                     setAgencyId(currentValue)
                     setOpen(false)
@@ -108,6 +109,9 @@ const SelectAgency = ({
         open={confirmOpen}
         onOpenChange={() => setConfirmOpen((e) => !e)}
         onConfirm={() => handleAgencyChange(agencyId)}
+        onCancel={() => {
+          setAgencyId(selectedAgency?.id || '')
+        }}
         newAgency={tempAgencies.find((a) => a.id === agencyId)?.name}
       />
     </>
