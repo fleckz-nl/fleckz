@@ -37,6 +37,7 @@ export const schema = gql`
   type Mutation {
     createShift(input: CreateShiftInput!): Shift! @requireAuth
     updateShift(id: String!, input: UpdateShiftInput!): Shift! @requireAuth
+    unassignAgency(id: String!): Shift! @requireAuth
     deleteShift(id: String!): Shift! @requireAuth
   }
 `
