@@ -9,6 +9,7 @@ import type {
 } from 'types/graphql'
 
 import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 import {
   Command,
@@ -35,6 +36,14 @@ const UPDATE_SHIFT = gql`
   }
 `
 
+const UNASSIGN_AGENCY = gql`
+  mutation unassignAgency($id: String!) {
+    unassignAgency(id: $id) {
+      id
+    }
+  }
+`
+
 const SelectAgency = ({
   tempAgencies,
   selectedAgency,
@@ -50,17 +59,45 @@ const SelectAgency = ({
   const [agencyId, setAgencyId] = useState(selectedAgency?.id || '')
   const [confirmOpen, setConfirmOpen] = useState(false)
 
-  const [updateShift, { loading, error }] = useMutation(UPDATE_SHIFT, {
+  const [updateShift] = useMutation(UPDATE_SHIFT, {
     refetchQueries: [{ query: QUERY, variables: { id: request.id } }],
   })
 
-  async function handleAgencyChange(agencyId) {
-    await updateShift({
-      variables: {
-        id: shiftId,
-        input: { tempAgencyId: agencyId, status: 'FULFILLED' },
-      },
-    })
+  const [unassignAgency] = useMutation(UNASSIGN_AGENCY, {
+    refetchQueries: [{ query: QUERY, variables: { id: request.id } }],
+  })
+
+  async function handleAgencyChange(agencyId: string) {
+    const loadingSpinner = toast.loading('Laden...')
+    if (agencyId == '') {
+      await unassignAgency({
+        variables: {
+          id: shiftId,
+        },
+        onCompleted: () => toast.success('Uitzendbureau niet toegewezen'),
+      })
+    } else {
+      await updateShift({
+        variables: {
+          id: shiftId,
+          input: { tempAgencyId: agencyId, status: 'FULFILLED' },
+        },
+        onCompleted: () => toast.success('Bijgewerkte opdracht'),
+      })
+    }
+    toast.dismiss(loadingSpinner)
+  }
+
+  function handleCommandItemSelect(currentValue: string) {
+    if (currentValue === agencyId) {
+      setOpen(false)
+      setConfirmOpen(true)
+      setAgencyId('')
+    } else {
+      setConfirmOpen(true)
+      setAgencyId(currentValue)
+      setOpen(false)
+    }
   }
 
   return (
@@ -84,12 +121,7 @@ const SelectAgency = ({
                 <CommandItem
                   key={agency.id}
                   value={agency.id}
-                  onSelect={(currentValue) => {
-                    if (currentValue === agencyId) return setOpen(false)
-                    setConfirmOpen(true)
-                    setAgencyId(currentValue)
-                    setOpen(false)
-                  }}
+                  onSelect={handleCommandItemSelect}
                 >
                   <Check
                     className={cn(
