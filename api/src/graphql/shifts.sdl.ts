@@ -30,6 +30,7 @@ export const schema = gql`
     status: ShiftStatus
     workRequestId: String
     rating: Int
+    tempAgencyId: String
   }
 
   type Mutation {
