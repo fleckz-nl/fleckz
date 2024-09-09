@@ -47,7 +47,7 @@ const SideNav = ({ className }: SideNavProps) => {
             </li>
             <li className="w-full py-1 pl-1 xs:pl-0">
               <Link
-                to={routes.profile()}
+                to={routes.workPlaces()}
                 className="flex items-center gap-2 py-1 xs:px-2"
               >
                 <Building2 className="size-5" />{' '}
