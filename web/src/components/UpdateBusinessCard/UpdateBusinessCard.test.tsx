@@ -5,7 +5,7 @@ import UpdateBusinessCard from './UpdateBusinessCard'
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('IndividualWorkPlaceCard', () => {
+describe('UpdateBusinessCard', () => {
   it('renders successfully', () => {
     expect(() => {
       render(<UpdateBusinessCard />)
