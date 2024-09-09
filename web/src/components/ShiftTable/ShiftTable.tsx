@@ -28,8 +28,8 @@ export const columns: ColumnDef<ShiftTableProps['data'][0]>[] = [
   },
   {
     accessorKey: 'shiftName',
-    header: 'Shift',
-    cell: ({ row }) => <>Shift {row.index + 1}</>,
+    header: 'Ploegendienst',
+    cell: ({ row }) => <>Ploegdienst {row.index + 1}</>,
   },
   {
     accessorKey: 'status',

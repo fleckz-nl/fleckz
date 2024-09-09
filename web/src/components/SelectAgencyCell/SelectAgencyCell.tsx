@@ -61,7 +61,7 @@ export const Success = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild className="gap-2 hover:bg-white/40">
         <Button variant="outline" role="combobox" aria-expanded={open}>
           {tempAgencies.find((agency) => agency.id === agencyId)?.name ||
             'Kies uitzendbureau...'}
@@ -72,7 +72,9 @@ export const Success = ({
         <Command>
           <CommandInput placeholder="Zoek..." />
           <CommandList>
-            <CommandEmpty>Geen bureau gevonden.</CommandEmpty>
+            <CommandEmpty className="text-sm text-red-700">
+              Geen bureau gevonden.
+            </CommandEmpty>
             {tempAgencies.map((agency) => (
               <CommandItem
                 key={agency.id}
