@@ -1,5 +1,7 @@
 import { Metadata } from '@redwoodjs/web'
 
+import WorkPlacesCard from 'src/components/WorkPlacesCard/WorkPlacesCard'
+
 const WorkPlacesPage = () => {
   return (
     <>
@@ -11,6 +13,7 @@ const WorkPlacesPage = () => {
           </h1>
           <p className="font-thin">Beheer uw werkplekken</p>
         </div>
+        <WorkPlacesCard />
       </div>
     </>
   )
