@@ -42,7 +42,7 @@ const SideNav = ({ className }: SideNavProps) => {
                 className="flex items-center gap-2 py-1 xs:px-2"
               >
                 <User className="size-5" />{' '}
-                <h4 className="hidden text-left xs:block">Mijn Profiel</h4>
+                <h4 className="hidden text-left xs:block">Profiel</h4>
               </Link>
             </li>
             <li className="w-full py-1 pl-1 xs:pl-0">
@@ -51,7 +51,7 @@ const SideNav = ({ className }: SideNavProps) => {
                 className="flex items-center gap-2 py-1 xs:px-2"
               >
                 <Building2 className="size-5" />{' '}
-                <h4 className="hidden text-left xs:block">Mijn Bedrijf</h4>
+                <h4 className="hidden text-left xs:block">Bedrijf</h4>
               </Link>
             </li>
             {/* TODO: Bring this back when we need billing information */}
