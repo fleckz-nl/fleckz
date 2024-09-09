@@ -11,11 +11,11 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import ShiftTableCell from 'src/components/ShiftTableCell'
 import { cn } from 'src/lib/utils'
 
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
-import ShiftTable from '../ShiftTable/ShiftTable'
 import { Separator } from '../ui/separator'
 import WorkRequestCommentSection from '../WorkRequestCommentSection/WorkRequestCommentSection'
 
@@ -128,7 +128,7 @@ export const Success = ({
               Ploegendienst toewijzen
             </h3>
             <div className="w-full xs:mx-auto xs:max-w-3xl xs:p-4">
-              <ShiftTable data={workRequest.shifts} />
+              <ShiftTableCell request={workRequest} />
             </div>
           </div>
         </div>
