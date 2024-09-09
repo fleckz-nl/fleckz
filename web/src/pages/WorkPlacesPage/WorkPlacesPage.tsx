@@ -9,7 +9,7 @@ const WorkPlacesPage = () => {
           <h1 className="text-xl font-semibold tracking-tight text-white">
             Uw Werkplekken
           </h1>
-          <p>Beheer uw werkplekken</p>
+          <p className="font-thin">Beheer uw werkplekken</p>
         </div>
       </div>
     </>
