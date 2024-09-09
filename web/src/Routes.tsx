@@ -31,6 +31,7 @@ const Routes = () => {
         <Set wrap={SettingLayout}>
           <Route path="/settings" redirect="/settings/profile" />
           <Route path="/settings/profile" page={ProfilePage} name="profile" />
+          <Route path="/settings/work-places" page={WorkPlacesPage} name="workPlaces" />
         </Set>
       </PrivateSet>
       <Set wrap={DefaultLayout}>
