@@ -5,19 +5,22 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
+import UpdateBusinessCard from '../UpdateBusinessCard/UpdateBusinessCard'
 
-const WorkPlacesCard = () => {
+const BusinessCard = () => {
   return (
     <Card className="border-gray-600/40 bg-black text-white xs:max-w-full">
       <CardHeader>
-        <CardTitle className="text-white">Werkplekken</CardTitle>
+        <CardTitle className="text-white">Bedrijf</CardTitle>
         <CardDescription className="text-white/60">
-          Werk uw werkplekken bij.
+          Werk uw bedrijf bij.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2"></CardContent>
+      <CardContent className="space-y-2">
+        <UpdateBusinessCard />
+      </CardContent>
     </Card>
   )
 }
 
-export default WorkPlacesCard
+export default BusinessCard
