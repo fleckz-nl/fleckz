@@ -133,10 +133,11 @@ model TempAgency {
 
 model Shift {
   id            String       @id @default(cuid())
+  name          String?
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   status        ShiftStatus  @default(UNFULFILLED)
-  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id])
+  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
   workRequestId String?
   rating        Int?
   tempAgency    TempAgency?  @relation(fields: [tempAgencyId], references: [id])

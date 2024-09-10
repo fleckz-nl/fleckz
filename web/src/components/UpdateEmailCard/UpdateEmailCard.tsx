@@ -90,7 +90,10 @@ const UpdateEmailCard = () => {
               <FormError error={error} />
             </div>
           )}
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col"
+          >
             <FormField
               name="email"
               control={form.control}

@@ -38,6 +38,13 @@ export const deleteShift: MutationResolvers['deleteShift'] = ({ id }) => {
   })
 }
 
+export const unassignAgency: MutationResolvers['unassignAgency'] = ({ id }) => {
+  return db.shift.update({
+    where: { id },
+    data: { tempAgency: { disconnect: true }, status: 'UNFULFILLED' },
+  })
+}
+
 export const Shift: ShiftRelationResolvers = {
   workRequest: (_obj, { root }) => {
     return db.shift.findUnique({ where: { id: root?.id } }).workRequest()
