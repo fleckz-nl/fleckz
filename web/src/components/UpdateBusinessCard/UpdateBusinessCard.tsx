@@ -1,6 +1,5 @@
-import { Building2, Edit, Plus } from 'lucide-react'
+import { Building2, Edit, MapPin, Plus, X } from 'lucide-react'
 
-import BusinessAddressCell from '../BusinessAddressCell/BusinessAddressCell'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Separator } from '../ui/separator'
@@ -17,7 +16,15 @@ const UpdateBusinessCard = () => {
         <Edit className="relative right-8 text-gray-600" />
       </div>
       <div className="flex flex-col gap-3">
-        <BusinessAddressCell />
+        <div className="ml-7 flex w-11/12 flex-wrap items-center justify-between text-muted/70">
+          <div className="flex w-3/4 items-center gap-1 xs:w-2/3">
+            <MapPin className="size-4" />
+            {'Oude Gracht 42, 3511AB Utrecht'}
+          </div>
+          <Button className="text-gray-500 hover:bg-black hover:text-destructive">
+            <X className="relative right-3 size-4" />
+          </Button>
+        </div>
         <div className="container mt-2 flex flex-wrap items-center justify-end gap-4 xs:gap-2 md:justify-start">
           <Input className="md:w-1/2"></Input>
           <Button className="center px-2 text-accent hover:bg-gray-600 hover:text-black">
