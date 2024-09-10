@@ -17,7 +17,7 @@ const ProfilePage = () => {
       <div className="xs:container xs:max-w-3xl">
         <div className="relative -top-7 -mb-5">
           <h1 className="text-xl font-semibold tracking-tight text-white">
-            Uw Profiel
+            Mijn Profiel
           </h1>
           <p className="font-thin">Beheer uw profiel</p>
         </div>
