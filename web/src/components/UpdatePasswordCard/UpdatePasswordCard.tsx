@@ -89,7 +89,10 @@ const UpdatePasswordCard = () => {
       </CardHeader>
       <CardContent className="space-y-2">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col"
+          >
             {error && (
               <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
                 <MessageSquareWarningIcon />

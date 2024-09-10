@@ -94,15 +94,15 @@ const UpdateAccountCard = () => {
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="mb-5 flex w-full flex-wrap items-center justify-between gap-4 space-y-1">
-          <div className="flex flex-col items-start">
-            <Form {...accountForm}>
-              {updateAccountError && (
-                <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
-                  <MessageSquareWarningIcon />
-                  <FormError error={updateAccountError} />
-                </div>
-              )}
-              <form onSubmit={accountForm.handleSubmit(onAccountFormSubmit)}>
+          <Form {...accountForm}>
+            {updateAccountError && (
+              <div className="flex h-fit items-center justify-center gap-2 bg-red-200 py-2 pl-2 text-red-600 ">
+                <MessageSquareWarningIcon />
+                <FormError error={updateAccountError} />
+              </div>
+            )}
+            <form onSubmit={accountForm.handleSubmit(onAccountFormSubmit)}>
+              <div className="flex flex-col">
                 <div className="flex flex-wrap gap-4">
                   <FormField
                     name="firstName"
@@ -162,10 +162,10 @@ const UpdateAccountCard = () => {
                     Wijzigingen opslaan
                   </span>
                 </Button>
-              </form>
-            </Form>
-          </div>
-          <div className="mx-auto">
+              </div>
+            </form>
+          </Form>
+          <div className="mx-auto xs:pt-4">
             <UpdateAvatar />
           </div>
         </div>
