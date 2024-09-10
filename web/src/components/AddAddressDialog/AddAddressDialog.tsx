@@ -46,16 +46,16 @@ const AddAddressDialog = () => {
           </div>
           <div className="grid grid-cols-2 gap-2 xs:gap-4">
             <div>
-              <Label className="text-primary-foreground">City</Label>
+              <Label className="text-primary-foreground">Stad</Label>
               <Input></Input>
             </div>
             <div>
-              <Label className="text-primary-foreground">ZIP code</Label>
+              <Label className="text-primary-foreground">Postcode</Label>
               <Input></Input>
             </div>
           </div>
           <div>
-            <Label className="text-primary-foreground">Country</Label>
+            <Label className="text-primary-foreground">Land</Label>
             <Input className=" text-white"></Input>
           </div>
         </div>
