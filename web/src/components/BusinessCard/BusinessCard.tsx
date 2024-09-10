@@ -1,4 +1,4 @@
-import { Button } from '../ui/button'
+import AddAddressDialog from '../AddAddressDialog/AddAddressDialog'
 import {
   Card,
   CardContent,
@@ -20,15 +20,7 @@ const BusinessCard = () => {
       <CardContent className="flex flex-col space-y-2">
         <UpdateBusinessCard />
         <UpdateBusinessCard />
-        {/* TODO: Convert this button to a popover */}
-        {/* Popover will be a form that can add new business
-            includes:
-                    business name
-                    business address
- */}
-        <Button className="mx-auto bg-muted/20 p-6 text-lg text-white hover:bg-white/10 hover:text-accent">
-          Bedrijf toevoegen
-        </Button>
+        <AddAddressDialog />
       </CardContent>
     </Card>
   )
