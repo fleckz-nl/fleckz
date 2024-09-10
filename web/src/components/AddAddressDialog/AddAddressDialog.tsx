@@ -28,7 +28,7 @@ const AddAddressDialog = () => {
           <DialogDescription>Voeg een nieuw bedrijf toe.</DialogDescription>
         </DialogHeader>
         <div>
-          <Label className="text-primary-foreground">Bedrijfnaam</Label>
+          <Label className="text-primary-foreground">Bedrijfsnaam</Label>
           <Input></Input>
         </div>
         <Separator className="mb-4 mt-2 bg-white/10" />
