@@ -16,9 +16,10 @@ type AssignedShiftsProps = {
 const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
   const agenciesWithShiftCounts: (TempAgency & { count: number })[] =
     useMemo(() => {
-      if (request?.shifts == null) return
-      return request.shifts.reduce((acc, current) => {
-        const currentAgencyId = current.tempAgency.id
+      const { shifts } = request
+      if (shifts == null) return []
+      return shifts.reduce((acc, current) => {
+        const currentAgencyId = current.tempAgency?.id
         const existingAgency = acc.find(
           (agency) => agency.id === currentAgencyId
         )
@@ -45,6 +46,7 @@ const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
         </div>
         <div className="ml-10 flex flex-col gap-2">
           {agenciesWithShiftCounts.map((agency) => {
+            if (agency.id == null) return
             return (
               <div
                 key={agency.id}

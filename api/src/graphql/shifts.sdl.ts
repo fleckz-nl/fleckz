@@ -3,6 +3,7 @@ export const schema = gql`
     id: String!
     createdAt: DateTime!
     updatedAt: DateTime!
+    name: String
     status: ShiftStatus!
     workRequest: WorkRequest
     workRequestId: String
@@ -30,11 +31,13 @@ export const schema = gql`
     status: ShiftStatus
     workRequestId: String
     rating: Int
+    tempAgencyId: String
   }
 
   type Mutation {
     createShift(input: CreateShiftInput!): Shift! @requireAuth
     updateShift(id: String!, input: UpdateShiftInput!): Shift! @requireAuth
+    unassignAgency(id: String!): Shift! @requireAuth
     deleteShift(id: String!): Shift! @requireAuth
   }
 `

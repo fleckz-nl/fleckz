@@ -42,7 +42,11 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
     data: {
       ...input,
       shifts: {
-        createMany: { data: Array(input.numWorkers).fill({}) },
+        createMany: {
+          data: Array.from({ length: input.numWorkers }, (_, k) => ({
+            name: `Ploegdienst ${k + 1}`,
+          })),
+        },
       },
     },
   })
