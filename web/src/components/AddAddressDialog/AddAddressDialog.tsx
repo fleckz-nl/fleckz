@@ -24,8 +24,8 @@ const AddAddressDialog = () => {
       <DialogContent className=" max-h-screen overflow-y-scroll bg-black py-10 text-white  shadow-md shadow-accent/50">
         <DialogHeader className="center mt-4 flex-col">
           <Building2 className="size-10 " />
-          <DialogTitle>Niuew Bedrijf</DialogTitle>
-          <DialogDescription>Maak een nieuw bedrijf aan.</DialogDescription>
+          <DialogTitle>Nieuw Bedrijf</DialogTitle>
+          <DialogDescription>Voeg een nieuw bedrijf toe.</DialogDescription>
         </DialogHeader>
         <div>
           <Label className="text-primary-foreground">Bedrijfnaam</Label>
