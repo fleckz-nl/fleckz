@@ -5,7 +5,6 @@ import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
 import { DataTable } from '../DataTable/DataTable'
 import SelectAgency from '../SelectAgency/SelectAgency'
-import { Checkbox } from '../ui/checkbox'
 
 type ShiftTableProps = {
   request: FindWorkRequestQuery['workRequest']
@@ -18,29 +17,30 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
     ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[]
   >(
     () => [
-      {
-        accessorKey: 'id',
-        header: ({ table }) => (
-          <Checkbox
-            checked={
-              (table.getIsAllPageRowsSelected() ||
-                (table.getIsSomePageRowsSelected() &&
-                  'indeterminate')) as boolean
-            }
-            onCheckedChange={(value) =>
-              table.toggleAllPageRowsSelected(!!value)
-            }
-            aria-label="Select all"
-          />
-        ),
-        cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-            aria-label="Select row"
-          />
-        ),
-      },
+      // TODO: Batch-edit shifts
+      // {
+      //   accessorKey: 'id',
+      //   header: ({ table }) => (
+      //     <Checkbox
+      //       checked={
+      //         (table.getIsAllPageRowsSelected() ||
+      //           (table.getIsSomePageRowsSelected() &&
+      //             'indeterminate')) as boolean
+      //       }
+      //       onCheckedChange={(value) =>
+      //         table.toggleAllPageRowsSelected(!!value)
+      //       }
+      //       aria-label="Select all"
+      //     />
+      //   ),
+      //   cell: ({ row }) => (
+      //     <Checkbox
+      //       checked={row.getIsSelected()}
+      //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+      //       aria-label="Select row"
+      //     />
+      //   ),
+      // },
       {
         accessorKey: 'name',
         header: 'Ploegendienst',
