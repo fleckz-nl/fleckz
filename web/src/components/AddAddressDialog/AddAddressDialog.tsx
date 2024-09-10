@@ -1,5 +1,7 @@
+  Dialog,
 const AddAddressDialog = () => {
-  return <></>
+    <Dialog>
+    </Dialog>
 }
 
 export default AddAddressDialog
