@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import BusinessAddressCell from './BusinessAddressCell'
+import AddAddressDialog from './AddAddressDialog'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('BusinessAddressCell', () => {
+describe('AddAddressDialog', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<BusinessAddressCell />)
+      render(<AddAddressDialog />)
     }).not.toThrow()
   })
 })

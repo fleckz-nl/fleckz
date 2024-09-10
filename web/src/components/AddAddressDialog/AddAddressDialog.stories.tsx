@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import BusinessAddressCell from './BusinessAddressCell'
+import AddAddressDialog from './AddAddressDialog'
 
-const meta: Meta<typeof BusinessAddressCell> = {
-  component: BusinessAddressCell,
+const meta: Meta<typeof AddAddressDialog> = {
+  component: AddAddressDialog,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof BusinessAddressCell>
+type Story = StoryObj<typeof AddAddressDialog>
 
 export const Primary: Story = {}
