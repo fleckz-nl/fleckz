@@ -11,8 +11,12 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import ShiftTableCell from 'src/components/ShiftTableCell'
+import { cn } from 'src/lib/utils'
+
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
+import { Separator } from '../ui/separator'
 import WorkRequestCommentSection from '../WorkRequestCommentSection/WorkRequestCommentSection'
 
 export const QUERY: TypedDocumentNode<
@@ -56,6 +60,7 @@ export const QUERY: TypedDocumentNode<
       }
       shifts {
         id
+        name
         status
         tempAgency {
           id
@@ -95,23 +100,38 @@ export const Success = ({
 }: CellSuccessProps<FindWorkRequestQuery, FindWorkRequestQueryVariables> &
   SuccessProps) => {
   return (
-    <div className="flex max-w-7xl flex-grow flex-wrap gap-4 bg-white">
-      <div className="flex flex-col">
-        <div className="bg-white py-4 pl-2 text-xl font-bold">
+    <div className="flex min-h-screen w-full flex-wrap justify-between">
+      <div className="flex w-full max-w-5xl flex-grow flex-wrap justify-center bg-white">
+        <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
           <Link to={routes.overview()} className="flex items-center">
             <ArrowLeft className="mr-1 inline" /> Overzicht
           </Link>
         </div>
-        <div className="ml-4 flex flex-col md:flex-row">
-          <section>
-            <RequestStatusCard request={workRequest} className={className} />
-            <div className="mt-2 text-right">
-              <h3>Op verzoek van:</h3>
-              <p>Jos Janssen</p>
-              <p>16 August 2024 02:00 pm</p>
+        <div className="container flex flex-col items-center gap-8 pt-4 xs:pt-0">
+          <div className="flex w-full flex-wrap items-center justify-between gap-4">
+            <section className="px-0 xs:mx-auto">
+              <RequestStatusCard
+                request={workRequest}
+                className={cn('max-w-[340px]', className)}
+              />
+              <div className="my-2 text-left text-sm xs:my-0">
+                <h3 className="font-semibold">Op verzoek van:</h3>
+                <p>Jos Janssen</p>
+                <p>16 August 2024 02:00 pm</p>
+              </div>
+            </section>
+            <Separator className="xs:hidden" />
+            <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+          </div>
+          <Separator className="xs:hidden" />
+          <div className="mb-20 flex w-full flex-col gap-2 xs:py-4">
+            <h3 className="relative w-max text-lg font-semibold text-primary xs:left-28">
+              Ploegendienst toewijzen
+            </h3>
+            <div className="w-full xs:mx-auto xs:max-w-3xl xs:p-4">
+              <ShiftTableCell request={workRequest} />
             </div>
-          </section>
-          <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+          </div>
         </div>
       </div>
       <WorkRequestCommentSection />
