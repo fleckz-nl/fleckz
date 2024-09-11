@@ -93,7 +93,7 @@ export const Success = ({
     <>
       <OverviewSection>
         <OverviewHeader>
-          <CheckCircle2 className="mr-2 inline" />
+          <CheckCircle2 className="mr-1 inline" />
           Geaccepteerd
         </OverviewHeader>
         <OverviewContent>
@@ -105,7 +105,7 @@ export const Success = ({
       </OverviewSection>
       <OverviewSection>
         <OverviewHeader>
-          <Hourglass className="mr-2 inline" />
+          <Hourglass className="mr-1 inline" />
           In uitvoering
         </OverviewHeader>
         <OverviewContent>
