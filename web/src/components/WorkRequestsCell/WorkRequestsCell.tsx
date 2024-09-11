@@ -79,7 +79,11 @@ export const Success = ({
 }: CellSuccessProps<WorkRequestsQuery>) => {
   const confirmedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
 
-  const otherRequests = workRequests.filter((r) => r.status !== 'CONFIRMED')
+  const submittedRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
+
+  const doneRequests = workRequests.filter((r) => r.status === 'DONE')
+
+  const draftRequests = workRequests.filter((r) => r.status === 'DRAFT')
 
   function NoResultsCard() {
     return (
