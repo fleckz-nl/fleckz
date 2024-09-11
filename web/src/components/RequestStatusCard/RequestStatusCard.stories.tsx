@@ -44,10 +44,10 @@ const defaultRequest: WorkRequestsQuery['workRequests'][0] = {
   },
   jobProfile: {
     __typename: 'JobProfile',
-    name: 'xxx',
-    hourlyWageMin: 4,
-    hourlyWageMax: 4,
-    qualityNeeded: 4,
+    id: 'ckldxzr7e000001jy5e5r3n1v',
+    name: 'Salesmanager',
+    hourlyWageMin: 30,
+    hourlyWageMax: 55,
   },
 }
 
