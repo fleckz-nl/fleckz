@@ -5,7 +5,9 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
-import ConfirmAcceptWorkRequest from '../ConfirmAcceptWorkRequest/ConfirmAcceptWorkRequest'
+import ConfirmAcceptWorkRequest from 'src/components/ConfirmAcceptWorkRequest/ConfirmAcceptWorkRequest'
+import ConfirmCompleteWorkRequest from 'src/components/ConfirmCompleteWorkRequest/ConfirmCompleteWorkRequest'
+
 import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
 import ConfirmRevertInProgress from '../ConfirmRevertInProgress/ConfirmRevertInProgress'
 import { QUERY as WorkRequestQuery } from '../WorkRequestCell'
@@ -96,6 +98,18 @@ const IndividualWorkRequestActions = ({
     })
   }
 
+  function handleCompleteRequest() {
+    const loadingToast = toast.loading('Laden...')
+    updateRequest({
+      variables: {
+        id: workRequest.id,
+        input: {
+          status: 'DONE',
+        },
+      },
+    }).finally(() => toast.dismiss(loadingToast))
+  }
+
   return (
     <>
       <div className="right-0 flex gap-2 self-end">
@@ -114,6 +128,13 @@ const IndividualWorkRequestActions = ({
         {workRequest.status === 'CONFIRMED' && (
           <ConfirmRevertInProgress
             onConfirm={revertToInProgress}
+            loading={updateRequestLoading}
+            error={updateRequestError}
+          />
+        )}
+        {workRequest.status === 'CONFIRMED' && (
+          <ConfirmCompleteWorkRequest
+            onConfirm={handleCompleteRequest}
             loading={updateRequestLoading}
             error={updateRequestError}
           />
