@@ -1,5 +1,6 @@
 import { ApolloError } from '@apollo/client/errors'
-import { LoaderCircle } from 'lucide-react'
+
+import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
 
 import {
   AlertDialog,
@@ -12,28 +13,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
-import { Button } from '../ui/button'
 
 type ConfirmAcceptWorkRequestProps = {
   onConfirm: () => void
   error?: ApolloError
   loading?: boolean
-  disabled?: boolean
 }
 
 const ConfirmAcceptWorkRequest = ({
   onConfirm,
   error,
   loading,
-  disabled,
 }: ConfirmAcceptWorkRequestProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button type="button" variant="default" disabled={disabled || loading}>
-          {loading && <LoaderCircle className="absolute animate-spin" />}
-          <span className={`${loading && 'invisible'}`}>Bevestig diensten</span>
-        </Button>
+        <ButtonWithLoader type="button" variant="default" loading={loading}>
+          Bevestig diensten
+        </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
