@@ -44,21 +44,21 @@ const IndividualWorkRequestActions = ({
     ],
   })
 
-  const [deleteRequest, { error: deleteRequestError }] = useMutation(
-    DELETE_WORK_REQUEST_GQL,
-    {
-      onCompleted: () => {
-        toast('Verwijderd', {
-          icon: <Trash2 className="size-4 text-destructive" />,
-          duration: 2000,
-        })
-      },
-      refetchQueries: [
-        { query: WorkRequestQuery, variables: { id: workRequest.id } },
-      ],
-    }
-  )
-  console.log(updateRequestError?.message)
+  const [
+    deleteRequest,
+    { loading: deleteRequestLoading, error: deleteRequestError },
+  ] = useMutation(DELETE_WORK_REQUEST_GQL, {
+    onCompleted: () => {
+      toast('Verwijderd', {
+        icon: <Trash2 className="size-4 text-destructive" />,
+        duration: 2000,
+      })
+    },
+    refetchQueries: [
+      { query: WorkRequestQuery, variables: { id: workRequest.id } },
+    ],
+  })
+
   function handleConfirmRequest() {
     const loadingToast = toast.loading('Laden...')
     updateRequest({
@@ -99,7 +99,11 @@ const IndividualWorkRequestActions = ({
   return (
     <>
       <div className="right-0 flex gap-2 self-end">
-        <ConfirmDeleteWork onConfirm={handleDeleteRequest} />
+        <ConfirmDeleteWork
+          onConfirm={handleDeleteRequest}
+          loading={deleteRequestLoading}
+          error={deleteRequestError}
+        />
         {workRequest.status === 'SUBMITTED' && (
           <ConfirmAcceptWorkRequest
             onConfirm={handleConfirmRequest}
