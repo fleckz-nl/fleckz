@@ -1,15 +1,17 @@
-import { forwardRef } from 'react'
+import { forwardRef, RefAttributes } from 'react'
 
 import { LoaderCircle } from 'lucide-react'
 
-import { Button } from 'src/components/ui/button'
+import { Button, ButtonProps } from 'src/components/ui/button'
 
-type ButtonWithLoaderProps = {
+interface ButtonWithLoaderProps
+  extends ButtonProps,
+    RefAttributes<HTMLButtonElement> {
   children: React.ReactNode
   loading: boolean
 }
 
-const ButtonWithLoader = forwardRef<HTMLButtonElement>(
+const ButtonWithLoader = forwardRef<HTMLButtonElement, ButtonWithLoaderProps>(
   (props: ButtonWithLoaderProps, ref) => {
     const { loading, children, ...restProps } = props
     return (
