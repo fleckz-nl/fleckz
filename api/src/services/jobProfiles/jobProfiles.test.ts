@@ -38,7 +38,6 @@ describe('jobProfiles', () => {
         hourlyWageMin: 30,
         hourlyWageMax: 55,
         yearsOfExp: 4,
-        qualityNeeded: 4,
         maxTravelDistance: 50,
         kmAllowance: 0.25,
         isCarAvailable: true,
@@ -51,7 +50,6 @@ describe('jobProfiles', () => {
 
     expect(result.updatedAt).toEqual(new Date('2024-08-07T13:45:31.658Z'))
     expect(result.name).toEqual('String')
-    expect(result.qualityNeeded).toEqual(4)
     expect(result.yearsOfExp).toEqual(4)
     expect(result.hourlyWageMin).toEqual(30)
     expect(result.hourlyWageMax).toEqual(55)
