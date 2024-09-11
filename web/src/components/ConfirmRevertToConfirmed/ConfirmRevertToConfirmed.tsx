@@ -28,23 +28,23 @@ const ConfirmRevertToConfirmed = ({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <ButtonWithLoader type="button" variant="outline" loading={loading}>
-          Terugbrengen naar in uitvoering
+          Terugbrengen naar in geaccepteerd
         </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Bevestig terugkeer naar status in uitvoering
+            Bevestig terugkeer naar status in geaccepteerd
           </AlertDialogTitle>
           <div className="bg-red-400">{error?.message}</div>
           <AlertDialogDescription>
-            Je gaat de status terugbrengen naar in uitvoering
+            Je gaat de status terugbrengen naar in geaccepteerd
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Annuleren</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm} disabled={loading}>
-            Terugbrengen naar in uitvoering
+            Terugbrengen naar in geaccepteerd
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
