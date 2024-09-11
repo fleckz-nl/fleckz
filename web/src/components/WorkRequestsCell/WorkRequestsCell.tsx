@@ -18,6 +18,7 @@ import OverviewSection, {
 } from '../OverviewSection/OverviewSection'
 import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
+import RequestStatusCardSkeleton from '../RequestStatusCardSkeleton/RequestStatusCardSkeleton'
 import { Card, CardHeader } from '../ui/card'
 
 export const QUERY: TypedDocumentNode<
@@ -68,7 +69,49 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div className="mx-auto min-h-screen max-w-6xl space-y-6 bg-transparent">
+    <OverviewSection>
+      <OverviewHeader>
+        <CheckCircle2 className="mr-1 inline" />
+        Geaccepteerd
+      </OverviewHeader>
+      <OverviewContent>
+        <RequestStatusCardSkeleton />
+      </OverviewContent>
+    </OverviewSection>
+    <OverviewSection>
+      <OverviewHeader>
+        <Hourglass className="mr-1 inline" />
+        In uitvoering
+      </OverviewHeader>
+      <OverviewContent>
+        {Array.from({ length: 3 }).map((_, i) => {
+          return <RequestStatusCardSkeleton key={i} />
+        })}
+      </OverviewContent>
+    </OverviewSection>
+    <OverviewSection>
+      <OverviewHeader>
+        <Award className="mr-1 inline" />
+        Afgerond
+      </OverviewHeader>
+      <OverviewContent>
+        <RequestStatusCardSkeleton />
+      </OverviewContent>
+    </OverviewSection>
+    <OverviewSection>
+      <OverviewHeader>
+        <NotepadText className="mr-1 inline" />
+        Concept
+      </OverviewHeader>
+      <OverviewContent>
+        <RequestStatusCardSkeleton />
+      </OverviewContent>
+    </OverviewSection>
+    <div className="center"></div>
+  </div>
+)
 
 export const Empty = () => <div>Empty</div>
 
