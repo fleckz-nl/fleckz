@@ -13,7 +13,6 @@ describe('JobProfileCard', () => {
       hourlyWageMin: 35,
       hourlyWageMax: 50,
       yearsOfExp: 3,
-      qualityNeeded: 4,
       maxTravelDistance: 30,
       kmAllowance: 0.21,
       isCarAvailable: false,
