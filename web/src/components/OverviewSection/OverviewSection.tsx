@@ -1,8 +1,8 @@
 export function OverviewSection({ children, ...props }) {
   return (
-    <section className="mx-auto" {...props}>
+    <div className="mx-auto mb-14" {...props}>
       {children}
-    </section>
+    </div>
   )
 }
 
