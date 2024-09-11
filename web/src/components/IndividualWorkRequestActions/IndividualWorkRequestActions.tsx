@@ -1,5 +1,5 @@
 import { Trash2 } from 'lucide-react'
-import { WorkRequestsQuery } from 'types/graphql'
+import { WorkRequestsQuery, WorkRequestStatus } from 'types/graphql'
 
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
@@ -7,10 +7,10 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import ConfirmAcceptWorkRequest from 'src/components/ConfirmAcceptWorkRequest/ConfirmAcceptWorkRequest'
 import ConfirmCompleteWorkRequest from 'src/components/ConfirmCompleteWorkRequest/ConfirmCompleteWorkRequest'
-
-import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
-import ConfirmRevertInProgress from '../ConfirmRevertInProgress/ConfirmRevertInProgress'
-import { QUERY as WorkRequestQuery } from '../WorkRequestCell'
+import ConfirmDeleteWork from 'src/components/ConfirmDeleteWork/ConfirmDeleteWork'
+import ConfirmRevertInProgress from 'src/components/ConfirmRevertInProgress/ConfirmRevertInProgress'
+import ConfirmRevertToConfirmed from 'src/components/ConfirmRevertToConfirmed/ConfirmRevertToConfirmed'
+import { QUERY as WorkRequestQuery } from 'src/components/WorkRequestCell'
 
 const DELETE_WORK_REQUEST_GQL = gql`
   mutation DeleteWorkRequest($id: String!) {
@@ -61,31 +61,6 @@ const IndividualWorkRequestActions = ({
     ],
   })
 
-  function handleConfirmRequest() {
-    const loadingToast = toast.loading('Laden...')
-    updateRequest({
-      variables: {
-        id: workRequest.id,
-        input: {
-          status: 'CONFIRMED',
-        },
-      },
-    }).finally(() => toast.dismiss(loadingToast))
-  }
-
-  function revertToInProgress() {
-    const loadingToast = toast.loading('Laden...')
-
-    updateRequest({
-      variables: {
-        id: workRequest.id,
-        input: {
-          status: 'SUBMITTED',
-        },
-      },
-    }).finally(() => toast.dismiss(loadingToast))
-  }
-
   function handleDeleteRequest() {
     const loadingToast = toast.loading('Laden...')
     deleteRequest({
@@ -98,13 +73,13 @@ const IndividualWorkRequestActions = ({
     })
   }
 
-  function handleCompleteRequest() {
+  function handleUpdateStatus({ status }: { status: WorkRequestStatus }) {
     const loadingToast = toast.loading('Laden...')
     updateRequest({
       variables: {
         id: workRequest.id,
         input: {
-          status: 'DONE',
+          status,
         },
       },
     }).finally(() => toast.dismiss(loadingToast))
@@ -120,21 +95,28 @@ const IndividualWorkRequestActions = ({
         />
         {workRequest.status === 'SUBMITTED' && (
           <ConfirmAcceptWorkRequest
-            onConfirm={handleConfirmRequest}
+            onConfirm={() => handleUpdateStatus({ status: 'CONFIRMED' })}
             loading={updateRequestLoading}
             error={updateRequestError}
           />
         )}
         {workRequest.status === 'CONFIRMED' && (
           <ConfirmRevertInProgress
-            onConfirm={revertToInProgress}
+            onConfirm={() => handleUpdateStatus({ status: 'SUBMITTED' })}
             loading={updateRequestLoading}
             error={updateRequestError}
           />
         )}
         {workRequest.status === 'CONFIRMED' && (
           <ConfirmCompleteWorkRequest
-            onConfirm={handleCompleteRequest}
+            onConfirm={() => handleUpdateStatus({ status: 'DONE' })}
+            loading={updateRequestLoading}
+            error={updateRequestError}
+          />
+        )}
+        {workRequest.status === 'DONE' && (
+          <ConfirmRevertToConfirmed
+            onConfirm={() => handleUpdateStatus({ status: 'CONFIRMED' })}
             loading={updateRequestLoading}
             error={updateRequestError}
           />
