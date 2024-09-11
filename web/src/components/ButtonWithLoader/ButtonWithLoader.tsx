@@ -1,25 +1,24 @@
+import { forwardRef } from 'react'
+
 import { LoaderCircle } from 'lucide-react'
 
-import { Button, ButtonProps } from 'src/components/ui/button'
+import { Button } from 'src/components/ui/button'
 
-interface ButtonWithLoaderProps
-  extends ButtonProps,
-    React.RefAttributes<HTMLButtonElement> {
+type ButtonWithLoaderProps = {
   children: React.ReactNode
   loading: boolean
 }
 
-const ButtonWithLoader = ({
-  children,
-  loading,
-  ...props
-}: ButtonWithLoaderProps) => {
-  return (
-    <Button {...props} disabled={loading}>
-      {loading && <LoaderCircle className="absolute animate-spin" />}
-      <span className={`${loading && 'invisible'}`}>{children}</span>
-    </Button>
-  )
-}
+const ButtonWithLoader = forwardRef<HTMLButtonElement>(
+  (props: ButtonWithLoaderProps, ref) => {
+    const { loading, children, ...restProps } = props
+    return (
+      <Button ref={ref} disabled={loading} {...restProps}>
+        {loading && <LoaderCircle className="absolute animate-spin" />}
+        <span className={`${loading && 'invisible'}`}>{children}</span>
+      </Button>
+    )
+  }
+)
 
 export default ButtonWithLoader
