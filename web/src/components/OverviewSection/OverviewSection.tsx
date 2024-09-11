@@ -9,7 +9,7 @@ export function OverviewSection({ children, ...props }) {
 export function OverviewHeader({ children, ...props }) {
   return (
     <h2
-      className="mb-2 flex items-center text-xl font-bold text-white/90"
+      className="mb-4 flex items-center text-xl font-bold text-white/90"
       {...props}
     >
       {children}
