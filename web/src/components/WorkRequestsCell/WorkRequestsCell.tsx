@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { CheckCircle2, Hourglass } from 'lucide-react'
+import { Award, CheckCircle2, Hourglass, NotepadText } from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
@@ -126,7 +126,7 @@ export const Success = ({
       </OverviewSection>
       <OverviewSection>
         <OverviewHeader>
-          <Hourglass className="mr-1 inline" />
+          <Award className="mr-1 inline" />
           Afgerond
         </OverviewHeader>
         <OverviewContent>
@@ -138,7 +138,7 @@ export const Success = ({
       </OverviewSection>
       <OverviewSection>
         <OverviewHeader>
-          <Hourglass className="mr-1 inline" />
+          <NotepadText className="mr-1 inline" />
           Concept
         </OverviewHeader>
         <OverviewContent>
