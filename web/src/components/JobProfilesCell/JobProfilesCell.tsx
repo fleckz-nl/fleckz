@@ -25,7 +25,6 @@ export const QUERY: TypedDocumentNode<
     jobProfiles {
       id
       name
-      qualityNeeded
       yearsOfExp
       hourlyWageMin
       hourlyWageMax
