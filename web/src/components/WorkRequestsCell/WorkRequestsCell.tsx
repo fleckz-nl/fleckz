@@ -113,10 +113,34 @@ export const Success = ({
           In uitvoering
         </OverviewHeader>
         <OverviewContent>
-          {otherRequests.map((request) => {
+          {submittedRequests.map((request) => {
             return <RequestStatusCard key={request.id} request={request} />
           })}
-          {otherRequests.length === 0 && <NoResultsCard />}
+          {submittedRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+      <OverviewSection>
+        <OverviewHeader>
+          <Hourglass className="mr-1 inline" />
+          Afgerond
+        </OverviewHeader>
+        <OverviewContent>
+          {doneRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {doneRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+      <OverviewSection>
+        <OverviewHeader>
+          <Hourglass className="mr-1 inline" />
+          Concept
+        </OverviewHeader>
+        <OverviewContent>
+          {draftRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {draftRequests.length === 0 && <NoResultsCard />}
         </OverviewContent>
       </OverviewSection>
     </>
