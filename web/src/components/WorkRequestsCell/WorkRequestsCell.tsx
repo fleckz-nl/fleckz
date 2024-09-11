@@ -1,4 +1,6 @@
-import { CheckCircle2, Hourglass } from 'lucide-react'
+import { useState } from 'react'
+
+import { Award, CheckCircle2, Hourglass, NotepadText } from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
@@ -14,6 +16,7 @@ import OverviewSection, {
   OverviewContent,
   OverviewHeader,
 } from '../OverviewSection/OverviewSection'
+import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import { Card, CardHeader } from '../ui/card'
 
@@ -79,7 +82,11 @@ export const Success = ({
 }: CellSuccessProps<WorkRequestsQuery>) => {
   const confirmedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
 
-  const otherRequests = workRequests.filter((r) => r.status !== 'CONFIRMED')
+  const submittedRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
+
+  const doneRequests = workRequests.filter((r) => r.status === 'DONE')
+
+  const draftRequests = workRequests.filter((r) => r.status === 'DRAFT')
 
   function NoResultsCard() {
     return (
@@ -89,11 +96,13 @@ export const Success = ({
     )
   }
 
+  const [openDialog, setOpenDialog] = useState(false)
+
   return (
     <>
       <OverviewSection>
         <OverviewHeader>
-          <CheckCircle2 className="mr-2 inline" />
+          <CheckCircle2 className="mr-1 inline" />
           Geaccepteerd
         </OverviewHeader>
         <OverviewContent>
@@ -105,16 +114,43 @@ export const Success = ({
       </OverviewSection>
       <OverviewSection>
         <OverviewHeader>
-          <Hourglass className="mr-2 inline" />
-          Aanhangig
+          <Hourglass className="mr-1 inline" />
+          In uitvoering
         </OverviewHeader>
         <OverviewContent>
-          {otherRequests.map((request) => {
+          {submittedRequests.map((request) => {
             return <RequestStatusCard key={request.id} request={request} />
           })}
-          {otherRequests.length === 0 && <NoResultsCard />}
+          {submittedRequests.length === 0 && <NoResultsCard />}
         </OverviewContent>
       </OverviewSection>
+      <OverviewSection>
+        <OverviewHeader>
+          <Award className="mr-1 inline" />
+          Afgerond
+        </OverviewHeader>
+        <OverviewContent>
+          {doneRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {doneRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+      <OverviewSection>
+        <OverviewHeader>
+          <NotepadText className="mr-1 inline" />
+          Concept
+        </OverviewHeader>
+        <OverviewContent>
+          {draftRequests.map((request) => {
+            return <RequestStatusCard key={request.id} request={request} />
+          })}
+          {draftRequests.length === 0 && <NoResultsCard />}
+        </OverviewContent>
+      </OverviewSection>
+      <div className="center">
+        <PlanWorkComponent open={openDialog} setOpen={setOpenDialog} />
+      </div>
     </>
   )
 }
