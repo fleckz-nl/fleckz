@@ -4,7 +4,6 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     name: String!
-    qualityNeeded: Int!
     yearsOfExp: Int!
     # certificates: [Certificate]!
     hourlyWageMin: Float!
@@ -25,7 +24,6 @@ export const schema = gql`
 
   input CreateJobProfileInput {
     name: String!
-    qualityNeeded: Int!
     yearsOfExp: Int!
     hourlyWageMin: Float!
     hourlyWageMax: Float!
@@ -39,7 +37,6 @@ export const schema = gql`
 
   input UpdateJobProfileInput {
     name: String
-    qualityNeeded: Int
     yearsOfExp: Int
     hourlyWageMin: Float
     hourlyWageMax: Float

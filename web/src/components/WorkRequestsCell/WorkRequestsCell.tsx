@@ -46,7 +46,6 @@ export const QUERY: TypedDocumentNode<
         name
         hourlyWageMin
         hourlyWageMax
-        qualityNeeded
       }
       shifts {
         id

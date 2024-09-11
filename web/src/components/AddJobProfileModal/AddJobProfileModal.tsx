@@ -369,21 +369,6 @@ const AddJobProfileModal = () => {
         </Form>
       </DialogContent>
     </Dialog>
-
-    // TODO: Check onchange react hook forms
-    //           validation={{
-    //             required: {
-    //               value: true,
-    //               message: 'Gewenste kwaliteit is verplicht',
-    //             },
-    //             min: { value: 1, message: 'Minimaal is 1' },
-    //             max: { value: 5, message: 'Maximum is 5' },
-    //           }}
-    //           min={1}
-    //           max={5}
-    //           value={qualityNeeded}
-    //           onChange={(e) => setQualityNeeded(Number(e.target.value))}
-    //         />
   )
 }
 
