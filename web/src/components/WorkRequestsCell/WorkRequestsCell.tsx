@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { CheckCircle2, Hourglass } from 'lucide-react'
 import type {
   WorkRequestsQuery,
@@ -14,6 +16,7 @@ import OverviewSection, {
   OverviewContent,
   OverviewHeader,
 } from '../OverviewSection/OverviewSection'
+import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import { Card, CardHeader } from '../ui/card'
 
@@ -93,6 +96,8 @@ export const Success = ({
     )
   }
 
+  const [openDialog, setOpenDialog] = useState(false)
+
   return (
     <>
       <OverviewSection>
@@ -143,6 +148,9 @@ export const Success = ({
           {draftRequests.length === 0 && <NoResultsCard />}
         </OverviewContent>
       </OverviewSection>
+      <div className="center">
+        <PlanWorkComponent open={openDialog} setOpen={setOpenDialog} />
+      </div>
     </>
   )
 }
