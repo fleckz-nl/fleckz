@@ -19,7 +19,7 @@ export function OverviewHeader({ children, ...props }) {
 
 export function OverviewContent({ children, ...props }) {
   return (
-    <div className="grid sm:grid-cols-2 sm:gap-4" {...props}>
+    <div className="grid gap-4 sm:grid-cols-2" {...props}>
       {children}
     </div>
   )
