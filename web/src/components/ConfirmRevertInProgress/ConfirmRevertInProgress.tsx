@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client/errors'
+import { LoaderCircle } from 'lucide-react'
 
 import {
   AlertDialog,
@@ -29,8 +30,11 @@ const ConfirmRevertInProgress = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button type="button" variant="outline" disabled={disabled}>
-          Terugbrengen naar in uitvoering
+        <Button type="button" variant="outline" disabled={disabled || loading}>
+          {loading && <LoaderCircle className="absolute animate-spin" />}
+          <span className={`${loading && 'invisible'}`}>
+            Terugbrengen naar in uitvoering
+          </span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

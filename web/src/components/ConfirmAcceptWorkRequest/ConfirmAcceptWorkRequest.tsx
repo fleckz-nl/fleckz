@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client/errors'
+import { LoaderCircle } from 'lucide-react'
 
 import {
   AlertDialog,
@@ -29,8 +30,9 @@ const ConfirmAcceptWorkRequest = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button type="button" variant="default" disabled={disabled}>
-          Bevestig diensten
+        <Button type="button" variant="default" disabled={disabled || loading}>
+          {loading && <LoaderCircle className="absolute animate-spin" />}
+          <span className={`${loading && 'invisible'}`}>Bevestig diensten</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -42,7 +44,7 @@ const ConfirmAcceptWorkRequest = ({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>Annuleren</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm} disabled={loading}>
             Accepteer het huidige verzoek
           </AlertDialogAction>

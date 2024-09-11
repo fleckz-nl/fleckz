@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client/errors'
+import { LoaderCircle } from 'lucide-react'
 
 import {
   AlertDialog,
@@ -15,8 +16,8 @@ import { Button, buttonVariants } from '../ui/button'
 
 type ConfirmDeleteWorkProps = {
   onConfirm: () => void
-  error: ApolloError
-  loading: boolean
+  error?: ApolloError
+  loading?: boolean
   disabled?: boolean
 }
 
@@ -29,8 +30,13 @@ const ConfirmDeleteWork = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button type="button" variant="destructive" disabled={disabled}>
-          Verwijderen
+        <Button
+          type="button"
+          variant="destructive"
+          disabled={disabled || loading}
+        >
+          {loading && <LoaderCircle className="absolute animate-spin" />}
+          <span className={`${loading && 'invisible'}`}>Verwijderen</span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
