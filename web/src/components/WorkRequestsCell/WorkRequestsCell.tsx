@@ -106,7 +106,7 @@ export const Success = ({
       <OverviewSection>
         <OverviewHeader>
           <Hourglass className="mr-2 inline" />
-          Aanhangig
+          In uitvoering
         </OverviewHeader>
         <OverviewContent>
           {otherRequests.map((request) => {
