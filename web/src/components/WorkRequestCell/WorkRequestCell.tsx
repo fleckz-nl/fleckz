@@ -107,7 +107,7 @@ export const Success = ({
             <ArrowLeft className="mr-1 inline" /> Overzicht
           </Link>
         </div>
-        <div className="container flex max-w-5xl flex-col items-center gap-8 pt-4 xs:pt-0">
+        <div className="container flex max-w-7xl flex-col items-center gap-8 pt-4 xs:pt-0">
           <div className="flex w-full flex-wrap items-center justify-center gap-4 xs:justify-between">
             <section className="px-0 xs:mx-auto">
               <RequestStatusCard
@@ -121,14 +121,16 @@ export const Success = ({
               </div>
             </section>
             <Separator className="xs:hidden" />
-            <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+            <div className="mx-auto">
+              <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
+            </div>
           </div>
           <Separator className="xs:hidden" />
-          <div className="mb-20 flex w-full flex-col gap-2 xs:py-4">
-            <h3 className="relative w-max text-lg font-semibold text-primary xs:left-28">
+          <div className="mb-20 flex w-full max-w-4xl flex-col gap-2 lg:mt-10">
+            <h3 className="text-lg font-semibold text-primary ">
               Ploegendienst toewijzen
             </h3>
-            <div className="flex w-full flex-col xs:mx-auto xs:max-w-3xl xs:p-4">
+            <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />
               <Separator className="my-4" />
               <IndividualWorkRequestActions workRequest={workRequest} />
