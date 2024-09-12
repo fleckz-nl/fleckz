@@ -86,11 +86,8 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
         status: 'UNFULFILLED',
       },
     })
-    const numFulfilledShifts = await db.shift.count({
-      where: { workRequestId: id, status: 'FULFILLED' },
-    })
 
-    if (numShiftsToRemove > numFulfilledShifts)
+    if (unfulfilledShifts.length - numShiftsToRemove < 0)
       throw new ForbiddenError(
         'Het aantal te verwijderen diensten is groter dan het aantal diensten met vervulde status.'
       )
