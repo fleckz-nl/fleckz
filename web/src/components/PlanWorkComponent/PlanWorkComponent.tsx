@@ -12,6 +12,7 @@ import { routes, Link } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/dist/toast'
 
+import { useAuth } from 'src/auth'
 import SelectAddressCell from 'src/components/SelectAddressCell'
 import SelectJobProfileCell from 'src/components/SelectJobProfileCell'
 import { Button } from 'src/components/ui/button'
@@ -92,6 +93,7 @@ const PlanWorkComponent = ({
   setOpen,
   hideTrigger,
 }: PlanWorkComponentProps) => {
+  const { currentUser } = useAuth()
   const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
 
   const formSchema = z.object({
@@ -182,6 +184,7 @@ const PlanWorkComponent = ({
             startDate: new Date(data.startDate),
             endDate: new Date(data.endDate),
             status: 'SUBMITTED',
+            userId: currentUser.id,
           },
         },
       }).finally(() => toast.dismiss(loadingToast))
