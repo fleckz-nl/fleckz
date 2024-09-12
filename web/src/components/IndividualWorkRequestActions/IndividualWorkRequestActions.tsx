@@ -87,7 +87,7 @@ const IndividualWorkRequestActions = ({
 
   return (
     <>
-      <div className="right-0 flex gap-2 self-end">
+      <div className="flex max-w-full flex-wrap justify-center gap-2 xs:justify-end">
         <ConfirmDeleteWork
           onConfirm={handleDeleteRequest}
           loading={deleteRequestLoading}
