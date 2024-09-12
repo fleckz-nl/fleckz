@@ -120,19 +120,19 @@ export const Success = ({
                 <p>16 August 2024 02:00 pm</p>
               </div>
             </section>
-            <Separator className="xs:hidden" />
+            <Separator className="lg:hidden" />
             <div className="mx-auto">
               <JobProfileDetailsTable jobProfile={workRequest.jobProfile} />
             </div>
           </div>
-          <Separator className="xs:hidden" />
+          <Separator className="lg:hidden" />
           <div className="mb-20 flex w-full max-w-4xl flex-col gap-2 lg:mt-10">
             <h3 className="text-lg font-semibold text-primary ">
               Ploegendienst toewijzen
             </h3>
             <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />
-              <Separator className="my-4" />
+              <Separator className="my-6" />
               <IndividualWorkRequestActions workRequest={workRequest} />
             </div>
           </div>
