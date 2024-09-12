@@ -40,7 +40,9 @@ import {
 import { Input } from 'src/components/ui/input'
 import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
+import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
 import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
+import { loading } from '../JobProfilesCell/JobProfilesCell.stories'
 
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
@@ -378,7 +380,17 @@ const PlanWorkComponent = ({
                   </FormItem>
                 )}
               />
-              <DialogFooter>
+              <DialogFooter className="gap-1">
+                {!isEditing && (
+                  <ButtonWithLoader
+                    variant="outline"
+                    type="button"
+                    loading={false}
+                    disabled={anyLoading}
+                  >
+                    Opslaan als concept
+                  </ButtonWithLoader>
+                )}
                 {isEditing && (
                   <ConfirmDeleteWork
                     onConfirm={() => handleDelete(form.getValues('id'))}
