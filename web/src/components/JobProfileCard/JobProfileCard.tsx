@@ -45,18 +45,14 @@ const JobProfileCard = ({ item }: JobProfileCardProps) => {
           <span>Max. reisafstand: </span>
           <span className="font-semibold">{item.maxTravelDistance} km.</span>
         </div>
-        {item.kmAllowance && (
-          <div>
-            Km. vergoeding:{' '}
-            <span className="font-semibold"> €{item.kmAllowance}</span>
-          </div>
-        )}
+        <div>
+          Km. vergoeding:{' '}
+          <span className="font-semibold"> €{item.kmAllowance}</span>
+        </div>
         <Separator className="my-4 bg-primary-foreground/70" />
-        {item.totalBudgetPerHour && (
-          <div className="font-semibold">
-            Budget €{item.totalBudgetPerHour}/uur
-          </div>
-        )}
+        <div className="font-semibold">
+          Budget €{item.totalBudgetPerHour}/uur
+        </div>
       </CardContent>
       <CardFooter className="-mt-2 hyphens-auto text-sm">
         {item.comment}
