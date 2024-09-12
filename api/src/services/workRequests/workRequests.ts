@@ -90,10 +90,7 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
       where: { workRequestId: id, status: 'FULFILLED' },
     })
 
-    console.log('removing:', numShiftsToRemove)
-    console.log('fulfilled:', numFulfilledShifts)
-
-    if (numShiftsToRemove < numFulfilledShifts)
+    if (numShiftsToRemove > numFulfilledShifts)
       throw new ForbiddenError(
         'Het aantal te verwijderen diensten is groter dan het aantal diensten met vervulde status.'
       )
