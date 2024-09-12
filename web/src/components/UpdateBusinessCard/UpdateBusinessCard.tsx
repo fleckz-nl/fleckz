@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-import { Building2, Check, Edit, MapPin, Plus, X } from 'lucide-react'
+import { Building2, Check, Edit, MapPin, Plus, Trash2, X } from 'lucide-react'
 
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
@@ -12,34 +12,37 @@ const UpdateBusinessCard = () => {
   const [businessName, setBusinessName] = useState('BedrijfNaam')
   return (
     <>
-      <div className="flex w-full items-center gap-2">
-        <Building2 />
-        {showInput ? (
-          <Input
-            ref={businessNameInputRef}
-            className="text-md"
-            onBlur={() => setShowInput(false)}
-            value={businessName}
-            onChange={(e) => setBusinessName(e.target.value)}
-          />
-        ) : (
-          <span>{businessName}</span>
-        )}
-        {showInput ? (
-          <Check
-            className="rounded-full bg-gray-600 p-1 hover:bg-lime-400 hover:text-black focus:bg-lime-400"
-            onClick={() => setShowInput(false)}
-          />
-        ) : (
-          <Edit
-            onClick={() => {
-              setShowInput(true)
-              businessNameInputRef.current.select()
-              businessNameInputRef.current.focus()
-            }}
-            className=" size-5 text-gray-600 hover:text-accent"
-          />
-        )}
+      <div className="flex items-center justify-between">
+        <div className="max-w-2/3 flex w-3/5 items-center gap-2">
+          <Building2 />
+          {showInput ? (
+            <Input
+              ref={businessNameInputRef}
+              className="text-md"
+              onBlur={() => setShowInput(false)}
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
+            />
+          ) : (
+            <span>{businessName}</span>
+          )}
+          {showInput ? (
+            <Check
+              className="rounded-full bg-gray-600 p-1 hover:bg-lime-400 hover:text-black focus:bg-lime-400"
+              onClick={() => setShowInput(false)}
+            />
+          ) : (
+            <Edit
+              onClick={() => {
+                setShowInput(true)
+                businessNameInputRef.current.select()
+                businessNameInputRef.current.focus()
+              }}
+              className=" size-5 text-gray-600 hover:text-accent"
+            />
+          )}
+        </div>
+        <Trash2 className="size-5 text-white/70 hover:cursor-pointer hover:text-destructive" />
       </div>
       <div className="flex flex-col gap-3">
         <div className="ml-7 mt-4 flex w-11/12 flex-wrap items-center justify-between text-muted/70">
