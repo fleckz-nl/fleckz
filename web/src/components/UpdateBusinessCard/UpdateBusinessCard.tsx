@@ -13,7 +13,7 @@ const UpdateBusinessCard = () => {
   return (
     <>
       <div className="flex items-center justify-between">
-        <div className="flex w-full items-center gap-2">
+        <div className="max-w-2/3 flex w-3/5 items-center gap-2">
           <Building2 />
           {showInput ? (
             <Input
