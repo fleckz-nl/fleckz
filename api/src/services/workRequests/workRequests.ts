@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { validate } from '@redwoodjs/api'
+import { ForbiddenError } from '@redwoodjs/graphql-server'
 
 import { db } from 'src/lib/db'
 
@@ -52,15 +53,60 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
   })
 }
 
-export const updateWorkRequest: MutationResolvers['updateWorkRequest'] = ({
-  id,
-  input,
-}) => {
-  return db.workRequest.update({
-    data: input,
-    where: { id },
-  })
-}
+export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
+  async ({ id, input }) => {
+    const existingWorkRequest = await db.workRequest.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    const numShiftsToAdd = input.numWorkers - existingWorkRequest.numWorkers
+    const numShiftsToRemove = existingWorkRequest.numWorkers - input.numWorkers
+
+    if (numShiftsToAdd >= 0) {
+      return db.workRequest.update({
+        data: {
+          ...input,
+          shifts: {
+            createMany: {
+              data: Array.from({ length: numShiftsToAdd }, (_, k) => ({
+                name: `Ploegdienst ${k + 1}`,
+              })),
+            },
+          },
+        },
+        where: { id },
+      })
+    }
+
+    const unfulfilledShifts = await db.shift.findMany({
+      where: {
+        workRequestId: id,
+        status: 'UNFULFILLED',
+      },
+    })
+    const numFulfilledShifts = await db.shift.count({
+      where: { workRequestId: id, status: 'FULFILLED' },
+    })
+
+    if (numShiftsToRemove > numFulfilledShifts)
+      throw new ForbiddenError(
+        'Het aantal te verwijderen diensten is groter dan het aantal diensten met vervulde status.'
+      )
+
+    const shiftsIdToBeRemoved = unfulfilledShifts
+      .toSorted((a, b) => a.createdAt.valueOf() - b.createdAt.valueOf())
+      .slice(0, numShiftsToRemove)
+      .map((s) => s.id)
+
+    await db.shift.deleteMany({ where: { id: { in: shiftsIdToBeRemoved } } })
+
+    return await db.workRequest.update({
+      data: input,
+      where: { id },
+    })
+  }
 
 export const deleteWorkRequest: MutationResolvers['deleteWorkRequest'] = ({
   id,
