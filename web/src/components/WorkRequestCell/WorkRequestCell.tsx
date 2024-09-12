@@ -12,6 +12,7 @@ import type {
 } from '@redwoodjs/web'
 
 import ShiftTableCell from 'src/components/ShiftTableCell'
+import { formatDateTime } from 'src/lib/formatDateTime'
 import { cn } from 'src/lib/utils'
 
 import IndividualWorkRequestActions from '../IndividualWorkRequestActions/IndividualWorkRequestActions'
@@ -27,6 +28,7 @@ export const QUERY: TypedDocumentNode<
   query FindWorkRequestQuery($id: String!) {
     workRequest: workRequest(id: $id) {
       id
+      createdAt
       projectName
       startDate
       endDate
@@ -56,7 +58,8 @@ export const QUERY: TypedDocumentNode<
       }
       createdBy {
         id
-        # TODO: Get user names
+        firstName
+        lastName
       }
       shifts {
         id
@@ -116,8 +119,11 @@ export const Success = ({
               />
               <div className="my-2 text-left text-sm xs:my-0">
                 <h3 className="font-semibold">Op verzoek van:</h3>
-                <p>Jos Janssen</p>
-                <p>16 August 2024 02:00 pm</p>
+                <p>
+                  {workRequest?.createdBy?.firstName}{' '}
+                  {workRequest?.createdBy?.lastName}
+                </p>
+                <p>{formatDateTime(workRequest.createdAt)}</p>
               </div>
             </section>
             <Separator className="lg:hidden" />
