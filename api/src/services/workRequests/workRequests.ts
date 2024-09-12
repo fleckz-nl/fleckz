@@ -39,6 +39,12 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
     },
   })
 
+  if (input.numWorkers > 99) {
+    throw new ForbiddenError(
+      'Het maximum aantal diensten is 99 per aanvraag. Kies een kleiner aantal.'
+    )
+  }
+
   return db.workRequest.create({
     data: {
       ...input,
@@ -62,6 +68,11 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
     })
 
     const numShiftsToAdd = input.numWorkers - existingWorkRequest.numWorkers
+    if (numShiftsToAdd > 99) {
+      throw new ForbiddenError(
+        'Het maximum aantal diensten is 99 per aanvraag. Kies een kleiner aantal.'
+      )
+    }
     const numShiftsToRemove = existingWorkRequest.numWorkers - input.numWorkers
 
     if (numShiftsToAdd >= 0) {
