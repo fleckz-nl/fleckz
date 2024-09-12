@@ -200,6 +200,20 @@ const PlanWorkComponent = ({
     setOpen(false)
   }
 
+  function handleSaveAsDraft(data: z.infer<typeof formSchema>) {
+    const loadingToast = toast.loading('Laden...')
+    create({
+      variables: {
+        input: {
+          ...data,
+          startDate: new Date(data.startDate),
+          endDate: new Date(data.endDate),
+          status: 'DRAFT',
+        },
+      },
+    }).finally(() => toast.dismiss(loadingToast))
+  }
+
   useEffect(() => {
     form.reset(currentDefaultValues)
   }, [form, currentDefaultValues])
@@ -233,7 +247,7 @@ const PlanWorkComponent = ({
               <FormError error={error || updateError} />
             </div>
           )}
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form>
             <fieldset disabled={anyLoading}>
               <FormField
                 control={form.control}
@@ -379,7 +393,8 @@ const PlanWorkComponent = ({
                   <ButtonWithLoader
                     variant="outline"
                     type="button"
-                    loading={false}
+                    loading={anyLoading}
+                    onClick={form.handleSubmit(handleSaveAsDraft)}
                   >
                     Opslaan als concept
                   </ButtonWithLoader>
@@ -392,6 +407,7 @@ const PlanWorkComponent = ({
                   />
                 )}
                 <ButtonWithLoader
+                  onClick={form.handleSubmit(onSubmit)}
                   type="submit"
                   loading={anyLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
