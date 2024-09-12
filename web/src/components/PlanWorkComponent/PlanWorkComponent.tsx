@@ -2,12 +2,7 @@ import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formatDate } from 'date-fns'
-import {
-  LoaderCircle,
-  MessageSquareWarningIcon,
-  Trash2,
-  Users,
-} from 'lucide-react'
+import { MessageSquareWarningIcon, Trash2, Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { CreateWorkRequestInput } from 'types/graphql'
 import { z } from 'zod'
@@ -42,7 +37,6 @@ import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
 import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
-import { loading } from '../JobProfilesCell/JobProfilesCell.stories'
 
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
@@ -386,7 +380,6 @@ const PlanWorkComponent = ({
                     variant="outline"
                     type="button"
                     loading={false}
-                    disabled={loading}
                   >
                     Opslaan als concept
                   </ButtonWithLoader>
@@ -396,21 +389,15 @@ const PlanWorkComponent = ({
                     onConfirm={() => handleDelete(form.getValues('id'))}
                     error={deleteError}
                     loading={deleteLoading}
-                    disabled={anyLoading}
                   />
                 )}
-                <Button
+                <ButtonWithLoader
                   type="submit"
-                  disabled={anyLoading}
+                  loading={anyLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
                 >
-                  {anyLoading && (
-                    <LoaderCircle className="absolute animate-spin" />
-                  )}
-                  <span className={`${anyLoading && 'invisible'}`}>
-                    {isEditing ? 'Opslaan' : 'Indienen'}
-                  </span>
-                </Button>
+                  {isEditing ? 'Opslaan' : 'Indienen'}
+                </ButtonWithLoader>
               </DialogFooter>
             </fieldset>
           </form>
