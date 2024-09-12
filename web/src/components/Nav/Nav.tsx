@@ -2,6 +2,7 @@ import { LogOutIcon, LucideSettings, User } from 'lucide-react'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
 import { Link, routes } from '@redwoodjs/router'
+import { toast } from '@redwoodjs/web/dist/toast'
 
 import { useAuth } from 'src/auth'
 import DrawerMenu from 'src/components/DrawerMenu/DrawerMenu'
@@ -31,6 +32,11 @@ type NavProps = {
 
 const Nav = ({ className }: NavProps) => {
   const { logOut, currentUser } = useAuth()
+
+  async function handleLogout() {
+    await logOut()
+    toast.success('Tot ziens! 👋')
+  }
   return (
     <NavigationMenu
       className={cn(
@@ -96,7 +102,10 @@ const Nav = ({ className }: NavProps) => {
               </DropdownMenuItem>
             </Link>
             <DropdownMenuItem>
-              <button className="flex w-full items-center" onClick={logOut}>
+              <button
+                className="flex w-full items-center"
+                onClick={handleLogout}
+              >
                 <LogOutIcon size={16} className="mr-1" />
                 Uitloggen
               </button>
