@@ -10,7 +10,7 @@ const JobProfileDetailsTable = ({
   jobProfile,
 }: JobProfileDetailsTableProps) => {
   return (
-    <section id="profile-table" className="ml-4 max-w-md">
+    <section id="profile-table" className="ml-4 w-full max-w-md">
       <table>
         <thead>
           <tr>
