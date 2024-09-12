@@ -33,8 +33,8 @@ type NavProps = {
 const Nav = ({ className }: NavProps) => {
   const { logOut, currentUser } = useAuth()
 
-  async function handleLogout() {
-    await logOut()
+  function handleLogout() {
+    logOut()
     toast.success('Tot ziens! 👋')
   }
   return (
