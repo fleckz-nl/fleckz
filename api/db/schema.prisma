@@ -141,6 +141,8 @@ model Shift {
   rating        Int?
   tempAgency    TempAgency?  @relation(fields: [tempAgencyId], references: [id])
   tempAgencyId  String?
+  hoursPlanned  Decimal?
+  hoursWorked   Decimal?
 }
 
 enum ShiftStatus {
