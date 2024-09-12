@@ -1,8 +1,6 @@
 import { ApolloError } from '@apollo/client/errors'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
-import { buttonVariants } from 'src/components/ui/button'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,45 +11,39 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '../ui/alert-dialog'
+} from 'src/components/ui/alert-dialog'
 
-type ConfirmDeleteWorkProps = {
+type ConfirmCompleteWorkRequestProps = {
   onConfirm: () => void
   error?: ApolloError
   loading?: boolean
 }
-
-const ConfirmDeleteWork = ({
+const ConfirmCompleteWorkRequest = ({
   onConfirm,
   error,
   loading,
-}: ConfirmDeleteWorkProps) => {
+}: ConfirmCompleteWorkRequestProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <ButtonWithLoader type="button" variant="destructive" loading={loading}>
-          Verwijderen
+        <ButtonWithLoader type="button" variant="default" loading={loading}>
+          Markeren als afgerond
         </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Weet je het zeker?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Werkaanvraag markeren als afgerond
+          </AlertDialogTitle>
           <div className="bg-red-400">{error?.message}</div>
           <AlertDialogDescription>
-            Deze actie kan niet ongedaan worden gemaakt. Dit zal uw werkverzoek
-            permanent verwijderen.
+            Bevestig dat je deze werkaanvraag als afgerond gaat indienen.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className={buttonVariants({
-              variant: 'destructive',
-            })}
-            onClick={onConfirm}
-            disabled={loading}
-          >
-            Verwijderen
+          <AlertDialogCancel>Annuleren</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm} disabled={loading}>
+            Markeren als afgerond
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -59,4 +51,4 @@ const ConfirmDeleteWork = ({
   )
 }
 
-export default ConfirmDeleteWork
+export default ConfirmCompleteWorkRequest

@@ -1,8 +1,6 @@
 import { ApolloError } from '@apollo/client/errors'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
-import { buttonVariants } from 'src/components/ui/button'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,45 +11,40 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '../ui/alert-dialog'
+} from 'src/components/ui/alert-dialog'
 
-type ConfirmDeleteWorkProps = {
+type ConfirmRevertToConfirmed = {
   onConfirm: () => void
   error?: ApolloError
   loading?: boolean
 }
 
-const ConfirmDeleteWork = ({
+const ConfirmRevertToConfirmed = ({
   onConfirm,
   error,
   loading,
-}: ConfirmDeleteWorkProps) => {
+}: ConfirmRevertToConfirmed) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <ButtonWithLoader type="button" variant="destructive" loading={loading}>
-          Verwijderen
+        <ButtonWithLoader type="button" variant="outline" loading={loading}>
+          Terugbrengen naar in geaccepteerd
         </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Weet je het zeker?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Bevestig terugkeer naar status in geaccepteerd
+          </AlertDialogTitle>
           <div className="bg-red-400">{error?.message}</div>
           <AlertDialogDescription>
-            Deze actie kan niet ongedaan worden gemaakt. Dit zal uw werkverzoek
-            permanent verwijderen.
+            Je gaat de status terugbrengen naar in geaccepteerd
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className={buttonVariants({
-              variant: 'destructive',
-            })}
-            onClick={onConfirm}
-            disabled={loading}
-          >
-            Verwijderen
+          <AlertDialogCancel>Annuleren</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm} disabled={loading}>
+            Terugbrengen naar in geaccepteerd
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -59,4 +52,4 @@ const ConfirmDeleteWork = ({
   )
 }
 
-export default ConfirmDeleteWork
+export default ConfirmRevertToConfirmed

@@ -1,7 +1,6 @@
 import { ApolloError } from '@apollo/client/errors'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
-import { buttonVariants } from 'src/components/ui/button'
 
 import {
   AlertDialog,
@@ -15,43 +14,38 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 
-type ConfirmDeleteWorkProps = {
+type ConfirmRevertInProgressProps = {
   onConfirm: () => void
   error?: ApolloError
   loading?: boolean
 }
 
-const ConfirmDeleteWork = ({
+const ConfirmRevertInProgress = ({
   onConfirm,
   error,
   loading,
-}: ConfirmDeleteWorkProps) => {
+}: ConfirmRevertInProgressProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <ButtonWithLoader type="button" variant="destructive" loading={loading}>
-          Verwijderen
+        <ButtonWithLoader type="button" variant="outline" loading={loading}>
+          Terugbrengen naar in uitvoering
         </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Weet je het zeker?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Bevestig terugkeer naar status in uitvoering
+          </AlertDialogTitle>
           <div className="bg-red-400">{error?.message}</div>
           <AlertDialogDescription>
-            Deze actie kan niet ongedaan worden gemaakt. Dit zal uw werkverzoek
-            permanent verwijderen.
+            Je gaat de status terugbrengen naar in uitvoering
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className={buttonVariants({
-              variant: 'destructive',
-            })}
-            onClick={onConfirm}
-            disabled={loading}
-          >
-            Verwijderen
+          <AlertDialogCancel>Annuleren</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm} disabled={loading}>
+            Terugbrengen naar in uitvoering
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -59,4 +53,4 @@ const ConfirmDeleteWork = ({
   )
 }
 
-export default ConfirmDeleteWork
+export default ConfirmRevertInProgress
