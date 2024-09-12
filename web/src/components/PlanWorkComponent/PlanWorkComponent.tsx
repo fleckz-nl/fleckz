@@ -386,7 +386,7 @@ const PlanWorkComponent = ({
                     variant="outline"
                     type="button"
                     loading={false}
-                    disabled={anyLoading}
+                    disabled={loading}
                   >
                     Opslaan als concept
                   </ButtonWithLoader>
