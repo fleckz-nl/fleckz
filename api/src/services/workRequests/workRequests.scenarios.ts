@@ -1,4 +1,5 @@
 import type { Prisma, WorkRequest } from '@prisma/client'
+
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.WorkRequestCreateArgs>({
@@ -14,7 +15,6 @@ export const standard = defineScenario<Prisma.WorkRequestCreateArgs>({
           create: {
             updatedAt: '2024-08-11T09:56:58.036Z',
             name: 'String',
-            qualityNeeded: 696434,
             yearsOfExp: 8950941,
             hourlyWageMin: 2031144.9619626543,
             hourlyWageMax: 1293003.2687140037,
@@ -43,7 +43,6 @@ export const standard = defineScenario<Prisma.WorkRequestCreateArgs>({
           create: {
             updatedAt: '2024-08-11T09:56:58.036Z',
             name: 'String',
-            qualityNeeded: 8060614,
             yearsOfExp: 7435706,
             hourlyWageMin: 8521468.440744352,
             hourlyWageMax: 7395151.078624935,

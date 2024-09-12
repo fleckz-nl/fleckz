@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import BusinessAddressCell from './BusinessAddressCell'
+import IndividualWorkRequestActions from './IndividualWorkRequestActions'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('BusinessAddressCell', () => {
+describe('IndividualWorkRequestActions', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<BusinessAddressCell />)
+      render(<IndividualWorkRequestActions />)
     }).not.toThrow()
   })
 })

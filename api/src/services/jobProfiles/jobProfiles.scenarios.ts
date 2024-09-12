@@ -1,26 +1,39 @@
 import type { Prisma, JobProfile } from '@prisma/client'
+
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.JobProfileCreateArgs>({
   jobProfile: {
     one: {
       data: {
-        updatedAt: '2024-08-07T13:45:31.666Z',
-        name: 'String',
-        qualityNeeded: 8277923,
-        yearsOfExp: 6251329,
-        hourlyWageMin: 513517.61840179533,
-        hourlyWageMax: 3812053.088785139,
+        id: 'clzo7lgno00013b6g6xlz8ghu',
+        name: 'Softwareontwikkelaar',
+        hourlyWageMin: 35,
+        hourlyWageMax: 50,
+        yearsOfExp: 3,
+        maxTravelDistance: 30,
+        kmAllowance: 0.21,
+        isCarAvailable: false,
+        isTravelReimbursed: true,
+        totalBudgetPerHour: 52.1,
+        comment:
+          'Kennis van moderne programmeertalen zoals Python en Java is een vereiste.',
       },
     },
     two: {
       data: {
-        updatedAt: '2024-08-07T13:45:31.666Z',
-        name: 'String',
-        qualityNeeded: 3596563,
-        yearsOfExp: 8283454,
-        hourlyWageMin: 1682487.2461807816,
-        hourlyWageMax: 8748557.683181388,
+        id: 'ckldxzr7e000001jy5e5r3n1v',
+        name: 'Salesmanager',
+        hourlyWageMin: 30,
+        hourlyWageMax: 55,
+        yearsOfExp: 4,
+        maxTravelDistance: 50,
+        kmAllowance: 0.25,
+        isCarAvailable: true,
+        isTravelReimbursed: true,
+        totalBudgetPerHour: 55,
+        comment:
+          'Sterke onderhandelingsvaardigheden en ervaring in B2B-verkoop is een must.',
       },
     },
   },

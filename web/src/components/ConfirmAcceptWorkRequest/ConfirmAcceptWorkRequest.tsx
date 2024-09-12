@@ -1,7 +1,6 @@
 import { ApolloError } from '@apollo/client/errors'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
-import { buttonVariants } from 'src/components/ui/button'
 
 import {
   AlertDialog,
@@ -15,43 +14,36 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog'
 
-type ConfirmDeleteWorkProps = {
+type ConfirmAcceptWorkRequestProps = {
   onConfirm: () => void
   error?: ApolloError
   loading?: boolean
 }
 
-const ConfirmDeleteWork = ({
+const ConfirmAcceptWorkRequest = ({
   onConfirm,
   error,
   loading,
-}: ConfirmDeleteWorkProps) => {
+}: ConfirmAcceptWorkRequestProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <ButtonWithLoader type="button" variant="destructive" loading={loading}>
-          Verwijderen
+        <ButtonWithLoader type="button" variant="default" loading={loading}>
+          Bevestig diensten
         </ButtonWithLoader>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Weet je het zeker?</AlertDialogTitle>
+          <AlertDialogTitle>Verzoek accepteren</AlertDialogTitle>
           <div className="bg-red-400">{error?.message}</div>
           <AlertDialogDescription>
-            Deze actie kan niet ongedaan worden gemaakt. Dit zal uw werkverzoek
-            permanent verwijderen.
+            Je gaat het huidige verzoek markeren als geaccepteerd.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className={buttonVariants({
-              variant: 'destructive',
-            })}
-            onClick={onConfirm}
-            disabled={loading}
-          >
-            Verwijderen
+          <AlertDialogCancel>Annuleren</AlertDialogCancel>
+          <AlertDialogAction onClick={onConfirm} disabled={loading}>
+            Accepteer het huidige verzoek
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -59,4 +51,4 @@ const ConfirmDeleteWork = ({
   )
 }
 
-export default ConfirmDeleteWork
+export default ConfirmAcceptWorkRequest

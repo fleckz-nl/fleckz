@@ -1,14 +1,17 @@
 export function OverviewSection({ children, ...props }) {
   return (
-    <section className="mx-auto" {...props}>
+    <div className="mx-auto pb-14" {...props}>
       {children}
-    </section>
+    </div>
   )
 }
 
 export function OverviewHeader({ children, ...props }) {
   return (
-    <h2 className="mb-2 text-xl font-bold text-white/90" {...props}>
+    <h2
+      className="mb-4 flex items-center text-xl font-bold text-white/90"
+      {...props}
+    >
       {children}
     </h2>
   )
@@ -16,7 +19,7 @@ export function OverviewHeader({ children, ...props }) {
 
 export function OverviewContent({ children, ...props }) {
   return (
-    <div className="grid sm:grid-cols-2 sm:gap-4" {...props}>
+    <div className="grid gap-4 sm:grid-cols-2" {...props}>
       {children}
     </div>
   )

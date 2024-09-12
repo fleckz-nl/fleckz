@@ -5,7 +5,6 @@ import { z } from 'zod'
 
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
-import { Separator } from '../ui/separator'
 import { Textarea } from '../ui/textarea'
 
 const WorkRequestCommentSection = () => {
@@ -64,11 +63,6 @@ const WorkRequestCommentSection = () => {
             </Button>
           </form>
         </Form>
-      </div>
-      <Separator className="my-4" />
-      <div className="flex gap-2 self-end">
-        <Button variant="destructive">Afwijzen</Button>
-        <Button variant="default">Bevestigen</Button>
       </div>
     </section>
   )

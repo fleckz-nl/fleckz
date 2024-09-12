@@ -21,10 +21,6 @@ export const jobProfile: QueryResolvers['jobProfile'] = ({ id }) => {
 export const createJobProfile: MutationResolvers['createJobProfile'] = ({
   input,
 }) => {
-  validate(input.qualityNeeded, 'qualityNeeded', {
-    numericality: { greaterThanOrEqual: 1, lessThanOrEqual: 5 },
-  })
-
   validate(input.yearsOfExp, 'yearsOfExp', {
     numericality: {
       greaterThanOrEqual: 0,
@@ -67,10 +63,10 @@ export const deleteJobProfile: MutationResolvers['deleteJobProfile'] = ({
 }
 
 export const JobProfile: JobProfileRelationResolvers = {
-  certificates: (_obj, { root }) => {
-    return db.jobProfile.findUnique({ where: { id: root?.id } }).certificates()
-  },
-  workRequest: (_obj, { root }) => {
-    return db.jobProfile.findUnique({ where: { id: root?.id } }).workRequest()
-  },
+  // certificates: (_obj, { root }) => {
+  //   return db.jobProfile.findUnique({ where: { id: root?.id } }).certificates()
+  // },
+  // workRequest: (_obj, { root }) => {
+  //   return db.jobProfile.findUnique({ where: { id: root?.id } }).workRequest()
+  // },
 }

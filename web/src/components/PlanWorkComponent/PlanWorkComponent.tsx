@@ -212,7 +212,14 @@ const PlanWorkComponent = ({
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <Toaster />
       <DialogTrigger asChild>
-        {!hideTrigger && <Button variant="outline">Werk Uitzetten</Button>}
+        {!hideTrigger && (
+          <Button
+            variant="outline"
+            className="mb-4 mt-2 p-4 text-lg text-white/80"
+          >
+            Werk Uitzetten
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>

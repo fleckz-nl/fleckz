@@ -14,6 +14,7 @@ import type {
 import ShiftTableCell from 'src/components/ShiftTableCell'
 import { cn } from 'src/lib/utils'
 
+import IndividualWorkRequestActions from '../IndividualWorkRequestActions/IndividualWorkRequestActions'
 import JobProfileDetailsTable from '../JobProfileDetailsTable/JobProfileDetailsTable'
 import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
 import { Separator } from '../ui/separator'
@@ -43,7 +44,6 @@ export const QUERY: TypedDocumentNode<
       jobProfile {
         id
         name
-        qualityNeeded
         yearsOfExp
         hourlyWageMin
         hourlyWageMax
@@ -128,8 +128,10 @@ export const Success = ({
             <h3 className="relative w-max text-lg font-semibold text-primary xs:left-28">
               Ploegendienst toewijzen
             </h3>
-            <div className="w-full xs:mx-auto xs:max-w-3xl xs:p-4">
+            <div className="flex w-full flex-col xs:mx-auto xs:max-w-3xl xs:p-4">
               <ShiftTableCell request={workRequest} />
+              <Separator className="my-4" />
+              <IndividualWorkRequestActions workRequest={workRequest} />
             </div>
           </div>
         </div>

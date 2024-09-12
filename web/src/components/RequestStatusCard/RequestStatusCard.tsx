@@ -34,10 +34,10 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
 
   return (
     <Card className={className}>
-      <CardHeader className="relative">
-        <CardTitle className="hyphens-auto sm:w-2/3">
+      <CardHeader className="grid grid-cols-2">
+        <CardTitle className="flex items-center ">
           <Link
-            className="hover:text-accent"
+            className="w-11/12 hyphens-auto hover:text-accent"
             to={routes.workRequest({ id: request.id })}
           >
             {request.jobProfile.name}
@@ -48,7 +48,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           <>
             <Badge
               variant="outline"
-              className="absolute right-4 top-2 hover:cursor-pointer"
+              className="relative -right-2 -top-2 h-6 w-fit justify-self-end hover:cursor-pointer"
               onClick={() => setEditOpen(true)}
             >
               Concept <Edit className="ml-1 size-3" />
@@ -66,19 +66,22 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </>
         )}
         {request.status === 'SUBMITTED' && (
-          <Badge className="absolute right-4 top-2 bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
+          <Badge className="relative -right-2 -top-2 h-6 w-fit justify-self-end bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
             In uitvoering
           </Badge>
         )}
         {request.status === 'CONFIRMED' && (
-          <Badge variant="secondary" className="absolute right-4 top-2">
+          <Badge
+            variant="secondary"
+            className="relative -right-2 -top-2 h-6 w-fit justify-self-end"
+          >
             Geaccepteerd
           </Badge>
         )}
         {request.status === 'DONE' && (
           <Badge
             variant="secondary"
-            className="absolute right-4 top-2 bg-primary/30 hover:bg-primary/50"
+            className="relative -right-2 -top-2 h-6 w-fit justify-self-end bg-primary/30 hover:bg-primary/50"
           >
             Afgerond
           </Badge>

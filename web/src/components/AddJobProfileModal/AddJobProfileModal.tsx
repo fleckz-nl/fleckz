@@ -101,12 +101,9 @@ const AddJobProfileModal = () => {
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <Toaster />
       <DialogTrigger asChild>
-        <Button
-          variant="default"
-          className="flex gap-2 px-10 py-6 text-lg font-bold"
-        >
-          <CirclePlus size={30} className="text-accent" />
-          Aanmaken
+        <Button className="mb-4 mt-12 flex gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
+          <CirclePlus size={20} />
+          <span className="text-white">Aanmaken</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll">
@@ -372,21 +369,6 @@ const AddJobProfileModal = () => {
         </Form>
       </DialogContent>
     </Dialog>
-
-    // TODO: Check onchange react hook forms
-    //           validation={{
-    //             required: {
-    //               value: true,
-    //               message: 'Gewenste kwaliteit is verplicht',
-    //             },
-    //             min: { value: 1, message: 'Minimaal is 1' },
-    //             max: { value: 5, message: 'Maximum is 5' },
-    //           }}
-    //           min={1}
-    //           max={5}
-    //           value={qualityNeeded}
-    //           onChange={(e) => setQualityNeeded(Number(e.target.value))}
-    //         />
   )
 }
 
