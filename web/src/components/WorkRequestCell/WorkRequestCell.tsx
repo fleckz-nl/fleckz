@@ -101,13 +101,13 @@ export const Success = ({
   SuccessProps) => {
   return (
     <div className="flex min-h-screen w-full flex-wrap justify-between">
-      <div className="flex w-full max-w-5xl flex-grow flex-wrap justify-center bg-white">
+      <div className="flex w-full flex-grow flex-wrap justify-center bg-white">
         <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
           <Link to={routes.overview()} className="flex items-center">
             <ArrowLeft className="mr-1 inline" /> Overzicht
           </Link>
         </div>
-        <div className="container flex flex-col items-center gap-8 pt-4 xs:pt-0">
+        <div className="container flex max-w-5xl flex-col items-center gap-8 pt-4 xs:pt-0">
           <div className="flex w-full flex-wrap items-center justify-between gap-4">
             <section className="px-0 xs:mx-auto">
               <RequestStatusCard
