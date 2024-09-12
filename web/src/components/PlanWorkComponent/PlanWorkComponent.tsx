@@ -408,7 +408,7 @@ const PlanWorkComponent = ({
                     <LoaderCircle className="absolute animate-spin" />
                   )}
                   <span className={`${anyLoading && 'invisible'}`}>
-                    {isEditing ? 'Update' : 'Indienen'}
+                    {isEditing ? 'Opslaan' : 'Indienen'}
                   </span>
                 </Button>
               </DialogFooter>
