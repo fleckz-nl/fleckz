@@ -42,7 +42,7 @@ const UpdateBusinessCard = () => {
             />
           )}
         </div>
-        <Trash2 className="size-5 text-white/70 hover:text-destructive" />
+        <Trash2 className="size-5 text-white/70 hover:cursor-pointer hover:text-destructive" />
       </div>
       <div className="flex flex-col gap-3">
         <div className="ml-7 mt-4 flex w-11/12 flex-wrap items-center justify-between text-muted/70">
