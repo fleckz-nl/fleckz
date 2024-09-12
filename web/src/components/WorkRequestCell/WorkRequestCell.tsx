@@ -108,7 +108,7 @@ export const Success = ({
           </Link>
         </div>
         <div className="container flex max-w-5xl flex-col items-center gap-8 pt-4 xs:pt-0">
-          <div className="flex w-full flex-wrap items-center justify-between gap-4">
+          <div className="flex w-full flex-wrap items-center justify-center gap-4 xs:justify-between">
             <section className="px-0 xs:mx-auto">
               <RequestStatusCard
                 request={workRequest}
