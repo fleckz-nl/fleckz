@@ -18,14 +18,14 @@ const JobProfileDetailsTable = ({
             <th scope="col" className="w-1/3"></th>
           </tr>
         </thead>
-        <tbody className="leading-10">
-          <tr>
+        <tbody>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Aantal jaar werkervaring
             </th>
             <td className="text-primary">{jobProfile.yearsOfExp} jaren+</td>
           </tr>
-          <tr>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Salaris
             </th>
@@ -34,13 +34,13 @@ const JobProfileDetailsTable = ({
               {formatToEuros(jobProfile.hourlyWageMax)}
             </td>
           </tr>
-          <tr>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Max. Reisafstand
             </th>
             <td className="text-primary">{jobProfile.maxTravelDistance} km</td>
           </tr>
-          <tr>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Auto beschikbaar?
             </th>
@@ -48,7 +48,7 @@ const JobProfileDetailsTable = ({
               {jobProfile.isCarAvailable ? 'Ja' : 'Nee'}
             </td>
           </tr>
-          <tr>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Kilometervergoeding
             </th>
@@ -56,7 +56,7 @@ const JobProfileDetailsTable = ({
               {formatToEuros(jobProfile.kmAllowance)} /km
             </td>
           </tr>
-          <tr>
+          <tr className="h-10">
             <th className="font-normal" scope="row" align="left">
               Budget bruto per uur
             </th>
