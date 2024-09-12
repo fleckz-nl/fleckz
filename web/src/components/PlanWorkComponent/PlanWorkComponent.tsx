@@ -2,12 +2,7 @@ import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formatDate } from 'date-fns'
-import {
-  LoaderCircle,
-  MessageSquareWarningIcon,
-  Trash2,
-  Users,
-} from 'lucide-react'
+import { MessageSquareWarningIcon, Trash2, Users } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { CreateWorkRequestInput } from 'types/graphql'
 import { z } from 'zod'
@@ -40,6 +35,7 @@ import {
 import { Input } from 'src/components/ui/input'
 import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
+import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
 import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
 
 const CREATE_WORK_REQUEST_GQL = gql`
@@ -204,6 +200,20 @@ const PlanWorkComponent = ({
     setOpen(false)
   }
 
+  function handleSaveAsDraft(data: z.infer<typeof formSchema>) {
+    const loadingToast = toast.loading('Laden...')
+    create({
+      variables: {
+        input: {
+          ...data,
+          startDate: new Date(data.startDate),
+          endDate: new Date(data.endDate),
+          status: 'DRAFT',
+        },
+      },
+    }).finally(() => toast.dismiss(loadingToast))
+  }
+
   useEffect(() => {
     form.reset(currentDefaultValues)
   }, [form, currentDefaultValues])
@@ -237,7 +247,7 @@ const PlanWorkComponent = ({
               <FormError error={error || updateError} />
             </div>
           )}
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form>
             <fieldset disabled={anyLoading}>
               <FormField
                 control={form.control}
@@ -378,27 +388,32 @@ const PlanWorkComponent = ({
                   </FormItem>
                 )}
               />
-              <DialogFooter>
+              <DialogFooter className="gap-1">
+                {!isEditing && (
+                  <ButtonWithLoader
+                    variant="outline"
+                    type="button"
+                    loading={anyLoading}
+                    onClick={form.handleSubmit(handleSaveAsDraft)}
+                  >
+                    Opslaan als concept
+                  </ButtonWithLoader>
+                )}
                 {isEditing && (
                   <ConfirmDeleteWork
                     onConfirm={() => handleDelete(form.getValues('id'))}
                     error={deleteError}
                     loading={deleteLoading}
-                    disabled={anyLoading}
                   />
                 )}
-                <Button
+                <ButtonWithLoader
+                  onClick={form.handleSubmit(onSubmit)}
                   type="submit"
-                  disabled={anyLoading}
+                  loading={anyLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
                 >
-                  {anyLoading && (
-                    <LoaderCircle className="absolute animate-spin" />
-                  )}
-                  <span className={`${anyLoading && 'invisible'}`}>
-                    {isEditing ? 'Update' : 'Indienen'}
-                  </span>
-                </Button>
+                  {isEditing ? 'Opslaan' : 'Indienen'}
+                </ButtonWithLoader>
               </DialogFooter>
             </fieldset>
           </form>
