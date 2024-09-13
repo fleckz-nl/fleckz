@@ -23,6 +23,27 @@ export const createClientBusiness: MutationResolvers['createClientBusiness'] =
     })
   }
 
+export const createClientBusinessWithWorkplace: MutationResolvers['createClientBusinessWithWorkplace'] =
+  async ({ input }) => {
+    const { businessName, userId, ...workplace } = input
+
+    return await db.clientBusiness.create({
+      data: {
+        name: businessName,
+        userId,
+        workplaces: {
+          create: {
+            address: {
+              create: {
+                ...workplace,
+              },
+            },
+          },
+        },
+      },
+    })
+  }
+
 export const updateClientBusiness: MutationResolvers['updateClientBusiness'] =
   ({ id, input }) => {
     return db.clientBusiness.update({
