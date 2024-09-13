@@ -166,7 +166,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
         {request.status === 'DONE' && (
           <>
             <Separator className="opacity-40" />
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-4">
               <Button className="text-accent">Voeg een recencie</Button>
               {/* This button will open a form that will add ratings after shifts are fulfilled. Form should have the number of hours fufilled and then the rating stars */}
             </div>
