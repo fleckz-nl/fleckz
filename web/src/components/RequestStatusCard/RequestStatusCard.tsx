@@ -126,6 +126,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
                 {request.numWorkers}
               </div>
             </div>
+            <EditButton />
           </>
         )}
         {request.status === 'SUBMITTED' && (
@@ -155,9 +156,10 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
                       request.numWorkers) *
                     100
                   }
-                ></Progress>
+                />
               </div>
             </div>
+            <EditButton />
           </>
         )}
         {request.status === 'CONFIRMED' && <AssignedShifts request={request} />}
