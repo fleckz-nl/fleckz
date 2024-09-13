@@ -6,9 +6,16 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const clientBusinesses: QueryResolvers['clientBusinesses'] = () => {
-  return db.clientBusiness.findMany()
-}
+export const clientBusinesses: QueryResolvers['clientBusinesses'] =
+  async () => {
+    return db.clientBusiness.findMany({
+      where: { userId: context.currentUser.id },
+      include: { workplaces: { include: { address: true } } },
+      orderBy: {
+        createdAt: 'asc',
+      },
+    })
+  }
 
 export const clientBusiness: QueryResolvers['clientBusiness'] = ({ id }) => {
   return db.clientBusiness.findUnique({
