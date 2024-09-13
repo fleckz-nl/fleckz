@@ -60,30 +60,43 @@ const UpdateBusinessCard = ({ clientBusiness }: UpdateBusinessCardProps) => {
   })
 
   function handleBusinessDelete() {
-    deleteClientBusiness({
-      variables: {
-        id: clientBusiness.id,
-      },
-    })
+    loadingToastWrapper(
+      deleteClientBusiness({
+        variables: {
+          id: clientBusiness.id,
+        },
+        onCompleted: () => toast.success('Verwijderd bedrijf'),
+      })
+    )
   }
   function handleWorkplaceDelete(workspaceId) {
-    deleteWorkplace({
-      variables: {
-        id: workspaceId,
-      },
-    })
+    loadingToastWrapper(
+      deleteWorkplace({
+        variables: {
+          id: workspaceId,
+        },
+        onCompleted: () => toast.success('Verwijderd werkplek'),
+      })
+    )
   }
 
-  async function handleBusinessNameChange() {
-    await updateClientBusiness({
-      variables: {
-        id: clientBusiness.id,
-        input: {
-          name: businessName,
+  function handleBusinessNameChange() {
+    loadingToastWrapper(
+      updateClientBusiness({
+        variables: {
+          id: clientBusiness.id,
+          input: {
+            name: businessName,
+          },
         },
-      },
-      onCompleted: () => toast.success('new naam'),
-    })
+        onCompleted: () => toast.success('Bijgewerkte bedrijfsnaam'),
+      })
+    )
+  }
+
+  function loadingToastWrapper(func: Promise<any>) {
+    const loadingToast = toast.loading('Laden...')
+    func.finally(() => toast.dismiss(loadingToast))
   }
 
   function Workplace(
