@@ -167,7 +167,7 @@ model Workplace {
   name             String?
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
-  clientBusiness   ClientBusiness @relation(fields: [clientBusinessId], references: [id])
+  clientBusiness   ClientBusiness @relation(fields: [clientBusinessId], references: [id], onDelete: Cascade)
   clientBusinessId String
   address          Address        @relation(fields: [addressId], references: [id])
   addressId        String
