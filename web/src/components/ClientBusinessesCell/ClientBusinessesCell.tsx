@@ -9,6 +9,8 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import UpdateBusinessCard from 'src/components/UpdateBusinessCard/UpdateBusinessCard'
+
 export const QUERY: TypedDocumentNode<
   ClientBusinessesQuery,
   ClientBusinessesQueryVariables
@@ -16,13 +18,25 @@ export const QUERY: TypedDocumentNode<
   query ClientBusinessesQuery {
     clientBusinesses {
       id
+      name
+      workplaces {
+        id
+        address {
+          id
+          street
+          houseNumber
+          houseNumberAddition
+          city
+          postalCode
+        }
+      }
     }
   }
 `
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => <>Geen bedrijven. </>
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
@@ -32,10 +46,10 @@ export const Success = ({
   clientBusinesses,
 }: CellSuccessProps<ClientBusinessesQuery>) => {
   return (
-    <ul>
-      {clientBusinesses.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
-      })}
-    </ul>
+    <>
+      {clientBusinesses.map((b) => (
+        <UpdateBusinessCard key={b.id} clientBusiness={b} />
+      ))}
+    </>
   )
 }
