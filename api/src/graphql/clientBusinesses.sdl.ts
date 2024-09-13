@@ -18,6 +18,15 @@ export const schema = gql`
     name: String!
     userId: String!
   }
+  input CreateClientBusinessWithWorkplaceInput {
+    businessName: String!
+    userId: String!
+    street: String!
+    houseNumber: String!
+    houseNumberAddition: String
+    city: String!
+    postalCode: String!
+  }
 
   input UpdateClientBusinessInput {
     name: String
@@ -27,6 +36,9 @@ export const schema = gql`
   type Mutation {
     createClientBusiness(input: CreateClientBusinessInput!): ClientBusiness!
       @requireAuth
+    createClientBusinessWithWorkplace(
+      input: CreateClientBusinessWithWorkplaceInput!
+    ): ClientBusiness! @requireAuth
     updateClientBusiness(
       id: String!
       input: UpdateClientBusinessInput!
