@@ -38,6 +38,7 @@ import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
 import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
+import { QUERY as WorkRequestsQuery } from '../WorkRequestsCell'
 
 const CREATE_WORK_REQUEST_GQL = gql`
   mutation CreateWorkRequestInput($input: CreateWorkRequestInput!) {
@@ -132,7 +133,10 @@ const PlanWorkComponent = ({
         form.reset()
         setOpen(false)
       },
-      refetchQueries: [{ query: WorkSchedularQuery }],
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
     }
   )
 
@@ -144,7 +148,10 @@ const PlanWorkComponent = ({
         form.reset()
         setOpen(false)
       },
-      refetchQueries: [{ query: WorkSchedularQuery }],
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
     }
   )
 
@@ -158,7 +165,10 @@ const PlanWorkComponent = ({
         form.reset()
         setOpen(false)
       },
-      refetchQueries: [{ query: WorkSchedularQuery }],
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
     })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
