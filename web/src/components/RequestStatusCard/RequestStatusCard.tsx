@@ -31,6 +31,29 @@ type RequestStatusCardProps = {
 }
 const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
   const [editOpen, setEditOpen] = useState(false)
+  function EditButton() {
+    return (
+      <>
+        <Button
+          variant="outline"
+          className="relative top-2 mx-auto flex gap-1"
+          onClick={() => setEditOpen(true)}
+        >
+          Bewerken <Edit className="size-3" />
+        </Button>
+        <PlanWorkComponent
+          defaultValues={{
+            ...request,
+            addressId: request.location.id,
+            jobProfileId: request.jobProfile.id,
+          }}
+          open={editOpen}
+          setOpen={setEditOpen}
+          hideTrigger
+        />
+      </>
+    )
+  }
 
   return (
     <Card className={className}>
