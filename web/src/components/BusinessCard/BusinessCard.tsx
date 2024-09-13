@@ -1,3 +1,5 @@
+import ClientBusinessesCell from 'src/components/ClientBusinessesCell'
+
 import AddAddressDialog from '../AddAddressDialog/AddAddressDialog'
 import {
   Card,
@@ -6,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card'
-import UpdateBusinessCard from '../UpdateBusinessCard/UpdateBusinessCard'
 
 const BusinessCard = () => {
   return (
@@ -18,8 +19,7 @@ const BusinessCard = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col space-y-2">
-        <UpdateBusinessCard />
-        <UpdateBusinessCard />
+        <ClientBusinessesCell />
         <AddAddressDialog />
       </CardContent>
     </Card>
