@@ -37,6 +37,7 @@ export const schema = gql`
     numWorkers: Int!
     addressId: String!
     status: WorkRequestStatus!
+    userId: String
   }
 
   input UpdateWorkRequestInput {
