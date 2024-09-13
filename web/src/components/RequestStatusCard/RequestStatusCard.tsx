@@ -68,25 +68,12 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </Link>
         </CardTitle>
         {request.status === 'DRAFT' && (
-          <>
             <Badge
               variant="outline"
-              className="relative -right-2 -top-2 h-6 w-fit justify-self-end hover:cursor-pointer"
-              onClick={() => setEditOpen(true)}
+            className="relative -right-2 -top-2 h-6 w-fit justify-self-end"
             >
-              Concept <Edit className="ml-1 size-3" />
+            Concept
             </Badge>
-            <PlanWorkComponent
-              defaultValues={{
-                ...request,
-                addressId: request.location.id,
-                jobProfileId: request.jobProfile.id,
-              }}
-              open={editOpen}
-              setOpen={setEditOpen}
-              hideTrigger
-            />
-          </>
         )}
         {request.status === 'SUBMITTED' && (
           <Badge className="relative -right-2 -top-2 h-6 w-fit justify-self-end bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
