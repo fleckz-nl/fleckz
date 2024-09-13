@@ -40,7 +40,7 @@ const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
     <>
       <div className={className}>
         <Separator className="opacity-40" />
-        <div className="flex items-center gap-1">
+        <div className="mt-3 flex items-center gap-1">
           <Users />
           <h3>Toegewezen medewerkers</h3>
         </div>
