@@ -15,6 +15,7 @@ import { WorkRequestsQuery } from 'types/graphql'
 
 import { Link, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import { formatAddress } from 'src/lib/formatAddress'
 
 import AssignedShifts from '../AssignedShifts/AssignedShifts'
@@ -29,8 +30,10 @@ type RequestStatusCardProps = {
   request: WorkRequestsQuery['workRequests'][0]
   className?: string
 }
+
 const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
   const [editOpen, setEditOpen] = useState(false)
+  const { currentUser } = useAuth()
   function EditButton() {
     return (
       <>
@@ -68,12 +71,12 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           </Link>
         </CardTitle>
         {request.status === 'DRAFT' && (
-            <Badge
-              variant="outline"
+          <Badge
+            variant="outline"
             className="relative -right-2 -top-2 h-6 w-fit justify-self-end"
-            >
+          >
             Concept
-            </Badge>
+          </Badge>
         )}
         {request.status === 'SUBMITTED' && (
           <Badge className="relative -right-2 -top-2 h-6 w-fit justify-self-end bg-warning/40 text-gray-600 hover:bg-warning/70 hover:text-white">
@@ -162,7 +165,12 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
             <EditButton />
           </>
         )}
-        {request.status === 'CONFIRMED' && <AssignedShifts request={request} />}
+        {request.status === 'CONFIRMED' && (
+          <>
+            <AssignedShifts request={request} />
+            {currentUser.roles.includes('ADMIN') && <EditButton />}
+          </>
+        )}
         {request.status === 'DONE' && (
           <>
             <Separator className="opacity-40" />
@@ -170,6 +178,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
               <Button className="text-accent">Voeg een recencie</Button>
               {/* This button will open a form that will add ratings after shifts are fulfilled. Form should have the number of hours fufilled and then the rating stars */}
             </div>
+            {currentUser.roles.includes('ADMIN') && <EditButton />}
           </>
         )}
       </CardContent>
