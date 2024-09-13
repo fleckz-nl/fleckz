@@ -73,7 +73,7 @@ model Address {
   houseNumberAddition String?
   postalCode          String
   city                String
-  province            String
+  province            String?
   country             String        @default("Netherlands")
   workRequest         WorkRequest[]
   createdBy           User?         @relation(fields: [userId], references: [id])
