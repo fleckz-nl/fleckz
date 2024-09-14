@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import AddAddressDialog from './AddAddressDialog'
+import AddBusinessDialog from './AddBusinessDialog'
 
-const meta: Meta<typeof AddAddressDialog> = {
-  component: AddAddressDialog,
+const meta: Meta<typeof AddBusinessDialog> = {
+  component: AddBusinessDialog,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof AddAddressDialog>
+type Story = StoryObj<typeof AddBusinessDialog>
 
 export const Primary: Story = {}
