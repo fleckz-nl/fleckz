@@ -32,6 +32,7 @@ model User {
   jobProfile            JobProfile[]
   certificate           Certificate[]
   clientBusinessCreated ClientBusiness[]
+  commentsCreated       Comment[]
 }
 
 enum Role {
@@ -55,6 +56,7 @@ model WorkRequest {
   status       WorkRequestStatus @default(DRAFT)
   createdBy    User?             @relation(fields: [userId], references: [id])
   userId       String?
+  comments     Comment[]
 }
 
 enum WorkRequestStatus {
@@ -171,4 +173,15 @@ model Workplace {
   clientBusinessId String
   address          Address        @relation(fields: [addressId], references: [id])
   addressId        String
+}
+
+model Comment {
+  id            String      @id @default(cuid())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  body          String
+  workRequest   WorkRequest @relation(fields: [workRequestId], references: [id])
+  commentedBy   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  workRequestId String
 }
