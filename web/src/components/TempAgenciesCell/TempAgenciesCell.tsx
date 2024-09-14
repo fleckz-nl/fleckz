@@ -9,6 +9,8 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import TempAgencyCard from '../TempAgencyCard/TempAgencyCard'
+
 export const QUERY: TypedDocumentNode<
   TempAgenciesQuery,
   TempAgenciesQueryVariables
@@ -44,9 +46,13 @@ export const Success = ({
   tempAgencies,
 }: CellSuccessProps<TempAgenciesQuery>) => {
   return (
-    <ul>
+    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {tempAgencies.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
+        return (
+          <li key={item.id}>
+            <TempAgencyCard item={item} />
+          </li>
+        )
       })}
     </ul>
   )
