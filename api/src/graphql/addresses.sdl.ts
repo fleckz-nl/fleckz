@@ -8,7 +8,7 @@ export const schema = gql`
     houseNumberAddition: String
     postalCode: String!
     city: String!
-    province: String!
+    province: String
     country: String!
     workRequest: [WorkRequest]!
   }
