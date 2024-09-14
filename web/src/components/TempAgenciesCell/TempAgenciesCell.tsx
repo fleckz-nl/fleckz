@@ -16,6 +16,18 @@ export const QUERY: TypedDocumentNode<
   query TempAgenciesQuery {
     tempAgencies {
       id
+      name
+      phone
+      email
+      address {
+        street
+        houseNumber
+        houseNumberAddition
+        postalCode
+        city
+        province
+        country
+      }
     }
   }
 `
