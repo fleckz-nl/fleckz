@@ -24,6 +24,25 @@ export const createWorkplace: MutationResolvers['createWorkplace'] = ({
   })
 }
 
+export const createWorkplaceWithNewAddress: MutationResolvers['createWorkplaceWithNewAddress'] =
+  ({ clientBusinessId, input }) => {
+    const { address } = input
+    return db.workplace.create({
+      data: {
+        address: {
+          create: {
+            ...address,
+          },
+        },
+        clientBusiness: {
+          connect: {
+            id: clientBusinessId,
+          },
+        },
+      },
+    })
+  }
+
 export const updateWorkplace: MutationResolvers['updateWorkplace'] = ({
   id,
   input,
