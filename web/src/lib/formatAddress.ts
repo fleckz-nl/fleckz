@@ -1,7 +1,10 @@
 import { Address } from 'types/graphql'
 
 export function formatAddress(
-  address: Omit<Address, 'createdAt' | 'updatedAt' | 'workRequest' | 'id'>
+  address: Omit<
+    Address,
+    'createdAt' | 'updatedAt' | 'workRequest' | 'id' | 'province' | 'country'
+  >
 ) {
   if (address == null) return
   const { street, houseNumber, houseNumberAddition, city, postalCode } = address

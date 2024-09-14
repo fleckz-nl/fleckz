@@ -24,8 +24,8 @@ export const schema = gql`
     houseNumberAddition: String
     postalCode: String!
     city: String!
-    province: String!
-    country: String!
+    province: String
+    country: String
   }
 
   input UpdateAddressInput {
