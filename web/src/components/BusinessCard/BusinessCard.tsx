@@ -1,6 +1,6 @@
 import ClientBusinessesCell from 'src/components/ClientBusinessesCell'
 
-import AddAddressDialog from '../AddAddressDialog/AddAddressDialog'
+import AddBusinessDialog from '../AddBusinessDialog/AddBusinessDialog'
 import {
   Card,
   CardContent,
@@ -20,7 +20,7 @@ const BusinessCard = () => {
       </CardHeader>
       <CardContent className="flex flex-col space-y-2">
         <ClientBusinessesCell />
-        <AddAddressDialog />
+        <AddBusinessDialog />
       </CardContent>
     </Card>
   )

@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
 
-import AddAddressDialog from './AddAddressDialog'
+import AddBusinessDialog from './AddBusinessDialog'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import AddAddressDialog from './AddAddressDialog'
 describe('AddAddressDialog', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<AddAddressDialog />)
+      render(<AddBusinessDialog />)
     }).not.toThrow()
   })
 })

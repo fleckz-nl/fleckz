@@ -35,7 +35,7 @@ const CREATE_CLIENT_BUSINESS_WITH_WORKPLACE = gql`
   }
 `
 
-const AddAddressDialog = () => {
+const AddBusinessDialog = () => {
   const { currentUser } = useAuth()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [
@@ -248,4 +248,4 @@ const AddAddressDialog = () => {
   )
 }
 
-export default AddAddressDialog
+export default AddBusinessDialog
