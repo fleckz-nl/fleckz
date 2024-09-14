@@ -1,11 +1,14 @@
-const TempAgencyCard = () => {
+import { Card, CardHeader } from '../ui/card'
+
+type TempAgencyProps = {
+  className?: string
+}
+
+const TempAgencyCard = ({ className }: TempAgencyProps) => {
   return (
-    <div>
-      <h2>{'TempAgencyCard'}</h2>
-      <p>
-        {'Find me in ./web/src/components/TempAgencyCard/TempAgencyCard.tsx'}
-      </p>
-    </div>
+    <Card>
+      <CardHeader></CardHeader>
+    </Card>
   )
 }
 
