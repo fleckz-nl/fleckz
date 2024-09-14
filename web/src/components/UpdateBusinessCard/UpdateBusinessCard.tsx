@@ -8,6 +8,7 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { formatAddress } from 'src/lib/formatAddress'
 
+import AddWorkplaceDialog from '../AddWorkplaceDialog/AddWorkplaceDialog'
 import { QUERY as ClientBusinesses } from '../ClientBusinessesCell'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
@@ -157,11 +158,7 @@ const UpdateBusinessCard = ({ clientBusiness }: UpdateBusinessCardProps) => {
           <Workplace key={w.id} {...w} />
         ))}
         <div className="container flex flex-wrap items-center justify-end gap-4 xs:gap-2 md:justify-start">
-          <Input className="md:w-1/2" />
-          <Button className="center px-2 text-accent hover:bg-gray-600 hover:text-black">
-            <Plus className="mr-1 size-4" />
-            Adres toevoegen
-          </Button>
+          <AddWorkplaceDialog clientBusiness={clientBusiness} />
         </div>
         <Separator className="mb-4 mt-2 bg-white/10" />
       </div>
