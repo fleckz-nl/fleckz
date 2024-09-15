@@ -70,6 +70,11 @@ const Nav = ({ className }: NavProps) => {
             <Link to={routes.jobProfiles()}>Functieprofielen</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to={routes.dashboard()}>Dashboard</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
       <NavigationMenuList className="mx-4 flex items-center">
         <DropdownMenu>
