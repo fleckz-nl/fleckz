@@ -1,4 +1,8 @@
+import { Fragment } from 'react'
+
 import { zodResolver } from '@hookform/resolvers/zod'
+import { format, isSameDay, startOfDay } from 'date-fns'
+import { nl } from 'date-fns/locale/nl'
 import { SendHorizontal } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { FindWorkRequestQuery } from 'types/graphql'
@@ -68,13 +72,26 @@ const WorkRequestCommentSection = ({
     >
       <h2 className="mb-4 text-xl text-white">Opmerkingen</h2>
       <div className="flex flex-col gap-4">
-        {workRequest?.comments?.map((c) => (
-          <CommentSpeechBubble
-            key={c.id}
-            comment={c}
-            ownComment={c.commentedBy.id === currentUser.id}
-          />
-        ))}
+        {workRequest?.comments?.map((c, i, arr) => {
+          const isSameDate = isSameDay(
+            startOfDay(arr[i - 1]?.createdAt),
+            startOfDay(c.createdAt)
+          )
+
+          return (
+            <Fragment key={c.id}>
+              {!isSameDate && (
+                <div className="text-center text-foreground">
+                  {format(c.createdAt, 'dd MMMM yyyy', { locale: nl })}
+                </div>
+              )}
+              <CommentSpeechBubble
+                comment={c}
+                ownComment={c.commentedBy.id === currentUser.id}
+              />
+            </Fragment>
+          )
+        })}
       </div>
       <div className="mt-4">
         <Form {...commentForm}>
