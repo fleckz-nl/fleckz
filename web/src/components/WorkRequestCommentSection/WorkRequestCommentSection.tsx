@@ -1,15 +1,38 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CircleUserRound } from 'lucide-react'
+import { SendHorizontal } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { FindWorkRequestQuery } from 'types/graphql'
 import { z } from 'zod'
 
-import { Button } from '../ui/button'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+
+import { useAuth } from 'src/auth'
+
+import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
+import CommentSpeechBubble from '../CommentSpeechBubble/CommentSpeechBubble'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
 import { Textarea } from '../ui/textarea'
+import { QUERY } from '../WorkRequestCell'
 
-const WorkRequestCommentSection = () => {
+const CREATE_COMMENT_GQL = gql`
+  mutation createComment($input: CreateCommentInput!) {
+    createComment(input: $input) {
+      id
+    }
+  }
+`
+
+type WorkRequestCommentSectionProps = {
+  workRequest: FindWorkRequestQuery['workRequest']
+}
+
+const WorkRequestCommentSection = ({
+  workRequest,
+}: WorkRequestCommentSectionProps) => {
+  const { currentUser } = useAuth()
   const commentFormSchema = z.object({
-    comment: z.string(),
+    comment: z.string().min(1),
   })
 
   const commentForm = useForm<z.infer<typeof commentFormSchema>>({
@@ -18,30 +41,50 @@ const WorkRequestCommentSection = () => {
       comment: '',
     },
   })
+
+  const [create, { loading, error }] = useMutation(CREATE_COMMENT_GQL, {
+    onCompleted: () => {
+      toast.success('Opmerking toegevoegd')
+      commentForm.reset()
+    },
+    refetchQueries: [{ query: QUERY, variables: { id: workRequest.id } }],
+  })
+
+  function onSubmit(data: z.infer<typeof commentFormSchema>) {
+    create({
+      variables: {
+        input: {
+          body: data.comment,
+          userId: currentUser.id,
+          workRequestId: workRequest.id,
+        },
+      },
+    })
+  }
   return (
     <section
       id="comments"
       className="flex min-w-fit flex-grow flex-col bg-secondary px-8 py-8"
     >
-      <div className="mt-4 text-white">
-        <div className="font-bold">Op verzoek van:</div>
-        <div>
-          <CircleUserRound className="mr-2 inline text-secondary-foreground" />
-          <span>MR Janssen</span>
-        </div>
+      <h2 className="mb-4 text-xl text-white">Opmerkingen</h2>
+      <div className="flex flex-col gap-4">
+        {workRequest?.comments?.map((c) => (
+          <CommentSpeechBubble
+            key={c.id}
+            comment={c}
+            ownComment={c.commentedBy.id === currentUser.id}
+          />
+        ))}
       </div>
       <div className="mt-4">
         <Form {...commentForm}>
-          <form
-            onSubmit={commentForm.handleSubmit(() => console.log('submit'))}
-          >
+          <form onSubmit={commentForm.handleSubmit(onSubmit)}>
             <FormField
               control={commentForm.control}
               name="comment"
-              render={({ field }) => (
+              render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-lg text-white">
-                    <CircleUserRound className="my-2 mr-2 inline text-slate-300" />
+                  <FormLabel className="invisible mb-4 flex items-center text-lg text-white">
                     <span>Voeg een opmerking toe</span>
                   </FormLabel>
                   <FormControl>
@@ -51,16 +94,29 @@ const WorkRequestCommentSection = () => {
                       placeholder="Voeg hier uw opmerkingen toe..."
                     />
                   </FormControl>
+                  <div className="mt-6 text-red-500">
+                    {fieldState?.error?.message}
+                  </div>
                 </FormItem>
               )}
             />
-            <Button
+            {error && (
+              <div
+                className="bg-red-400 px-4 py-2 text-foreground
+              "
+              >
+                {error.name}: {error.message}
+              </div>
+            )}
+            <ButtonWithLoader
+              loading={loading}
               type="submit"
               variant="outline"
-              className="float-end my-4 text-secondary-foreground"
+              className="float-end my-4 flex py-4 text-secondary-foreground"
             >
               Opmerken
-            </Button>
+              <SendHorizontal className="ml-2 inline" />
+            </ButtonWithLoader>
           </form>
         </Form>
       </div>
