@@ -79,6 +79,17 @@ export const QUERY: TypedDocumentNode<
           }
         }
       }
+      comments {
+        id
+        body
+        createdAt
+        commentedBy {
+          id
+          firstName
+          lastName
+          avatarUrl
+        }
+      }
     }
   }
 `
@@ -144,7 +155,7 @@ export const Success = ({
           </div>
         </div>
       </div>
-      <WorkRequestCommentSection />
+      <WorkRequestCommentSection workRequest={workRequest} />
     </div>
   )
 }
