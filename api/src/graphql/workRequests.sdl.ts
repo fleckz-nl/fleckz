@@ -15,6 +15,7 @@ export const schema = gql`
     createdBy: User
     userId: String
     shifts: [Shift]
+    comments: [Comment]
   }
 
   enum WorkRequestStatus {
