@@ -10,6 +10,7 @@ export const schema = gql`
     jobProfile: [JobProfile]!
     firstName: String
     lastName: String
+    avatarUrl: String
     # certificate: [Certificate]!
   }
 
