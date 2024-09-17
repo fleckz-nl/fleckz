@@ -51,6 +51,11 @@ const DrawerMenu = () => {
               </Link>
             </li>
             <li>
+              <Link to={routes.dashboard()}>
+                <DrawerClose>Dashboard</DrawerClose>
+              </Link>
+            </li>
+            <li>
               <Link to={routes.tempAgencies()}>
                 <DrawerClose>Uitzendbureau</DrawerClose>
               </Link>

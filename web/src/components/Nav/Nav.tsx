@@ -72,6 +72,11 @@ const Nav = ({ className }: NavProps) => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to={routes.dashboard()}>Dashboard</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link to={routes.tempAgencies()}>Uitzendbureau</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
