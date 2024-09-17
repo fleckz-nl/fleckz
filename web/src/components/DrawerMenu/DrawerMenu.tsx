@@ -50,6 +50,11 @@ const DrawerMenu = () => {
                 <DrawerClose>Functieprofielen</DrawerClose>
               </Link>
             </li>
+            <li>
+              <Link to={routes.dashboard()}>
+                <DrawerClose>Dashboard</DrawerClose>
+              </Link>
+            </li>
           </ul>
         </DrawerHeader>
         <DrawerFooter>
