@@ -10,7 +10,7 @@ export const schema = gql`
     city: String!
     province: String
     country: String!
-    workRequest: [WorkRequest]!
+    workRequest: [WorkRequest]
   }
 
   type Query {
