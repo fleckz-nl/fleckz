@@ -1,5 +1,6 @@
 import { Metadata } from '@redwoodjs/web'
 
+import AddTempAgencyDialog from 'src/components/AddTempAgencyDialog/AddTempAgencyDialog'
 import TempAgenciesCell from 'src/components/TempAgenciesCell'
 
 const TempAgenciesPage = () => {
@@ -10,6 +11,7 @@ const TempAgenciesPage = () => {
         <h1 className="text-xl font-bold text-white/90">Uitzendbureau</h1>
         <div className="mx-auto w-full max-w-4xl gap-4 pt-4 ">
           <TempAgenciesCell />
+          <AddTempAgencyDialog />
         </div>
       </div>
     </>
