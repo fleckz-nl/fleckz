@@ -19,14 +19,14 @@ export const schema = gql`
     name: String!
     phone: String!
     email: String!
-    addressId: String
+    address: CreateAddressInput!
   }
 
   input UpdateTempAgencyInput {
     name: String
     phone: String
     email: String
-    addressId: String
+    address: CreateAddressInput!
   }
 
   type Mutation {
