@@ -386,30 +386,16 @@ const AddTempAgencyDialog = ({
                   </FormItem>
                 )}
               />
-              <DialogFooter>
+              <DialogFooter className="mt-8">
                 <ButtonWithLoader
                   onClick={form.handleSubmit(handleSubmit)}
                   type="submit"
                   loading={anyLoading}
-                  className="relative text-accent brightness-200 hover:brightness-100"
+                  className="relative bg-gray-600/20 text-accent brightness-200 hover:brightness-100"
                 >
                   {isEditing ? 'Opslaan' : 'Indienen'}
                 </ButtonWithLoader>
               </DialogFooter>
-              <ButtonWithLoader
-                type="submit"
-                className="my-4 bg-gray-600/70 text-accent"
-                loading={createTempAgencyLoading}
-              >
-                Indienen
-              </ButtonWithLoader>
-              {createTempAgencyError && (
-                <span className="text-red-400">
-                  {createTempAgencyError?.name}
-                  {': '}
-                  {createTempAgencyError?.message}
-                </span>
-              )}
             </fieldset>
           </form>
         </Form>
