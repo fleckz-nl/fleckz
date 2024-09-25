@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Edit, Mail, MapPin, Phone } from 'lucide-react'
 import { TempAgenciesQuery } from 'types/graphql'
 
@@ -5,6 +7,7 @@ import { useAuth } from 'src/auth'
 import { formatAddress } from 'src/lib/formatAddress'
 import { cn } from 'src/lib/utils'
 
+import AddTempAgencyDialog from '../AddTempAgencyDialog/AddTempAgencyDialog'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 
@@ -15,16 +18,27 @@ type TempAgencyProps = {
 
 const TempAgencyCard = ({ className, item }: TempAgencyProps) => {
   // const { currentUser } = useAuth()
+  const [editOpen, setEditOpen] = useState(false)
   return (
     <Card className={cn('bg-black text-primary-foreground', className)}>
       <CardHeader className="flex w-full flex-row items-center justify-between">
         <CardTitle className="max-w-2/3 font-semibold text-accent">
           {item.name}
         </CardTitle>
-        {/* {currentUser.roles.includes('CLIENT') && ( */}
-        <Button variant="secondary" className="relative -top-2 left-2 p-1 ">
-          <Edit className="text-primary-foreground/60" />
+        {/* {currentUser.roles.includes('ADMIN') && ( */}
+        <Button
+          onClick={() => setEditOpen(true)}
+          variant="secondary"
+          className="relative -top-2 left-2 p-1 "
+        >
+          <Edit />
         </Button>
+        <AddTempAgencyDialog
+          defaultValues={item}
+          hideTrigger
+          open={editOpen}
+          setOpen={setEditOpen}
+        />
         {/* )} */}
       </CardHeader>
       <CardContent>
