@@ -59,6 +59,7 @@ type AddTempAgencyDialogProps = {
 
 const AddTempAgencyDialog = ({
   defaultValues,
+  open,
   setOpen,
   hideTrigger,
 }: AddTempAgencyDialogProps) => {
@@ -193,7 +194,7 @@ const AddTempAgencyDialog = ({
   }, [form, currentDefaultValues])
 
   return (
-    <Dialog open={openDialog} onOpenChange={() => setOpenDialog((c) => !c)}>
+    <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <DialogTrigger asChild>
         {!hideTrigger && (
           <Button className="mb-4 mt-12 flex w-fit gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
