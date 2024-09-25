@@ -191,7 +191,7 @@ const AddTempAgencyDialog = ({
     <Dialog open={openDialog} onOpenChange={() => setOpenDialog((c) => !c)}>
       <DialogTrigger asChild>
         {!hideTrigger && (
-          <Button className="mx-auto mt-14 p-6 text-lg">
+          <Button className="mb-4 mt-12 flex w-fit gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
             Uitzendbureau toevoegen
           </Button>
         )}
