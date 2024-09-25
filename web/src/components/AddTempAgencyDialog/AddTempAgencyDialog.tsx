@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Edit, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { TempAgenciesQuery } from 'types/graphql'
@@ -11,7 +11,6 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
-import ConfirmDeleteWork from '../ConfirmDeleteWork/ConfirmDeleteWork'
 import { QUERY as TempAgenciesCellQuery } from '../TempAgenciesCell'
 import { Button } from '../ui/button'
 import {
@@ -63,7 +62,6 @@ const AddTempAgencyDialog = ({
   setOpen,
   hideTrigger,
 }: AddTempAgencyDialogProps) => {
-  const [openDialog, setOpenDialog] = useState(false)
   const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
 
   const dutchPostalCodeExp = /^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i
