@@ -340,7 +340,7 @@ const AddTempAgencyDialog = ({
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel className="text-primary-foreground">
-                      Telefoon nummer
+                      Telefoonnummer
                     </FormLabel>
                     <FormControl>
                       <Input
