@@ -144,9 +144,9 @@ const AddTempAgencyDialog = ({
 
   function handleSubmit(data: z.infer<typeof formSchema>) {
     const loadingToast = toast.loading('Laden...')
+    const { tempAgencyName, phone, email, ...addressInfo } = data
 
     if (isEditing) {
-      const { tempAgencyName, phone, email, ...addressInfo } = data
       updateTempAgency({
         variables: {
           tempAgencyName,
@@ -161,7 +161,12 @@ const AddTempAgencyDialog = ({
       createTempAgency({
         variables: {
           input: {
-            ...data,
+            name: tempAgencyName,
+            phone,
+            email,
+            address: {
+              ...addressInfo,
+            },
           },
         },
       }).finally(() => toast.dismiss(loadingToast))
