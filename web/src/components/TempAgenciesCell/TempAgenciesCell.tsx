@@ -22,6 +22,7 @@ export const QUERY: TypedDocumentNode<
       phone
       email
       address {
+        id
         street
         houseNumber
         houseNumberAddition
