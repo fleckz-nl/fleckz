@@ -35,8 +35,18 @@ const CREATE_TEMP_AGENCY_GQL = gql`
 `
 
 const UPDATE_TEMP_AGENCY_GQL = gql`
-  mutation UpdateTempAgencyInput($id: String!, $input: UpdateTempAgencyInput!) {
-    updateTempAgency(id: $id, input: $input) {
+  mutation UpdateTempAgencyAndAddress(
+    $agencyId: String!
+    $agencyInput: UpdateTempAgencyInput!
+    $addressId: String!
+    $addressInput: UpdateAddressInput!
+  ) {
+    updateTempAgencyAndAddress(
+      agencyId: $agencyId
+      agencyInput: $agencyInput
+      addressId: $addressId
+      addressInput: $addressInput
+    ) {
       id
     }
   }
@@ -148,10 +158,14 @@ const AddTempAgencyDialog = ({
     if (isEditing) {
       updateTempAgency({
         variables: {
-          tempAgencyName,
-          phone,
-          email,
-          input: {
+          agencyId: defaultValues.id,
+          agencyInput: {
+            name: tempAgencyName,
+            phone,
+            email,
+          },
+          addressId: defaultValues.address.id,
+          addressInput: {
             ...addressInfo,
           },
         },
