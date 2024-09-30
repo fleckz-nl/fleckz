@@ -206,7 +206,7 @@ const AddTempAgencyDialog = ({
 
   useEffect(() => {
     form.reset(currentDefaultValues)
-  }, [form, currentDefaultValues])
+  }, [form, currentDefaultValues, open])
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
