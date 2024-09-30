@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Trash2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { isValidPhoneNumber } from 'react-phone-number-input'
+import { isValidPhoneNumber, parsePhoneNumber } from 'react-phone-number-input'
 import { TempAgenciesQuery } from 'types/graphql'
 import { z } from 'zod'
 
@@ -80,7 +80,10 @@ const AddTempAgencyDialog = ({
     tempAgencyName: z.string().min(1),
     phone: z
       .string()
-      .refine(isValidPhoneNumber, { message: 'Niet een telefoon nummer' })
+      .refine((v) => isValidPhoneNumber(v, { defaultCountry: 'NL' }), {
+        message: 'Niet een telefoon nummer',
+      })
+      .transform((v) => parsePhoneNumber(v, 'NL').formatInternational())
       .or(z.literal('')),
     email: z.string().min(1),
     street: z.string().min(1),
