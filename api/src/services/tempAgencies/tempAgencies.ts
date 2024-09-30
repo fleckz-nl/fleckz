@@ -42,6 +42,24 @@ export const updateTempAgency: MutationResolvers['updateTempAgency'] = ({
   })
 }
 
+export const updateTempAgencyAndAddress: MutationResolvers['updateTempAgencyAndAddress'] =
+  ({ agencyId, agencyInput, addressId, addressInput }) => {
+    return db.tempAgency.update({
+      where: { id: agencyId },
+      data: {
+        ...agencyInput,
+        address: {
+          update: {
+            where: { id: addressId },
+            data: {
+              ...addressInput,
+            },
+          },
+        },
+      },
+    })
+  }
+
 export const deleteTempAgency: MutationResolvers['deleteTempAgency'] = ({
   id,
 }) => {
