@@ -112,44 +112,47 @@ const AddTempAgencyDialog = ({
     defaultValues: currentDefaultValues,
   })
 
-  const [
-    createTempAgency,
-    { loading: createTempAgencyLoading, error: createTempAgencyError },
-  ] = useMutation(CREATE_TEMP_AGENCY_GQL, {
-    onCompleted: () => {
-      toast.success('Uitzendbureau aangemaakt')
-      form.reset()
-      setOpen(false)
-    },
-    refetchQueries: [{ query: TempAgenciesCellQuery }],
-  })
+  const [createTempAgency, { loading: createTempAgencyLoading }] = useMutation(
+    CREATE_TEMP_AGENCY_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Uitzendbureau aangemaakt')
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [{ query: TempAgenciesCellQuery }],
+    }
+  )
 
-  const [
-    updateTempAgency,
-    { loading: updateTempAgencyLoading, error: updateTempAgencyError },
-  ] = useMutation(UPDATE_TEMP_AGENCY_GQL, {
-    onCompleted: () => {
-      toast.success('Opslaan')
-      form.reset()
-      setOpen(false)
-    },
-    refetchQueries: [{ query: TempAgenciesCellQuery }],
-  })
+  const [updateTempAgency, { loading: updateTempAgencyLoading }] = useMutation(
+    UPDATE_TEMP_AGENCY_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Opslaan')
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [{ query: TempAgenciesCellQuery }],
+    }
+  )
 
-  const [
-    deleteTempAgency,
-    { loading: deleteTempAgencyLoading, error: deleteTempAgencyError },
-  ] = useMutation(DELETE_TEMP_AGENCY_GQL, {
-    onCompleted: () => {
-      toast('Verwijderd', {
-        icon: <Trash2 className="size-4 text-destructive" />,
-        duration: 2000,
-      })
-      form.reset()
-      setOpen(false)
-    },
-    refetchQueries: [{ query: TempAgenciesCellQuery }],
-  })
+  const [deleteTempAgency, { loading: deleteTempAgencyLoading }] = useMutation(
+    DELETE_TEMP_AGENCY_GQL,
+    {
+      onCompleted: () => {
+        toast('Verwijderd', {
+          icon: <Trash2 className="size-4 text-destructive" />,
+          duration: 2000,
+        })
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [{ query: TempAgenciesCellQuery }],
+    }
+  )
 
   function handleSubmit(data: z.infer<typeof formSchema>) {
     const loadingToast = toast.loading('Laden...')
