@@ -85,7 +85,7 @@ const AddTempAgencyDialog = ({
       })
       .transform((v) => parsePhoneNumber(v, 'NL').formatInternational())
       .or(z.literal('')),
-    email: z.string().min(1),
+    email: z.string().email().min(1),
     street: z.string().min(1),
     houseNumber: z.string().min(1),
     houseNumberAddition: z.string().optional(),
