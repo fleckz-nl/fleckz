@@ -223,9 +223,13 @@ const AddTempAgencyDialog = ({
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll bg-black py-10 text-white shadow-md shadow-accent/50">
         <DialogHeader className="center">
-          <DialogTitle>Nieuw Uitzendbureau</DialogTitle>
+          <DialogTitle>
+            {isEditing ? 'Bewerken uitzendbureau' : 'Nieuw Uitzendbureau'}
+          </DialogTitle>
           <DialogDescription>
-            Voeg een nieuw uitzendbureau toe.
+            {isEditing
+              ? 'Bewerk een bestaand uitzendbureau.'
+              : 'Voeg een nieuw uitzendbureau toe.'}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
