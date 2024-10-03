@@ -19,20 +19,25 @@ export const schema = gql`
     name: String!
     phone: String!
     email: String!
-    addressId: String
+    address: CreateAddressInput!
   }
 
   input UpdateTempAgencyInput {
     name: String
     phone: String
     email: String
-    addressId: String
   }
 
   type Mutation {
     createTempAgency(input: CreateTempAgencyInput!): TempAgency! @requireAuth
     updateTempAgency(id: String!, input: UpdateTempAgencyInput!): TempAgency!
       @requireAuth
+    updateTempAgencyAndAddress(
+      agencyId: String!
+      agencyInput: UpdateTempAgencyInput!
+      addressId: String!
+      addressInput: UpdateAddressInput!
+    ): TempAgency! @requireAuth
     deleteTempAgency(id: String!): TempAgency! @requireAuth
   }
 `

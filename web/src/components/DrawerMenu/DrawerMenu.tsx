@@ -55,6 +55,11 @@ const DrawerMenu = () => {
                 <DrawerClose>Dashboard</DrawerClose>
               </Link>
             </li>
+            <li>
+              <Link to={routes.tempAgencies()}>
+                <DrawerClose>Uitzendbureau</DrawerClose>
+              </Link>
+            </li>
           </ul>
         </DrawerHeader>
         <DrawerFooter>

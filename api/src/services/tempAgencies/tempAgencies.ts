@@ -19,8 +19,16 @@ export const tempAgency: QueryResolvers['tempAgency'] = ({ id }) => {
 export const createTempAgency: MutationResolvers['createTempAgency'] = ({
   input,
 }) => {
+  const { address, ...rest } = input
   return db.tempAgency.create({
-    data: input,
+    data: {
+      ...rest,
+      address: {
+        create: {
+          ...address,
+        },
+      },
+    },
   })
 }
 
@@ -33,6 +41,24 @@ export const updateTempAgency: MutationResolvers['updateTempAgency'] = ({
     where: { id },
   })
 }
+
+export const updateTempAgencyAndAddress: MutationResolvers['updateTempAgencyAndAddress'] =
+  ({ agencyId, agencyInput, addressId, addressInput }) => {
+    return db.tempAgency.update({
+      where: { id: agencyId },
+      data: {
+        ...agencyInput,
+        address: {
+          update: {
+            where: { id: addressId },
+            data: {
+              ...addressInput,
+            },
+          },
+        },
+      },
+    })
+  }
 
 export const deleteTempAgency: MutationResolvers['deleteTempAgency'] = ({
   id,
