@@ -11,6 +11,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
+import ConfirmDeleteAgency from '../ConfirmDeleteAgency/ConfirmDeleteAgency'
 import { QUERY as TempAgenciesCellQuery } from '../TempAgenciesCell'
 import { Button } from '../ui/button'
 import {
@@ -416,21 +417,34 @@ const AddTempAgencyDialog = ({
                 )}
               />
               <DialogFooter className="mt-8">
-                <Button
-                  variant="outline"
-                  type="button"
-                  onClick={() => setOpen(false)}
+                <div
+                  className={`flex ${
+                    isEditing && 'w-full'
+                  } flex-row justify-between`}
                 >
-                  Annuleren
-                </Button>
-                <ButtonWithLoader
-                  onClick={form.handleSubmit(handleSubmit)}
-                  type="submit"
-                  loading={anyLoading}
-                  className="relative bg-gray-600/20 text-accent brightness-200 hover:brightness-100"
-                >
-                  {isEditing ? 'Opslaan' : 'Indienen'}
-                </ButtonWithLoader>
+                  {isEditing && (
+                    <ConfirmDeleteAgency
+                      onConfirm={() => handleDelete(defaultValues.id)}
+                    />
+                  )}
+                  <div>
+                    <Button
+                      variant="outline"
+                      type="button"
+                      onClick={() => setOpen(false)}
+                    >
+                      Annuleren
+                    </Button>
+                    <ButtonWithLoader
+                      onClick={form.handleSubmit(handleSubmit)}
+                      type="submit"
+                      loading={anyLoading}
+                      className="relative ml-4 bg-gray-600/20 text-accent brightness-200 hover:brightness-100"
+                    >
+                      {isEditing ? 'Opslaan' : 'Indienen'}
+                    </ButtonWithLoader>
+                  </div>
+                </div>
               </DialogFooter>
             </fieldset>
           </form>
