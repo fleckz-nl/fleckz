@@ -2,7 +2,7 @@ import { LogOutIcon, LucideSettings, User } from 'lucide-react'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
 import { Link, routes } from '@redwoodjs/router'
-import { toast } from '@redwoodjs/web/dist/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 import DrawerMenu from 'src/components/DrawerMenu/DrawerMenu'

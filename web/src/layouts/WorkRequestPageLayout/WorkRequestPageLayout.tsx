@@ -1,4 +1,4 @@
-import { Toaster } from '@redwoodjs/web/dist/toast'
+import { Toaster } from '@redwoodjs/web/toast'
 
 type WorkRequestPageLayoutProps = {
   children?: React.ReactNode
