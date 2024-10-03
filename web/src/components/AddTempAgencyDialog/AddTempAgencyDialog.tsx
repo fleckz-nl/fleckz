@@ -113,6 +113,7 @@ const AddTempAgencyDialog = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: currentDefaultValues,
+    mode: 'onChange',
   })
 
   const [createTempAgency, { loading: createTempAgencyLoading }] = useMutation(
