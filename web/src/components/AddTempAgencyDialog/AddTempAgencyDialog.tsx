@@ -380,7 +380,7 @@ const AddTempAgencyDialog = ({
                         }`}
                         disabled={createTempAgencyLoading}
                         type="tel"
-                        placeholder="+31123456789"
+                        placeholder="+31 12 345 6789"
                       />
                     </FormControl>
                     <span className="text-sm text-red-500">
