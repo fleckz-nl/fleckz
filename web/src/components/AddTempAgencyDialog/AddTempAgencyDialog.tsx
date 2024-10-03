@@ -416,6 +416,13 @@ const AddTempAgencyDialog = ({
                 )}
               />
               <DialogFooter className="mt-8">
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => setOpen(false)}
+                >
+                  Annuleren
+                </Button>
                 <ButtonWithLoader
                   onClick={form.handleSubmit(handleSubmit)}
                   type="submit"
