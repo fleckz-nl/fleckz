@@ -4,7 +4,7 @@ import { Building2, Check, Edit, MapPin, Plus, Trash2, X } from 'lucide-react'
 import { ClientBusinessesQuery } from 'types/graphql'
 
 import { useMutation } from '@redwoodjs/web'
-import { toast } from '@redwoodjs/web/dist/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { formatAddress } from 'src/lib/formatAddress'
 

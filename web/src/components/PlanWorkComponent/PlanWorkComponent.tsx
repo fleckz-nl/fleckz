@@ -10,7 +10,7 @@ import { z } from 'zod'
 import { FormError } from '@redwoodjs/forms'
 import { routes, Link } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
-import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+import { Toaster, toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 import SelectAddressCell from 'src/components/SelectAddressCell'

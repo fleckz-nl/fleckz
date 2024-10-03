@@ -1,4 +1,4 @@
-import { Toaster } from '@redwoodjs/web/dist/toast'
+import { Toaster } from '@redwoodjs/web/toast'
 
 import Footer from 'src/components/Footer/Footer'
 import Nav from 'src/components/Nav/Nav'

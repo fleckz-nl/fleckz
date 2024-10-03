@@ -7,7 +7,7 @@ import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
-import { Toaster, toast } from '@redwoodjs/web/dist/toast'
+import { Toaster, toast } from '@redwoodjs/web/toast'
 
 import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
 import { Switch } from 'src/components/ui/switch'
