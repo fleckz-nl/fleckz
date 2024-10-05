@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { validate } from '@redwoodjs/api'
+import { SyntaxError } from '@redwoodjs/graphql-server'
 
 import { db } from 'src/lib/db'
 
@@ -54,9 +55,21 @@ export const updateJobProfile: MutationResolvers['updateJobProfile'] = ({
   })
 }
 
-export const deleteJobProfile: MutationResolvers['deleteJobProfile'] = ({
+export const deleteJobProfile: MutationResolvers['deleteJobProfile'] = async ({
   id,
 }) => {
+  const linkedWorkRequests = await db.workRequest.findMany({
+    where: {
+      jobProfileId: id,
+    },
+  })
+
+  if (linkedWorkRequests.length > 0) {
+    throw new SyntaxError(
+      'Er zijn werkaanvragen gekoppeld aan dit functieprofiel. Je kunt alleen functieprofielen zonder werkaanvragen verwijderen.'
+    )
+  }
+
   return db.jobProfile.delete({
     where: { id },
   })
