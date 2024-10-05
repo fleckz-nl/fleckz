@@ -11,10 +11,11 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader'
+import ConfirmAction from 'src/components/ConfirmAction/ConfirmAction'
 import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
+import { Button } from 'src/components/ui/button'
 import { Switch } from 'src/components/ui/switch'
 
-import { Button } from '../ui/button'
 import {
   Dialog,
   DialogContent,
@@ -51,6 +52,14 @@ const UPDATE_JOB_PROFILE = gql`
     $input: UpdateJobProfileInput!
   ) {
     updateJobProfile(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
+const DELETE_JOB_PROFILE = gql`
+  mutation DeleteJobProfileMutation($id: String!) {
+    deleteJobProfile(id: $id) {
       id
     }
   }
@@ -121,6 +130,19 @@ const AddJobProfileModal = ({
     refetchQueries: [{ query: JobProfilesQuery }],
   })
 
+  const [deleteProfile, { loading: deleteLoading }] = useMutation(
+    DELETE_JOB_PROFILE,
+    {
+      onCompleted: () => {
+        toast.success('Verwijderd')
+      },
+      onError: (e) => {
+        toast.error(e.message)
+      },
+      refetchQueries: [{ query: JobProfilesQuery }],
+    }
+  )
+
   function onSubmit(data: z.infer<typeof formSchema>) {
     if (currentJobProfile) {
       return update({
@@ -135,6 +157,10 @@ const AddJobProfileModal = ({
         input: data,
       },
     })
+  }
+
+  function handleDeleteProfile() {
+    deleteProfile({ variables: { id: currentJobProfile.id } })
   }
 
   return (
@@ -404,10 +430,27 @@ const AddJobProfileModal = ({
               )}
             />
             <DialogFooter>
+              <ConfirmAction
+                onConfirm={handleDeleteProfile}
+                title="Verwijderen profiel?"
+                description="U gaat het functieprofiel verwijderen"
+                actionText="Verwijderen"
+                loading={deleteLoading}
+              >
+                Verwijderen
+              </ConfirmAction>
+              <Button
+                type="button"
+                onClick={() => setOpen(false)}
+                disabled={deleteLoading}
+              >
+                Annuleren
+              </Button>
               <ButtonWithLoader
                 type="submit"
                 loading={loading || updateLoading}
                 className="text-accent brightness-200 hover:brightness-100"
+                disabled={deleteLoading}
               >
                 {currentJobProfile ? 'Bijwerken' : 'Aanmaken'}
               </ButtonWithLoader>
