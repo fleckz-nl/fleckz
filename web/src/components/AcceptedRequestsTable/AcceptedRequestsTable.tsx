@@ -29,10 +29,8 @@ const AcceptedRequestsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow className="bg-primary text-white  hover:text-secondary">
-            <TableCell className="relative font-semibold">
-              8 sept 2024
-            </TableCell>
+          <TableRow className="bg-primary text-white hover:bg-white hover:text-secondary">
+            <TableCell className="font-bold">8 sept 2024</TableCell>
             <TableCell>Salesmanager</TableCell>
             <TableCell className="pl-10">
               5
@@ -41,13 +39,13 @@ const AcceptedRequestsTable = () => {
             <TableCell>13:00-17:00</TableCell>
             <Button
               variant="outline"
-              className="border-none bg-transparent p-2  hover:bg-transparent "
+              className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
             >
               <Ellipsis />
             </Button>
           </TableRow>
-          <TableRow className="bg-primary text-white hover:text-secondary">
-            <TableCell className="relative font-semibold">1 okt 2024</TableCell>
+          <TableRow className="bg-primary text-white  hover:bg-white hover:text-secondary">
+            <TableCell className="font-bold">1 okt 2024</TableCell>
             <TableCell>Klantenservicemedewerker</TableCell>
             <TableCell className="pl-10">
               3
@@ -56,7 +54,7 @@ const AcceptedRequestsTable = () => {
             <TableCell>16:00-19:30</TableCell>
             <Button
               variant="outline"
-              className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-transparent"
+              className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
             >
               <Ellipsis />
             </Button>
