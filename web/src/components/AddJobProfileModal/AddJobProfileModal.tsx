@@ -3,7 +3,10 @@ import { ReactNode, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CirclePlus, MessageSquareWarningIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { JobProfilesQuery as JobProfilesQueryType } from 'types/graphql'
+import {
+  JobProfilesQuery as JobProfilesQueryType,
+  UpdateJobProfileMutation,
+} from 'types/graphql'
 import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
@@ -53,6 +56,7 @@ const UPDATE_JOB_PROFILE = gql`
   ) {
     updateJobProfile(id: $id, input: $input) {
       id
+      name
     }
   }
 `
@@ -119,8 +123,12 @@ const AddJobProfileModal = ({
   })
 
   const [update, { loading: updateLoading }] = useMutation(UPDATE_JOB_PROFILE, {
-    onCompleted: () => {
-      toast.success('Bijgewerkt')
+    onCompleted: (data: UpdateJobProfileMutation) => {
+      toast.success(
+        <>
+          Bijgewerkt: <b>{data.updateJobProfile.name}</b>
+        </>
+      )
       form.reset()
       setOpen(false)
     },
