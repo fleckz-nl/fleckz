@@ -8,7 +8,7 @@ import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
-import { Toaster, toast } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import ButtonWithLoader from 'src/components/ButtonWithLoader'
 import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
@@ -139,7 +139,6 @@ const AddJobProfileModal = ({
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
-      <Toaster />
       <DialogTrigger asChild>
         {trigger || (
           <Button className="mb-4 mt-12 flex gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
