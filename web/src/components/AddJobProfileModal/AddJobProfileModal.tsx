@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CirclePlus, MessageSquareWarningIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { JobProfilesQuery as JobProfilesQueryType } from 'types/graphql'
 import { z } from 'zod'
 
 import { FormError } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/toast'
 
+import ButtonWithLoader from 'src/components/ButtonWithLoader'
 import { QUERY as JobProfilesQuery } from 'src/components/JobProfilesCell'
 import { Switch } from 'src/components/ui/switch'
 
@@ -43,7 +45,25 @@ const CREATE_JOB_PROFILE = gql`
   }
 `
 
-const AddJobProfileModal = () => {
+const UPDATE_JOB_PROFILE = gql`
+  mutation UpdateJobProfileMutation(
+    $id: String!
+    $input: UpdateJobProfileInput!
+  ) {
+    updateJobProfile(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
+type AddJobProfileModalProps = {
+  currentJobProfile?: JobProfilesQueryType['jobProfiles'][0]
+  trigger?: ReactNode
+}
+const AddJobProfileModal = ({
+  currentJobProfile,
+  trigger,
+}: AddJobProfileModalProps) => {
   const [open, setOpen] = useState(false)
   const formSchema = z
     .object({
@@ -66,7 +86,7 @@ const AddJobProfileModal = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: currentJobProfile || {
       name: '',
       yearsOfExp: 0,
       hourlyWageMin: 0,
@@ -89,7 +109,27 @@ const AddJobProfileModal = () => {
     refetchQueries: [{ query: JobProfilesQuery }],
   })
 
+  const [update, { loading: updateLoading }] = useMutation(UPDATE_JOB_PROFILE, {
+    onCompleted: () => {
+      toast.success('Bijgewerkt')
+      form.reset()
+      setOpen(false)
+    },
+    onError: (e) => {
+      toast.error(e.message)
+    },
+    refetchQueries: [{ query: JobProfilesQuery }],
+  })
+
   function onSubmit(data: z.infer<typeof formSchema>) {
+    if (currentJobProfile) {
+      return update({
+        variables: {
+          id: currentJobProfile.id,
+          input: data,
+        },
+      })
+    }
     create({
       variables: {
         input: data,
@@ -101,17 +141,25 @@ const AddJobProfileModal = () => {
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
       <Toaster />
       <DialogTrigger asChild>
-        <Button className="mb-4 mt-12 flex gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
-          <CirclePlus size={20} />
-          <span className="text-white">Aanmaken</span>
-        </Button>
+        {trigger || (
+          <Button className="mb-4 mt-12 flex gap-1 bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white">
+            <CirclePlus size={20} />
+            <span className="text-white">Aanmaken</span>
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="font-semibold text-primary/80">
-            Functieprofielen Aanmaken
+            {currentJobProfile
+              ? 'Functieprofiel Bewerken'
+              : 'Functieprofiel Aanmaken'}
           </DialogTitle>
-          <DialogDescription>Maak een functieprofiel aan</DialogDescription>
+          <DialogDescription>
+            {currentJobProfile
+              ? 'Bewerk de functieprofiel '
+              : 'Maak een functieprofiel aan'}
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           {error && (
@@ -357,13 +405,13 @@ const AddJobProfileModal = () => {
               )}
             />
             <DialogFooter>
-              <Button
+              <ButtonWithLoader
                 type="submit"
-                disabled={loading}
+                loading={loading || updateLoading}
                 className="text-accent brightness-200 hover:brightness-100"
               >
-                Aanmaken
-              </Button>
+                {currentJobProfile ? 'Bijwerken' : 'Aanmaken'}
+              </ButtonWithLoader>
             </DialogFooter>
           </form>
         </Form>

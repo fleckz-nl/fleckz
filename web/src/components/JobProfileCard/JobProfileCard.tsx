@@ -1,6 +1,8 @@
 import { Car, Edit } from 'lucide-react'
 import { JobProfilesQuery } from 'types/graphql'
 
+import AddJobProfileModal from 'src/components/AddJobProfileModal'
+
 import { Badge } from '../ui/badge'
 import {
   Card,
@@ -20,7 +22,12 @@ const JobProfileCard = ({ item }: JobProfileCardProps) => {
     <Card key={item.id}>
       <CardHeader className="relative flex justify-between">
         <CardTitle className="w-4/5 break-words">{item.name}</CardTitle>
-        <Edit className="absolute right-4 top-4 text-muted-foreground hover:cursor-pointer hover:text-accent/70" />
+        <AddJobProfileModal
+          currentJobProfile={item}
+          trigger={
+            <Edit className="absolute right-4 top-4 text-muted-foreground hover:cursor-pointer hover:text-accent/70" />
+          }
+        />
       </CardHeader>
       <CardContent>
         <div className="-mt-2 flex flex-wrap items-center justify-between">
