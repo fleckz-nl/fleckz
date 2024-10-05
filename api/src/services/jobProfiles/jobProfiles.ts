@@ -9,7 +9,7 @@ import { validate } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
 
 export const jobProfiles: QueryResolvers['jobProfiles'] = () => {
-  return db.jobProfile.findMany()
+  return db.jobProfile.findMany({ orderBy: { createdAt: 'desc' } })
 }
 
 export const jobProfile: QueryResolvers['jobProfile'] = ({ id }) => {
