@@ -21,7 +21,7 @@ const SortButton = () => {
         <SelectGroup>
           <SelectLabel>Sorteren op</SelectLabel>
           <SelectSeparator />
-          <SelectItem value="latest">Laatste</SelectItem>
+          <SelectItem value="newestFirst">Nieuwste Eerst</SelectItem>
           <SelectItem value="oldest">Oudste</SelectItem>
           <SelectItem value="recentlyUpdated">Onlangs bijgewerkt</SelectItem>
           <SelectItem value="leastRecentlyUpdated">
