@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { Award, CheckCircle2, Hourglass, NotepadText } from 'lucide-react'
 import type {
   WorkRequestsQuery,
@@ -12,14 +10,12 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import OverviewCards from 'src/components/OverviewCards'
 import OverviewSection, {
   OverviewContent,
   OverviewHeader,
-} from '../OverviewSection/OverviewSection'
-import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
-import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
-import RequestStatusCardSkeleton from '../RequestStatusCardSkeleton/RequestStatusCardSkeleton'
-import { Card, CardHeader } from '../ui/card'
+} from 'src/components/OverviewSection'
+import RequestStatusCardSkeleton from 'src/components/RequestStatusCardSkeleton'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsQuery,
@@ -122,77 +118,9 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   workRequests,
 }: CellSuccessProps<WorkRequestsQuery>) => {
-  const confirmedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
-
-  const submittedRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
-
-  const doneRequests = workRequests.filter((r) => r.status === 'DONE')
-
-  const draftRequests = workRequests.filter((r) => r.status === 'DRAFT')
-
-  function NoResultsCard() {
-    return (
-      <Card className="bg-transparent text-secondary">
-        <CardHeader>Geen Resultaten</CardHeader>
-      </Card>
-    )
-  }
-
-  const [openDialog, setOpenDialog] = useState(false)
-
   return (
     <>
-      <OverviewSection>
-        <OverviewHeader>
-          <CheckCircle2 className="mr-1 inline" />
-          Geaccepteerd
-        </OverviewHeader>
-        <OverviewContent>
-          {confirmedRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {confirmedRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <Hourglass className="mr-1 inline" />
-          In uitvoering
-        </OverviewHeader>
-        <OverviewContent>
-          {submittedRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {submittedRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <Award className="mr-1 inline" />
-          Afgerond
-        </OverviewHeader>
-        <OverviewContent>
-          {doneRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {doneRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <NotepadText className="mr-1 inline" />
-          Concept
-        </OverviewHeader>
-        <OverviewContent>
-          {draftRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {draftRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <div className="center">
-        <PlanWorkComponent open={openDialog} setOpen={setOpenDialog} />
-      </div>
+      <OverviewCards workRequests={workRequests} />
     </>
   )
 }
