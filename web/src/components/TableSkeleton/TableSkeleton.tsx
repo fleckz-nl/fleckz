@@ -34,7 +34,7 @@ const TableSkeleton = ({ cols = 4, rows = 10 }: TableSkeletonProps) => {
             >
               {Array.from({ length: cols }).map((_, i) => (
                 <TableCell key={i}>
-                  <Skeleton className="h-4 w-full bg-secondary" />
+                  <Skeleton className="h-4 w-full bg-primary-foreground" />
                 </TableCell>
               ))}
             </TableRow>
