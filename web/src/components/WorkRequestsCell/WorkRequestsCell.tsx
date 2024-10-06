@@ -1,4 +1,11 @@
-import { Award, CheckCircle2, Hourglass, NotepadText } from 'lucide-react'
+import {
+  Award,
+  CheckCircle2,
+  GalleryThumbnails,
+  Hourglass,
+  NotepadText,
+  Rows4,
+} from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
@@ -10,12 +17,19 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import AcceptedRequestsTable from 'src/components/AcceptedRequestsTable'
 import OverviewCards from 'src/components/OverviewCards'
 import OverviewSection, {
   OverviewContent,
   OverviewHeader,
 } from 'src/components/OverviewSection'
 import RequestStatusCardSkeleton from 'src/components/RequestStatusCardSkeleton'
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from 'src/components/ui/tabs'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsQuery,
@@ -120,7 +134,23 @@ export const Success = ({
 }: CellSuccessProps<WorkRequestsQuery>) => {
   return (
     <>
-      <OverviewCards workRequests={workRequests} />
+      <Tabs defaultValue="allRequests" className="w-full">
+        <TabsList className="w-full justify-end bg-transparent">
+          <TabsTrigger value="allRequests">
+            <h2 className="sr-only">All Requests</h2> <GalleryThumbnails />
+          </TabsTrigger>
+          <TabsTrigger value="acceptedRequests">
+            <h2 className="sr-only">Accepted requests</h2>
+            <Rows4 />
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="allRequests">
+          <OverviewCards workRequests={workRequests} />
+        </TabsContent>
+        <TabsContent value="acceptedRequests">
+          <AcceptedRequestsTable workRequests={workRequests} />
+        </TabsContent>
+      </Tabs>
     </>
   )
 }
