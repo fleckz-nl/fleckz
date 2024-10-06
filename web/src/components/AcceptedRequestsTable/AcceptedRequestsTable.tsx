@@ -1,10 +1,9 @@
 import { format } from 'date-fns/format'
 import { nl } from 'date-fns/locale/nl'
-import { CheckCircle2, Ellipsis, Users } from 'lucide-react'
+import { CheckCircle2, Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { OverviewHeader } from 'src/components/OverviewSection'
-import { Button } from 'src/components/ui/button'
 import {
   Table,
   TableBody,
@@ -34,7 +33,6 @@ const AcceptedRequestsTable = ({
             <TableHead className="text-gray-400">Functienaam</TableHead>
             <TableHead className="text-gray-400">Medewerkers</TableHead>
             <TableHead className="text-gray-400">Werktijd</TableHead>
-            <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -56,14 +54,6 @@ const AcceptedRequestsTable = ({
               <TableCell>
                 {format(request.startDate, 'H:MM')}–
                 {format(request.endDate, 'H:MM')}
-              </TableCell>
-              <TableCell>
-                <Button
-                  variant="outline"
-                  className="border-none bg-transparent p-2 hover:cursor-pointer hover:bg-accent/20"
-                >
-                  <Ellipsis />
-                </Button>
               </TableCell>
             </TableRow>
           ))}
