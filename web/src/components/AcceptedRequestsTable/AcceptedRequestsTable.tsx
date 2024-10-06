@@ -22,7 +22,7 @@ const AcceptedRequestsTable = () => {
         <TableHeader>
           <TableRow>
             <TableHead className="text-gray-400">Datum</TableHead>
-            <TableHead className="text-gray-400">Funtienaam</TableHead>
+            <TableHead className="text-gray-400">Functienaam</TableHead>
             <TableHead className="text-gray-400">Medewerkers</TableHead>
             <TableHead className="text-gray-400">Werktijd</TableHead>
             <TableHead></TableHead>
