@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import {
-  Award,
-  CheckCircle2,
-  GalleryThumbnails,
-  Hourglass,
-  NotepadText,
-  Rows4,
-} from 'lucide-react'
+import { GalleryThumbnails, Rows4 } from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
@@ -22,17 +15,20 @@ import type {
 
 import AcceptedRequestsTable from 'src/components/AcceptedRequestsTable'
 import OverviewCards from 'src/components/OverviewCards'
-import OverviewSection, {
-  OverviewContent,
-  OverviewHeader,
-} from 'src/components/OverviewSection'
-import RequestStatusCardSkeleton from 'src/components/RequestStatusCardSkeleton'
+import OverviewCardsSkeleton from 'src/components/OverviewCardsSkeleton/OverviewCardsSkeleton'
+import TableSkeleton from 'src/components/TableSkeleton/TableSkeleton'
+import { Skeleton } from 'src/components/ui/skeleton'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from 'src/components/ui/tabs'
+
+const TABS = {
+  cards: 'cards',
+  table: 'table',
+}
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsQuery,
@@ -82,49 +78,21 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => (
-  <div className="mx-auto min-h-screen max-w-6xl space-y-6 bg-transparent">
-    <OverviewSection>
-      <OverviewHeader>
-        <CheckCircle2 className="mr-1 inline" />
-        Geaccepteerd
-      </OverviewHeader>
-      <OverviewContent>
-        <RequestStatusCardSkeleton />
-      </OverviewContent>
-    </OverviewSection>
-    <OverviewSection>
-      <OverviewHeader>
-        <Hourglass className="mr-1 inline" />
-        In uitvoering
-      </OverviewHeader>
-      <OverviewContent>
-        {Array.from({ length: 3 }).map((_, i) => {
-          return <RequestStatusCardSkeleton key={i} />
-        })}
-      </OverviewContent>
-    </OverviewSection>
-    <OverviewSection>
-      <OverviewHeader>
-        <Award className="mr-1 inline" />
-        Afgerond
-      </OverviewHeader>
-      <OverviewContent>
-        <RequestStatusCardSkeleton />
-      </OverviewContent>
-    </OverviewSection>
-    <OverviewSection>
-      <OverviewHeader>
-        <NotepadText className="mr-1 inline" />
-        Concept
-      </OverviewHeader>
-      <OverviewContent>
-        <RequestStatusCardSkeleton />
-      </OverviewContent>
-    </OverviewSection>
-    <div className="center"></div>
-  </div>
-)
+export const Loading = () => {
+  const queryParams = useParams()
+
+  return (
+    <div className="mx-auto min-h-screen max-w-6xl space-y-6 bg-transparent">
+      <div className="inline-flex w-full justify-end gap-2">
+        {Object.values(TABS).map((v) => (
+          <Skeleton key={v} className="bg-pr h-7 w-8 bg-primary-foreground" />
+        ))}
+      </div>
+      {queryParams.view === TABS.cards && <OverviewCardsSkeleton />}
+      {queryParams.view === TABS.table && <TableSkeleton />}
+    </div>
+  )
+}
 
 export const Empty = () => <div>Empty</div>
 
@@ -136,10 +104,7 @@ export const Success = ({
   workRequests,
 }: CellSuccessProps<WorkRequestsQuery>) => {
   const queryParams = useParams()
-  const TABS = {
-    cards: 'cards',
-    table: 'table',
-  }
+
   const [selectedTab, setSelectedTab] = useState(
     TABS[queryParams.view] || TABS.cards
   )
