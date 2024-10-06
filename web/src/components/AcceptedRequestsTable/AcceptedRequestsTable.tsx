@@ -1,7 +1,10 @@
+import { format } from 'date-fns/format'
+import { nl } from 'date-fns/locale/nl'
 import { CheckCircle2, Ellipsis, Users } from 'lucide-react'
+import { WorkRequestsQuery } from 'types/graphql'
 
-import { OverviewHeader } from '../OverviewSection/OverviewSection'
-import { Button } from '../ui/button'
+import { OverviewHeader } from 'src/components/OverviewSection'
+import { Button } from 'src/components/ui/button'
 import {
   Table,
   TableBody,
@@ -9,9 +12,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../ui/table'
+} from 'src/components/ui/table'
 
-const AcceptedRequestsTable = () => {
+type AcceptedRequestsTableProps = {
+  workRequests: WorkRequestsQuery['workRequests']
+}
+const AcceptedRequestsTable = ({
+  workRequests,
+}: AcceptedRequestsTableProps) => {
+  const acceptedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
   return (
     <div className="flex flex-col">
       <OverviewHeader>
@@ -29,36 +38,33 @@ const AcceptedRequestsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow className="bg-primary text-white hover:bg-white hover:text-secondary">
-            <TableCell className="font-bold">8 sept 2024</TableCell>
-            <TableCell>Salesmanager</TableCell>
-            <TableCell className="pl-10">
-              5
-              <Users className="relative -top-0.5 ml-1 inline size-4" />
-            </TableCell>
-            <TableCell>13:00-17:00</TableCell>
-            <Button
-              variant="outline"
-              className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
+          {acceptedRequests.map((request) => (
+            <TableRow
+              key={request.id}
+              className="bg-primary text-white hover:bg-white hover:text-secondary"
             >
-              <Ellipsis />
-            </Button>
-          </TableRow>
-          <TableRow className="bg-primary text-white  hover:bg-white hover:text-secondary">
-            <TableCell className="font-bold">1 okt 2024</TableCell>
-            <TableCell>Klantenservicemedewerker</TableCell>
-            <TableCell className="pl-10">
-              3
-              <Users className="relative -top-0.5 ml-1 inline size-4" />
-            </TableCell>
-            <TableCell>16:00-19:30</TableCell>
-            <Button
-              variant="outline"
-              className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
-            >
-              <Ellipsis />
-            </Button>
-          </TableRow>
+              <TableCell className="font-bold">
+                {format(request.startDate, 'd MMMM, yyyy', {
+                  locale: nl,
+                })}
+              </TableCell>
+              <TableCell>{request.jobProfile.name}</TableCell>
+              <TableCell className="pl-10">
+                {request.shifts.length}
+                <Users className="relative -top-0.5 ml-1 inline size-4" />
+              </TableCell>
+              <TableCell>
+                {format(request.startDate, 'H:MM')}–
+                {format(request.endDate, 'H:MM')}
+              </TableCell>
+              <Button
+                variant="outline"
+                className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
+              >
+                <Ellipsis />
+              </Button>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
