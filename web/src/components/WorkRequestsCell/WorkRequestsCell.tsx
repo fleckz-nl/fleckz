@@ -1,25 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { Award, CheckCircle2, Hourglass, NotepadText } from 'lucide-react'
+import {
+  Award,
+  CheckCircle2,
+  GalleryThumbnails,
+  Hourglass,
+  NotepadText,
+  Rows4,
+} from 'lucide-react'
 import type {
   WorkRequestsQuery,
   WorkRequestsQueryVariables,
 } from 'types/graphql'
 
+import { navigate, useParams } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
+import AcceptedRequestsTable from 'src/components/AcceptedRequestsTable'
+import OverviewCards from 'src/components/OverviewCards'
 import OverviewSection, {
   OverviewContent,
   OverviewHeader,
-} from '../OverviewSection/OverviewSection'
-import PlanWorkComponent from '../PlanWorkComponent/PlanWorkComponent'
-import RequestStatusCard from '../RequestStatusCard/RequestStatusCard'
-import RequestStatusCardSkeleton from '../RequestStatusCardSkeleton/RequestStatusCardSkeleton'
-import { Card, CardHeader } from '../ui/card'
+} from 'src/components/OverviewSection'
+import RequestStatusCardSkeleton from 'src/components/RequestStatusCardSkeleton'
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from 'src/components/ui/tabs'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsQuery,
@@ -122,77 +135,44 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   workRequests,
 }: CellSuccessProps<WorkRequestsQuery>) => {
-  const confirmedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
-
-  const submittedRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
-
-  const doneRequests = workRequests.filter((r) => r.status === 'DONE')
-
-  const draftRequests = workRequests.filter((r) => r.status === 'DRAFT')
-
-  function NoResultsCard() {
-    return (
-      <Card className="bg-transparent text-secondary">
-        <CardHeader>Geen Resultaten</CardHeader>
-      </Card>
-    )
+  const queryParams = useParams()
+  const TABS = {
+    cards: 'cards',
+    table: 'table',
   }
+  const [selectedTab, setSelectedTab] = useState(
+    TABS[queryParams.view] || TABS.cards
+  )
 
-  const [openDialog, setOpenDialog] = useState(false)
+  useEffect(() => {
+    navigate(`?view=${selectedTab}`, { replace: true })
+  }, [selectedTab])
 
   return (
     <>
-      <OverviewSection>
-        <OverviewHeader>
-          <CheckCircle2 className="mr-1 inline" />
-          Geaccepteerd
-        </OverviewHeader>
-        <OverviewContent>
-          {confirmedRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {confirmedRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <Hourglass className="mr-1 inline" />
-          In uitvoering
-        </OverviewHeader>
-        <OverviewContent>
-          {submittedRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {submittedRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <Award className="mr-1 inline" />
-          Afgerond
-        </OverviewHeader>
-        <OverviewContent>
-          {doneRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {doneRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <OverviewSection>
-        <OverviewHeader>
-          <NotepadText className="mr-1 inline" />
-          Concept
-        </OverviewHeader>
-        <OverviewContent>
-          {draftRequests.map((request) => {
-            return <RequestStatusCard key={request.id} request={request} />
-          })}
-          {draftRequests.length === 0 && <NoResultsCard />}
-        </OverviewContent>
-      </OverviewSection>
-      <div className="center">
-        <PlanWorkComponent open={openDialog} setOpen={setOpenDialog} />
-      </div>
+      <Tabs value={selectedTab} className="w-full">
+        <TabsList className="w-full justify-end bg-transparent">
+          <TabsTrigger
+            value={TABS.cards}
+            onClick={() => setSelectedTab(TABS.cards)}
+          >
+            <h2 className="sr-only">All Requests</h2> <GalleryThumbnails />
+          </TabsTrigger>
+          <TabsTrigger
+            value={TABS.table}
+            onClick={() => setSelectedTab(TABS.table)}
+          >
+            <h2 className="sr-only">Accepted requests</h2>
+            <Rows4 />
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value={TABS.cards}>
+          <OverviewCards workRequests={workRequests} />
+        </TabsContent>
+        <TabsContent value={TABS.table}>
+          <AcceptedRequestsTable workRequests={workRequests} />
+        </TabsContent>
+      </Tabs>
     </>
   )
 }
