@@ -3,6 +3,8 @@ import { nl } from 'date-fns/locale/nl'
 import { CheckCircle2, Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
+import { navigate } from '@redwoodjs/router'
+
 import { OverviewHeader } from 'src/components/OverviewSection'
 import {
   Table,
@@ -39,7 +41,8 @@ const AcceptedRequestsTable = ({
           {acceptedRequests.map((request) => (
             <TableRow
               key={request.id}
-              className="bg-primary text-white hover:bg-white hover:text-secondary"
+              className="bg-primary text-white hover:cursor-pointer hover:bg-white hover:text-secondary"
+              onClick={() => navigate(`/requests/${request.id}`)}
             >
               <TableCell className="font-bold">
                 {format(request.startDate, 'd MMMM, yyyy', {
