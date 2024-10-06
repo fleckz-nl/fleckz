@@ -57,12 +57,14 @@ const AcceptedRequestsTable = ({
                 {format(request.startDate, 'H:MM')}–
                 {format(request.endDate, 'H:MM')}
               </TableCell>
-              <Button
-                variant="outline"
-                className="border-none bg-transparent p-2  hover:cursor-pointer hover:bg-accent/20"
-              >
-                <Ellipsis />
-              </Button>
+              <TableCell>
+                <Button
+                  variant="outline"
+                  className="border-none bg-transparent p-2 hover:cursor-pointer hover:bg-accent/20"
+                >
+                  <Ellipsis />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
