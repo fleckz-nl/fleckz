@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import {
   Award,
   CheckCircle2,
@@ -11,6 +13,7 @@ import type {
   WorkRequestsQueryVariables,
 } from 'types/graphql'
 
+import { navigate, useParams } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -132,22 +135,41 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   workRequests,
 }: CellSuccessProps<WorkRequestsQuery>) => {
+  const queryParams = useParams()
+  const TABS = {
+    cards: 'cards',
+    table: 'table',
+  }
+  const [selectedTab, setSelectedTab] = useState(
+    TABS[queryParams.view] || TABS.cards
+  )
+
+  useEffect(() => {
+    navigate(`?view=${selectedTab}`, { replace: true })
+  }, [selectedTab])
+
   return (
     <>
-      <Tabs defaultValue="allRequests" className="w-full">
+      <Tabs value={selectedTab} className="w-full">
         <TabsList className="w-full justify-end bg-transparent">
-          <TabsTrigger value="allRequests">
+          <TabsTrigger
+            value={TABS.cards}
+            onClick={() => setSelectedTab(TABS.cards)}
+          >
             <h2 className="sr-only">All Requests</h2> <GalleryThumbnails />
           </TabsTrigger>
-          <TabsTrigger value="acceptedRequests">
+          <TabsTrigger
+            value={TABS.table}
+            onClick={() => setSelectedTab(TABS.table)}
+          >
             <h2 className="sr-only">Accepted requests</h2>
             <Rows4 />
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="allRequests">
+        <TabsContent value={TABS.cards}>
           <OverviewCards workRequests={workRequests} />
         </TabsContent>
-        <TabsContent value="acceptedRequests">
+        <TabsContent value={TABS.table}>
           <AcceptedRequestsTable workRequests={workRequests} />
         </TabsContent>
       </Tabs>
