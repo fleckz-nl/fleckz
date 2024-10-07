@@ -45,6 +45,7 @@ const ShiftConfirmationDrawer = () => {
                 className="rounded-sm bg-black px-2 text-center text-2xl text-white"
               />
             </div>
+            <Button>Bevestingen</Button>
           </TabsContent>
         </Tabs>
       </DrawerContent>
