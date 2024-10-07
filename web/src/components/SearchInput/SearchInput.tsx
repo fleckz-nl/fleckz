@@ -9,7 +9,7 @@ const SearchInput = () => {
     <Form>
       <div className="relative flex items-center text-primary-foreground">
         <Search className="absolute mx-2 size-4" />
-        <Input type="text" placeholder="Zoek maar door" />
+        <Input type="text" placeholder="Zoek maar door" className="pl-8" />
       </div>
     </Form>
   )
