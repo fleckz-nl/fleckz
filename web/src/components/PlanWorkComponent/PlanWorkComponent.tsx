@@ -140,6 +140,22 @@ const PlanWorkComponent = ({
     }
   )
 
+  const [createDraft, { loading: createDraftLoading }] = useMutation(
+    CREATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Concept aangemaakt')
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
+    }
+  )
+
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_WORK_REQUEST_GQL,
     {
@@ -215,7 +231,7 @@ const PlanWorkComponent = ({
 
   function handleSaveAsDraft(data: z.infer<typeof formSchema>) {
     const loadingToast = toast.loading('Laden...')
-    create({
+    createDraft({
       variables: {
         input: {
           ...data,
@@ -260,7 +276,9 @@ const PlanWorkComponent = ({
             </div>
           )}
           <form>
-            <fieldset disabled={anyLoading}>
+            <fieldset
+              disabled={createLoading || createDraftLoading || updateLoading}
+            >
               <FormField
                 control={form.control}
                 name="projectName"
@@ -405,7 +423,7 @@ const PlanWorkComponent = ({
                   <ButtonWithLoader
                     variant="outline"
                     type="button"
-                    loading={anyLoading}
+                    loading={createDraftLoading}
                     onClick={form.handleSubmit(handleSaveAsDraft)}
                   >
                     Opslaan als concept
