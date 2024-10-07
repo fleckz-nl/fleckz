@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formatDate } from 'date-fns'
@@ -13,6 +13,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import DiscardChangesAlert from 'src/components/DiscardChangesAlert/DiscardChangesAlert'
 import SelectAddressCell from 'src/components/SelectAddressCell'
 import SelectJobProfileCell from 'src/components/SelectJobProfileCell'
 import { Button } from 'src/components/ui/button'
@@ -96,6 +97,7 @@ const PlanWorkComponent = ({
 }: PlanWorkComponentProps) => {
   const { currentUser } = useAuth()
   const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
+  const [discardChangesOpen, setDiscardChangesOpen] = useState(false)
 
   const formSchema = z.object({
     id: z.string().cuid().optional(),
@@ -238,12 +240,19 @@ const PlanWorkComponent = ({
     }).finally(() => toast.dismiss(loadingToast))
   }
 
+  function handleOnOpenChange() {
+    if (form.formState.isDirty) {
+      return setDiscardChangesOpen(true)
+    }
+    setOpen((c) => !c)
+  }
+
   useEffect(() => {
     form.reset(currentDefaultValues)
   }, [form, currentDefaultValues])
 
   return (
-    <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
+    <Dialog open={open} onOpenChange={handleOnOpenChange}>
       <DialogTrigger asChild>
         {!hideTrigger && (
           <Button
@@ -443,6 +452,11 @@ const PlanWorkComponent = ({
             </fieldset>
           </form>
         </Form>
+        <DiscardChangesAlert
+          open={discardChangesOpen}
+          setOpen={setDiscardChangesOpen}
+          onConfirm={() => setOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   )
