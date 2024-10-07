@@ -217,11 +217,6 @@ const PlanWorkComponent = ({
     }
   }
 
-  const anyLoading = useMemo(
-    () => createLoading || updateLoading || deleteLoading,
-    [createLoading, updateLoading, deleteLoading]
-  )
-
   function handleDelete(id: string) {
     deleteRequest({
       variables: { id },
@@ -439,7 +434,7 @@ const PlanWorkComponent = ({
                 <ButtonWithLoader
                   onClick={form.handleSubmit(onSubmit)}
                   type="submit"
-                  loading={anyLoading}
+                  loading={createLoading || updateLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
                 >
                   {isEditing ? 'Opslaan' : 'Indienen'}
