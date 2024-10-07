@@ -38,6 +38,7 @@ model User {
 enum Role {
   CLIENT
   MEDIATOR
+  TEMP_AGENCY_REP
   ADMIN
 }
 
@@ -93,13 +94,13 @@ model JobProfile {
   name               String
   yearsOfExp         Int
   certificates       Certificate[]
-  hourlyWageMin      Float
-  hourlyWageMax      Float
+  hourlyWageMin      Decimal
+  hourlyWageMax      Decimal
   maxTravelDistance  Float?
   isTravelReimbursed Boolean?
   isCarAvailable     Boolean?
-  kmAllowance        Float?
-  totalBudgetPerHour Float?
+  kmAllowance        Decimal?
+  totalBudgetPerHour Decimal?
   comment            String?
   workRequest        WorkRequest[]
   createdBy          User?         @relation(fields: [userId], references: [id])

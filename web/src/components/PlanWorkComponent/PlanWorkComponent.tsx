@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formatDate } from 'date-fns'
@@ -10,9 +10,10 @@ import { z } from 'zod'
 import { FormError } from '@redwoodjs/forms'
 import { routes, Link } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
-import { Toaster, toast } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import DiscardChangesAlert from 'src/components/DiscardChangesAlert/DiscardChangesAlert'
 import SelectAddressCell from 'src/components/SelectAddressCell'
 import SelectJobProfileCell from 'src/components/SelectJobProfileCell'
 import { Button } from 'src/components/ui/button'
@@ -96,6 +97,7 @@ const PlanWorkComponent = ({
 }: PlanWorkComponentProps) => {
   const { currentUser } = useAuth()
   const isEditing = useMemo(() => !!defaultValues?.id, [defaultValues])
+  const [discardChangesOpen, setDiscardChangesOpen] = useState(false)
 
   const formSchema = z.object({
     id: z.string().cuid().optional(),
@@ -133,6 +135,22 @@ const PlanWorkComponent = ({
         form.reset()
         setOpen(false)
       },
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
+    }
+  )
+
+  const [createDraft, { loading: createDraftLoading }] = useMutation(
+    CREATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Concept aangemaakt')
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
       refetchQueries: [
         { query: WorkSchedularQuery },
         { query: WorkRequestsQuery },
@@ -201,11 +219,6 @@ const PlanWorkComponent = ({
     }
   }
 
-  const anyLoading = useMemo(
-    () => createLoading || updateLoading || deleteLoading,
-    [createLoading, updateLoading, deleteLoading]
-  )
-
   function handleDelete(id: string) {
     deleteRequest({
       variables: { id },
@@ -215,7 +228,7 @@ const PlanWorkComponent = ({
 
   function handleSaveAsDraft(data: z.infer<typeof formSchema>) {
     const loadingToast = toast.loading('Laden...')
-    create({
+    createDraft({
       variables: {
         input: {
           ...data,
@@ -227,13 +240,19 @@ const PlanWorkComponent = ({
     }).finally(() => toast.dismiss(loadingToast))
   }
 
+  function handleOnOpenChange() {
+    if (form.formState.isDirty) {
+      return setDiscardChangesOpen(true)
+    }
+    setOpen((c) => !c)
+  }
+
   useEffect(() => {
     form.reset(currentDefaultValues)
   }, [form, currentDefaultValues])
 
   return (
-    <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
-      <Toaster />
+    <Dialog open={open} onOpenChange={handleOnOpenChange}>
       <DialogTrigger asChild>
         {!hideTrigger && (
           <Button
@@ -261,7 +280,9 @@ const PlanWorkComponent = ({
             </div>
           )}
           <form>
-            <fieldset disabled={anyLoading}>
+            <fieldset
+              disabled={createLoading || createDraftLoading || updateLoading}
+            >
               <FormField
                 control={form.control}
                 name="projectName"
@@ -406,7 +427,7 @@ const PlanWorkComponent = ({
                   <ButtonWithLoader
                     variant="outline"
                     type="button"
-                    loading={anyLoading}
+                    loading={createDraftLoading}
                     onClick={form.handleSubmit(handleSaveAsDraft)}
                   >
                     Opslaan als concept
@@ -422,7 +443,7 @@ const PlanWorkComponent = ({
                 <ButtonWithLoader
                   onClick={form.handleSubmit(onSubmit)}
                   type="submit"
-                  loading={anyLoading}
+                  loading={createLoading || updateLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
                 >
                   {isEditing ? 'Opslaan' : 'Indienen'}
@@ -431,6 +452,11 @@ const PlanWorkComponent = ({
             </fieldset>
           </form>
         </Form>
+        <DiscardChangesAlert
+          open={discardChangesOpen}
+          setOpen={setDiscardChangesOpen}
+          onConfirm={() => setOpen(false)}
+        />
       </DialogContent>
     </Dialog>
   )
