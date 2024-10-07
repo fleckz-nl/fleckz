@@ -1,11 +1,13 @@
 import * as React from 'react'
 
+import { Form } from 'web/src/components/ui/form'
+import { Input } from 'web/src/components/ui/input'
+
 const SearchInput = () => {
   return (
-    <div>
-      <h2>{'SearchInput'}</h2>
-      <p>{'Find me in ./web/src/components/SearchInput/SearchInput.tsx'}</p>
-    </div>
+    <Form>
+      <Input type="text" placeholder="Zoek maar door" />
+    </Form>
   )
 }
 
