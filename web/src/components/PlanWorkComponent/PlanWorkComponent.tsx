@@ -10,7 +10,7 @@ import { z } from 'zod'
 import { FormError } from '@redwoodjs/forms'
 import { routes, Link } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
-import { Toaster, toast } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
 import SelectAddressCell from 'src/components/SelectAddressCell'
@@ -140,6 +140,22 @@ const PlanWorkComponent = ({
     }
   )
 
+  const [createDraft, { loading: createDraftLoading }] = useMutation(
+    CREATE_WORK_REQUEST_GQL,
+    {
+      onCompleted: () => {
+        toast.success('Concept aangemaakt')
+        form.reset()
+        setOpen(false)
+      },
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [
+        { query: WorkSchedularQuery },
+        { query: WorkRequestsQuery },
+      ],
+    }
+  )
+
   const [update, { loading: updateLoading, error: updateError }] = useMutation(
     UPDATE_WORK_REQUEST_GQL,
     {
@@ -201,11 +217,6 @@ const PlanWorkComponent = ({
     }
   }
 
-  const anyLoading = useMemo(
-    () => createLoading || updateLoading || deleteLoading,
-    [createLoading, updateLoading, deleteLoading]
-  )
-
   function handleDelete(id: string) {
     deleteRequest({
       variables: { id },
@@ -215,7 +226,7 @@ const PlanWorkComponent = ({
 
   function handleSaveAsDraft(data: z.infer<typeof formSchema>) {
     const loadingToast = toast.loading('Laden...')
-    create({
+    createDraft({
       variables: {
         input: {
           ...data,
@@ -233,7 +244,6 @@ const PlanWorkComponent = ({
 
   return (
     <Dialog open={open} onOpenChange={() => setOpen((c) => !c)}>
-      <Toaster />
       <DialogTrigger asChild>
         {!hideTrigger && (
           <Button
@@ -261,7 +271,9 @@ const PlanWorkComponent = ({
             </div>
           )}
           <form>
-            <fieldset disabled={anyLoading}>
+            <fieldset
+              disabled={createLoading || createDraftLoading || updateLoading}
+            >
               <FormField
                 control={form.control}
                 name="projectName"
@@ -406,7 +418,7 @@ const PlanWorkComponent = ({
                   <ButtonWithLoader
                     variant="outline"
                     type="button"
-                    loading={anyLoading}
+                    loading={createDraftLoading}
                     onClick={form.handleSubmit(handleSaveAsDraft)}
                   >
                     Opslaan als concept
@@ -422,7 +434,7 @@ const PlanWorkComponent = ({
                 <ButtonWithLoader
                   onClick={form.handleSubmit(onSubmit)}
                   type="submit"
-                  loading={anyLoading}
+                  loading={createLoading || updateLoading}
                   className="relative text-accent brightness-200 hover:brightness-100"
                 >
                   {isEditing ? 'Opslaan' : 'Indienen'}
