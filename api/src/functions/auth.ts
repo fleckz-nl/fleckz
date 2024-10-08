@@ -7,6 +7,8 @@ import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { mailer } from 'src/lib/mailer'
 import { ForgotPassword } from 'src/mail/ForgotPassword/ForgotPassword'
+import { WelcomeEmail } from 'src/mail/Welcome/Welcome'
+
 const ROOT_URL = 'https://fleckz.nl'
 const DEVELOPMENT_ROOT_URL = 'http://localhost:8910'
 
@@ -144,6 +146,12 @@ export const handler = async (
       salt,
       userAttributes: _userAttributes,
     }) => {
+      mailer.send(WelcomeEmail({ username }), {
+        to: username,
+        subject: 'Welkom bij Fleckz',
+        from: 'info@fleckz.nl',
+      })
+
       return db.user.create({
         data: {
           email: username,
