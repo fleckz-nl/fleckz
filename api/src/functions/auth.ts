@@ -36,6 +36,15 @@ export const handler = async (
       // TODO: Send user an email/message with a link to reset their password,
       // including the `resetToken`. The URL should look something like:
       // `http://localhost:8910/reset-password?resetToken=${resetToken}`
+      const currentDomain =
+        process.env.NODE_ENV !== 'development' ? ROOT_URL : DEVELOPMENT_ROOT_URL
+      const resetUrl = `${currentDomain}/reset-password?resetToken=${_resetToken}`
+
+      mailer.send(ForgotPassword({ username: user.email, resetUrl }), {
+        to: user.email,
+        subject: 'Fleckz: Wachtwoord resetten',
+        from: 'info@fleckz.nl',
+      })
 
       return user
     },
