@@ -11,6 +11,7 @@
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
 import type { Meta, StoryObj } from '@storybook/react'
+import { format } from 'date-fns'
 
 import ShiftConfirmationDrawer from './ShiftConfirmationDrawer'
 
@@ -23,4 +24,8 @@ export default meta
 
 type Story = StoryObj<typeof ShiftConfirmationDrawer>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    time: format(new Date(), 'HH:mm'),
+  },
+}

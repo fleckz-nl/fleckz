@@ -14,7 +14,11 @@ import {
   TabsTrigger,
 } from 'web/src/components/ui/tabs'
 
-const ShiftConfirmationDrawer = () => {
+type ShiftConfirmationDrawerProps = {
+  time: string
+}
+
+const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
   return (
     <Drawer>
       <DrawerTrigger>
@@ -61,6 +65,7 @@ const ShiftConfirmationDrawer = () => {
               <span className="mx-auto text-2xl text-white">DD MMM YYYY</span>
               <input
                 type="time"
+                value={time}
                 className="rounded-sm bg-white px-2 text-center text-2xl text-primary"
               />
             </div>
