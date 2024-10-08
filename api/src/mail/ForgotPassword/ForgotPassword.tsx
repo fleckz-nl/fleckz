@@ -23,7 +23,7 @@ export function ForgotPassword({
   resetUrl,
 }: ForgotPasswordProps) {
   return (
-    <Html lang="en">
+    <Html lang="nl">
       <Head />
       <Preview>Fleckz: Wachtwoord resetten</Preview>
       <Tailwind>
