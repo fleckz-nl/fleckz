@@ -59,6 +59,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                     >
                       In
                     </Badge>
+                  <Button className="bg-gray-900 text-accent">Nu</Button>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
                 Bevestingen
               </Button>
@@ -71,6 +72,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                     >
                       Uit
                     </Badge>
+                  <Button className="bg-gray-900 text-accent">Nu</Button>
           <TabsContent value="shiftSummary">
             <div className="my-4 flex h-[250px] flex-col justify-between">
               <div>
