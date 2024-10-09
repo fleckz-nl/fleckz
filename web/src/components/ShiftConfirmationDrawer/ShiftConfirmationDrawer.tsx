@@ -63,12 +63,44 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
             </div>
           </TabsContent>
           <TabsContent value="shiftCheckOut">
+          <TabsContent value="shiftSummary">
+            <div className="my-4 flex h-[250px] flex-col justify-between">
+              <div>
+                <h3 className="flex flex-wrap items-center justify-between">
+                  <TempAgencyWorker />
             <div className="flex flex-col">
               <h3 className="flex items-center justify-between">
                 <TempAgencyWorker />
                 <Button className="bg-black text-accent">Nu</Button>
               </h3>
               <TimePicker time={time} />
+                </h3>
+                <div className="my-4 flex flex-col items-center">
+                  <span className="mx-auto text-xl text-muted/50">
+                    12 Okt 2024
+                  </span>
+                  <div className="container my-4 grid grid-cols-3 place-items-center gap-20 xs:gap-0">
+                    <div className="center flex-col">
+                      <span className="font-extralight text-white/50">
+                        Inchecken
+                      </span>
+                      <span className="text-3xl">00:00</span>
+                    </div>
+                    <div className="center flex-col">
+                      <span className="text-4xl font-semibold">5:24</span>
+                      <span className="font-extralight text-white/50">
+                        uren
+                      </span>
+                    </div>
+                    <div className="center flex-col">
+                      <span className="font-extralight text-white/50">
+                        Uitchecken
+                      </span>
+                      <span className="text-3xl">00:00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
                 Bevestingen
               </Button>
