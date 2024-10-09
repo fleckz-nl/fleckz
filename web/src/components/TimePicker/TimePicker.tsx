@@ -15,7 +15,7 @@ const TimePicker = ({ time, className }: TimePickerProps) => {
         className
       )}
     >
-      <span className="mx-auto text-2xl text-muted/50">12 Okt 2024</span>
+      <span className="mx-auto text-xl text-muted/50">12 Okt 2024</span>
       <input
         type="time"
         defaultValue={time}
