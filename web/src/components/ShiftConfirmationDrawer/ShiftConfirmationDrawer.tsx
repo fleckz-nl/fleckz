@@ -25,7 +25,7 @@ type ShiftConfirmationDrawerProps = {
 const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
   return (
     <Drawer>
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
           Inchecken: Nu
         </Button>
