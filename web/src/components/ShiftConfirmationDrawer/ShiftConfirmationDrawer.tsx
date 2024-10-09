@@ -14,6 +14,7 @@ import {
 } from 'web/src/components/ui/tabs'
 
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
+import TimePicker from 'src/components/TimePicker'
 
 type ShiftConfirmationDrawerProps = {
   time: string
@@ -57,16 +58,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
               <TempAgencyWorker />
               <Button className="bg-black text-accent">Nu</Button>
             </h3>
-            <div className="mx-auto flex items-center justify-center gap-5 py-10">
-              <span className="mx-auto text-2xl text-muted/50">
-                12 Okt 2024
-              </span>
-              <input
-                type="time"
-                defaultValue={time}
-                className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
-              />
-            </div>
+            <TimePicker time={time} />
             <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
               Bevestingen
             </Button>

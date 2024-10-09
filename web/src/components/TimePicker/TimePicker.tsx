@@ -1,10 +1,26 @@
 import * as React from 'react'
 
-const TimePicker = () => {
+import { cn } from 'src/lib/utils'
+
+type TimePickerProps = {
+  time: string
+  className?: string
+}
+
+const TimePicker = ({ time, className }: TimePickerProps) => {
   return (
-    <div>
-      <h2>{'TimePicker'}</h2>
-      <p>{'Find me in ./web/src/components/TimePicker/TimePicker.tsx'}</p>
+    <div
+      className={cn(
+        'mx-auto flex items-center justify-center gap-5 py-10',
+        className
+      )}
+    >
+      <span className="mx-auto text-2xl text-muted/50">12 Okt 2024</span>
+      <input
+        type="time"
+        defaultValue={time}
+        className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
+      />
     </div>
   )
 }
