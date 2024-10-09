@@ -11,7 +11,7 @@ const TimePicker = ({ time, className }: TimePickerProps) => {
   return (
     <div
       className={cn(
-        'mx-auto flex items-center justify-center gap-5 py-10',
+        'mx-auto flex items-center justify-center gap-5 py-14',
         className
       )}
     >
