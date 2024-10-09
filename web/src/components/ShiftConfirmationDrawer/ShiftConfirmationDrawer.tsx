@@ -53,26 +53,49 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="shiftCheckIn">
+            <div className="my-4 flex h-[250px] flex-col justify-between">
+              <div className="flex flex-col">
+                <h3 className="flex flex-wrap items-center justify-between">
+                  <div className="flex gap-4">
+                    <TempAgencyWorker />
                     <Badge
                       variant="outline"
                       className=" h-4 bg-lime-500 text-black"
                     >
                       In
                     </Badge>
+                  </div>
                   <Button className="bg-gray-900 text-accent">Nu</Button>
+                </h3>
+                <TimePicker time={time} />
+              </div>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
                 Bevestingen
               </Button>
             </div>
           </TabsContent>
           <TabsContent value="shiftCheckOut">
+            <div className="my-4 flex h-[250px] flex-col justify-between">
+              <div className="flex flex-col">
+                <h3 className="flex flex-wrap items-center justify-between">
+                  <div className="flex gap-4">
+                    <TempAgencyWorker />
                     <Badge
                       variant="outline"
                       className=" h-4 bg-red-500 text-black"
                     >
                       Uit
                     </Badge>
+                  </div>
                   <Button className="bg-gray-900 text-accent">Nu</Button>
+                </h3>
+                <TimePicker time={time} />
+              </div>
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+                Bevestingen
+              </Button>
+            </div>
+          </TabsContent>
           <TabsContent value="shiftSummary">
             <div className="my-4 flex h-[250px] flex-col justify-between">
               <div>
