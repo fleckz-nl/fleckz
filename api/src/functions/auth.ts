@@ -7,7 +7,11 @@ import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { mailer } from 'src/lib/mailer'
 import { ForgotPassword } from 'src/mail/ForgotPassword/ForgotPassword'
-const ROOT_URL = 'https://fleckz.nl'
+
+const ROOT_URL = process.env.NETLIFY
+  ? process.env.DEPLOY_URL
+  : 'https://fleckz.nl'
+
 const DEVELOPMENT_ROOT_URL = 'http://localhost:8910'
 
 export const handler = async (
