@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { ThumbsDown, ThumbsUp } from 'lucide-react'
 import { Button } from 'web/src/components/ui/button'
 import {
   Drawer,
@@ -68,12 +69,14 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
               <div>
                 <h3 className="flex flex-wrap items-center justify-between">
                   <TempAgencyWorker />
-            <div className="flex flex-col">
-              <h3 className="flex items-center justify-between">
-                <TempAgencyWorker />
-                <Button className="bg-black text-accent">Nu</Button>
-              </h3>
-              <TimePicker time={time} />
+                  <div className="flex gap-2">
+                    <Button className="bg-gray-900 p-2 text-accent">
+                      <ThumbsUp className="size-5" />
+                    </Button>
+                    <Button className="bg-gray-900 p-2 text-accent">
+                      <ThumbsDown className="size-5" />
+                    </Button>
+                  </div>
                 </h3>
                 <div className="my-4 flex flex-col items-center">
                   <span className="mx-auto text-xl text-muted/50">
