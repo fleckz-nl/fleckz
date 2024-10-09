@@ -16,6 +16,7 @@ import {
 
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 import TimePicker from 'src/components/TimePicker'
+import { Badge } from 'src/components/ui/badge'
 
 type ShiftConfirmationDrawerProps = {
   time: string
@@ -52,18 +53,24 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="shiftCheckIn">
-            <div className="flex flex-col">
-              <h3 className="flex items-center justify-between">
-                <TempAgencyWorker />
-                <Button className="bg-black text-accent">Nu</Button>
-              </h3>
-              <TimePicker time={time} />
+                    <Badge
+                      variant="outline"
+                      className=" h-4 bg-lime-500 text-black"
+                    >
+                      In
+                    </Badge>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
                 Bevestingen
               </Button>
             </div>
           </TabsContent>
           <TabsContent value="shiftCheckOut">
+                    <Badge
+                      variant="outline"
+                      className=" h-4 bg-red-500 text-black"
+                    >
+                      Uit
+                    </Badge>
           <TabsContent value="shiftSummary">
             <div className="my-4 flex h-[250px] flex-col justify-between">
               <div>
