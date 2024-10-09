@@ -50,18 +50,29 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
               Samenvatting
             </TabsTrigger>
           </TabsList>
-          <TabsContent
-            value="shiftCheckIn"
-            className="flex w-full flex-col pb-4"
-          >
-            <h3 className="flex items-center justify-between">
-              <TempAgencyWorker />
-              <Button className="bg-black text-accent">Nu</Button>
-            </h3>
-            <TimePicker time={time} />
-            <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
-              Bevestingen
-            </Button>
+          <TabsContent value="shiftCheckIn">
+            <div className="flex flex-col">
+              <h3 className="flex items-center justify-between">
+                <TempAgencyWorker />
+                <Button className="bg-black text-accent">Nu</Button>
+              </h3>
+              <TimePicker time={time} />
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+                Bevestingen
+              </Button>
+            </div>
+          </TabsContent>
+          <TabsContent value="shiftCheckOut">
+            <div className="flex flex-col">
+              <h3 className="flex items-center justify-between">
+                <TempAgencyWorker />
+                <Button className="bg-black text-accent">Nu</Button>
+              </h3>
+              <TimePicker time={time} />
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+                Bevestingen
+              </Button>
+            </div>
           </TabsContent>
         </Tabs>
       </DrawerContent>
