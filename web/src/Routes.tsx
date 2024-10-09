@@ -25,7 +25,6 @@ const Routes = () => {
           <Route path="/overview" page={OverviewPage} name="overview" />
           <Route path="/plan" page={PlanPage} name="plan" />
           <Route path="/job-profiles" page={JobProfilesPage} name="jobProfiles" />
-          <Route path="/temp-agencies" page={TempAgenciesPage} name="tempAgencies" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         </Set>
         <Set wrap={WorkRequestPageLayout}>
@@ -35,6 +34,7 @@ const Routes = () => {
           <Route path="/settings" redirect="/settings/profile" />
           <Route path="/settings/profile" page={ProfilePage} name="profile" />
           <Route path="/settings/business" page={BusinessPage} name="business" />
+          <Route path="/temp-agencies" page={TempAgenciesPage} name="tempAgencies" />
         </Set>
       </PrivateSet>
       <Set wrap={DefaultLayout}>
