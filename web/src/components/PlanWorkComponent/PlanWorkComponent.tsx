@@ -341,7 +341,13 @@ const PlanWorkComponent = ({
                       Locatie
                     </FormLabel>
                     <FormDescription>
-                      Waar wilt u dat de werknemer werkt?
+                      Waar wilt u dat de werknemer werkt? Geen adres?{' '}
+                      <Link
+                        to={routes.business()}
+                        className="text-primary/90 hover:text-accent hover:underline"
+                      >
+                        Maak er een aan.
+                      </Link>
                     </FormDescription>
                     <SelectAddressCell
                       field={field}
