@@ -62,11 +62,13 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
               <Button className="bg-black text-accent">Nu</Button>
             </h3>
             <div className="mx-auto flex items-center justify-center gap-5 py-10">
-              <span className="mx-auto text-2xl text-white">DD MMM YYYY</span>
+              <span className="mx-auto text-2xl text-muted/50">
+                12 Okt 2024
+              </span>
               <input
                 type="time"
                 value={time}
-                className="rounded-sm bg-white px-2 text-center text-2xl text-primary"
+                className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
               />
             </div>
             <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
