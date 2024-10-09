@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { Badge } from 'web/src/components/ui/badge'
 import { Button } from 'web/src/components/ui/button'
 import {
   Drawer,
@@ -13,6 +12,8 @@ import {
   TabsList,
   TabsTrigger,
 } from 'web/src/components/ui/tabs'
+
+import TempAgencyWorker from 'src/components/TempAgencyWorker'
 
 type ShiftConfirmationDrawerProps = {
   time: string
@@ -53,12 +54,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
             className="flex w-full flex-col pb-4"
           >
             <h3 className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="font-semibold">Achternaam Voornaam</span>
-                <Badge className="w-fit bg-black text-primary-foreground/50">
-                  Uitzendbureau
-                </Badge>
-              </div>
+              <TempAgencyWorker />
               <Button className="bg-black text-accent">Nu</Button>
             </h3>
             <div className="mx-auto flex items-center justify-center gap-5 py-10">
