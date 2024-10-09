@@ -67,7 +67,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
               </span>
               <input
                 type="time"
-                value={time}
+                defaultValue={time}
                 className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
               />
             </div>
