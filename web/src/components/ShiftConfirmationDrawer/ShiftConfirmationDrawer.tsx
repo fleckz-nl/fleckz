@@ -69,7 +69,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                 </h3>
                 <TimePicker time={time} />
               </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
                 Bevestingen
               </Button>
             </div>
@@ -91,7 +91,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                 </h3>
                 <TimePicker time={time} />
               </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
                 Bevestingen
               </Button>
             </div>
@@ -136,7 +136,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                   </div>
                 </div>
               </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
+              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
                 Bevestingen
               </Button>
             </div>
