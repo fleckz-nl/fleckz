@@ -90,6 +90,14 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                   <Button className="bg-gray-900 text-accent">Nu</Button>
                 </h3>
                 <TimePicker time={time} />
+                <div className="flex gap-2 self-end">
+                  <Button className="bg-gray-900 p-2 text-accent">
+                    <ThumbsUp className="size-5" />
+                  </Button>
+                  <Button className="bg-gray-900 p-2 text-accent">
+                    <ThumbsDown className="size-5" />
+                  </Button>
+                </div>
               </div>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
                 Bevestingen
