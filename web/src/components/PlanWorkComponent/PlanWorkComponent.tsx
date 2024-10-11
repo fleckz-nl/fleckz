@@ -360,7 +360,7 @@ const PlanWorkComponent = ({
                   </FormItem>
                 )}
               />
-              <fieldset className="flex flex-col items-center justify-between sm:flex-row">
+              <fieldset className="flex flex-wrap justify-between">
                 <FormField
                   control={form.control}
                   name="startDate"
