@@ -30,7 +30,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
           Inchecken: Nu
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="container border-secondary/10 bg-gray-950 px-4 text-white/70">
+      <DrawerContent className="container max-w-lg border-secondary/10 bg-gray-950 px-4 text-white/70">
         <Tabs defaultValue="shiftCheckIn">
           <TabsList className="mx-auto mt-2 grid grid-cols-3 gap-2">
             <TabsTrigger
