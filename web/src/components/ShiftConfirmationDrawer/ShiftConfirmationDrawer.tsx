@@ -122,7 +122,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                   <span className="mx-auto text-xl text-muted/50">
                     12 Okt 2024
                   </span>
-                  <div className="container my-4 grid grid-cols-3 place-items-center gap-20 xs:gap-0">
+                  <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
                     <div className="center flex-col">
                       <span className="font-extralight text-white/50">
                         Inchecken
@@ -130,7 +130,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                       <span className="text-3xl">00:00</span>
                     </div>
                     <div className="center flex-col">
-                      <span className="text-4xl font-semibold">5:24</span>
+                      <span className="font-semibol text-4xl">5:24</span>
                       <span className="font-extralight text-white/50">
                         uren
                       </span>
