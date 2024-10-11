@@ -149,11 +149,15 @@ model Shift {
   tempAgencyId  String?
   hoursPlanned  Decimal?
   hoursWorked   Decimal?
+  checkedInAt   DateTime?
+  checkedOutAt  DateTime?
 }
 
 enum ShiftStatus {
   UNFULFILLED
   FULFILLED
+  CHECKED_IN
+  CHECKED_OUT
 }
 
 model ClientBusiness {
