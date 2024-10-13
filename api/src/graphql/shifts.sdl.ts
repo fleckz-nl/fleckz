@@ -4,11 +4,14 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     name: String
+    workerName: String
     status: ShiftStatus!
     workRequest: WorkRequest
     workRequestId: String
     rating: Int
     tempAgency: TempAgency
+    checkedInAt: DateTime
+    checkedOutAt: DateTime
   }
 
   enum ShiftStatus {
