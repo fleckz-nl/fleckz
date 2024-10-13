@@ -100,7 +100,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                 </div>
               </div>
               <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-                Bevestingen
+                Bevestigen
               </Button>
             </div>
           </TabsContent>
