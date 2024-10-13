@@ -122,7 +122,7 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
                       <span className="text-3xl">00:00</span>
                     </div>
                     <div className="center flex-col">
-                      <span className="font-semibol text-4xl">5:24</span>
+                      <span className="text-4xl font-semibold">5:24</span>
                       <span className="font-extralight text-white/50">
                         uren
                       </span>
