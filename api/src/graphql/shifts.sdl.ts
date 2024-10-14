@@ -17,6 +17,8 @@ export const schema = gql`
   enum ShiftStatus {
     UNFULFILLED
     FULFILLED
+    CHECKED_IN
+    CHECKED_OUT
   }
 
   type Query {
