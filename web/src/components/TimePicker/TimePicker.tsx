@@ -1,13 +1,31 @@
-import * as React from 'react'
+import { ChangeEvent, useState } from 'react'
+
+import { format } from 'date-fns/format'
 
 import { cn } from 'src/lib/utils'
 
 type TimePickerProps = {
-  time: string
+  date: Date
+  onDateChange: (newValue: Date) => void
   className?: string
 }
 
-const TimePicker = ({ time, className }: TimePickerProps) => {
+const TimePicker = ({ date, className, onDateChange }: TimePickerProps) => {
+  const [datePart, setDatePart] = useState(format(date, 'yyyy-MM-dd'))
+  const [timePart, setTimePart] = useState(format(date, 'HH:mm'))
+
+  function handleDateChange(e: ChangeEvent<HTMLInputElement>) {
+    setDatePart(e.target.value)
+    const newDate = new Date(`${e.target.value}T${timePart}`)
+    setDatePart(e.target.value)
+    onDateChange(newDate)
+  }
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setTimePart(e.target.value)
+    const newDate = new Date(`${datePart}T${e.target.value}`)
+    onDateChange(newDate)
+  }
+
   return (
     <div
       className={cn(
@@ -15,10 +33,16 @@ const TimePicker = ({ time, className }: TimePickerProps) => {
         className
       )}
     >
-      <span className="mx-auto text-xl text-muted/50">12 Okt 2024</span>
+      <input
+        type="date"
+        className="mx-auto bg-transparent text-xl text-muted/50"
+        value={datePart}
+        onChange={handleDateChange}
+      />
       <input
         type="time"
-        defaultValue={time}
+        value={timePart}
+        onChange={handleChange}
         className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
       />
     </div>
