@@ -1,6 +1,7 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useMemo } from 'react'
 
 import { format } from 'date-fns/format'
+import { parse } from 'date-fns/parse'
 
 import { cn } from 'src/lib/utils'
 
@@ -11,26 +12,18 @@ type TimePickerProps = {
 }
 
 const TimePicker = ({ date, className, onDateChange }: TimePickerProps) => {
-  const [datePart, setDatePart] = useState(format(date, 'yyyy-MM-dd'))
-  const [timePart, setTimePart] = useState(format(date, 'HH:mm'))
+  const datePart = useMemo(() => format(date, 'yyyy-MM-dd'), [date])
+  const timePart = useMemo(() => format(date, 'HH:mm'), [date])
+
+  const DATE_FORMAT = 'yyyy-MM-dd HH:mm'
 
   function handleDateChange(e: ChangeEvent<HTMLInputElement>) {
-    setDatePart(e.target.value)
-    const newDate = new Date(`${e.target.value}T${timePart}`)
-    setDatePart(e.target.value)
-    onDateChange(newDate)
+    onDateChange(parse(`${e.target.value} ${timePart}`, DATE_FORMAT, date))
   }
 
   function handleTimeChange(e: ChangeEvent<HTMLInputElement>) {
-    setTimePart(e.target.value)
-    const newDate = new Date(`${datePart}T${e.target.value}`)
-    onDateChange(newDate)
+    onDateChange(parse(`${datePart} ${e.target.value}`, DATE_FORMAT, date))
   }
-
-  useEffect(() => {
-    setDatePart(format(date, 'yyyy-MM-dd'))
-    setTimePart(format(date, 'HH:mm'))
-  }, [date])
 
   return (
     <div
