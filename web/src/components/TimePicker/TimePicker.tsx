@@ -20,7 +20,8 @@ const TimePicker = ({ date, className, onDateChange }: TimePickerProps) => {
     setDatePart(e.target.value)
     onDateChange(newDate)
   }
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+
+  function handleTimeChange(e: ChangeEvent<HTMLInputElement>) {
     setTimePart(e.target.value)
     const newDate = new Date(`${datePart}T${e.target.value}`)
     onDateChange(newDate)
@@ -42,7 +43,7 @@ const TimePicker = ({ date, className, onDateChange }: TimePickerProps) => {
       <input
         type="time"
         value={timePart}
-        onChange={handleChange}
+        onChange={handleTimeChange}
         className="rounded-sm bg-white px-2 text-center text-3xl text-primary"
       />
     </div>
