@@ -11,7 +11,8 @@
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
 import type { Meta, StoryObj } from '@storybook/react'
-import { format } from 'date-fns'
+
+import { mockShifts } from 'src/components/WorkRequestCell/WorkRequestCell.mock'
 
 import ShiftConfirmationDrawer from './ShiftConfirmationDrawer'
 
@@ -26,6 +27,6 @@ type Story = StoryObj<typeof ShiftConfirmationDrawer>
 
 export const Primary: Story = {
   args: {
-    time: format(new Date(), 'HH:mm'),
+    shift: mockShifts[0],
   },
 }
