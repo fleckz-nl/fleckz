@@ -5,15 +5,14 @@ const TodayPage = () => {
   return (
     <>
       <Metadata title="Today" description="Today page" />
-
-      <h1>TodayPage</h1>
-      <p>
-        Find me in <code>./web/src/pages/TodayPage/TodayPage.tsx</code>
-      </p>
-      {/*
-          My default route is named `today`, link to me with:
-          `<Link to={routes.today()}>Today</Link>`
-      */}
+      <div className="mx-auto flex max-w-4xl flex-col ">
+        <div className="flex flex-col items-center text-xl font-bold">
+          <h1 className="text-white/90">Vandaag</h1>
+          <span className="text-2xl font-medium text-accent">
+            14 Oktober 2024
+          </span>
+        </div>
+      </div>
     </>
   )
 }
