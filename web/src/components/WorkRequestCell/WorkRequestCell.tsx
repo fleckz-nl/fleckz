@@ -65,6 +65,10 @@ export const QUERY: TypedDocumentNode<
         id
         name
         status
+        rating
+        workerName
+        checkedInAt
+        checkedOutAt
         tempAgency {
           id
           name
