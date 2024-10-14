@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import { format } from 'date-fns/format'
 
@@ -26,6 +26,11 @@ const TimePicker = ({ date, className, onDateChange }: TimePickerProps) => {
     const newDate = new Date(`${datePart}T${e.target.value}`)
     onDateChange(newDate)
   }
+
+  useEffect(() => {
+    setDatePart(format(date, 'yyyy-MM-dd'))
+    setTimePart(format(date, 'HH:mm'))
+  }, [date])
 
   return (
     <div
