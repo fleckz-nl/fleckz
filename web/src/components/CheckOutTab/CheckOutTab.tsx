@@ -30,7 +30,7 @@ const CheckOutTab = ({ shift }: CheckOutTab) => {
               Uit
             </Badge>
           </div>
-          <Button className="bg-gray-900 text-accent" onChange={handleClickNow}>
+          <Button className="bg-gray-900 text-accent" onClick={handleClickNow}>
             Nu
           </Button>
         </h3>
