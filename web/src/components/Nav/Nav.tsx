@@ -57,6 +57,11 @@ const Nav = ({ className }: NavProps) => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+            <Link to={routes.today()}>Vandaag</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
             <Link to={routes.overview()}>Overzicht</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
