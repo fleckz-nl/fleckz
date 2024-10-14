@@ -17,7 +17,7 @@ import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 
 type ShiftConfirmationDrawerProps = {
-  time: string
+  shift: FindWorkRequestQuery['workRequest']['shifts'][0]
 }
 
 const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
