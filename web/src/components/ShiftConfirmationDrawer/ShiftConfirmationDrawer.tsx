@@ -14,7 +14,7 @@ import {
 
 import CheckInTab from 'src/components/CheckInTab/CheckInTab'
 import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
-import TempAgencyWorker from 'src/components/TempAgencyWorker'
+import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
 
 type ShiftConfirmationDrawerProps = {
   shift: FindWorkRequestQuery['workRequest']['shifts'][0]
@@ -57,41 +57,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
             <CheckOutTab shift={shift} />
           </TabsContent>
           <TabsContent value="shiftSummary">
-            <div className="my-4 flex h-[250px] flex-col justify-between">
-              <div>
-                <h3 className="flex flex-wrap items-center justify-between">
-                  <TempAgencyWorker />
-                </h3>
-                <div className="my-4 flex flex-col items-center">
-                  <span className="mx-auto text-xl text-muted/50">
-                    12 Okt 2024
-                  </span>
-                  <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
-                    <div className="center flex-col">
-                      <span className="font-extralight text-white/50">
-                        Inchecken
-                      </span>
-                      <span className="text-3xl">00:00</span>
-                    </div>
-                    <div className="center flex-col">
-                      <span className="text-4xl font-semibold">5:24</span>
-                      <span className="font-extralight text-white/50">
-                        uren
-                      </span>
-                    </div>
-                    <div className="center flex-col">
-                      <span className="font-extralight text-white/50">
-                        Uitchecken
-                      </span>
-                      <span className="text-3xl">00:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-                Bevestigen
-              </Button>
-            </div>
+            <ShiftSummaryTab shift={shift} />
           </TabsContent>
         </Tabs>
       </DrawerContent>
