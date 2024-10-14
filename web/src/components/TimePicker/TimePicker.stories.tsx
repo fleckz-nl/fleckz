@@ -23,4 +23,6 @@ export default meta
 
 type Story = StoryObj<typeof TimePicker>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: { date: new Date(), onDateChange: (e) => console.log(e) },
+}
