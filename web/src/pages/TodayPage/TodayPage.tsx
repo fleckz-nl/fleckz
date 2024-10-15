@@ -89,6 +89,50 @@ const TodayPage = () => {
                   <ShiftConfirmationDrawer />
                 </TableCell>
               </TableRow>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </section>
