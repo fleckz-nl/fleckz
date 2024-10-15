@@ -52,14 +52,19 @@ const TodayPage = () => {
             <SearchInput />
           </div>
           <Table className="mt-4">
-            <TableHeader>
-              <TableHead className="flex gap-3 text-gray-400">
+            <TableHeader className="bg-secondary/10">
+              <TableHead
+                className="relative text-gray-400"
+                aria-label="SelectAllCheckbox"
+              >
                 <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
-                <div className="flex gap-1">
+                <div className="absolute left-10 top-2.5 flex gap-1">
                   <span>6</span>
                   <span>medewerkers</span>
                 </div>
               </TableHead>
+              <TableHead aria-label="TempAgencyWorker" />
+              <TableHead aria-label="ShiftConfirmation" />
             </TableHeader>
             <TableBody>
               <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
