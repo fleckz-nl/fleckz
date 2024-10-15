@@ -68,7 +68,7 @@ const WorkRequestCommentSection = ({
   return (
     <section
       id="comments"
-      className="flex min-w-fit flex-grow flex-col bg-secondary px-8 py-8"
+      className="flex w-10/12 min-w-fit flex-grow flex-col bg-secondary px-8 py-8 xs:w-full"
     >
       <h2 className="mb-4 text-xl text-white">Opmerkingen</h2>
       <div className="flex flex-col gap-4">
