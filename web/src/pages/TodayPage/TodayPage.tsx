@@ -4,6 +4,9 @@ import { Separator } from 'web/src/components/ui/separator'
 
 import { Metadata } from '@redwoodjs/web'
 
+import SearchInput from 'src/components/SearchInput'
+import SortButton from 'src/components/SortButton'
+
 const TodayPage = () => {
   return (
     <>
@@ -32,6 +35,10 @@ const TodayPage = () => {
           <div className="center gap-1">
             <span>6</span>
             <Users className="size-5" />
+          </div>
+          <div className="mt-4 flex w-full items-center justify-between">
+            <SortButton />
+            <SearchInput />
           </div>
         </section>
       </div>
