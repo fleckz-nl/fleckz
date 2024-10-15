@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
-import { FindWorkRequestQuery } from 'types/graphql'
 
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 import TimePicker from 'src/components/TimePicker'
@@ -9,14 +8,11 @@ import { Badge } from 'src/components/ui/badge'
 import { Button } from 'src/components/ui/button'
 
 type CheckOutTab = {
-  shift: FindWorkRequestQuery['workRequest']['shifts'][0]
+  checkOutAt: Date
+  setCheckOutAt: Dispatch<SetStateAction<Date>>
 }
 
-const CheckOutTab = ({ shift }: CheckOutTab) => {
-  const [checkOutAt, setCheckOutAt] = useState(
-    shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
-  )
-
+const CheckOutTab = ({ checkOutAt, setCheckOutAt }: CheckOutTab) => {
   function handleClickNow() {
     setCheckOutAt(new Date())
   }

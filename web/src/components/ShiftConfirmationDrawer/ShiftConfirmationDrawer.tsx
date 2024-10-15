@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { FindWorkRequestQuery } from 'types/graphql'
 import { Button } from 'web/src/components/ui/button'
 import {
@@ -21,6 +23,10 @@ type ShiftConfirmationDrawerProps = {
 }
 
 const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
+  const [checkOutAt, setCheckOutAt] = useState(
+    shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
+  )
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -54,7 +60,10 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
             <CheckInTab shift={shift} />
           </TabsContent>
           <TabsContent value="shiftCheckOut">
-            <CheckOutTab shift={shift} />
+            <CheckOutTab
+              checkOutAt={checkOutAt}
+              setCheckOutAt={setCheckOutAt}
+            />
           </TabsContent>
           <TabsContent value="shiftSummary">
             <ShiftSummaryTab shift={shift} />
