@@ -74,7 +74,7 @@ const CheckInTab = ({ shift }: CheckInTabProps) => {
           onClick={handleConfirm}
           className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto"
         >
-          Bevestigen
+          Inchecken
         </ButtonWithLoader>
       </div>
     </>
