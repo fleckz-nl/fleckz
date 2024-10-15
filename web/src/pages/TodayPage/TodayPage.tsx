@@ -5,14 +5,18 @@ import { Separator } from 'web/src/components/ui/separator'
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
+  TableRow,
 } from 'web/src/components/ui/table'
 
 import { Metadata } from '@redwoodjs/web'
 
 import SearchInput from 'src/components/SearchInput'
+import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer'
 import SortButton from 'src/components/SortButton'
+import TempAgencyWorker from 'src/components/TempAgencyWorker'
 
 const TodayPage = () => {
   return (
@@ -57,6 +61,30 @@ const TodayPage = () => {
                 </div>
               </TableHead>
             </TableHeader>
+            <TableBody>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
+              <TableRow className="border-secondary/10 bg-black/90 hover:bg-black">
+                <TableCell className="w-8">
+                  <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                </TableCell>
+                <TableCell>
+                  <TempAgencyWorker className="text-white/90" />
+                </TableCell>
+                <TableCell className="w-2">
+                  <ShiftConfirmationDrawer />
+                </TableCell>
+              </TableRow>
+            </TableBody>
           </Table>
         </section>
       </div>
