@@ -107,7 +107,9 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     <Drawer>
       <DrawerTrigger asChild>
         <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
-          Inchecken: Nu
+          {(shift.status === 'CHECKED_IN' && 'Uitchecken: Nu') ||
+            (shift.status === 'CHECKED_OUT' && 'Uitgecheckt') ||
+            'Inchecken: Nu'}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="container max-w-lg border-secondary/10 bg-gray-950 px-6 text-white/70">
