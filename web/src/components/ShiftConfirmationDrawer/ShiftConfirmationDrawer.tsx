@@ -72,6 +72,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         id: shift.id,
         input: {
           checkedInAt: checkInAt,
+          status: shift.status === 'CHECKED_OUT' ? 'CHECKED_OUT' : 'CHECKED_IN',
         },
       },
     })
@@ -83,6 +84,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         id: shift.id,
         input: {
           checkedOutAt: checkOutAt,
+          status: 'CHECKED_OUT',
         },
       },
     })
@@ -95,6 +97,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         input: {
           checkedInAt: checkInAt,
           checkedOutAt: checkOutAt,
+          status: 'CHECKED_OUT',
         },
       },
     })
