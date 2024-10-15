@@ -48,7 +48,7 @@ const ShiftSummaryTab = ({
                   </>
                 ) : (
                   <>
-                    {duration.hours}:{duration.minutes}
+                    {duration.hours || '00'}:{duration.minutes || '00'}
                   </>
                 )}
               </span>
