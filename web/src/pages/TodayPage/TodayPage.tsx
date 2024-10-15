@@ -51,7 +51,7 @@ const TodayPage = () => {
             <SortButton />
             <SearchInput />
           </div>
-          <Table className="mt-4">
+          <Table className="mt-2">
             <TableHeader className="bg-secondary/10">
               <TableHead
                 className="relative text-gray-400"
