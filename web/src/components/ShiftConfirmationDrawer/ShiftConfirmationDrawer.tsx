@@ -22,7 +22,7 @@ import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
 import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
 import { QUERY } from 'src/components/WorkRequestCell'
 
-const CHECK_IN_GQL = gql`
+const UPDATE_SHIFT_GQL = gql`
   mutation CheckIn($id: String!, $input: UpdateShiftInput!) {
     updateShift(id: $id, input: $input) {
       id
@@ -43,11 +43,20 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
   )
 
-  const [checkIn, { loading: checkInLoading }] = useMutation(CHECK_IN_GQL, {
+  const [checkIn, { loading: checkInLoading }] = useMutation(UPDATE_SHIFT_GQL, {
     onCompleted: () => toast.success('Ingecheckt met succes'),
     onError: (e) => toast.error(e.message),
     refetchQueries: [QUERY],
   })
+
+  const [checkOut, { loading: checkOutLoading }] = useMutation(
+    UPDATE_SHIFT_GQL,
+    {
+      onCompleted: () => toast.success('Uitgecheckt met success'),
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [QUERY],
+    }
+  )
 
   async function handleCheckIn() {
     await checkIn({
@@ -59,6 +68,18 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
       },
     })
   }
+
+  async function handleCheckOut() {
+    await checkOut({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedOutAt: checkOutAt,
+        },
+      },
+    })
+  }
+
 
   return (
     <Drawer>
@@ -101,6 +122,8 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
             <CheckOutTab
               checkOutAt={checkOutAt}
               setCheckOutAt={setCheckOutAt}
+              loading={checkOutLoading}
+              handleCheckOut={handleCheckOut}
             />
           </TabsContent>
           <TabsContent value="shiftSummary">

@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react'
 
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 
+import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 import TimePicker from 'src/components/TimePicker'
 import { Badge } from 'src/components/ui/badge'
@@ -10,9 +11,16 @@ import { Button } from 'src/components/ui/button'
 type CheckOutTab = {
   checkOutAt: Date
   setCheckOutAt: Dispatch<SetStateAction<Date>>
+  loading: boolean
+  handleCheckOut: () => void
 }
 
-const CheckOutTab = ({ checkOutAt, setCheckOutAt }: CheckOutTab) => {
+const CheckOutTab = ({
+  checkOutAt,
+  setCheckOutAt,
+  loading,
+  handleCheckOut,
+}: CheckOutTab) => {
   function handleClickNow() {
     setCheckOutAt(new Date())
   }
@@ -40,9 +48,13 @@ const CheckOutTab = ({ checkOutAt, setCheckOutAt }: CheckOutTab) => {
           </Button>
         </div>
       </div>
-      <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
+      <ButtonWithLoader
+        onClick={handleCheckOut}
+        loading={loading}
+        className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto"
+      >
         Uitchecken
-      </Button>
+      </ButtonWithLoader>
     </div>
   )
 }
