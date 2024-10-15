@@ -57,6 +57,14 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
       refetchQueries: [QUERY],
     }
   )
+  const [confirmShift, { loading: confirmShiftLoading }] = useMutation(
+    UPDATE_SHIFT_GQL,
+    {
+      onCompleted: () => toast.success('Gewijzigd'),
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [QUERY],
+    }
+  )
 
   async function handleCheckIn() {
     await checkIn({
@@ -80,6 +88,17 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     })
   }
 
+  async function handleSummaryConfirm() {
+    await confirmShift({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedInAt: checkInAt,
+          checkedOutAt: checkOutAt,
+        },
+      },
+    })
+  }
 
   return (
     <Drawer>
@@ -127,7 +146,12 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
             />
           </TabsContent>
           <TabsContent value="shiftSummary">
-            <ShiftSummaryTab shift={shift} />
+            <ShiftSummaryTab
+              checkInAt={checkInAt}
+              checkOutAt={checkOutAt}
+              loading={confirmShiftLoading}
+              handleSummaryConfirm={handleSummaryConfirm}
+            />
           </TabsContent>
         </Tabs>
       </DrawerContent>
