@@ -39,7 +39,7 @@ const TodayPage = () => {
             </div>
             <Separator
               orientation="vertical"
-              className="h-4 w-[2px] text-accent"
+              className="h-4 w-[2px] bg-accent/20"
             />
             <span>Funtienaam</span>
           </h3>
