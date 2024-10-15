@@ -29,7 +29,7 @@ const TodayPage = () => {
             14 Oktober 2024
           </span>
         </div>
-        <section className="flex flex-col items-center">
+        <section className="mb-20 flex flex-col items-center">
           <Separator className="mt-4 bg-primary-foreground/20" />
           <h3 className="center mt-2 gap-2 text-center">
             <div className="flex gap-1">
