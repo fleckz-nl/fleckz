@@ -114,7 +114,7 @@ export const Success = ({
 }: CellSuccessProps<FindWorkRequestQuery, FindWorkRequestQueryVariables> &
   SuccessProps) => {
   return (
-    <div className="grid min-h-screen w-full justify-between xs:flex xs:flex-wrap">
+    <div className="flex min-h-screen w-full flex-wrap justify-between md:grid md:grid-cols-3">
       <div className="flex flex-grow flex-wrap justify-center bg-white">
         <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
           <button onClick={() => back()}>
