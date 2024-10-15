@@ -45,7 +45,7 @@ const CheckOutTab = ({ shift }: CheckOutTab) => {
         </div>
       </div>
       <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-        Bevestigen
+        Uitchecken
       </Button>
     </div>
   )
