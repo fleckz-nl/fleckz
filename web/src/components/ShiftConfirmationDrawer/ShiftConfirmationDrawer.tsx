@@ -14,18 +14,51 @@ import {
   TabsTrigger,
 } from 'web/src/components/ui/tabs'
 
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
+
 import CheckInTab from 'src/components/CheckInTab/CheckInTab'
 import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
 import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
+import { QUERY } from 'src/components/WorkRequestCell'
+
+const CHECK_IN_GQL = gql`
+  mutation CheckIn($id: String!, $input: UpdateShiftInput!) {
+    updateShift(id: $id, input: $input) {
+      id
+    }
+  }
+`
 
 type ShiftConfirmationDrawerProps = {
   shift: FindWorkRequestQuery['workRequest']['shifts'][0]
 }
 
 const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
+  const [checkInAt, setCheckInAt] = useState(
+    shift.checkedInAt ? new Date(shift.checkedInAt) : new Date()
+  )
+
   const [checkOutAt, setCheckOutAt] = useState(
     shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
   )
+
+  const [checkIn, { loading: checkInLoading }] = useMutation(CHECK_IN_GQL, {
+    onCompleted: () => toast.success('Ingecheckt met succes'),
+    onError: (e) => toast.error(e.message),
+    refetchQueries: [QUERY],
+  })
+
+  async function handleCheckIn() {
+    await checkIn({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedInAt: checkInAt,
+        },
+      },
+    })
+  }
 
   return (
     <Drawer>
@@ -57,7 +90,12 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="shiftCheckIn">
-            <CheckInTab shift={shift} />
+            <CheckInTab
+              checkInAt={checkInAt}
+              setCheckInAt={setCheckInAt}
+              loading={checkInLoading}
+              handleCheckIn={handleCheckIn}
+            />
           </TabsContent>
           <TabsContent value="shiftCheckOut">
             <CheckOutTab
