@@ -115,7 +115,7 @@ export const Success = ({
   SuccessProps) => {
   return (
     <div className="flex min-h-screen w-full flex-wrap justify-between md:grid md:grid-cols-3">
-      <div className="flex flex-grow flex-wrap justify-center bg-white">
+      <div className="flex w-10/12 flex-grow flex-wrap justify-center bg-white xs:w-full md:col-span-2">
         <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
           <button onClick={() => back()}>
             <ArrowLeft className="mr-1 inline" /> Overzicht
