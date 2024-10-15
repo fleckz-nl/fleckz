@@ -52,7 +52,7 @@ const TodayPage = () => {
             <SearchInput />
           </div>
           <Table className="mt-2">
-            <TableHeader className="bg-secondary/10">
+            <TableHeader className="bg-secondary/10 hover:bg-secondary/20">
               <TableHead
                 className="relative text-gray-400"
                 aria-label="SelectAllCheckbox"
