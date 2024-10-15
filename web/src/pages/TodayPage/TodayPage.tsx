@@ -1,6 +1,13 @@
 // import { Link, routes } from '@redwoodjs/router'
 import { Users } from 'lucide-react'
+import { Checkbox } from 'web/src/components/ui/checkbox'
 import { Separator } from 'web/src/components/ui/separator'
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+} from 'web/src/components/ui/table'
 
 import { Metadata } from '@redwoodjs/web'
 
@@ -40,6 +47,17 @@ const TodayPage = () => {
             <SortButton />
             <SearchInput />
           </div>
+          <Table className="mt-4">
+            <TableHeader>
+              <TableHead className="flex gap-3 text-gray-400">
+                <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
+                <div className="flex gap-1">
+                  <span>6</span>
+                  <span>medewerkers</span>
+                </div>
+              </TableHead>
+            </TableHeader>
+          </Table>
         </section>
       </div>
     </>
