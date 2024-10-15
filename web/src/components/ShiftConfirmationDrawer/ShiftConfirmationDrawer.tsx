@@ -23,7 +23,7 @@ import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
 import { QUERY } from 'src/components/WorkRequestCell'
 
 const UPDATE_SHIFT_GQL = gql`
-  mutation CheckIn($id: String!, $input: UpdateShiftInput!) {
+  mutation UpdateShift($id: String!, $input: UpdateShiftInput!) {
     updateShift(id: $id, input: $input) {
       id
     }
