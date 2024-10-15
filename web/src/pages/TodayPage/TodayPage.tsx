@@ -47,7 +47,7 @@ const TodayPage = () => {
             <span>6</span>
             <Users className="size-5" />
           </div>
-          <div className="mt-4 flex w-full items-center justify-between">
+          <div className="mt-4 flex w-full items-center justify-between gap-2">
             <SortButton />
             <SearchInput />
           </div>
