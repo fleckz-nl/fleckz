@@ -26,7 +26,7 @@ const ShiftSummaryTab = ({
     () => formatInterval(checkInAt, checkOutAt),
     [checkInAt, checkOutAt]
   )
-
+  console.log(duration.minutes)
   return (
     <div className="my-4 flex h-[250px] flex-col justify-between">
       <div>
@@ -44,7 +44,8 @@ const ShiftSummaryTab = ({
               <span className="text-4xl font-semibold">
                 {duration.days ? (
                   <>
-                    {duration.hours + duration.days * 24}:{duration.minutes}
+                    {duration.hours + duration.days * 24}:
+                    {duration.minutes || '00'}
                   </>
                 ) : (
                   <>
