@@ -36,6 +36,7 @@ describe('WorkRequestCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
+      mockCurrentUser({ roles: ['ADMIN'] })
       render(<Success workRequest={standard().workRequest} />)
     }).not.toThrow()
   })

@@ -23,7 +23,12 @@ export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
   return db.workRequest.findUnique({
     where: { id },
     include: {
-      shifts: { include: { tempAgency: true } },
+      shifts: {
+        include: { tempAgency: true },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
       createdBy: true,
       comments: { orderBy: { createdAt: 'asc' } },
     },

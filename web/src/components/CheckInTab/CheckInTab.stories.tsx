@@ -12,17 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import TimePicker from './TimePicker'
+import CheckInTab from './CheckInTab'
 
-const meta: Meta<typeof TimePicker> = {
-  component: TimePicker,
+const meta: Meta<typeof CheckInTab> = {
+  component: CheckInTab,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof TimePicker>
+type Story = StoryObj<typeof CheckInTab>
 
-export const Primary: Story = {
-  args: { date: new Date(), onDateChange: (e) => console.log(e) },
-}
+export const Primary: Story = {}

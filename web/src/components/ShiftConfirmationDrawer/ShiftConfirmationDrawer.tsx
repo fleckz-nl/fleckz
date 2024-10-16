@@ -1,6 +1,6 @@
-import * as React from 'react'
+import { useState } from 'react'
 
-import { ThumbsDown, ThumbsUp } from 'lucide-react'
+import { FindWorkRequestQuery } from 'types/graphql'
 import { Button } from 'web/src/components/ui/button'
 import {
   Drawer,
@@ -14,20 +14,105 @@ import {
   TabsTrigger,
 } from 'web/src/components/ui/tabs'
 
-import TempAgencyWorker from 'src/components/TempAgencyWorker'
-import TimePicker from 'src/components/TimePicker'
-import { Badge } from 'src/components/ui/badge'
+import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
+
+import CheckInTab from 'src/components/CheckInTab/CheckInTab'
+import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
+import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
+import { QUERY } from 'src/components/WorkRequestCell'
+
+const UPDATE_SHIFT_GQL = gql`
+  mutation UpdateShift($id: String!, $input: UpdateShiftInput!) {
+    updateShift(id: $id, input: $input) {
+      id
+    }
+  }
+`
 
 type ShiftConfirmationDrawerProps = {
-  time: string
+  shift: FindWorkRequestQuery['workRequest']['shifts'][0]
 }
 
-const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
+const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
+  const [checkInAt, setCheckInAt] = useState(
+    shift.checkedInAt ? new Date(shift.checkedInAt) : new Date()
+  )
+
+  const [checkOutAt, setCheckOutAt] = useState(
+    shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
+  )
+
+  const [shiftRating, setShiftRating] = useState(null)
+
+  const [checkIn, { loading: checkInLoading }] = useMutation(UPDATE_SHIFT_GQL, {
+    onCompleted: () => toast.success('Ingecheckt met succes'),
+    onError: (e) => toast.error(e.message),
+    refetchQueries: [QUERY],
+  })
+
+  const [checkOut, { loading: checkOutLoading }] = useMutation(
+    UPDATE_SHIFT_GQL,
+    {
+      onCompleted: () => toast.success('Uitgecheckt met success'),
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [QUERY],
+    }
+  )
+  const [confirmShift, { loading: confirmShiftLoading }] = useMutation(
+    UPDATE_SHIFT_GQL,
+    {
+      onCompleted: () => toast.success('Gewijzigd'),
+      onError: (e) => toast.error(e.message),
+      refetchQueries: [QUERY],
+    }
+  )
+
+  async function handleCheckIn() {
+    await checkIn({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedInAt: checkInAt,
+          status: shift.status === 'CHECKED_OUT' ? 'CHECKED_OUT' : 'CHECKED_IN',
+        },
+      },
+    })
+  }
+
+  async function handleCheckOut() {
+    await checkOut({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedOutAt: checkOutAt,
+          status: 'CHECKED_OUT',
+          rating: shiftRating,
+        },
+      },
+    })
+  }
+
+  async function handleSummaryConfirm() {
+    await confirmShift({
+      variables: {
+        id: shift.id,
+        input: {
+          checkedInAt: checkInAt,
+          checkedOutAt: checkOutAt,
+          status: 'CHECKED_OUT',
+        },
+      },
+    })
+  }
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
         <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black">
-          Inchecken: Nu
+          {(shift.status === 'CHECKED_IN' && 'Uitchecken: Nu') ||
+            (shift.status === 'CHECKED_OUT' && 'Uitgecheckt') ||
+            'Inchecken: Nu'}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="container max-w-lg border-secondary/10 bg-gray-950 px-6 text-white/70">
@@ -53,93 +138,30 @@ const ShiftConfirmationDrawer = ({ time }: ShiftConfirmationDrawerProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="shiftCheckIn">
-            <div className="my-4 flex h-[250px] flex-col justify-between">
-              <div className="flex flex-col">
-                <h3 className="flex flex-wrap items-center justify-between">
-                  <div className="flex gap-4">
-                    <TempAgencyWorker />
-                    <Badge
-                      variant="outline"
-                      className=" h-4 bg-lime-500 text-black"
-                    >
-                      In
-                    </Badge>
-                  </div>
-                  <Button className="bg-gray-900 text-accent">Nu</Button>
-                </h3>
-                <TimePicker time={time} />
-              </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-                Bevestingen
-              </Button>
-            </div>
+            <CheckInTab
+              checkInAt={checkInAt}
+              setCheckInAt={setCheckInAt}
+              loading={checkInLoading}
+              handleCheckIn={handleCheckIn}
+            />
           </TabsContent>
           <TabsContent value="shiftCheckOut">
-            <div className="my-4 flex h-[250px] flex-col justify-between">
-              <div className="flex flex-col">
-                <h3 className="flex flex-wrap items-center justify-between">
-                  <div className="flex gap-4">
-                    <TempAgencyWorker />
-                    <Badge
-                      variant="outline"
-                      className=" h-4 bg-red-500 text-black"
-                    >
-                      Uit
-                    </Badge>
-                  </div>
-                  <Button className="bg-gray-900 text-accent">Nu</Button>
-                </h3>
-                <TimePicker time={time} />
-                <div className="flex gap-2 self-end">
-                  <Button className="bg-gray-900 p-2 text-accent">
-                    <ThumbsUp className="size-5" />
-                  </Button>
-                  <Button className="bg-gray-900 p-2 text-accent">
-                    <ThumbsDown className="size-5" />
-                  </Button>
-                </div>
-              </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-                Bevestingen
-              </Button>
-            </div>
+            <CheckOutTab
+              checkOutAt={checkOutAt}
+              setCheckOutAt={setCheckOutAt}
+              loading={checkOutLoading}
+              handleCheckOut={handleCheckOut}
+              shiftRating={shiftRating}
+              setShiftRating={setShiftRating}
+            />
           </TabsContent>
           <TabsContent value="shiftSummary">
-            <div className="my-4 flex h-[250px] flex-col justify-between">
-              <div>
-                <h3 className="flex flex-wrap items-center justify-between">
-                  <TempAgencyWorker />
-                </h3>
-                <div className="my-4 flex flex-col items-center">
-                  <span className="mx-auto text-xl text-muted/50">
-                    12 Okt 2024
-                  </span>
-                  <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
-                    <div className="center flex-col">
-                      <span className="font-extralight text-white/50">
-                        Inchecken
-                      </span>
-                      <span className="text-3xl">00:00</span>
-                    </div>
-                    <div className="center flex-col">
-                      <span className="font-semibol text-4xl">5:24</span>
-                      <span className="font-extralight text-white/50">
-                        uren
-                      </span>
-                    </div>
-                    <div className="center flex-col">
-                      <span className="font-extralight text-white/50">
-                        Uitchecken
-                      </span>
-                      <span className="text-3xl">00:00</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <Button className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto">
-                Bevestingen
-              </Button>
-            </div>
+            <ShiftSummaryTab
+              checkInAt={checkInAt}
+              checkOutAt={checkOutAt}
+              loading={confirmShiftLoading}
+              handleSummaryConfirm={handleSummaryConfirm}
+            />
           </TabsContent>
         </Tabs>
       </DrawerContent>

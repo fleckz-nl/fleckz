@@ -44,6 +44,11 @@ const DrawerMenu = () => {
         <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
             <li>
+              <Link to={routes.today()}>
+                <DrawerClose>Vandaag</DrawerClose>
+              </Link>
+            </li>
+            <li>
               <Link to={routes.overview()}>
                 <DrawerClose>Overzicht</DrawerClose>
               </Link>
