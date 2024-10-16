@@ -22,6 +22,7 @@ const Routes = () => {
       <Route path="/" page={HomePage} name="home" />
       <PrivateSet unauthenticated="home">
         <Set wrap={AppLayout}>
+          <Route path="/today" page={TodayPage} name="today" />
           <Route path="/overview" page={OverviewPage} name="overview" />
           <Route path="/plan" page={PlanPage} name="plan" />
           <Route path="/job-profiles" page={JobProfilesPage} name="jobProfiles" />
