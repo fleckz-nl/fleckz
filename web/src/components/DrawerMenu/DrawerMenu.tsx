@@ -43,32 +43,32 @@ const DrawerMenu = () => {
         </DrawerHeader>
         <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.today()}>
                 <DrawerClose>Vandaag</DrawerClose>
               </Link>
             </li>
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.overview()}>
                 <DrawerClose>Overzicht</DrawerClose>
               </Link>
             </li>
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.plan()}>
                 <DrawerClose>Plan</DrawerClose>
               </Link>
             </li>
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.jobProfiles()}>
                 <DrawerClose>Functieprofielen</DrawerClose>
               </Link>
             </li>
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.dashboard()}>
                 <DrawerClose>Dashboard</DrawerClose>
               </Link>
             </li>
-            <li>
+            <li className="hover:text-accent">
               <Link to={routes.tempAgencies()}>
                 <DrawerClose>Uitzendbureau</DrawerClose>
               </Link>
