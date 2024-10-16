@@ -33,7 +33,9 @@ const DrawerMenu = () => {
           <X className="ml-4 size-7 hover:text-accent" />
         </DrawerClose>
           <img src={noTextLogo} alt="fleckz-logo" className="mx-auto size-10" />
-        <DrawerHeader>
+          <DrawerDescription className="sr-only">
+            Uitzendbureau App
+          </DrawerDescription>
         <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
             <li>
