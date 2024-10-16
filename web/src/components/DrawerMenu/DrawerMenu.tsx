@@ -1,5 +1,6 @@
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { X } from 'lucide-react'
+import noTextLogo from 'web/public/images/logo-no-text.png'
 
 import { Link } from '@redwoodjs/router'
 import { routes } from '@redwoodjs/router'
@@ -31,6 +32,7 @@ const DrawerMenu = () => {
         <DrawerClose>
           <X className="ml-4 size-7 hover:text-accent" />
         </DrawerClose>
+          <img src={noTextLogo} alt="fleckz-logo" className="mx-auto size-10" />
         <DrawerHeader>
         <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
