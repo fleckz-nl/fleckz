@@ -13,6 +13,8 @@ type CheckOutTab = {
   setCheckOutAt: Dispatch<SetStateAction<Date>>
   loading: boolean
   handleCheckOut: () => void
+  shiftRating: number
+  setShiftRating: Dispatch<SetStateAction<number>>
 }
 
 const CheckOutTab = ({
@@ -20,10 +22,13 @@ const CheckOutTab = ({
   setCheckOutAt,
   loading,
   handleCheckOut,
+  shiftRating,
+  setShiftRating,
 }: CheckOutTab) => {
   function handleClickNow() {
     setCheckOutAt(new Date())
   }
+
   return (
     <div className="my-4 flex h-[250px] flex-col justify-between">
       <div className="flex flex-col">
@@ -40,10 +45,18 @@ const CheckOutTab = ({
         </h3>
         <TimePicker date={checkOutAt} onDateChange={setCheckOutAt} />
         <div className="flex gap-2 self-end">
-          <Button className="bg-gray-900 p-2 text-accent">
+          <Button
+            aria-label="Goed"
+            className={`bg-gray-900 p-2 text-accent ${shiftRating === 1 && 'bg-secondary text-white'}`}
+            onClick={() => setShiftRating((prev) => (prev === 1 ? null : 1))}
+          >
             <ThumbsUp className="size-5" />
           </Button>
-          <Button className="bg-gray-900 p-2 text-accent">
+          <Button
+            aria-label="Niet goed"
+            className={`bg-gray-900 p-2 text-accent ${shiftRating === -1 && 'bg-secondary text-white'}`}
+            onClick={() => setShiftRating((prev) => (prev === -1 ? null : -1))}
+          >
             <ThumbsDown className="size-5" />
           </Button>
         </div>

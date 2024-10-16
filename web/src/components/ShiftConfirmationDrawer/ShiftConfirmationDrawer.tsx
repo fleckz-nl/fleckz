@@ -43,6 +43,8 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     shift.checkedOutAt ? new Date(shift.checkedOutAt) : new Date()
   )
 
+  const [shiftRating, setShiftRating] = useState(null)
+
   const [checkIn, { loading: checkInLoading }] = useMutation(UPDATE_SHIFT_GQL, {
     onCompleted: () => toast.success('Ingecheckt met succes'),
     onError: (e) => toast.error(e.message),
@@ -85,6 +87,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         input: {
           checkedOutAt: checkOutAt,
           status: 'CHECKED_OUT',
+          rating: shiftRating,
         },
       },
     })
@@ -148,6 +151,8 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
               setCheckOutAt={setCheckOutAt}
               loading={checkOutLoading}
               handleCheckOut={handleCheckOut}
+              shiftRating={shiftRating}
+              setShiftRating={setShiftRating}
             />
           </TabsContent>
           <TabsContent value="shiftSummary">
