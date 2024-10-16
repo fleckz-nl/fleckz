@@ -62,9 +62,9 @@ const DrawerMenu = () => {
             </li>
           </ul>
         </DrawerHeader>
-        <DrawerFooter>
+        <DrawerFooter className="relative self-center">
           <NavigationMenu>
-            <NavigationMenuList className="mr-2 flex gap-1 text-secondary">
+            <NavigationMenuList className="flex gap-1 text-secondary">
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link to="">Privacybeleid</Link>
