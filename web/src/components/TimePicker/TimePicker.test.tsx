@@ -8,7 +8,7 @@ import TimePicker from './TimePicker'
 describe('TimePicker', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<TimePicker />)
+      render(<TimePicker date={new Date()} onDateChange={() => {}} />)
     }).not.toThrow()
   })
 })

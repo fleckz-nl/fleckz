@@ -4,11 +4,14 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     name: String
+    workerName: String
     status: ShiftStatus!
     workRequest: WorkRequest
     workRequestId: String
     rating: Int
     tempAgency: TempAgency
+    checkedInAt: DateTime
+    checkedOutAt: DateTime
   }
 
   enum ShiftStatus {
@@ -34,6 +37,8 @@ export const schema = gql`
     workRequestId: String
     rating: Int
     tempAgencyId: String
+    checkedInAt: DateTime
+    checkedOutAt: DateTime
   }
 
   type Mutation {
