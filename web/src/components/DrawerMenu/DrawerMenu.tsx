@@ -29,7 +29,7 @@ const DrawerMenu = () => {
       </DrawerTrigger>
       <DrawerContent className="h-screen w-5/6 rounded-tl-none bg-primary text-primary-foreground outline-none">
         <DrawerClose>
-          <X className="ml-4" />
+          <X className="ml-4 size-7 hover:text-destructive/70" />
         </DrawerClose>
         <DrawerHeader>
           <DrawerTitle>Fleckz</DrawerTitle>
