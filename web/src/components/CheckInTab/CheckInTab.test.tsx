@@ -1,6 +1,4 @@
-import { FindWorkRequestQuery } from 'types/graphql'
-
-import { render } from '@redwoodjs/testing/web'
+import { render, fireEvent } from '@redwoodjs/testing/web'
 
 import CheckInTab from './CheckInTab'
 
@@ -9,34 +7,69 @@ import CheckInTab from './CheckInTab'
 
 describe('CheckInTab', () => {
   it('renders successfully', () => {
-    expect(() => {
-      render(<CheckInTab shift={mockShift} />)
-    }).not.toThrow()
+    const { getByText } = render(
+      <CheckInTab
+        checkInAt={new Date()}
+        setCheckInAt={() => {}}
+        loading={false}
+        handleCheckIn={() => {}}
+      />
+    )
+
+    expect(getByText('In')).toBeInTheDocument()
+    expect(getByText('Nu')).toBeInTheDocument()
+  })
+
+  it('calls handleClickNow when button is clicked', () => {
+    const setCheckInAt = jest.fn()
+    const { getByText } = render(
+      <CheckInTab
+        checkInAt={new Date()}
+        setCheckInAt={setCheckInAt}
+        loading={false}
+        handleCheckIn={() => {}}
+      />
+    )
+
+    const button = getByText('Nu')
+    fireEvent.click(button)
+
+    expect(setCheckInAt).toHaveBeenCalledTimes(1)
+    expect(setCheckInAt).toHaveBeenCalledWith(new Date())
+  })
+
+  it('calls handleCheckIn when button is clicked while not loading', () => {
+    const handleCheckIn = jest.fn()
+    const { getByText } = render(
+      <CheckInTab
+        checkInAt={new Date()}
+        setCheckInAt={() => {}}
+        loading={false}
+        handleCheckIn={handleCheckIn}
+      />
+    )
+
+    const button = getByText('Inchecken')
+    fireEvent.click(button)
+
+    expect(handleCheckIn).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls setCheckInAt when TimePicker date changes', () => {
+    const setCheckInAt = jest.fn()
+    const { getByDisplayValue } = render(
+      <CheckInTab
+        checkInAt={new Date('2024-10-16T21:41:00')}
+        setCheckInAt={setCheckInAt}
+        loading={false}
+        handleCheckIn={() => {}}
+      />
+    )
+
+    const timeInput = getByDisplayValue('21:41')
+    fireEvent.change(timeInput, { target: { value: '22:30' } })
+
+    expect(setCheckInAt).toHaveBeenCalledTimes(1)
+    expect(setCheckInAt).toHaveBeenCalledWith(new Date('2024-10-16T22:30:00'))
   })
 })
-
-const mockShift: FindWorkRequestQuery['workRequest']['shifts'][0] = {
-  __typename: 'Shift',
-  id: 'mock_shift_4_1',
-  name: 'Ploegendienst 1',
-  status: 'FULFILLED',
-  rating: null,
-  workerName: null,
-  checkedInAt: null,
-  checkedOutAt: null,
-  tempAgency: {
-    __typename: 'TempAgency',
-    id: 'agency_2',
-    name: 'SnelAanHetWerk',
-    email: 'info@snelaanhetwerk.nl',
-    phone: '+31 12 345 6789',
-    address: {
-      __typename: 'Address',
-      street: 'Oude Gracht',
-      houseNumber: '42',
-      houseNumberAddition: 'B',
-      postalCode: '3511AB',
-      city: 'Utrecht',
-    },
-  },
-}
