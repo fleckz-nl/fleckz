@@ -27,7 +27,7 @@ const DrawerMenu = () => {
       <DrawerTrigger className="absolute">
         <HamburgerMenuIcon className="hover:pointer mx-2 block h-7 w-7 transition-colors hover:text-accent xs:hidden" />
       </DrawerTrigger>
-      <DrawerContent className="h-screen w-5/6 rounded-tl-none outline-none">
+      <DrawerContent className="h-screen w-5/6 rounded-tl-none bg-primary text-primary-foreground outline-none">
         <DrawerClose>
           <X className="ml-4" />
         </DrawerClose>
