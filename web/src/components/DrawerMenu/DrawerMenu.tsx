@@ -32,8 +32,7 @@ const DrawerMenu = () => {
           <X className="ml-4 size-7 hover:text-accent" />
         </DrawerClose>
         <DrawerHeader>
-          <DrawerTitle>Fleckz</DrawerTitle>
-          <DrawerDescription>Uitzendbureau App</DrawerDescription>
+        <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
             <li>
               <Link to={routes.overview()}>
@@ -61,7 +60,7 @@ const DrawerMenu = () => {
               </Link>
             </li>
           </ul>
-        </DrawerHeader>
+        </section>
         <DrawerFooter className="relative self-center">
           <NavigationMenu>
             <NavigationMenuList className="flex gap-1 text-secondary">
