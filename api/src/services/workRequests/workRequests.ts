@@ -19,6 +19,39 @@ export const workRequests: QueryResolvers['workRequests'] = () => {
   })
 }
 
+export const workRequestsToday: QueryResolvers['workRequests'] = () => {
+  const oneDay = 24 * 60 * 60 * 1000
+  const today = new Date()
+  const startOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    0,
+    0,
+    0
+  )
+
+  const tomorrow = new Date(startOfDay.getTime() + oneDay)
+
+  return db.workRequest.findMany({
+    where: {
+      startDate: {
+        gte: startOfDay,
+        lte: tomorrow,
+      },
+    },
+    include: {
+      location: true,
+      jobProfile: {
+        include: {
+          createdBy: true,
+        },
+      },
+      shifts: { include: { tempAgency: true } },
+    },
+  })
+}
+
 export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
   return db.workRequest.findUnique({
     where: { id },
