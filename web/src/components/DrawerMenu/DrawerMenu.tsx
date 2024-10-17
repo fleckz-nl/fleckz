@@ -7,6 +7,7 @@ import { routes } from '@redwoodjs/router'
 
 import {
   Drawer,
+  DrawerBar,
   DrawerClose,
   DrawerContent,
   DrawerDescription,
@@ -41,6 +42,7 @@ const DrawerMenu = () => {
             Uitzendbureau App
           </DrawerDescription>
         </DrawerHeader>
+        <DrawerBar className="absolute bottom-1/2 right-4 m-0 h-[100px] w-2 bg-muted/10" />
         <section className="container">
           <ul className="mt-5 space-y-5 text-2xl">
             <li className="hover:text-accent">
