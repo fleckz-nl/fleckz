@@ -41,7 +41,7 @@ const TodayPage = () => {
               orientation="vertical"
               className="h-4 w-[2px] bg-accent/20"
             />
-            <span>Funtienaam</span>
+            <span>Functienaam</span>
           </h3>
           <div className="center gap-1">
             <span>6</span>
