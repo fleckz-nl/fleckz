@@ -47,12 +47,26 @@ const DrawerContent = React.forwardRef<
       )}
       {...props}
     >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted/20" />
+      <div className="mt-4" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))
 DrawerContent.displayName = 'DrawerContent'
+
+const DrawerBar = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted/20',
+      className
+    )}
+    {...props}
+  />
+)
+DrawerBar.displayName = 'DrawerBar'
 
 const DrawerHeader = ({
   className,
@@ -110,6 +124,7 @@ export {
   DrawerTrigger,
   DrawerClose,
   DrawerContent,
+  DrawerBar,
   DrawerHeader,
   DrawerFooter,
   DrawerTitle,
