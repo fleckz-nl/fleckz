@@ -5,15 +5,9 @@ const InvoicePage = () => {
   return (
     <>
       <Metadata title="Invoice" description="Invoice page" />
-
-      <h1>InvoicePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/InvoicePage/InvoicePage.tsx</code>
-      </p>
-      {/*
-          My default route is named `invoice`, link to me with:
-          `<Link to={routes.invoice()}>Invoice</Link>`
-      */}
+      <div className="relative -left-4 -top-4 h-[200vh] w-screen bg-white">
+        <div className="mx-auto flex max-w-4xl flex-col"></div>
+      </div>
     </>
   )
 }
