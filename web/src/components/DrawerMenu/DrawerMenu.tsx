@@ -71,6 +71,11 @@ const DrawerMenu = () => {
               </Link>
             </li>
             <li className="hover:text-accent">
+              <Link to={routes.invoice()}>
+                <DrawerClose>Factuur</DrawerClose>
+              </Link>
+            </li>
+            <li className="hover:text-accent">
               <Link to={routes.tempAgencies()}>
                 <DrawerClose>Uitzendbureau</DrawerClose>
               </Link>
