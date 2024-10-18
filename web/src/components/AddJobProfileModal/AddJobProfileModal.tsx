@@ -448,6 +448,7 @@ const AddJobProfileModal = ({
                 Verwijderen
               </ConfirmAction>
               <Button
+                variant="outline"
                 type="button"
                 onClick={() => setOpen(false)}
                 disabled={deleteLoading}
