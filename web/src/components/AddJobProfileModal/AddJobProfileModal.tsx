@@ -437,7 +437,7 @@ const AddJobProfileModal = ({
                 </FormItem>
               )}
             />
-            <DialogFooter>
+            <DialogFooter className="gap-1">
               <ConfirmAction
                 onConfirm={handleDeleteProfile}
                 title="Verwijderen profiel?"
@@ -448,6 +448,7 @@ const AddJobProfileModal = ({
                 Verwijderen
               </ConfirmAction>
               <Button
+                variant="outline"
                 type="button"
                 onClick={() => setOpen(false)}
                 disabled={deleteLoading}
