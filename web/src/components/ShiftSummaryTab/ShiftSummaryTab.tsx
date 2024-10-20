@@ -27,6 +27,11 @@ const ShiftSummaryTab = ({
     [checkInAt, checkOutAt]
   )
 
+  function formatMinutes(minutes: number) {
+    if (!minutes) return '00'
+    return String(minutes).padStart(2, '0')
+  }
+
   return (
     <div className="my-4 flex h-[250px] flex-col justify-between">
       <div>
@@ -45,11 +50,11 @@ const ShiftSummaryTab = ({
                 {duration.days ? (
                   <>
                     {duration.hours + duration.days * 24}:
-                    {duration.minutes || '00'}
+                    {formatMinutes(duration.minutes)}
                   </>
                 ) : (
                   <>
-                    {duration.hours || '00'}:{duration.minutes || '00'}
+                    {duration.hours || '00'}:{formatMinutes(duration.minutes)}
                   </>
                 )}
               </span>
