@@ -38,7 +38,7 @@ const ShiftSummaryTab = ({
           <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
             <div className="center flex-col">
               <span className="font-extralight text-white/50">Inchecken</span>
-              <span className="text-3xl">{format(checkOutAt, 'HH:mm')}</span>
+              <span className="text-3xl">{format(checkInAt, 'HH:mm')}</span>
             </div>
             <div className="center flex-col">
               <span className="text-4xl font-semibold">
