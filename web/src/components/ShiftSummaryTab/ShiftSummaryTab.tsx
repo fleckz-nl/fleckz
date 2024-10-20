@@ -26,7 +26,12 @@ const ShiftSummaryTab = ({
     () => formatInterval(checkInAt, checkOutAt),
     [checkInAt, checkOutAt]
   )
-  console.log(duration.minutes)
+
+  function formatMinutes(minutes: number) {
+    if (!minutes) return '00'
+    return String(minutes).padStart(2, '0')
+  }
+
   return (
     <div className="my-4 flex h-[250px] flex-col justify-between">
       <div>
@@ -38,18 +43,18 @@ const ShiftSummaryTab = ({
           <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
             <div className="center flex-col">
               <span className="font-extralight text-white/50">Inchecken</span>
-              <span className="text-3xl">{format(checkOutAt, 'HH:mm')}</span>
+              <span className="text-3xl">{format(checkInAt, 'HH:mm')}</span>
             </div>
             <div className="center flex-col">
               <span className="text-4xl font-semibold">
                 {duration.days ? (
                   <>
                     {duration.hours + duration.days * 24}:
-                    {duration.minutes || '00'}
+                    {formatMinutes(duration.minutes)}
                   </>
                 ) : (
                   <>
-                    {duration.hours || '00'}:{duration.minutes || '00'}
+                    {duration.hours || '00'}:{formatMinutes(duration.minutes)}
                   </>
                 )}
               </span>
