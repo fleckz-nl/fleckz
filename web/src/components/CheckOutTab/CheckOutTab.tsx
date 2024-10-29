@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useMemo } from 'react'
 
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 
@@ -9,6 +9,7 @@ import { Badge } from 'src/components/ui/badge'
 import { Button } from 'src/components/ui/button'
 
 type CheckOutTab = {
+  checkInAt: Date
   checkOutAt: Date
   setCheckOutAt: Dispatch<SetStateAction<Date>>
   loading: boolean
@@ -18,6 +19,7 @@ type CheckOutTab = {
 }
 
 const CheckOutTab = ({
+  checkInAt,
   checkOutAt,
   setCheckOutAt,
   loading,
@@ -25,6 +27,11 @@ const CheckOutTab = ({
   shiftRating,
   setShiftRating,
 }: CheckOutTab) => {
+  const isCheckOutBeforeCheckIn = useMemo(
+    () => checkInAt > checkOutAt,
+    [checkInAt, checkOutAt]
+  )
+
   function handleClickNow() {
     setCheckOutAt(new Date())
   }
@@ -43,7 +50,16 @@ const CheckOutTab = ({
             Nu
           </Button>
         </h3>
-        <TimePicker date={checkOutAt} onDateChange={setCheckOutAt} />
+        <TimePicker
+          className={isCheckOutBeforeCheckIn && 'bg-red-950 px-6'}
+          date={checkOutAt}
+          onDateChange={setCheckOutAt}
+        />
+        {isCheckOutBeforeCheckIn && (
+          <div className="text-center text-red-500">
+            De uitchecktijd zou later moeten zijn dan de inchecktijd.
+          </div>
+        )}
         <div className="flex gap-2 self-end">
           <Button
             aria-label="Goed"
@@ -65,6 +81,7 @@ const CheckOutTab = ({
         onClick={handleCheckOut}
         loading={loading}
         className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto"
+        disabled={isCheckOutBeforeCheckIn}
       >
         Uitchecken
       </ButtonWithLoader>

@@ -150,6 +150,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
           </TabsContent>
           <TabsContent value="shiftCheckOut">
             <CheckOutTab
+              checkInAt={checkInAt}
               checkOutAt={checkOutAt}
               setCheckOutAt={setCheckOutAt}
               loading={checkOutLoading}
