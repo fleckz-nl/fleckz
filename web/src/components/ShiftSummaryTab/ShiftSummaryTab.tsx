@@ -27,6 +27,11 @@ const ShiftSummaryTab = ({
     [checkInAt, checkOutAt]
   )
 
+  const isCheckOutBeforeCheckIn = useMemo(
+    () => checkInAt > checkOutAt,
+    [checkInAt, checkOutAt]
+  )
+
   function formatMinutes(minutes: number) {
     if (!minutes) return '00'
     return String(minutes).padStart(2, '0')
@@ -40,7 +45,9 @@ const ShiftSummaryTab = ({
         </h3>
         <div className="my-4 flex flex-col items-center">
           <span className="mx-auto text-xl text-muted/50">{dateString}</span>
-          <div className="container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0">
+          <div
+            className={`container my-4 grid grid-cols-3 place-items-center gap-20 text-white/80 xs:gap-0 ${isCheckOutBeforeCheckIn && 'bg-red-950'}`}
+          >
             <div className="center flex-col">
               <span className="font-extralight text-white/50">Inchecken</span>
               <span className="text-3xl">{format(checkInAt, 'HH:mm')}</span>
@@ -65,12 +72,18 @@ const ShiftSummaryTab = ({
               <span className="text-3xl">{format(checkOutAt, 'HH:mm')}</span>
             </div>
           </div>
+          {isCheckOutBeforeCheckIn && (
+            <div className="text-center text-red-500">
+              De uitchecktijd zou later moeten zijn dan de inchecktijd.
+            </div>
+          )}
         </div>
       </div>
       <ButtonWithLoader
         loading={loading}
         onClick={handleSummaryConfirm}
         className="bg-accent/80 text-black hover:bg-accent hover:text-black sm:mx-auto"
+        disabled={isCheckOutBeforeCheckIn}
       >
         Bevestigen
       </ButtonWithLoader>
