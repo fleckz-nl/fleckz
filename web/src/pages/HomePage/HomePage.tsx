@@ -65,9 +65,7 @@ const HomePage = () => {
               alt="logo"
               className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="mb-0 mt-2 text-center text-xl text-white drop-shadow-sm">
-              <p>Two liner</p>
-              <p>Fleckz mission tagline</p>
+            <section className="m-0 mt-2 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
               <p>Vind je de beste kandidaat, overal.</p>
             </section>
           </div>
