@@ -68,6 +68,7 @@ const HomePage = () => {
             <section className="mb-0 mt-2 text-center text-xl text-white drop-shadow-sm">
               <p>Two liner</p>
               <p>Fleckz mission tagline</p>
+              <p>Vind je de beste kandidaat, overal.</p>
             </section>
           </div>
           <div className="form-wrapper m-0 flex w-11/12 max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
