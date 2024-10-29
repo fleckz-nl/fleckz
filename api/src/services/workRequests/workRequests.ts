@@ -60,7 +60,7 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
       shifts: {
         createMany: {
           data: Array.from({ length: input.numWorkers }, (_, k) => ({
-            name: `Ploegdienst ${k + 1}`,
+            name: `Dienst ${k + 1}`,
           })),
         },
       },
@@ -91,7 +91,7 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
           shifts: {
             createMany: {
               data: Array.from({ length: numShiftsToAdd }, (_, k) => ({
-                name: `Ploegdienst ${k + 1}`,
+                name: `Dienst ${k + 1}`,
               })),
             },
           },
