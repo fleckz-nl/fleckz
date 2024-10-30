@@ -1,22 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 
-import {
-  Form,
-  Label,
-  PasswordField,
-  Submit,
-  FieldError,
-} from '@redwoodjs/forms'
+import { Form, Label, PasswordField, FieldError } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
 
 const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
   const { isAuthenticated, reauthenticate, validateResetToken, resetPassword } =
     useAuth()
   const [enabled, setEnabled] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -43,6 +39,7 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    setLoading(true)
     const response = await resetPassword({
       resetToken,
       password: data.password,
@@ -101,12 +98,13 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
                   </div>
 
                   <div className="rw-button-group">
-                    <Submit
+                    <ButtonWithLoader
                       className="rw-button rw-button-accent"
+                      loading={loading}
                       disabled={!enabled}
                     >
                       Indienen
-                    </Submit>
+                    </ButtonWithLoader>
                   </div>
                 </Form>
               </div>
