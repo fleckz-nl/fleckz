@@ -4,6 +4,7 @@ import { FindWorkRequestQuery, WorkRequestsTodayQuery } from 'types/graphql'
 import { Button } from 'web/src/components/ui/button'
 import {
   Drawer,
+  DrawerBar,
   DrawerContent,
   DrawerTrigger,
 } from 'web/src/components/ui/drawer'
@@ -119,6 +120,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="container max-w-lg border-secondary/10 bg-gray-950 px-6 text-white/70">
+        <DrawerBar className="mb-2 mt-0" />
         <Tabs defaultValue="shiftCheckIn">
           <TabsList className="mx-auto mt-2 grid grid-cols-3 gap-2">
             <TabsTrigger
