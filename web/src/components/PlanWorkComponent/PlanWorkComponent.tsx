@@ -409,7 +409,7 @@ const PlanWorkComponent = ({
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel className="flex flex-grow items-center font-semibold text-primary/90">
-                      Aantal medewerkers
+                      Aantal werknemers
                       <Users className="ml-2 inline" size={'1rem'} />
                     </FormLabel>
                     <FormDescription>
