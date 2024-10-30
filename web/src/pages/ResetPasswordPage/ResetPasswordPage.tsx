@@ -51,7 +51,7 @@ const ResetPasswordPage = ({ resetToken }: { resetToken: string }) => {
     if (response.error) {
       toast.error(response.error)
     } else {
-      toast.success('Password changed!')
+      toast.success('Wachtwoord gewijzigd!')
       await reauthenticate()
       navigate(routes.login())
     }
