@@ -60,7 +60,7 @@ const TodayPage = () => {
                 <Checkbox className="border-primary-foreground bg-black/20 hover:bg-secondary" />
                 <div className="absolute left-10 top-2.5 flex gap-1">
                   <span>6</span>
-                  <span>medewerkers</span>
+                  <span>werknemers</span>
                 </div>
               </TableHead>
               <TableHead aria-label="TempAgencyWorker" />
