@@ -413,7 +413,7 @@ const PlanWorkComponent = ({
                       <Users className="ml-2 inline" size={'1rem'} />
                     </FormLabel>
                     <FormDescription>
-                      Hoeveel medewerkers nodig?
+                      Hoeveel werknemers zijn er nodig voor het project?
                     </FormDescription>
                     <FormControl>
                       <Input
