@@ -7,7 +7,17 @@ import type {
 import { db } from 'src/lib/db'
 
 export const addresses: QueryResolvers['addresses'] = () => {
-  return db.address.findMany()
+  const userRoles = context.currentUser.roles
+  if (userRoles.includes('ADMIN') || userRoles.includes('MEDIATOR'))
+    return db.address.findMany()
+
+  return db.address.findMany({
+    where: {
+      workplace: {
+        some: { clientBusiness: { createdBy: { id: context.currentUser.id } } },
+      },
+    },
+  })
 }
 
 export const address: QueryResolvers['address'] = ({ id }) => {

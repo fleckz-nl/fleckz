@@ -3,6 +3,8 @@ import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
+import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
+
 import { DataTable } from '../DataTable/DataTable'
 import SelectAgency from '../SelectAgency/SelectAgency'
 
@@ -45,7 +47,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       },
       {
         accessorKey: 'name',
-        header: 'Ploegendienst',
+        header: 'Diensten',
         cell: ({ cell }) => <>{cell.getValue()}</>,
       },
       {
@@ -66,6 +68,11 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
             request={request}
           />
         ),
+      },
+      {
+        accessorKey: 'action',
+        header: 'In/uit-checken',
+        cell: ({ row }) => <ShiftConfirmationDrawer shift={row.original} />,
       },
     ],
     [tempAgencies, request]

@@ -11,7 +11,7 @@ const TempAgenciesPage = () => {
     <>
       <Metadata title="TempAgencies" description="TempAgencies page" />
       <div className="mx-auto flex max-w-4xl flex-col">
-        <h1 className="text-xl font-bold text-white/90">Uitzendbureau</h1>
+        <h1 className="text-xl font-bold text-white/90">Uitzendbureaus</h1>
         <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-4 pt-4">
           <TempAgenciesCell />
           <AddTempAgencyDialog

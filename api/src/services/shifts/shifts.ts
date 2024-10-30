@@ -4,6 +4,8 @@ import type {
   ShiftRelationResolvers,
 } from 'types/graphql'
 
+import { ForbiddenError } from '@redwoodjs/graphql-server'
+
 import { db } from 'src/lib/db'
 
 export const shifts: QueryResolvers['shifts'] = () => {
@@ -22,10 +24,14 @@ export const createShift: MutationResolvers['createShift'] = ({ input }) => {
   })
 }
 
-export const updateShift: MutationResolvers['updateShift'] = ({
+export const updateShift: MutationResolvers['updateShift'] = async ({
   id,
   input,
 }) => {
+  const { checkedInAt, checkedOutAt } = input
+  if (checkedInAt > checkedOutAt)
+    throw new ForbiddenError('De uitschrijvingsdatum is vóór de incheckdatum.')
+
   return db.shift.update({
     data: input,
     where: { id },
