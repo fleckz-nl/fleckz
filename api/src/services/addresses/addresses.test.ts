@@ -17,6 +17,14 @@ import type { StandardScenario } from './addresses.scenarios'
 
 describe('addresses', () => {
   scenario('returns all addresses', async (scenario: StandardScenario) => {
+    mockCurrentUser({
+      id: 'test_user_1',
+      firstName: 'Test',
+      lastName: 'User',
+      email: 'test@example.com',
+      avatarUrl: 'https://example.com',
+      roles: ['ADMIN'],
+    })
     const result = await addresses()
 
     expect(result.length).toEqual(Object.keys(scenario.address).length)
@@ -31,7 +39,6 @@ describe('addresses', () => {
   scenario('creates a address', async () => {
     const result = await createAddress({
       input: {
-        updatedAt: '2024-08-11T09:58:03.466Z',
         street: 'String',
         houseNumber: 'String',
         postalCode: 'String',
@@ -40,7 +47,8 @@ describe('addresses', () => {
       },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-08-11T09:58:03.466Z'))
+    console.log(result)
+
     expect(result.street).toEqual('String')
     expect(result.houseNumber).toEqual('String')
     expect(result.postalCode).toEqual('String')
@@ -52,10 +60,10 @@ describe('addresses', () => {
     const original = (await address({ id: scenario.address.one.id })) as Address
     const result = await updateAddress({
       id: original.id,
-      input: { updatedAt: '2024-08-12T09:58:03.466Z' },
+      input: { street: 'new street' },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-08-12T09:58:03.466Z'))
+    expect(result.street).toEqual('new street')
   })
 
   scenario('deletes a address', async (scenario: StandardScenario) => {
