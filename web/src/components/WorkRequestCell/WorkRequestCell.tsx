@@ -149,7 +149,7 @@ export const Success = ({
           <Separator className="lg:hidden" />
           <div className="mb-20 flex w-full max-w-4xl flex-col gap-2 lg:mt-10">
             <h3 className="text-lg font-semibold text-primary ">
-              Ploegendienst toewijzen
+              Diensten toewijzen
             </h3>
             <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />

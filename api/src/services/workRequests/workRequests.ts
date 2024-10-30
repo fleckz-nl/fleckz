@@ -19,6 +19,39 @@ export const workRequests: QueryResolvers['workRequests'] = () => {
   })
 }
 
+export const workRequestsToday: QueryResolvers['workRequests'] = () => {
+  const oneDay = 24 * 60 * 60 * 1000
+  const today = new Date()
+  const startOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    0,
+    0,
+    0
+  )
+
+  const tomorrow = new Date(startOfDay.getTime() + oneDay)
+
+  return db.workRequest.findMany({
+    where: {
+      startDate: {
+        gte: startOfDay,
+        lte: tomorrow,
+      },
+    },
+    include: {
+      location: true,
+      jobProfile: {
+        include: {
+          createdBy: true,
+        },
+      },
+      shifts: { include: { tempAgency: true } },
+    },
+  })
+}
+
 export const workRequest: QueryResolvers['workRequest'] = ({ id }) => {
   return db.workRequest.findUnique({
     where: { id },
@@ -60,7 +93,7 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
       shifts: {
         createMany: {
           data: Array.from({ length: input.numWorkers }, (_, k) => ({
-            name: `Ploegdienst ${k + 1}`,
+            name: `Dienst ${k + 1}`,
           })),
         },
       },
@@ -91,7 +124,7 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
           shifts: {
             createMany: {
               data: Array.from({ length: numShiftsToAdd }, (_, k) => ({
-                name: `Ploegdienst ${k + 1}`,
+                name: `Dienst ${k + 1}`,
               })),
             },
           },

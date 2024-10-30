@@ -47,7 +47,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       },
       {
         accessorKey: 'name',
-        header: 'Ploegendienst',
+        header: 'Diensten',
         cell: ({ cell }) => <>{cell.getValue()}</>,
       },
       {
