@@ -30,7 +30,7 @@ export const createAddress: MutationResolvers['createAddress'] = ({
   input,
 }) => {
   return db.address.create({
-    data: input,
+    data: { ...input, userId: context.currentUser.id },
   })
 }
 
