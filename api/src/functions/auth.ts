@@ -5,6 +5,7 @@ import type { DbAuthHandlerOptions, UserType } from '@redwoodjs/auth-dbauth-api'
 
 import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
+import { logger } from 'src/lib/logger'
 import { mailer } from 'src/lib/mailer'
 import { ForgotPassword } from 'src/mail/ForgotPassword/ForgotPassword'
 
@@ -43,6 +44,9 @@ export const handler = async (
       const currentDomain =
         process.env.NODE_ENV !== 'development' ? ROOT_URL : DEVELOPMENT_ROOT_URL
       const resetUrl = `${currentDomain}/reset-password?resetToken=${_resetToken}`
+
+      logger.info('Sending email')
+      logger.debug({ resetUrl }, resetUrl)
 
       await mailer.send(ForgotPassword({ username: user.email, resetUrl }), {
         to: user.email,
