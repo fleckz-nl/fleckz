@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { Form, Label, TextField, Submit, FieldError } from '@redwoodjs/forms'
+import { Form, Label, TextField, FieldError } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
+import ButtonWithLoader from 'src/components/ButtonWithLoader'
 
 const ForgotPasswordPage = () => {
   const { isAuthenticated, forgotPassword } = useAuth()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -22,6 +24,7 @@ const ForgotPasswordPage = () => {
   }, [])
 
   const onSubmit = async (data: { email: string }) => {
+    setLoading(true)
     const response = await forgotPassword(data.email)
 
     if (response.error) {
@@ -31,7 +34,7 @@ const ForgotPasswordPage = () => {
       // been invoked, let the user know how to get the link to reset their
       // password (sent in email, perhaps?)
       toast.success(
-        'A link to reset your password was sent to ' + response.email
+        `Een link om uw wachtwoord opnieuw in te stellen is naar ${response.email} verstuurd.`
       )
       navigate(routes.login())
     }
@@ -79,9 +82,13 @@ const ForgotPasswordPage = () => {
                   </div>
 
                   <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-accent">
+                    <ButtonWithLoader
+                      className="rw-button rw-button-accent"
+                      loading={loading}
+                      type="submit"
+                    >
                       Indienen
-                    </Submit>
+                    </ButtonWithLoader>
                   </div>
                 </Form>
               </div>
