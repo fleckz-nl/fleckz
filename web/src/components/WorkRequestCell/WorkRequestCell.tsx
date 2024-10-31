@@ -1,3 +1,5 @@
+import { formatDate } from 'date-fns'
+import { nl } from 'date-fns/locale/nl'
 import { ArrowLeft } from 'lucide-react'
 import type {
   FindWorkRequestQuery,
@@ -151,6 +153,11 @@ export const Success = ({
             <h3 className="text-lg font-semibold text-primary ">
               Diensten toewijzen
             </h3>
+            <span className="-mt-2 text-lg font-semibold text-secondary">
+              {formatDate(workRequest.startDate, 'd MMMM, yyyy', {
+                locale: nl,
+              })}
+            </span>
             <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />
               <Separator className="my-6" />
