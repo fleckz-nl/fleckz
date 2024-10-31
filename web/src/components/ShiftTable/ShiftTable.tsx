@@ -58,6 +58,11 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         accessorKey: 'tempAgency',
       },
       {
+        accessorKey: 'shiftTime',
+        header: 'Tijd',
+        cell: '09:00-13:30',
+      },
+      {
         accessorKey: 'agency',
         header: 'Uitzendbureau',
         cell: ({ row }) => (
