@@ -9,8 +9,6 @@ import { z } from 'zod'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { useAuth } from 'src/auth'
-
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
 import { QUERY as ClientBusinessesQuery } from '../ClientBusinessesCell'
 import { Button } from '../ui/button'
