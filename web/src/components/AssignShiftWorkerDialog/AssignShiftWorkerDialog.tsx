@@ -1,13 +1,15 @@
+import { Button } from 'web/src/components/ui/button'
+import { Dialog, DialogTrigger } from 'web/src/components/ui/dialog'
+
 const AssignShiftWorkerDialog = () => {
   return (
-    <div>
-      <h2>{'AssignShiftWorkerDialog'}</h2>
-      <p>
-        {
-          'Find me in ./web/src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog.tsx'
-        }
-      </p>
-    </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="bg-secondary/70 text-lg text-white hover:bg-secondary/30 hover:text-primary/80">
+          Vul een dienst in
+        </Button>
+      </DialogTrigger>
+    </Dialog>
   )
 }
 
