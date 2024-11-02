@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
+import { useAuth } from 'src/auth'
 import AssignShiftWorkerDialog from 'src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog'
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
 
@@ -15,6 +16,21 @@ type ShiftTableProps = {
 }
 
 const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
+  const { currentUser } = useAuth()
+
+  const assignWorkerRoles = [
+    'ADMIN',
+    'TEMP_AGENCY_REP',
+  ] as typeof currentUser.roles
+  const showAssignWorkerAction = currentUser.roles.some((role) =>
+    assignWorkerRoles.includes(role)
+  )
+
+  const checkInOutRoles = ['ADMIN', 'CLIENT'] as typeof currentUser.roles
+  const showCheckInOutAction = currentUser.roles.some((role) =>
+    checkInOutRoles.includes(role)
+  )
+
   const { shifts } = request
   const columns = useMemo<
     ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[]
@@ -92,7 +108,8 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         columnVisibility: {
           status: false,
           tempAgency: false,
-          checkInOut: true,
+          assignWorker: showAssignWorkerAction,
+          checkInOut: showCheckInOutAction,
         },
       }}
     />
