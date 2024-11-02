@@ -87,7 +87,7 @@ export const Empty = () => {
   return (
     <div className="center w-full flex-col">
       <div className="center relative -top-14 flex-col">
-        <img src={workers} alt="workers illustration" className="size-56" />
+        <img src={workers} alt="workers illustration" className="h-36" />
         <span className="text-center text-lg italic">
           Vandaag geen werk, geen diensten.
         </span>
