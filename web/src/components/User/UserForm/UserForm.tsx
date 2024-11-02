@@ -130,6 +130,18 @@ const UserForm = (props: UserFormProps) => {
 
         <div className="rw-check-radio-items">
           <CheckboxField
+            id="user-roles-2"
+            name="roles[2]"
+            defaultValue="TEMP_AGENCY_REP"
+            defaultChecked={props.user?.roles?.includes('TEMP_AGENCY_REP')}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+          />
+          <div>Temp agency representative</div>
+        </div>
+
+        <div className="rw-check-radio-items">
+          <CheckboxField
             id="user-roles-1"
             name="roles[1]"
             defaultValue="ADMIN"
