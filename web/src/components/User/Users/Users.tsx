@@ -43,9 +43,16 @@ const UsersList = ({ users }: FindUsers) => {
       deleteUser({ variables: { id } })
     }
   }
+  async function setClipboard(text: string) {
+    const type = 'text/plain'
+    const blob = new Blob([text], { type })
+    const data = [new ClipboardItem({ [type]: blob })]
+    await navigator.clipboard.write(data)
+  }
 
   return (
-    <div className="rw-segment rw-table-wrapper-responsive">
+    <div className="my-4 w-full overflow-x-auto">
+      <h1 className="m-4 font-bold">Users</h1>
       <table className="rw-table">
         <thead>
           <tr>
@@ -62,7 +69,17 @@ const UsersList = ({ users }: FindUsers) => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{truncate(user.id, 8)}</td>
+              <td>
+                <button
+                  onClick={async () => {
+                    await setClipboard(user.id)
+                    toast.success('User ID copied to clipboard')
+                  }}
+                  title={user.id}
+                >
+                  {truncate(user.id, 8)}
+                </button>
+              </td>
               <td>{timeTag(user.createdAt)}</td>
               <td>{timeTag(user.updatedAt)}</td>
               <td>{truncate(user.email)}</td>
