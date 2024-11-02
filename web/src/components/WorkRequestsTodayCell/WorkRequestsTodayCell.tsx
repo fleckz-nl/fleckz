@@ -59,7 +59,7 @@ export const Loading = () =>
   Array.from({ length: 1 }).map((_, i) => {
     return (
       <div key={i}>
-        <div className="mx-auto mt-4 flex w-full items-center justify-between bg-secondary/10">
+        <div className="mx-auto mt-4 flex w-full animate-pulse items-center justify-between">
           <Skeleton className="h-7 w-40 bg-primary-foreground/10" />
           <Skeleton className="h-7 w-40 bg-primary-foreground/10" />
         </div>
