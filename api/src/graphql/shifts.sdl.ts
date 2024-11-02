@@ -39,6 +39,7 @@ export const schema = gql`
     tempAgencyId: String
     checkedInAt: DateTime
     checkedOutAt: DateTime
+    workerName: String
   }
 
   type Mutation {

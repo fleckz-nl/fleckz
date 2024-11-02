@@ -3,6 +3,8 @@ import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
+import { useAuth } from 'src/auth'
+import AssignShiftWorkerDialog from 'src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog'
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
 
 import { DataTable } from '../DataTable/DataTable'
@@ -14,6 +16,21 @@ type ShiftTableProps = {
 }
 
 const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
+  const { currentUser } = useAuth()
+
+  const assignWorkerRoles = [
+    'ADMIN',
+    'TEMP_AGENCY_REP',
+  ] as typeof currentUser.roles
+  const showAssignWorkerAction = currentUser.roles.some((role) =>
+    assignWorkerRoles.includes(role)
+  )
+
+  const checkInOutRoles = ['ADMIN', 'CLIENT'] as typeof currentUser.roles
+  const showCheckInOutAction = currentUser.roles.some((role) =>
+    checkInOutRoles.includes(role)
+  )
+
   const { shifts } = request
   const columns = useMemo<
     ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[]
@@ -22,7 +39,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         // TODO: Batch-edit shifts
         accessorKey: 'id',
-        header: ({ table }) => (
+        header: () => (
           <></>
           // <Checkbox
           //   checked={
@@ -36,7 +53,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
           //   aria-label="Select all"
           // />
         ),
-        cell: ({ row }) => (
+        cell: () => (
           <></>
           // <Checkbox
           //   checked={row.getIsSelected()}
@@ -70,7 +87,12 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         ),
       },
       {
-        accessorKey: 'action',
+        accessorKey: 'assignWorker',
+        header: 'Werknemer',
+        cell: ({ row }) => <AssignShiftWorkerDialog shift={row.original} />,
+      },
+      {
+        accessorKey: 'checkInOut',
         header: 'In/uit-checken',
         cell: ({ row }) => <ShiftConfirmationDrawer shift={row.original} />,
       },
@@ -86,6 +108,8 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         columnVisibility: {
           status: false,
           tempAgency: false,
+          assignWorker: showAssignWorkerAction,
+          checkInOut: showCheckInOutAction,
         },
       }}
     />
