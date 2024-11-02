@@ -14,6 +14,15 @@ import type {
 
 import IndividualWorkRequestSection from 'src/components/IndividualWorkRequestSection/IndividualWorkRequestSection'
 import PlanWorkComponent from 'src/components/PlanWorkComponent/PlanWorkComponent'
+import { Skeleton } from 'src/components/ui/skeleton'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'src/components/ui/table'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsTodayQuery,
@@ -46,7 +55,31 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () =>
+  Array.from({ length: 1 }).map((_, i) => {
+    return (
+      <div key={i}>
+        <div className="mx-auto mt-4 flex w-full items-center justify-between bg-secondary/10">
+          <Skeleton className="h-7 w-40" />
+          <Skeleton className="h-7 w-40" />
+        </div>
+        <div className="mt-1 animate-pulse bg-black/80 grayscale">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead />
+              </TableRow>
+            </TableHeader>
+            <TableBody className="bg-black/50">
+              <TableRow>
+                <TableCell />
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    )
+  })
 
 export const Empty = () => {
   const [openDialog, setOpenDialog] = useState(false)
