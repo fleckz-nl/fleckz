@@ -88,7 +88,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       },
       {
         accessorKey: 'assignWorker',
-        header: 'Invullen',
+        header: 'Werknemer',
         cell: () => <AssignShiftWorkerDialog />,
       },
       {
