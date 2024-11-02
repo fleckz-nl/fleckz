@@ -42,7 +42,7 @@ const AssignedShifts = ({ className, request }: AssignedShiftsProps) => {
         <Separator className="opacity-40" />
         <div className="mt-3 flex items-center gap-1">
           <Users />
-          <h3>Toegewezen medewerkers</h3>
+          <h3>Toegewezen werknemers</h3>
         </div>
         <div className="ml-10 flex flex-col gap-2">
           {agenciesWithShiftCounts.map((agency) => {

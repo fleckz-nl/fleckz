@@ -1,9 +1,10 @@
 import { useState } from 'react'
 
-import { FindWorkRequestQuery } from 'types/graphql'
+import { FindWorkRequestQuery, WorkRequestsTodayQuery } from 'types/graphql'
 import { Button } from 'web/src/components/ui/button'
 import {
   Drawer,
+  DrawerBar,
   DrawerContent,
   DrawerTrigger,
 } from 'web/src/components/ui/drawer'
@@ -20,7 +21,8 @@ import { toast } from '@redwoodjs/web/toast'
 import CheckInTab from 'src/components/CheckInTab/CheckInTab'
 import CheckOutTab from 'src/components/CheckOutTab/CheckOutTab'
 import ShiftSummaryTab from 'src/components/ShiftSummaryTab/ShiftSummaryTab'
-import { QUERY } from 'src/components/WorkRequestCell'
+import { QUERY as WorkRequestCellQuery } from 'src/components/WorkRequestCell'
+import { QUERY as WorkRequestsTodayCellQuery } from 'src/components/WorkRequestsTodayCell'
 
 const UPDATE_SHIFT_GQL = gql`
   mutation UpdateShift($id: String!, $input: UpdateShiftInput!) {
@@ -31,7 +33,9 @@ const UPDATE_SHIFT_GQL = gql`
 `
 
 type ShiftConfirmationDrawerProps = {
-  shift: FindWorkRequestQuery['workRequest']['shifts'][0]
+  shift:
+    | FindWorkRequestQuery['workRequest']['shifts'][0]
+    | WorkRequestsTodayQuery['workRequestsToday'][0]['shifts'][0]
 }
 
 const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
@@ -48,7 +52,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
   const [checkIn, { loading: checkInLoading }] = useMutation(UPDATE_SHIFT_GQL, {
     onCompleted: () => toast.success('Ingecheckt met succes'),
     onError: (e) => toast.error(e.message),
-    refetchQueries: [QUERY],
+    refetchQueries: [WorkRequestCellQuery, WorkRequestsTodayCellQuery],
   })
 
   const [checkOut, { loading: checkOutLoading }] = useMutation(
@@ -56,7 +60,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     {
       onCompleted: () => toast.success('Uitgecheckt met success'),
       onError: (e) => toast.error(e.message),
-      refetchQueries: [QUERY],
+      refetchQueries: [WorkRequestCellQuery, WorkRequestsTodayCellQuery],
     }
   )
   const [confirmShift, { loading: confirmShiftLoading }] = useMutation(
@@ -64,7 +68,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
     {
       onCompleted: () => toast.success('Gewijzigd'),
       onError: (e) => toast.error(e.message),
-      refetchQueries: [QUERY],
+      refetchQueries: [WorkRequestCellQuery, WorkRequestsTodayCellQuery],
     }
   )
 
@@ -116,6 +120,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="container max-w-lg border-secondary/10 bg-gray-950 px-6 text-white/70">
+        <DrawerBar className="mb-2 mt-0" />
         <Tabs defaultValue="shiftCheckIn">
           <TabsList className="mx-auto mt-2 grid grid-cols-3 gap-2">
             <TabsTrigger
@@ -147,6 +152,7 @@ const ShiftConfirmationDrawer = ({ shift }: ShiftConfirmationDrawerProps) => {
           </TabsContent>
           <TabsContent value="shiftCheckOut">
             <CheckOutTab
+              checkInAt={checkInAt}
               checkOutAt={checkOutAt}
               setCheckOutAt={setCheckOutAt}
               loading={checkOutLoading}

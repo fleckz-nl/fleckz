@@ -56,18 +56,17 @@ const HomePage = () => {
     <>
       <Metadata title="Home" description="Home page" />
 
-      <main className="min-h-screen w-full bg-primary">
+      <main className="min-h-screen bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="flex flex-wrap items-center justify-center gap-2 py-8 sm:py-24 md:py-36 lg:py-52">
+        <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-center gap-4 py-20 md:py-52 lg:justify-between">
           <div className="flex w-full max-w-sm flex-col">
             <img
               src={logo}
               alt="logo"
               className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="mb-0 mt-2 text-center text-xl text-white drop-shadow-sm">
-              <p>Two liner</p>
-              <p>Fleckz mission tagline</p>
+            <section className="m-0 mt-2 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
+              <p>Vind je de beste kandidaat, overal.</p>
             </section>
           </div>
           <div className="form-wrapper m-0 flex w-11/12 max-w-sm flex-col rounded-md bg-black drop-shadow-sm">

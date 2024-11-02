@@ -75,11 +75,6 @@ const DrawerMenu = () => {
                 <DrawerClose>Factuur</DrawerClose>
               </Link>
             </li>
-            <li className="hover:text-accent">
-              <Link to={routes.tempAgencies()}>
-                <DrawerClose>Uitzendbureau</DrawerClose>
-              </Link>
-            </li>
           </ul>
         </section>
         <DrawerFooter className="relative self-center">
