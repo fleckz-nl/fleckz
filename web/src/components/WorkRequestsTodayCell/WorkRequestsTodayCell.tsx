@@ -63,6 +63,7 @@ export const Loading = () =>
           <Skeleton className="h-7 w-40" />
           <Skeleton className="h-7 w-40" />
         </div>
+        <Skeleton className="mt-1 h-8 bg-secondary/10" />
         <div className="mt-1 animate-pulse bg-black/80 grayscale">
           <Table>
             <TableHeader>
