@@ -16,6 +16,8 @@ export const schema = gql`
 
   enum Role {
     CLIENT
+    MEDIATOR
+    TEMP_AGENCY_REP
     ADMIN
   }
 
