@@ -7,6 +7,7 @@ import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { mailer } from 'src/lib/mailer'
 import { ForgotPassword } from 'src/mail/ForgotPassword/ForgotPassword'
+import { WelcomeEmail } from 'src/mail/Welcome/Welcome'
 
 const ROOT_URL = process.env.NETLIFY
   ? process.env.DEPLOY_URL
