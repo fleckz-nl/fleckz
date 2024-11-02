@@ -89,7 +89,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         accessorKey: 'assignWorker',
         header: 'Werknemer',
-        cell: () => <AssignShiftWorkerDialog />,
+        cell: ({ row }) => <AssignShiftWorkerDialog shift={row.original} />,
       },
       {
         accessorKey: 'checkInOut',
