@@ -55,7 +55,6 @@ const UsersList = ({ users }: FindUsers) => {
             <th>Email</th>
             <th>First name</th>
             <th>Last name</th>
-            <th>Avatar url</th>
             <th>Roles</th>
             <th>&nbsp;</th>
           </tr>
@@ -69,7 +68,6 @@ const UsersList = ({ users }: FindUsers) => {
               <td>{truncate(user.email)}</td>
               <td>{truncate(user.firstName)}</td>
               <td>{truncate(user.lastName)}</td>
-              <td>{truncate(user.avatarUrl)}</td>
               <td>{formatEnum(user.roles)}</td>
               <td>
                 <nav className="rw-table-actions">
