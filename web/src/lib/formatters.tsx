@@ -25,11 +25,14 @@ export const jsonDisplay = (obj: unknown) => {
   )
 }
 
-export const truncate = (value: string | number) => {
+export const truncate = (
+  value: string | number,
+  to: number = MAX_STRING_LENGTH
+) => {
   let output = value?.toString() ?? ''
 
-  if (output.length > MAX_STRING_LENGTH) {
-    output = output.substring(0, MAX_STRING_LENGTH) + '...'
+  if (output.length > to) {
+    output = output.substring(0, to) + '...'
   }
 
   return output
