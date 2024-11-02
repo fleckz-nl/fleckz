@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { format } from 'date-fns/format'
 import humanize from 'humanize-string'
 
 const MAX_STRING_LENGTH = 150
@@ -48,7 +49,7 @@ export const timeTag = (dateTime?: string) => {
   if (dateTime) {
     output = (
       <time dateTime={dateTime} title={dateTime}>
-        {new Date(dateTime).toUTCString()}
+        {format(dateTime, 'yyyy-MM-dd')}
       </time>
     )
   }
