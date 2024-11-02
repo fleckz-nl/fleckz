@@ -62,7 +62,7 @@ const UsersList = ({ users }: FindUsers) => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{truncate(user.id)}</td>
+              <td>{truncate(user.id, 8)}</td>
               <td>{timeTag(user.createdAt)}</td>
               <td>{timeTag(user.updatedAt)}</td>
               <td>{truncate(user.email)}</td>
