@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 
+import AssignShiftWorkerDialog from 'src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog'
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
 
 import { DataTable } from '../DataTable/DataTable'
@@ -70,6 +71,10 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         ),
       },
       {
+        accessorKey: 'assignWorker',
+        header: 'Invullen',
+        cell: () => <AssignShiftWorkerDialog />,
+      },
       {
         accessorKey: 'checkInOut',
         header: 'In/uit-checken',
