@@ -39,7 +39,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         // TODO: Batch-edit shifts
         accessorKey: 'id',
-        header: ({ table }) => (
+        header: () => (
           <></>
           // <Checkbox
           //   checked={
@@ -53,7 +53,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
           //   aria-label="Select all"
           // />
         ),
-        cell: ({ row }) => (
+        cell: () => (
           <></>
           // <Checkbox
           //   checked={row.getIsSelected()}
