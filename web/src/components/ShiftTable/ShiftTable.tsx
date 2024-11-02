@@ -70,7 +70,8 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         ),
       },
       {
-        accessorKey: 'action',
+      {
+        accessorKey: 'checkInOut',
         header: 'In/uit-checken',
         cell: ({ row }) => <ShiftConfirmationDrawer shift={row.original} />,
       },
@@ -86,6 +87,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         columnVisibility: {
           status: false,
           tempAgency: false,
+          checkInOut: true,
         },
       }}
     />
