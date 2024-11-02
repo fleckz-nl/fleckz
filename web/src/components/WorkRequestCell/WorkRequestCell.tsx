@@ -1,10 +1,12 @@
+import { formatDate } from 'date-fns'
+import { nl } from 'date-fns/locale/nl'
 import { ArrowLeft } from 'lucide-react'
 import type {
   FindWorkRequestQuery,
   FindWorkRequestQueryVariables,
 } from 'types/graphql'
 
-import { Link, routes } from '@redwoodjs/router'
+import { back } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -65,6 +67,10 @@ export const QUERY: TypedDocumentNode<
         id
         name
         status
+        rating
+        workerName
+        checkedInAt
+        checkedOutAt
         tempAgency {
           id
           name
@@ -114,14 +120,14 @@ export const Success = ({
 }: CellSuccessProps<FindWorkRequestQuery, FindWorkRequestQueryVariables> &
   SuccessProps) => {
   return (
-    <div className="grid min-h-screen w-full justify-between xs:flex xs:flex-wrap">
-      <div className="flex flex-grow flex-wrap justify-center bg-white">
+    <div className="flex min-h-screen w-full flex-wrap justify-between md:grid md:grid-cols-3">
+      <div className="flex w-10/12 flex-grow flex-wrap justify-center bg-white xs:w-full md:col-span-2">
         <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
-          <Link to={routes.overview()} className="flex items-center">
+          <button onClick={() => back()}>
             <ArrowLeft className="mr-1 inline" /> Overzicht
-          </Link>
+          </button>
         </div>
-        <div className="container flex max-w-7xl flex-col items-center gap-8 pt-4 xs:pt-0 ">
+        <div className="container flex max-w-5xl flex-col items-center gap-8 pt-4 xs:pt-0 ">
           <div className="flex w-full flex-wrap items-center justify-center gap-4 xs:justify-between">
             <section className="px-0 xs:mx-auto">
               <RequestStatusCard
@@ -145,8 +151,16 @@ export const Success = ({
           <Separator className="lg:hidden" />
           <div className="mb-20 flex w-full max-w-4xl flex-col gap-2 lg:mt-10">
             <h3 className="text-lg font-semibold text-primary ">
-              Ploegendienst toewijzen
+              Diensten toewijzen
             </h3>
+            <span className="-mt-2 text-lg font-semibold text-secondary">
+              {formatDate(workRequest.startDate, 'd MMMM, yyyy', {
+                locale: nl,
+              })}
+              {' - '}
+              {formatDate(workRequest.startDate, 'HH:mm')}-
+              {formatDate(workRequest.endDate, 'HH:mm')}
+            </span>
             <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />
               <Separator className="my-6" />

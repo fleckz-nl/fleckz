@@ -16,5 +16,6 @@
   ],
   "cSpell.words": [
     "Fleckz"
-  ]
+  ],
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }

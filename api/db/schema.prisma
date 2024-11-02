@@ -37,6 +37,8 @@ model User {
 
 enum Role {
   CLIENT
+  MEDIATOR
+  TEMP_AGENCY_REP
   ADMIN
 }
 
@@ -92,13 +94,13 @@ model JobProfile {
   name               String
   yearsOfExp         Int
   certificates       Certificate[]
-  hourlyWageMin      Float
-  hourlyWageMax      Float
+  hourlyWageMin      Decimal
+  hourlyWageMax      Decimal
   maxTravelDistance  Float?
   isTravelReimbursed Boolean?
   isCarAvailable     Boolean?
-  kmAllowance        Float?
-  totalBudgetPerHour Float?
+  kmAllowance        Decimal?
+  totalBudgetPerHour Decimal?
   comment            String?
   workRequest        WorkRequest[]
   createdBy          User?         @relation(fields: [userId], references: [id])
@@ -137,6 +139,7 @@ model TempAgency {
 model Shift {
   id            String       @id @default(cuid())
   name          String?
+  workerName    String?
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   status        ShiftStatus  @default(UNFULFILLED)
@@ -147,11 +150,15 @@ model Shift {
   tempAgencyId  String?
   hoursPlanned  Decimal?
   hoursWorked   Decimal?
+  checkedInAt   DateTime?
+  checkedOutAt  DateTime?
 }
 
 enum ShiftStatus {
   UNFULFILLED
   FULFILLED
+  CHECKED_IN
+  CHECKED_OUT
 }
 
 model ClientBusiness {

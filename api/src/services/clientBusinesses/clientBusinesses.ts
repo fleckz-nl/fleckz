@@ -43,6 +43,7 @@ export const createClientBusinessWithWorkplace: MutationResolvers['createClientB
             address: {
               create: {
                 ...workplace,
+                userId: context.currentUser.id,
               },
             },
           },

@@ -123,7 +123,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           <>
             <Separator className="opacity-40" />
             <div>
-              <span>Gevraagde medewerkers</span>
+              <span>Gevraagde werknemers</span>
               <div className="flex items-center gap-1 font-semibold">
                 <span className="pl-7">Aantal:</span>
                 {request.numWorkers}
@@ -136,7 +136,7 @@ const RequestStatusCard = ({ className, request }: RequestStatusCardProps) => {
           <>
             <Separator className="opacity-40" />
             <div>
-              <span>Gevraagde medewerkers</span>
+              <span>Gevraagde werknemers</span>
               <div className="flex items-center gap-1 font-semibold">
                 <span className="pl-7">Aantal:</span>
                 {request.numWorkers}

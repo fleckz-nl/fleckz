@@ -6,6 +6,9 @@ import { standard } from './WorkRequestsCell.mock'
 const meta: Meta = {
   title: 'Cells/WorkRequestsCell',
   tags: ['autodocs'],
+  args: {
+    currentUserRoles: ['CLIENT'],
+  },
 }
 
 export default meta
@@ -30,6 +33,7 @@ export const failure: StoryObj<typeof Failure> = {
 
 export const success: StoryObj<typeof Success> = {
   render: (args) => {
+    mockCurrentUser({ name: 'Mocked User', roles: meta.args.currentUserRoles })
     return Success ? <Success {...standard()} {...args} /> : <></>
   },
 }

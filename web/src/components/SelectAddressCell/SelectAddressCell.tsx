@@ -8,6 +8,7 @@ import type {
 } from 'types/graphql'
 
 import { ControllerRenderProps, UseFormReturn } from '@redwoodjs/forms'
+import { Link, routes } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -124,7 +125,13 @@ export const Success = ({
         <Command className="bg-foreground text-muted-foreground">
           <CommandInput placeholder="Zoek adres..." />
           <CommandList>
-            <CommandEmpty>Geen adres gevonden</CommandEmpty>
+            <CommandEmpty>
+              Geen adres gevonden{' '}
+              <Link to={routes.business()} className="hover:underline">
+                Maak er een aan.
+              </Link>
+            </CommandEmpty>
+
             <CommandGroup>
               {addresses.map((address) => (
                 <CommandItem

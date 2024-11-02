@@ -32,6 +32,7 @@ export const createWorkplaceWithNewAddress: MutationResolvers['createWorkplaceWi
         address: {
           create: {
             ...address,
+            userId: context.currentUser.id,
           },
         },
         clientBusiness: {
