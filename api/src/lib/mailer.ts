@@ -11,10 +11,14 @@ export const mailer = new Mailer({
       nodemailer: new NodemailerMailHandler({
         transport: {
           host: 'smtp.postmarkapp.com',
-          port: 25,
-          secure: true,
+          port: 587,
+          authMethod: 'CRAM-MD5',
           auth: {
-            accessToken: process.env.POSTMARK_KEY,
+            user: process.env.POSTMARK_KEY,
+            pass: process.env.POSTMARK_KEY,
+          },
+          headers: {
+            'X-PM-Message-Stream': 'outbound',
           },
         },
       }),

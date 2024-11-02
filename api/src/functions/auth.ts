@@ -7,9 +7,11 @@ import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 import { mailer } from 'src/lib/mailer'
 import { ForgotPassword } from 'src/mail/ForgotPassword/ForgotPassword'
-import { WelcomeEmail } from 'src/mail/Welcome/Welcome'
 
-const ROOT_URL = 'https://fleckz.nl'
+const ROOT_URL = process.env.NETLIFY
+  ? process.env.DEPLOY_URL
+  : 'https://fleckz.nl'
+
 const DEVELOPMENT_ROOT_URL = 'http://localhost:8910'
 
 export const handler = async (
@@ -34,7 +36,7 @@ export const handler = async (
     // so don't include anything you wouldn't want prying eyes to see. The
     // `user` here has been sanitized to only include the fields listed in
     // `allowedUserFields` so it should be safe to return as-is.
-    handler: (user, _resetToken) => {
+    handler: async (user, _resetToken) => {
       // TODO: Send user an email/message with a link to reset their password,
       // including the `resetToken`. The URL should look something like:
       // `http://localhost:8910/reset-password?resetToken=${resetToken}`
@@ -42,7 +44,7 @@ export const handler = async (
         process.env.NODE_ENV !== 'development' ? ROOT_URL : DEVELOPMENT_ROOT_URL
       const resetUrl = `${currentDomain}/reset-password?resetToken=${_resetToken}`
 
-      mailer.send(ForgotPassword({ username: user.email, resetUrl }), {
+      await mailer.send(ForgotPassword({ username: user.email, resetUrl }), {
         to: user.email,
         subject: 'Fleckz: Wachtwoord resetten',
         from: 'info@fleckz.nl',

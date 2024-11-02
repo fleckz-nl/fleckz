@@ -341,7 +341,13 @@ const PlanWorkComponent = ({
                       Locatie
                     </FormLabel>
                     <FormDescription>
-                      Waar wilt u dat de werknemer werkt?
+                      Waar wilt u dat de werknemer werkt? Geen adres?{' '}
+                      <Link
+                        to={routes.business()}
+                        className="text-primary/90 hover:text-accent hover:underline"
+                      >
+                        Maak er een aan.
+                      </Link>
                     </FormDescription>
                     <SelectAddressCell
                       field={field}
@@ -354,7 +360,7 @@ const PlanWorkComponent = ({
                   </FormItem>
                 )}
               />
-              <fieldset className="flex flex-col items-center justify-between sm:flex-row">
+              <fieldset className="flex flex-wrap justify-between">
                 <FormField
                   control={form.control}
                   name="startDate"
@@ -403,11 +409,11 @@ const PlanWorkComponent = ({
                 render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel className="flex flex-grow items-center font-semibold text-primary/90">
-                      Aantal medewerkers
+                      Aantal werknemers
                       <Users className="ml-2 inline" size={'1rem'} />
                     </FormLabel>
                     <FormDescription>
-                      Hoeveel medewerkers nodig?
+                      Hoeveel werknemers zijn er nodig voor het project?
                     </FormDescription>
                     <FormControl>
                       <Input

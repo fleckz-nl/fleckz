@@ -33,7 +33,7 @@ const AcceptedRequestsTable = ({
           <TableRow>
             <TableHead className="text-gray-400">Datum</TableHead>
             <TableHead className="text-gray-400">Functienaam</TableHead>
-            <TableHead className="text-gray-400">Medewerkers</TableHead>
+            <TableHead className="text-gray-400">Werknemers</TableHead>
             <TableHead className="text-gray-400">Werktijd</TableHead>
           </TableRow>
         </TableHeader>

@@ -13,17 +13,15 @@ import type {
 
 import ShiftTable from '../ShiftTable/ShiftTable'
 
-export const QUERY: TypedDocumentNode<
-  AgenciesQuery,
-  AgenciesQueryVariables
-> = gql`
-  query AgenciesQuery {
-    tempAgencies {
-      id
-      name
+export const QUERY: TypedDocumentNode<AgenciesQuery, AgenciesQueryVariables> =
+  gql`
+    query AgenciesQuery {
+      tempAgencies {
+        id
+        name
+      }
     }
-  }
-`
+  `
 
 export const Loading = () => <div>Loading...</div>
 
