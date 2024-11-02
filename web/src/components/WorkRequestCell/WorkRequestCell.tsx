@@ -157,6 +157,9 @@ export const Success = ({
               {formatDate(workRequest.startDate, 'd MMMM, yyyy', {
                 locale: nl,
               })}
+              {' - '}
+              {formatDate(workRequest.startDate, 'HH:mm')}-
+              {formatDate(workRequest.endDate, 'HH:mm')}
             </span>
             <div className="flex w-full flex-col xs:mx-auto ">
               <ShiftTableCell request={workRequest} />
