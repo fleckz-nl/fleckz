@@ -45,13 +45,11 @@ const User = ({ user }: Props) => {
 
   return (
     <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            User {user.id} Detail
-          </h2>
+      <div>
+        <header>
+          <h2 className="font-bold">User {user.id}</h2>
         </header>
-        <table className="rw-table">
+        <table className="rw-table bg-white">
           <tbody>
             <tr>
               <th>Id</th>
