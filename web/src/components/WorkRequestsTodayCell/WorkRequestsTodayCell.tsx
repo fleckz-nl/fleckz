@@ -60,11 +60,11 @@ export const Loading = () =>
     return (
       <div key={i}>
         <div className="mx-auto mt-4 flex w-full items-center justify-between bg-secondary/10">
-          <Skeleton className="h-7 w-40" />
-          <Skeleton className="h-7 w-40" />
+          <Skeleton className="h-7 w-40 bg-primary-foreground/10" />
+          <Skeleton className="h-7 w-40 bg-primary-foreground/10" />
         </div>
         <Skeleton className="mt-1 h-8 bg-secondary/10" />
-        <div className="mt-1 animate-pulse bg-black/80 grayscale">
+        <div className="animate-pulse bg-black/50 grayscale">
           <Table>
             <TableHeader>
               <TableRow>
