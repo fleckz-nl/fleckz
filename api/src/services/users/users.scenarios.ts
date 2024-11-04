@@ -6,6 +6,9 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
   user: {
     one: {
       data: {
+        id: 'example1',
+        firstName: 'Example First',
+        lastName: 'Example Last',
         updatedAt: '2024-09-01T17:28:16.471Z',
         email: 'String4740238',
         hashedPassword: 'String',

@@ -25,25 +25,29 @@ describe('users', () => {
   scenario('creates a user', async () => {
     const result = await createUser({
       input: {
-        email: 'String94843',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'test@example.com',
         hashedPassword: 'String',
         salt: 'String',
         roles: ['CLIENT'],
       },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-10-05T09:59:39.504Z'))
-    expect(result.email).toEqual('String94843')
+    expect(result.firstName).toEqual('First Name')
+    expect(result.lastName).toEqual('Last Name')
+    expect(result.email).toEqual('test@example.com')
+    expect(result.roles).toEqual(['CLIENT'])
   })
 
   scenario('updates a user', async (scenario: StandardScenario) => {
-    const original = (await user({ id: scenario.user.one.id })) as User
+    mockCurrentUser(scenario.user.one)
     const result = await updateUser({
-      id: original.id,
+      id: scenario.user.one.id,
       input: { lastName: 'new last name' },
     })
 
-    expect(result.updatedAt).toEqual(new Date('2024-10-06T09:59:39.504Z'))
+    expect(result.lastName).toEqual('new last name')
   })
 
   scenario('deletes a user', async (scenario: StandardScenario) => {
