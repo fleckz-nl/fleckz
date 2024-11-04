@@ -47,7 +47,7 @@ const Nav = ({ className }: NavProps) => {
       <DrawerMenu />
       <NavigationMenuList className="hidden items-center gap-4 xs:flex">
         <NavigationMenuItem>
-          <Link to={routes.overview()}>
+          <Link to={routes.today()}>
             <img
               src={noTextLogo}
               alt="logo"
