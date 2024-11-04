@@ -1,5 +1,7 @@
 import { render } from '@redwoodjs/testing/web'
 
+import { mockShifts } from 'src/components/WorkRequestCell/WorkRequestCell.mock'
+
 import AssignShiftWorkerDialog from './AssignShiftWorkerDialog'
 
 //   Improve this test with help from the Redwood Testing Doc:
@@ -8,7 +10,7 @@ import AssignShiftWorkerDialog from './AssignShiftWorkerDialog'
 describe('AssignShiftWorkerDialog', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<AssignShiftWorkerDialog />)
+      render(<AssignShiftWorkerDialog shift={mockShifts[0]} />)
     }).not.toThrow()
   })
 })
