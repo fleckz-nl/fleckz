@@ -98,7 +98,7 @@ const AddWorkplaceDialog = ({ clientBusiness }: AddWorkPlaceDialogProps) => {
           Adres toevoegen
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-screen overflow-y-scroll bg-black py-10 text-white shadow-md shadow-accent/50">
+      <DialogContent className="max-h-screen overflow-y-auto bg-black py-10 text-white shadow-md shadow-accent/50">
         <DialogHeader className="center mt-4 flex-col">
           <MapPin className="size-10 " />
           <DialogTitle>Nieuw werkplek voor {clientBusiness.name}</DialogTitle>

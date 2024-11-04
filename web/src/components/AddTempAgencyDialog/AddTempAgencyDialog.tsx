@@ -222,7 +222,7 @@ const AddTempAgencyDialog = ({
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-screen overflow-y-scroll bg-black py-10 text-white shadow-md shadow-accent/50">
+      <DialogContent className="max-h-screen overflow-y-auto bg-black py-10 text-white shadow-md shadow-accent/50">
         <DialogHeader className="center">
           <DialogTitle>
             {isEditing ? 'Bewerken uitzendbureau' : 'Nieuw Uitzendbureau'}

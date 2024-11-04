@@ -263,7 +263,7 @@ const PlanWorkComponent = ({
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-h-screen overflow-y-scroll">
+      <DialogContent className="max-h-screen overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-bold text-primary/80">
             Werk Uitzetten
