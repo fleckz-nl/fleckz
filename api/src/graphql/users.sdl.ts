@@ -47,7 +47,7 @@ export const schema = gql`
     salt: String
     resetToken: String
     resetTokenExpiresAt: DateTime
-    roles: [Role]!
+    roles: [Role]
   }
 
   type Mutation {
