@@ -19,6 +19,14 @@ import BusinessPage from './pages/BusinessPage/BusinessPage'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <PrivateSet unauthenticated="home" roles={['ADMIN']}>
+        <Set wrap={SettingLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
+          <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+          <Route path="/users/{id}/edit" page={UserEditUserPage} name="editUser" />
+          <Route path="/users/{id}" page={UserUserPage} name="user" />
+          <Route path="/users" page={UserUsersPage} name="users" />
+        </Set>
+      </PrivateSet>
       <Route path="/" page={HomePage} name="home" />
       <PrivateSet unauthenticated="home">
         <Set wrap={AppLayout}>

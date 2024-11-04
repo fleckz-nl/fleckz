@@ -1,4 +1,10 @@
-import { BriefcaseBusiness, Building2, Settings, User } from 'lucide-react'
+import {
+  BriefcaseBusiness,
+  Building2,
+  Settings,
+  User,
+  Users,
+} from 'lucide-react'
 
 import { Link, routes } from '@redwoodjs/router'
 
@@ -63,7 +69,19 @@ const SideNav = ({ className }: SideNavProps) => {
                 <h4 className="hidden text-left xs:block">Uitzendbureaus</h4>
               </Link>
             </li>
-
+            {currentUser.roles.includes('ADMIN') && (
+              <li className="w-full py-1 pl-1 xs:pl-0">
+                <Link
+                  to={routes.users()}
+                  className="flex items-center gap-2 py-1 xs:px-2"
+                >
+                  <Users className="size-5" />
+                  <h4 className="hidden text-left xs:block">
+                    Gebruikersbeheer
+                  </h4>
+                </Link>
+              </li>
+            )}
             {/* TODO: Bring this back when we need billing information */}
             {/* <li className="w-full py-1 pl-1 xs:pl-0">
               <Link
