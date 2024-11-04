@@ -59,14 +59,14 @@ const HomePage = () => {
       <main className="min-h-screen bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-center gap-4 py-20 md:py-52 lg:justify-between">
-          <div className="flex w-full max-w-sm flex-col">
+          <div className="flex w-full max-w-md flex-col">
             <img
               src={logo}
               alt="logo"
               className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="m-0 mt-2 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
-              <p>Vind je de beste kandidaat, overal.</p>
+            <section className="m-0 mt-4 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
+              <p>De zoekmachine voor uitzendkrachten</p>
             </section>
           </div>
           <div className="form-wrapper m-0 flex w-11/12 max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
