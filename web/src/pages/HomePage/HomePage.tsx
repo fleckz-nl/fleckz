@@ -65,7 +65,7 @@ const HomePage = () => {
               alt="logo"
               className="mx-auto w-48 drop-shadow-sm"
             />
-            <section className="m-0 mt-2 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
+            <section className="m-0 mt-4 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
               <p>De zoekmachine voor uitzendkrchten</p>
             </section>
           </div>
