@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import type {
   WorkRequestsTodayQuery,
   WorkRequestsTodayQueryVariables,
@@ -13,7 +11,6 @@ import type {
 } from '@redwoodjs/web'
 
 import IndividualWorkRequestSection from 'src/components/IndividualWorkRequestSection/IndividualWorkRequestSection'
-import PlanWorkComponent from 'src/components/PlanWorkComponent/PlanWorkComponent'
 import { Skeleton } from 'src/components/ui/skeleton'
 import {
   Table,
@@ -83,7 +80,6 @@ export const Loading = () =>
   })
 
 export const Empty = () => {
-  const [openDialog, setOpenDialog] = useState(false)
   return (
     <div className="center w-full flex-col">
       <div className="center mb-8 flex-col">
@@ -92,7 +88,6 @@ export const Empty = () => {
           Vandaag geen werk, geen diensten.
         </span>
       </div>
-      <PlanWorkComponent open={openDialog} setOpen={setOpenDialog} />
     </div>
   )
 }
