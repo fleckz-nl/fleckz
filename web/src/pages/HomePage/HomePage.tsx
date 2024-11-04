@@ -59,7 +59,7 @@ const HomePage = () => {
       <main className="min-h-screen bg-primary">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-center gap-4 py-20 md:py-52 lg:justify-between">
-          <div className="flex w-full max-w-sm flex-col">
+          <div className="flex w-full max-w-md flex-col">
             <img
               src={logo}
               alt="logo"
