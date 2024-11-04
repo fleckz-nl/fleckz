@@ -29,7 +29,7 @@ import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
 import { QUERY as WORK_REQUEST_CELL_QUERY } from 'src/components/WorkRequestCell'
 
 const ASSIGN_WORKER_GQL = gql`
-  mutation updateShift($id: String!, $input: UpdateShiftInput!) {
+  mutation assignWorker($id: String!, $input: UpdateShiftInput!) {
     updateShift(id: $id, input: $input) {
       id
       workerName
