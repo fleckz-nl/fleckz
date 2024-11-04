@@ -82,7 +82,7 @@ const AssignShiftWorkerDialog = ({ shift }: AssignShiftWorkerDialogProps) => {
           {shift.workerName || 'Vul een dienst in'}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-screen overflow-y-scroll">
+      <DialogContent className="max-h-screen overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-bold text-primary/80">
             {shift.workerName ? 'Wijzig werknemer naam' : 'Vul een dienst in'}
