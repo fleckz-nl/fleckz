@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.overview())
+      navigate(routes.today())
     }
   }, [isAuthenticated])
 
