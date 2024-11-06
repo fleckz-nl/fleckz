@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import { Metadata } from '@redwoodjs/web'
+
+import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 
 export type OnboardingStages =
@@ -21,6 +23,9 @@ const OnboardingPage = () => {
         <main className="container">
           {onboardingStep === 'welcomeMessage' && (
             <OnboardingWelcomeMessage setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'emailAndPassword' && (
+            <OnboardingEmailAndPassword setOnboardingStep={setOnboardingStep} />
           )}
         </main>
       </div>
