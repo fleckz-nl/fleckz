@@ -95,7 +95,7 @@ const UpdateBusinessCard = ({ clientBusiness }: UpdateBusinessCardProps) => {
     )
   }
 
-  function loadingToastWrapper(func: Promise<any>) {
+  function loadingToastWrapper(func: Promise<unknown>) {
     const loadingToast = toast.loading('Laden...')
     func.finally(() => toast.dismiss(loadingToast))
   }
