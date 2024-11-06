@@ -6,7 +6,15 @@ import {
   Submit,
   TextField,
 } from '@redwoodjs/forms'
-const OnboardingEmailAndPassword = () => {
+import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+
+type OnboardingEmailAndPasswordProps = {
+  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
+}
+
+const OnboardingEmailAndPassword = ({
+  setOnboardingStep,
+}: OnboardingEmailAndPasswordProps) => {
   return (
     <div className="rw-scaffold mx-auto my-40 max-w-md py-4">
       <div className="rw-segment-main">
