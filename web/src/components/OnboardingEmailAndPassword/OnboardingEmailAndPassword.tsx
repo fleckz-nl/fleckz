@@ -1,3 +1,5 @@
+import { SetStateAction, useEffect, useRef } from 'react'
+
 import {
   FieldError,
   Form,
@@ -6,6 +8,9 @@ import {
   Submit,
   TextField,
 } from '@redwoodjs/forms'
+import { toast } from '@redwoodjs/web/toast'
+
+import { useAuth } from 'src/auth'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
 type OnboardingEmailAndPasswordProps = {
@@ -15,6 +20,27 @@ type OnboardingEmailAndPasswordProps = {
 const OnboardingEmailAndPassword = ({
   setOnboardingStep,
 }: OnboardingEmailAndPasswordProps) => {
+  const { signUp } = useAuth()
+
+  const emailRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    emailRef.current?.focus()
+  }, [])
+
+  const onSubmit = async (data: Record<string, string>) => {
+    const response = await signUp({
+      username: data.email,
+      password: data.password,
+    })
+
+    if (response.message) {
+      toast(response.message)
+    } else if (response.error) {
+      toast.error(response.error)
+    }
+
+    setOnboardingStep('avatarAndName')
+  }
   return (
     <div className="rw-scaffold mx-auto my-40 max-w-md py-4">
       <div className="rw-segment-main">
