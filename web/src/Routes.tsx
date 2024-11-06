@@ -28,6 +28,7 @@ const Routes = () => {
         </Set>
       </PrivateSet>
       <Route path="/" page={HomePage} name="home" />
+      <Route path="/onboarding" page={OnboardingPage} name="onboarding" />
       <PrivateSet unauthenticated="home">
         <Set wrap={AppLayout}>
           <Route path="/today" page={TodayPage} name="today" />
