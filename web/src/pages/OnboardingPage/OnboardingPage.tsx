@@ -27,6 +27,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'emailAndPassword' && (
             <OnboardingEmailAndPassword setOnboardingStep={setOnboardingStep} />
           )}
+          {onboardingStep === 'avatarAndName' && <></>}
         </main>
       </div>
     </>
