@@ -5,7 +5,7 @@ const OnboardingPage = () => {
     <>
       <Metadata title="Onboarding" description="Onboarding page" />
       <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
-        <main className="container flex flex-col"></main>
+        <main className="container"></main>
       </div>
     </>
   )
