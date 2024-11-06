@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 
 import { ApolloError } from '@apollo/client/errors'
 
-import ButtonWithLoader from 'src/components/ButtonWithLoader/ButtonWithLoader'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,11 +36,7 @@ const ConfirmAction = ({
 }: ConfirmActionProps) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <ButtonWithLoader type="button" variant="destructive" loading={loading}>
-          {children}
-        </ButtonWithLoader>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
