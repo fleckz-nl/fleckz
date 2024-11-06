@@ -5,16 +5,9 @@ const OnboardingPage = () => {
   return (
     <>
       <Metadata title="Onboarding" description="Onboarding page" />
-
-      <h1>OnboardingPage</h1>
-      <p>
-        Find me in{' '}
-        <code>./web/src/pages/OnboardingPage/OnboardingPage.tsx</code>
-      </p>
-      {/*
-          My default route is named `onboarding`, link to me with:
-          `<Link to={routes.onboarding()}>Onboarding</Link>`
-      */}
+      <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
+        <main className="container flex flex-col"></main>
+      </div>
     </>
   )
 }
