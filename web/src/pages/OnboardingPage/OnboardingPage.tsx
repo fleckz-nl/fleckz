@@ -1,6 +1,18 @@
+import { useState } from 'react'
+
 import { Metadata } from '@redwoodjs/web'
 
+export type OnboardingStages =
+  | 'welcomeMessage'
+  | 'emailAndPassword'
+  | 'avatarAndName'
+  | 'selectRole'
+  | 'addBusiness'
+  | 'firstAction'
+
 const OnboardingPage = () => {
+  const [onboardingStep, setOnboardingStep] =
+    useState<OnboardingStages>('welcomeMessage')
   return (
     <>
       <Metadata title="Onboarding" description="Onboarding page" />
