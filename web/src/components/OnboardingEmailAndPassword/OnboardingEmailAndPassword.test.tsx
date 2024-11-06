@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import OnboardingStep1 from './OnboardingStep1'
+import OnboardingEmailAndPassword from './OnboardingEmailAndPassword'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('OnboardingStep1', () => {
+describe('OnboardingEmailAndPassword', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<OnboardingStep1 />)
+      render(<OnboardingEmailAndPassword />)
     }).not.toThrow()
   })
 })
