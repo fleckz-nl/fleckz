@@ -12,15 +12,15 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-import OnboardingWelcome from './OnboardingWelcome'
+import OnboardingWelcomeMessage from './OnboardingWelcomeMessage'
 
-const meta: Meta<typeof OnboardingWelcome> = {
-  component: OnboardingWelcome,
+const meta: Meta<typeof OnboardingWelcomeMessage> = {
+  component: OnboardingWelcomeMessage,
   tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof OnboardingWelcome>
+type Story = StoryObj<typeof OnboardingWelcomeMessage>
 
 export const Primary: Story = {}

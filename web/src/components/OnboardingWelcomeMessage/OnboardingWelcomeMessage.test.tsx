@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import OnboardingWelcome from './OnboardingWelcome'
+import OnboardingWelcomeMessage from './OnboardingWelcomeMessage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('OnboardingWelcome', () => {
+describe('OnboardingWelcomeMessage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<OnboardingWelcome />)
+      render(<OnboardingWelcomeMessage />)
     }).not.toThrow()
   })
 })
