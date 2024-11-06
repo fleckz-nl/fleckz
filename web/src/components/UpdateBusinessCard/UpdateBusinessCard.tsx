@@ -1,11 +1,20 @@
 import { useRef, useState } from 'react'
 
-import { Building2, Check, Edit, MapPin, Plus, Trash2, X } from 'lucide-react'
+import {
+  Building2,
+  Check,
+  Edit,
+  LoaderCircle,
+  MapPin,
+  Trash2,
+  X,
+} from 'lucide-react'
 import { ClientBusinessesQuery } from 'types/graphql'
 
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import ConfirmAction from 'src/components/ConfirmAction/ConfirmAction'
 import { formatAddress } from 'src/lib/formatAddress'
 
 import AddWorkplaceDialog from '../AddWorkplaceDialog/AddWorkplaceDialog'
@@ -50,9 +59,10 @@ const UpdateBusinessCard = ({ clientBusiness }: UpdateBusinessCardProps) => {
   const businessNameInputRef = useRef<HTMLInputElement>(null)
   const [businessName, setBusinessName] = useState(clientBusiness?.name)
 
-  const [deleteClientBusiness] = useMutation(DELETE_BUSINESS_GQL, {
-    refetchQueries: [{ query: ClientBusinesses }],
-  })
+  const [deleteClientBusiness, { loading: deleteBusinessLoading }] =
+    useMutation(DELETE_BUSINESS_GQL, {
+      refetchQueries: [{ query: ClientBusinesses }],
+    })
   const [deleteWorkplace] = useMutation(DELETE_WORKPLACE_GQL, {
     refetchQueries: [{ query: ClientBusinesses }],
   })
@@ -148,10 +158,19 @@ const UpdateBusinessCard = ({ clientBusiness }: UpdateBusinessCardProps) => {
             />
           )}
         </div>
-        <Trash2
-          className="size-5 text-white/70 hover:cursor-pointer hover:text-destructive"
-          onClick={handleBusinessDelete}
-        />
+
+        <ConfirmAction
+          title="Verwijder je bedrijf?"
+          description="Let op: wanneer je je bedrijfsinformatie verwijdert, kan deze niet meer worden hersteld."
+          actionText="Verwijderen"
+          onConfirm={handleBusinessDelete}
+        >
+          {deleteBusinessLoading ? (
+            <LoaderCircle className="animate-spin" />
+          ) : (
+            <Trash2 className="size-5 text-white/70 hover:cursor-pointer hover:text-destructive" />
+          )}
+        </ConfirmAction>
       </div>
       <div className="flex flex-col gap-3">
         {clientBusiness.workplaces.map((w) => (
