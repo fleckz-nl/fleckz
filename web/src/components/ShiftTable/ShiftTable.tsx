@@ -6,6 +6,7 @@ import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 import { useAuth } from 'src/auth'
 import AssignShiftWorkerDialog from 'src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog'
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
+import { formatShiftId } from 'src/lib/formatShiftId'
 
 import { DataTable } from '../DataTable/DataTable'
 import SelectAgency from '../SelectAgency/SelectAgency'
@@ -39,33 +40,12 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         // TODO: Batch-edit shifts
         accessorKey: 'id',
-        header: () => (
-          <></>
-          // <Checkbox
-          //   checked={
-          //     (table.getIsAllPageRowsSelected() ||
-          //       (table.getIsSomePageRowsSelected() &&
-          //         'indeterminate')) as boolean
-          //   }
-          //   onCheckedChange={(value) =>
-          //     table.toggleAllPageRowsSelected(!!value)
-          //   }
-          //   aria-label="Select all"
-          // />
+        header: 'ID',
+        cell: ({ cell }) => (
+          <span className="font-mono uppercase">
+            {formatShiftId(cell.getValue() as string)}
+          </span>
         ),
-        cell: () => (
-          <></>
-          // <Checkbox
-          //   checked={row.getIsSelected()}
-          //   onCheckedChange={(value) => row.toggleSelected(!!value)}
-          //   aria-label="Select row"
-          // />
-        ),
-      },
-      {
-        accessorKey: 'name',
-        header: 'Diensten',
-        cell: ({ cell }) => <>{cell.getValue()}</>,
       },
       {
         accessorKey: 'status',
