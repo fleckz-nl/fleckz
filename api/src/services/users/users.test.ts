@@ -50,6 +50,32 @@ describe('users', () => {
     expect(result.lastName).toEqual('new last name')
   })
 
+  scenario(
+    'fails updating another user as non-admin',
+    async (scenario: StandardScenario) => {
+      mockCurrentUser(scenario.user.one)
+      expect(() => {
+        updateUser({
+          id: scenario.user.two.id,
+          input: { lastName: 'new last name' },
+        })
+      }).toThrow()
+    }
+  )
+
+  scenario(
+    'updates another user as an admin',
+    async (scenario: StandardScenario) => {
+      mockCurrentUser({ ...scenario.user.one, roles: ['ADMIN'] })
+      expect(() => {
+        updateUser({
+          id: scenario.user.two.id,
+          input: { lastName: 'new last name' },
+        })
+      }).not.toThrow()
+    }
+  )
+
   scenario('deletes a user', async (scenario: StandardScenario) => {
     const original = (await deleteUser({ id: scenario.user.one.id })) as User
     const result = await user({ id: original.id })
