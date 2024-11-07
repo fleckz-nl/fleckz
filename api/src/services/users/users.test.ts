@@ -76,10 +76,31 @@ describe('users', () => {
     }
   )
 
-  scenario('deletes a user', async (scenario: StandardScenario) => {
+  scenario('deletes own account', async (scenario: StandardScenario) => {
+    mockCurrentUser(scenario.user.one)
     const original = (await deleteUser({ id: scenario.user.one.id })) as User
     const result = await user({ id: original.id })
 
     expect(result).toEqual(null)
   })
+
+  scenario(
+    'fails deleting other users account as a non-admin ',
+    async (scenario: StandardScenario) => {
+      mockCurrentUser(scenario.user.two)
+      expect(() => {
+        deleteUser({ id: scenario.user.one.id })
+      }).toThrow()
+    }
+  )
+
+  scenario(
+    'deletes other users account as an admin ',
+    async (scenario: StandardScenario) => {
+      mockCurrentUser({ ...scenario.user.rwo, roles: ['ADMIN'] })
+      expect(() => {
+        deleteUser({ id: scenario.user.one.id })
+      }).not.toThrow()
+    }
+  )
 })
