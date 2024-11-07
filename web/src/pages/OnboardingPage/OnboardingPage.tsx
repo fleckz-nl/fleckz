@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { Metadata } from '@redwoodjs/web'
 
+import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 
@@ -27,7 +28,10 @@ const OnboardingPage = () => {
           {onboardingStep === 'emailAndPassword' && (
             <OnboardingEmailAndPassword setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'avatarAndName' && <></>}
+          {onboardingStep === 'avatarAndName' && (
+            <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'selectRole' && <>Hello</>}
         </main>
       </div>
     </>
