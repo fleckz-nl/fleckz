@@ -51,7 +51,7 @@ export const updateAvatarUrl: MutationResolvers['updateAvatarUrl'] = ({
 }) => {
   const isUpdatingSelf = id === context.currentUser.id
 
-  if (!isUpdatingSelf) {
+  if (!isUpdatingSelf && !context.currentUser.roles.includes('ADMIN')) {
     throw new ForbiddenError(
       'U werkt informatie bij voor een ander account. U kunt alleen uw eigen accountinformatie bijwerken.'
     )
