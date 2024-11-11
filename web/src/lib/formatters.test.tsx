@@ -1,3 +1,7 @@
+import { addDays, subDays } from 'date-fns'
+import { format } from 'date-fns/format'
+import { nl } from 'date-fns/locale/nl'
+
 import { render, waitFor, screen } from '@redwoodjs/testing/web'
 
 import {
@@ -7,6 +11,7 @@ import {
   timeTag,
   jsonDisplay,
   checkboxInputTag,
+  formatDaysFromNow,
 } from './formatters'
 
 describe('formatEnum', () => {
@@ -188,5 +193,40 @@ describe('checkboxInputTag', () => {
   it('is disabled when unchecked', () => {
     render(checkboxInputTag(false))
     expect(screen.getByRole('checkbox')).toBeDisabled()
+  })
+})
+
+describe('formatDaysFromNow', () => {
+  it("returns 'vandaag' when the date is today", () => {
+    expect(formatDaysFromNow(new Date())).toBe('vandaag')
+  })
+
+  it("returns 'gisteren' if the date is yesterday", () => {
+    expect(formatDaysFromNow(subDays(new Date(), 1))).toBe('gisteren')
+  })
+
+  it("returns 'morgen' if the date is tomorrow", () => {
+    expect(formatDaysFromNow(addDays(new Date(), 1))).toBe('morgen')
+  })
+
+  it("returns 'volgende (day of week)' if the day is 2 days ahead from now", () => {
+    const dayAfterTomorrow = addDays(new Date(), 2)
+    expect(formatDaysFromNow(dayAfterTomorrow)).toBe(
+      `volgende ${format(dayAfterTomorrow, 'eeee', { locale: nl })}`
+    )
+  })
+
+  it("returns 'vorige (day of week)' if the day is 2 days behind from now", () => {
+    const dayBeforeYesterday = subDays(new Date(), 2)
+    expect(formatDaysFromNow(dayBeforeYesterday)).toBe(
+      `vorige ${format(dayBeforeYesterday, 'eeee', { locale: nl })}`
+    )
+  })
+
+  it('returns the day of the week in far ahead dates', () => {
+    const oneWeekFromNow = addDays(new Date(), 7)
+    expect(formatDaysFromNow(oneWeekFromNow)).toBe(
+      format(oneWeekFromNow, 'eeee', { locale: nl })
+    )
   })
 })
