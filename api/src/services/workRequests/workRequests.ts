@@ -103,6 +103,16 @@ export const createWorkRequest: MutationResolvers['createWorkRequest'] = ({
 
 export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
   async ({ id, input }) => {
+    const updateRequestRoles = [
+      'ADMIN',
+      'CLIENT',
+    ] as typeof context.currentUser.roles
+    const canUpdateRequest = context.currentUser.roles.some((role) =>
+      updateRequestRoles.includes(role)
+    )
+    if (!canUpdateRequest)
+      throw new ForbiddenError('Je mag een werkverzoek niet bijwerken')
+
     const existingWorkRequest = await db.workRequest.findUnique({
       where: {
         id,
@@ -161,6 +171,16 @@ export const updateWorkRequest: MutationResolvers['updateWorkRequest'] =
 export const deleteWorkRequest: MutationResolvers['deleteWorkRequest'] = ({
   id,
 }) => {
+  const updateRequestRoles = [
+    'ADMIN',
+    'CLIENT',
+  ] as typeof context.currentUser.roles
+  const canUpdateRequest = context.currentUser.roles.some((role) =>
+    updateRequestRoles.includes(role)
+  )
+  if (!canUpdateRequest)
+    throw new ForbiddenError('Je mag een werkverzoek niet bijwerken')
+
   return db.workRequest.delete({
     where: { id },
   })
