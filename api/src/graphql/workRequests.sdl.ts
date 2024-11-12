@@ -27,7 +27,7 @@ export const schema = gql`
 
   type Query {
     workRequests: [WorkRequest!]! @requireAuth
-    workRequestsToday: [WorkRequest!]! @requireAuth
+    workRequestsToday(date: DateTime): [WorkRequest!]! @requireAuth
     workRequest(id: String!): WorkRequest @requireAuth
   }
 

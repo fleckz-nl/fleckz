@@ -19,9 +19,13 @@ export const workRequests: QueryResolvers['workRequests'] = () => {
   })
 }
 
-export const workRequestsToday: QueryResolvers['workRequests'] = () => {
+export const workRequestsToday: QueryResolvers['workRequests'] = ({
+  date,
+}: {
+  date?: Date
+}) => {
   const oneDay = 24 * 60 * 60 * 1000
-  const today = new Date()
+  const today = new Date(date) || new Date()
   const startOfDay = new Date(
     today.getFullYear(),
     today.getMonth(),
