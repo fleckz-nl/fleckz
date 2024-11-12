@@ -32,6 +32,11 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
     checkInOutRoles.includes(role)
   )
 
+  const assignTempAgencyRoles = ['ADMIN', 'CLIENT'] as typeof currentUser.roles
+  const showAssignTempAgencyAction = currentUser.roles.some((role) =>
+    assignTempAgencyRoles.includes(role)
+  )
+
   const { shifts } = request
   const columns = useMemo<
     ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[]
@@ -55,16 +60,20 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         accessorKey: 'tempAgency',
       },
       {
-        accessorKey: 'agency',
+        accessorKey: 'assignTempAgency',
         header: 'Uitzendbureau',
-        cell: ({ row }) => (
-          <SelectAgency
-            tempAgencies={tempAgencies}
-            selectedAgency={row.getValue('tempAgency')}
-            shiftId={row.getValue('id')}
-            request={request}
-          />
-        ),
+        cell: ({ row }) => {
+          return currentUser.roles.includes('CLIENT') ? (
+            <>{row.original.tempAgency?.name || 'geen toegewezen'}</>
+          ) : (
+            <SelectAgency
+              tempAgencies={tempAgencies}
+              selectedAgency={row.getValue('tempAgency')}
+              shiftId={row.getValue('id')}
+              request={request}
+            />
+          )
+        },
       },
       {
         accessorKey: 'assignWorker',
@@ -88,6 +97,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         columnVisibility: {
           status: false,
           tempAgency: false,
+          assignTempAgency: showAssignTempAgencyAction,
           assignWorker: showAssignWorkerAction,
           checkInOut: showCheckInOutAction,
         },
