@@ -25,8 +25,8 @@ export const QUERY: TypedDocumentNode<
   WorkRequestsTodayQuery,
   WorkRequestsTodayQueryVariables
 > = gql`
-  query WorkRequestsTodayQuery {
-    workRequestsToday: workRequestsToday {
+  query WorkRequestsTodayQuery($date: DateTime) {
+    workRequestsToday: workRequestsToday(date: $date) {
       id
       projectName
       startDate

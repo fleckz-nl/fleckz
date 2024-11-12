@@ -1,6 +1,8 @@
 import React from 'react'
 
+import { formatRelative } from 'date-fns'
 import { format } from 'date-fns/format'
+import { nl } from 'date-fns/locale/nl'
 import humanize from 'humanize-string'
 
 const MAX_STRING_LENGTH = 150
@@ -59,4 +61,21 @@ export const timeTag = (dateTime?: string) => {
 
 export const checkboxInputTag = (checked: boolean) => {
   return <input type="checkbox" checked={checked} disabled />
+}
+
+export function formatDaysFromNow(date: Date) {
+  const formatRelativeLocale = {
+    lastWeek: "'vorige' eeee",
+    yesterday: "'gisteren'",
+    today: "'vandaag'",
+    tomorrow: "'morgen'",
+    nextWeek: "'volgende' eeee",
+    other: 'eeee',
+  }
+
+  const relativeNLlocale = {
+    ...nl,
+    formatRelative: (token) => formatRelativeLocale[token],
+  }
+  return formatRelative(date, new Date(), { locale: relativeNLlocale })
 }
