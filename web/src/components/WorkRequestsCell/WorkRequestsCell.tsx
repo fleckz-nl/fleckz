@@ -106,7 +106,7 @@ export const Success = ({
   const queryParams = useParams()
 
   const [selectedTab, setSelectedTab] = useState(
-    TABS[queryParams.view] || TABS.cards
+    TABS[queryParams.view] || TABS.table
   )
 
   useEffect(() => {
@@ -118,17 +118,17 @@ export const Success = ({
       <Tabs value={selectedTab} className="w-full">
         <TabsList className="w-full justify-end bg-transparent">
           <TabsTrigger
-            value={TABS.cards}
-            onClick={() => setSelectedTab(TABS.cards)}
-          >
-            <h2 className="sr-only">All Requests</h2> <GalleryThumbnails />
-          </TabsTrigger>
-          <TabsTrigger
             value={TABS.table}
             onClick={() => setSelectedTab(TABS.table)}
           >
             <h2 className="sr-only">Accepted requests</h2>
             <Rows4 />
+          </TabsTrigger>
+          <TabsTrigger
+            value={TABS.cards}
+            onClick={() => setSelectedTab(TABS.cards)}
+          >
+            <h2 className="sr-only">All Requests</h2> <GalleryThumbnails />
           </TabsTrigger>
         </TabsList>
         <TabsContent value={TABS.cards}>
