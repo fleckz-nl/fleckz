@@ -32,7 +32,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
     checkInOutRoles.includes(role)
   )
 
-  const assignTempAgencyRoles = ['ADMIN'] as typeof currentUser.roles
+  const assignTempAgencyRoles = ['ADMIN', 'CLIENT'] as typeof currentUser.roles
   const showAssignTempAgencyAction = currentUser.roles.some((role) =>
     assignTempAgencyRoles.includes(role)
   )
@@ -62,14 +62,18 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         accessorKey: 'assignTempAgency',
         header: 'Uitzendbureau',
-        cell: ({ row }) => (
-          <SelectAgency
-            tempAgencies={tempAgencies}
-            selectedAgency={row.getValue('tempAgency')}
-            shiftId={row.getValue('id')}
-            request={request}
-          />
-        ),
+        cell: ({ row }) => {
+          return currentUser.roles.includes('CLIENT') ? (
+            <>{row.original.tempAgency?.name || 'geen toegewezen'}</>
+          ) : (
+            <SelectAgency
+              tempAgencies={tempAgencies}
+              selectedAgency={row.getValue('tempAgency')}
+              shiftId={row.getValue('id')}
+              request={request}
+            />
+          )
+        },
       },
       {
         accessorKey: 'assignWorker',
