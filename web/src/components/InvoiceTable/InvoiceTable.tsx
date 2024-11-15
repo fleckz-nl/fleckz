@@ -12,7 +12,13 @@ const InvoiceTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead></TableHead>
+          <TableHead>Datum</TableHead>
+          <TableHead>Werknemers</TableHead>
+          <TableHead>Omschrijving</TableHead>
+          <TableHead>Uurloon</TableHead>
+          <TableHead>Uren</TableHead>
+          <TableHead>Bedrag excl. BTW</TableHead>
+          <TableHead>BTW</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
