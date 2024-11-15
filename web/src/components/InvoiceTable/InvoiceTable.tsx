@@ -1,3 +1,5 @@
+import { Euro } from 'lucide-react'
+
 import {
   Table,
   TableBody,
@@ -23,7 +25,19 @@ const InvoiceTable = () => {
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell></TableCell>
+          <TableCell>12-Okt-2024</TableCell>
+          <TableCell>2</TableCell>
+          <TableCell>ProjectNaam: FunctieNaam</TableCell>
+          <TableCell>
+            <Euro />
+            12,30
+          </TableCell>
+          <TableCell>10.00</TableCell>
+          <TableCell>
+            <Euro />
+            147,43
+          </TableCell>
+          <TableCell>21%</TableCell>
         </TableRow>
       </TableBody>
     </Table>
