@@ -1,9 +1,26 @@
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'src/components/ui/table'
+
 const InvoiceTable = () => {
   return (
-    <div>
-      <h2>{'InvoiceTable'}</h2>
-      <p>{'Find me in ./web/src/components/InvoiceTable/InvoiceTable.tsx'}</p>
-    </div>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead></TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell></TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   )
 }
 
