@@ -14,13 +14,13 @@ const IndividualInvoicePage = () => {
       <main className="container mx-auto rounded-lg bg-white p-6 shadow-lg">
         <InvoiceHeader />
         <InvoiceTable />
+        <div className="flex justify-end gap-2 pt-8">
+          <Button className="rounded-sm">Betaal nu</Button>
+          <Button variant="outline" className="rounded-sm">
+            Betaal later
+          </Button>
+        </div>
       </main>
-      <div className="flex w-full justify-end gap-2 py-4">
-        <Button className="rounded-sm">Betaal nu</Button>
-        <Button variant="secondary" className="rounded-sm">
-          Betaal later
-        </Button>
-      </div>
     </>
   )
 }
