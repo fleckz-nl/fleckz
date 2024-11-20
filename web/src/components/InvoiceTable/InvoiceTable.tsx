@@ -20,7 +20,8 @@ const InvoiceTable = () => {
       <TableHeader className="bg-primary-foreground/30">
         <TableRow>
           <TableHead className="text-blue-950">Datum</TableHead>
-          <TableHead className="text-blue-950">Werknemers</TableHead>
+          <TableHead className="text-blue-950">Werker ID</TableHead>
+          <TableHead className="text-blue-950">Werknemer Naam</TableHead>
           <TableHead className="text-blue-950">Omschrijving</TableHead>
           <TableHead className="text-blue-950">Uurloon</TableHead>
           <TableHead className="text-blue-950">Uren</TableHead>
