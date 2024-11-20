@@ -24,20 +24,40 @@ const InvoiceTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow className="bg-gray-100">
-          <TableCell>12-Okt-2024</TableCell>
-          <TableCell>2</TableCell>
+        <TableRow className="border-b-0 bg-gray-100">
+          <TableCell className="text-secondary">
+            12-Okt-2024 <br /> 13:30-23:30
+          </TableCell>
+          <TableCell className="font-semibold text-secondary">098765</TableCell>
+          <TableCell>Mollie Bakker</TableCell>
           <TableCell>ProjectNaam: FunctieNaam</TableCell>
-          <TableCell>
-            <Euro className="relative -top-0.5 inline size-3" />
-            12,30
-          </TableCell>
+          <TableCell>€ 12,30</TableCell>
           <TableCell>10.00</TableCell>
-          <TableCell className="min-w-36">
-            <Euro className="relative -top-0.5 inline size-3" />
-            147,43
-          </TableCell>
+          <TableCell className="min-w-36">€ 147,43</TableCell>
           <TableCell>21%</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell colSpan={8} className="w-full">
+            <div className="gap-4 space-y-2 text-right">
+              <p>
+                Subtotaal excl. BTW{' '}
+                <span className="float-right ml-8">€ 147,43</span>
+              </p>
+              <p>
+                Totaal BTW 21% <span className="float-right ml-8">€ 30,96</span>
+              </p>
+            </div>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell colSpan={8} className="w-full bg-secondary/30">
+            <div className="gap-4 space-y-2 text-right font-bold">
+              <p>
+                Totaal te betalen incl. BTW{' '}
+                <span className="float-right ml-8">€ 178,39</span>
+              </p>
+            </div>
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>
