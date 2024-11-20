@@ -8,6 +8,7 @@ import { WorkRequestsTodayQuery } from 'types/graphql'
 import { Link, routes } from '@redwoodjs/router'
 
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
+import ShiftStatusBadge from 'src/components/ShiftStatusBadge/ShiftStatusBadge'
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 import TodayShiftsTable from 'src/components/TodayShiftsTable/TodayShiftsTable'
 import { Checkbox } from 'src/components/ui/checkbox'
@@ -66,6 +67,11 @@ const IndividualWorkRequestSection = ({
             className="text-white/90"
           />
         ),
+      },
+      {
+        id: 'status',
+        cell: ({ row }) => <ShiftStatusBadge shift={row.original} />,
+        header: () => null,
       },
       {
         id: 'checkIn',
