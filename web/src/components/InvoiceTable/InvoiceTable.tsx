@@ -1,5 +1,10 @@
-import { Euro } from 'lucide-react'
-
+import InvoiceDetailsTable from 'src/components/InvoiceDetailsTable/InvoiceDetailsTable'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from 'src/components/ui/accordion'
 import {
   Table,
   TableBody,
@@ -35,6 +40,20 @@ const InvoiceTable = () => {
           <TableCell>10.00</TableCell>
           <TableCell className="min-w-36">€ 147,43</TableCell>
           <TableCell>21%</TableCell>
+        </TableRow>
+        <TableRow className="border-b-0 bg-gray-100">
+          <TableCell colSpan={8}>
+            <Accordion type="single" collapsible>
+              <AccordionItem value="invoice-details" className="border-b-0">
+                <AccordionTrigger className="justify-end gap-2 py-0">
+                  Zie meer details
+                </AccordionTrigger>
+                <AccordionContent>
+                  <InvoiceDetailsTable />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell colSpan={8} className="w-full">
