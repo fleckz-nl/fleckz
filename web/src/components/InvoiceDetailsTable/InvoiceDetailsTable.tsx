@@ -64,7 +64,7 @@ const InvoiceDetailsTable = () => {
             </TableCell>
             <TableCell className="py-0 pl-10">
               <Dot className="ml-4 mr-1 inline size-3 text-transparent" />€
-              19,23
+              147,43
               <Separator className="relative -top-[19px] left-4 w-24 bg-primary/30" />
             </TableCell>
           </TableRow>
