@@ -2,6 +2,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import InvoiceHeader from 'src/components/InvoiceHeader/InvoiceHeader'
 import InvoiceTable from 'src/components/InvoiceTable/InvoiceTable'
+import { Button } from 'src/components/ui/button'
 
 const IndividualInvoicePage = () => {
   return (
@@ -14,6 +15,12 @@ const IndividualInvoicePage = () => {
         <InvoiceHeader />
         <InvoiceTable />
       </main>
+      <div className="flex w-full justify-end gap-2 py-4">
+        <Button className="rounded-sm">Betaal nu</Button>
+        <Button variant="secondary" className="rounded-sm">
+          Betaal later
+        </Button>
+      </div>
     </>
   )
 }
