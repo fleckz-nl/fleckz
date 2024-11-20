@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableRow } from 'src/components/ui/table'
 const InvoiceDetailsTable = () => {
   return (
     <>
-      <Table className="mx-auto w-10/12">
+      <Table className="mx-auto mt-4 w-10/12">
         <TableBody className="bg-gray-100">
           <TableRow className="border-b-0 font-semibold">
             <TableCell className="py-0" colSpan={4}>
