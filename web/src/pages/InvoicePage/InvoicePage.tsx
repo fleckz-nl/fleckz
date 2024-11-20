@@ -1,5 +1,5 @@
 // import { Link, routes } from '@redwoodjs/router'
-import { Download, FileSearch, FileText } from 'lucide-react'
+import { FileSearch, FileText, Printer } from 'lucide-react'
 import { Button } from 'web/src/components/ui/button'
 
 import { Metadata } from '@redwoodjs/web'
@@ -21,7 +21,7 @@ const InvoicePage = () => {
                   <FileSearch />
                 </Button>
                 <Button className="bg-primary p-0">
-                  <Download />
+                  <Printer />
                 </Button>
               </div>
             </li>
