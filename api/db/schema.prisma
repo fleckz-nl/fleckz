@@ -161,7 +161,7 @@ model Shift {
   invoice         Invoice?     @relation(fields: [invoiceId], references: [id])
   invoiceId       String?
   bonuses         Bonus[]
-  Worker          Worker?      @relation(fields: [workerId], references: [id])
+  worker          Worker?      @relation(fields: [workerId], references: [id])
   workerId        String?
 }
 
