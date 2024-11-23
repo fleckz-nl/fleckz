@@ -9,9 +9,10 @@ type createFakeUsersProps = {
   n?: number
   roles?: Role[]
 }
-export function createFakeUsers(
-  { n, roles }: createFakeUsersProps = { n: 5, roles: ['CLIENT'] }
-) {
+export function createFakeUsers({
+  n = 5,
+  roles = ['CLIENT'],
+}: createFakeUsersProps = {}) {
   return Array.from({ length: n }, () => {
     const firstName = faker.person.firstName()
     const lastName = faker.person.lastName()
