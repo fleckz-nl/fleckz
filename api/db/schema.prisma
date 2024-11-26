@@ -138,6 +138,7 @@ model TempAgency {
   addressId String?
   shifts    Shift[]
   members   User[]
+  worker    Worker[]
 }
 
 model Shift {
@@ -160,6 +161,8 @@ model Shift {
   invoice         Invoice?     @relation(fields: [invoiceId], references: [id])
   invoiceId       String?
   bonuses         Bonus[]
+  worker          Worker?      @relation(fields: [workerId], references: [id])
+  workerId        String?
 }
 
 model Bonus {
@@ -174,6 +177,8 @@ model Bonus {
   bonusHours         Decimal
   bonusEur           Decimal
   shiftId            String
+  worker             Worker?  @relation(fields: [workerId], references: [id])
+  workerId           String?
 }
 
 enum ShiftStatus {
@@ -238,4 +243,32 @@ model Invoice {
 enum InvoiceStatus {
   PENDING
   PAID
+}
+
+model Worker {
+  id           String     @id @default(cuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  firstName    String
+  lastName     String
+  tempAgency   TempAgency @relation(fields: [tempAgencyId], references: [id])
+  tempAgencyId String
+  shifts       Shift[]
+  skills       Skill[]
+  Bonus        Bonus[]
+}
+
+model Skill {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String
+  type      SkillType
+  worker    Worker[]
+  workerId  String?
+}
+
+enum SkillType {
+  SOFT
+  HARD
 }
