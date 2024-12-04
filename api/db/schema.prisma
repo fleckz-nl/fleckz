@@ -33,6 +33,8 @@ model User {
   certificate           Certificate[]
   clientBusinessCreated ClientBusiness[]
   commentsCreated       Comment[]
+  tempAgency            TempAgency?      @relation(fields: [tempAgencyId], references: [id])
+  tempAgencyId          String?
 }
 
 enum Role {
@@ -69,21 +71,22 @@ enum WorkRequestStatus {
 }
 
 model Address {
-  id                  String        @id @default(cuid())
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
+  id                  String           @id @default(cuid())
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
   street              String
   houseNumber         String
   houseNumberAddition String?
   postalCode          String
   city                String
   province            String?
-  country             String        @default("Netherlands")
+  country             String           @default("Netherlands")
   workRequest         WorkRequest[]
-  createdBy           User?         @relation(fields: [userId], references: [id])
+  createdBy           User?            @relation(fields: [userId], references: [id])
   userId              String?
   TempAgency          TempAgency[]
   workplace           Workplace[]
+  clientBusiness      ClientBusiness[]
 }
 
 model JobProfile {
@@ -134,24 +137,48 @@ model TempAgency {
   address   Address? @relation(fields: [addressId], references: [id])
   addressId String?
   shifts    Shift[]
+  members   User[]
+  worker    Worker[]
 }
 
 model Shift {
-  id            String       @id @default(cuid())
-  name          String?
-  workerName    String?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  status        ShiftStatus  @default(UNFULFILLED)
-  workRequest   WorkRequest? @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
-  workRequestId String?
-  rating        Int?
-  tempAgency    TempAgency?  @relation(fields: [tempAgencyId], references: [id])
-  tempAgencyId  String?
-  hoursPlanned  Decimal?
-  hoursWorked   Decimal?
-  checkedInAt   DateTime?
-  checkedOutAt  DateTime?
+  id              String       @id @default(cuid())
+  name            String?
+  workerName      String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  status          ShiftStatus  @default(UNFULFILLED)
+  workRequest     WorkRequest? @relation(fields: [workRequestId], references: [id], onDelete: Cascade)
+  workRequestId   String?
+  rating          Int?
+  tempAgency      TempAgency?  @relation(fields: [tempAgencyId], references: [id])
+  tempAgencyId    String?
+  hoursPlanned    Decimal?
+  hoursWorked     Decimal?
+  checkedInAt     DateTime?
+  checkedOutAt    DateTime?
+  hourlyWageInEur Decimal?
+  invoice         Invoice?     @relation(fields: [invoiceId], references: [id])
+  invoiceId       String?
+  bonuses         Bonus[]
+  worker          Worker?      @relation(fields: [workerId], references: [id])
+  workerId        String?
+}
+
+model Bonus {
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  shift              Shift    @relation(fields: [shiftId], references: [id])
+  originalHourlyWage Decimal
+  bonusRateInProp    Decimal // e.g., 10% bonus = 0.10
+  from               DateTime
+  to                 DateTime
+  bonusHours         Decimal
+  bonusEur           Decimal
+  shiftId            String
+  worker             Worker?  @relation(fields: [workerId], references: [id])
+  workerId           String?
 }
 
 enum ShiftStatus {
@@ -162,13 +189,16 @@ enum ShiftStatus {
 }
 
 model ClientBusiness {
-  id         String      @id @default(cuid())
-  name       String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  workplaces Workplace[]
-  createdBy  User        @relation(fields: [userId], references: [id])
-  userId     String
+  id             String      @id @default(cuid())
+  name           String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  workplaces     Workplace[]
+  createdBy      User        @relation(fields: [userId], references: [id])
+  userId         String
+  invoices       Invoice[]
+  billingAddress Address     @relation(fields: [addressId], references: [id])
+  addressId      String
 }
 
 model Workplace {
@@ -191,4 +221,54 @@ model Comment {
   commentedBy   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String
   workRequestId String
+}
+
+model Invoice {
+  id                  String         @id @default(cuid())
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  invoiceNumber       String
+  invoicedAt          DateTime
+  dueAt               DateTime
+  shifts              Shift[]
+  billedTo            ClientBusiness @relation(fields: [clientBusinessId], references: [id])
+  taxRateInProp       Decimal // e.g., 21%  = 0.21
+  taxEur              Decimal
+  totalBeforeTaxInEur Decimal
+  totalAfterTaxInEur  Decimal
+  status              InvoiceStatus
+  clientBusinessId    String
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+}
+
+model Worker {
+  id           String     @id @default(cuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  firstName    String
+  lastName     String
+  tempAgency   TempAgency @relation(fields: [tempAgencyId], references: [id])
+  tempAgencyId String
+  shifts       Shift[]
+  skills       Skill[]
+  Bonus        Bonus[]
+}
+
+model Skill {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String
+  type      SkillType
+  worker    Worker[]
+  workerId  String?
+}
+
+enum SkillType {
+  SOFT
+  HARD
 }

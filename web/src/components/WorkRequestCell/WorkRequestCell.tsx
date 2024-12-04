@@ -14,6 +14,7 @@ import type {
 } from '@redwoodjs/web'
 
 import ShiftTableCell from 'src/components/ShiftTableCell'
+import { Skeleton } from 'src/components/ui/skeleton'
 import { formatDateTime } from 'src/lib/formatDateTime'
 import { cn } from 'src/lib/utils'
 
@@ -100,7 +101,28 @@ export const QUERY: TypedDocumentNode<
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div className="flex min-h-screen w-full flex-wrap justify-between md:grid md:grid-cols-3">
+    <div className="flex w-10/12 flex-grow flex-wrap justify-center bg-white xs:w-full md:col-span-2">
+      <div className="w-full bg-white pl-2 pt-4 text-xl font-bold hover:text-accent xs:mb-4 xs:pl-8">
+        <button onClick={() => back()}>
+          <ArrowLeft className="mr-1 inline" /> Overzicht
+        </button>
+      </div>
+      <div className="container flex max-w-5xl flex-col items-center gap-8 pt-4 *:w-full xs:pt-0">
+        <Skeleton className="m-4 h-60" />
+        <Skeleton className="m-4 h-60" />
+      </div>
+    </div>
+    <section
+      id="comments"
+      className="flex w-10/12 min-w-fit flex-grow flex-col bg-secondary px-8 py-8 xs:w-full"
+    >
+      <h2 className="mb-4 text-xl text-white">Opmerkingen</h2>
+      <Skeleton className="h-60" />
+    </section>
+  </div>
+)
 
 export const Empty = () => <div>Empty</div>
 

@@ -445,7 +445,13 @@ const AddJobProfileModal = ({
                 actionText="Verwijderen"
                 loading={deleteLoading}
               >
-                Verwijderen
+                <ButtonWithLoader
+                  type="button"
+                  variant="destructive"
+                  loading={loading}
+                >
+                  Verwijderen
+                </ButtonWithLoader>
               </ConfirmAction>
               <Button
                 variant="outline"

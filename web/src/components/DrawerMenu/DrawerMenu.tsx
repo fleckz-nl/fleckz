@@ -70,6 +70,11 @@ const DrawerMenu = () => {
                 <DrawerClose>Dashboard</DrawerClose>
               </Link>
             </li>
+            <li className="hover:text-accent">
+              <Link to={routes.invoice()}>
+                <DrawerClose>Factuur</DrawerClose>
+              </Link>
+            </li>
           </ul>
         </section>
         <DrawerFooter className="relative self-center">

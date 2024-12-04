@@ -5,7 +5,10 @@ import { format } from 'date-fns/format'
 import { Users } from 'lucide-react'
 import { WorkRequestsTodayQuery } from 'types/graphql'
 
+import { Link, routes } from '@redwoodjs/router'
+
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
+import ShiftStatusBadge from 'src/components/ShiftStatusBadge/ShiftStatusBadge'
 import TempAgencyWorker from 'src/components/TempAgencyWorker'
 import TodayShiftsTable from 'src/components/TodayShiftsTable/TodayShiftsTable'
 import { Checkbox } from 'src/components/ui/checkbox'
@@ -66,6 +69,11 @@ const IndividualWorkRequestSection = ({
         ),
       },
       {
+        id: 'status',
+        cell: ({ row }) => <ShiftStatusBadge shift={row.original} />,
+        header: () => null,
+      },
+      {
         id: 'checkIn',
         cell: ({ row }) => <ShiftConfirmationDrawer shift={row.original} />,
         header: () => null,
@@ -76,7 +84,15 @@ const IndividualWorkRequestSection = ({
   return (
     <section className="mb-20">
       <Separator className="mt-4 bg-primary-foreground/20" />
-      <h3 className="center mt-2 gap-2 text-center">
+      <h3 className="center mt-2 font-bold text-white/80">
+        <Link
+          to={routes.workRequest({ id: workRequest.id })}
+          className="hover:text-accent"
+        >
+          {workRequest.jobProfile.name}
+        </Link>
+      </h3>
+      <h3 className="center gap-2 text-center">
         <div
           className="flex gap-1"
           title={formatInterval(
@@ -92,7 +108,7 @@ const IndividualWorkRequestSection = ({
           orientation="vertical"
           className="h-4 w-[2px] bg-accent/20"
         />
-        <span>{workRequest.jobProfile.name}</span>
+        <span>{workRequest.projectName}</span>
       </h3>
       <div className="center gap-1">
         <span>{workRequest.shifts?.length}</span>

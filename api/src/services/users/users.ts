@@ -29,7 +29,7 @@ export const createUser: MutationResolvers['createUser'] = ({ input }) => {
 export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
   const isUpdatingSelf = id === context.currentUser.id
 
-  if (!isUpdatingSelf) {
+  if (!isUpdatingSelf && !context.currentUser.roles.includes('ADMIN')) {
     throw new ForbiddenError(
       'U werkt informatie bij voor een ander account. U kunt alleen uw eigen accountinformatie bijwerken.'
     )
@@ -42,6 +42,13 @@ export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
 }
 
 export const deleteUser: MutationResolvers['deleteUser'] = ({ id }) => {
+  const isUpdatingSelf = id === context.currentUser.id
+
+  if (!isUpdatingSelf && !context.currentUser.roles.includes('ADMIN')) {
+    throw new ForbiddenError(
+      'U werkt informatie bij voor een ander account. U kunt alleen uw eigen account verwijderen.'
+    )
+  }
   return db.user.delete({ where: { id } })
 }
 
@@ -51,7 +58,7 @@ export const updateAvatarUrl: MutationResolvers['updateAvatarUrl'] = ({
 }) => {
   const isUpdatingSelf = id === context.currentUser.id
 
-  if (!isUpdatingSelf) {
+  if (!isUpdatingSelf && !context.currentUser.roles.includes('ADMIN')) {
     throw new ForbiddenError(
       'U werkt informatie bij voor een ander account. U kunt alleen uw eigen accountinformatie bijwerken.'
     )

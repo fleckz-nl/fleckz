@@ -1,6 +1,7 @@
+import { formatDate } from 'date-fns/format'
 import { WorkRequestsTodayQuery } from 'types/graphql'
 
-import { render, fireEvent } from '@redwoodjs/testing/web'
+import { render } from '@redwoodjs/testing/web'
 
 import IndividualWorkRequestSection from './IndividualWorkRequestSection'
 
@@ -26,19 +27,29 @@ describe('IndividualWorkRequestSection', () => {
     jobProfile: { id: 'job-id', name: 'Job Profile' },
   }
 
-  it('renders the section', () => {
+  it('renders project name', () => {
     const { getByText } = render(
       <IndividualWorkRequestSection workRequest={workRequest} />
     )
-    expect(getByText('Section title')).toBeInTheDocument()
+    expect(getByText(workRequest.projectName)).toBeInTheDocument()
+  })
+  it('renders job profile name', () => {
+    const { getByText } = render(
+      <IndividualWorkRequestSection workRequest={workRequest} />
+    )
+    expect(getByText(workRequest.jobProfile.name)).toBeInTheDocument()
   })
 
-  it('renders the header with correct text', () => {
+  it('renders the start and end times', () => {
     const { getByText } = render(
       <IndividualWorkRequestSection workRequest={workRequest} />
     )
-    expect(getByText('HH:mm-HH:mm')).toBeInTheDocument()
-    expect(getByText('Job Profile')).toBeInTheDocument()
+    expect(
+      getByText(formatDate(workRequest.startDate, 'HH:mm'))
+    ).toBeInTheDocument()
+    expect(
+      getByText(formatDate(workRequest.endDate, 'HH:mm'))
+    ).toBeInTheDocument()
   })
 
   it('renders the shifts table with correct data', () => {
@@ -47,31 +58,5 @@ describe('IndividualWorkRequestSection', () => {
     )
     expect(getByText('John Doe')).toBeInTheDocument()
     expect(getByText('Temp Agency')).toBeInTheDocument()
-  })
-
-  it('renders the shift confirmation drawer', () => {
-    const { getByText } = render(
-      <IndividualWorkRequestSection workRequest={workRequest} />
-    )
-    expect(getByText('Shift confirmation drawer text')).toBeInTheDocument()
-  })
-
-  it('toggles the checkbox correctly', () => {
-    const { getByRole } = render(
-      <IndividualWorkRequestSection workRequest={workRequest} />
-    )
-    const checkbox = getByRole('checkbox')
-    fireEvent.click(checkbox)
-    expect(checkbox).toBeChecked()
-  })
-
-  it('calls the onCheckedChange prop when the checkbox is clicked', () => {
-    const onCheckedChange = jest.fn()
-    const { getByRole } = render(
-      <IndividualWorkRequestSection workRequest={workRequest} />
-    )
-    const checkbox = getByRole('checkbox')
-    fireEvent.click(checkbox)
-    expect(onCheckedChange).toHaveBeenCalledTimes(1)
   })
 })

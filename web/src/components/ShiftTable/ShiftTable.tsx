@@ -6,6 +6,7 @@ import { AgenciesQuery, FindWorkRequestQuery } from 'types/graphql'
 import { useAuth } from 'src/auth'
 import AssignShiftWorkerDialog from 'src/components/AssignShiftWorkerDialog/AssignShiftWorkerDialog'
 import ShiftConfirmationDrawer from 'src/components/ShiftConfirmationDrawer/ShiftConfirmationDrawer'
+import { formatShiftId } from 'src/lib/formatShiftId'
 
 import { DataTable } from '../DataTable/DataTable'
 import SelectAgency from '../SelectAgency/SelectAgency'
@@ -31,6 +32,11 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
     checkInOutRoles.includes(role)
   )
 
+  const assignTempAgencyRoles = ['ADMIN', 'CLIENT'] as typeof currentUser.roles
+  const showAssignTempAgencyAction = currentUser.roles.some((role) =>
+    assignTempAgencyRoles.includes(role)
+  )
+
   const { shifts } = request
   const columns = useMemo<
     ColumnDef<FindWorkRequestQuery['workRequest']['shifts'][0]>[]
@@ -39,33 +45,12 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
       {
         // TODO: Batch-edit shifts
         accessorKey: 'id',
-        header: () => (
-          <></>
-          // <Checkbox
-          //   checked={
-          //     (table.getIsAllPageRowsSelected() ||
-          //       (table.getIsSomePageRowsSelected() &&
-          //         'indeterminate')) as boolean
-          //   }
-          //   onCheckedChange={(value) =>
-          //     table.toggleAllPageRowsSelected(!!value)
-          //   }
-          //   aria-label="Select all"
-          // />
+        header: 'ID',
+        cell: ({ cell }) => (
+          <span className="font-mono uppercase">
+            {formatShiftId(cell.getValue() as string)}
+          </span>
         ),
-        cell: () => (
-          <></>
-          // <Checkbox
-          //   checked={row.getIsSelected()}
-          //   onCheckedChange={(value) => row.toggleSelected(!!value)}
-          //   aria-label="Select row"
-          // />
-        ),
-      },
-      {
-        accessorKey: 'name',
-        header: 'Diensten',
-        cell: ({ cell }) => <>{cell.getValue()}</>,
       },
       {
         accessorKey: 'status',
@@ -75,16 +60,20 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         accessorKey: 'tempAgency',
       },
       {
-        accessorKey: 'agency',
+        accessorKey: 'assignTempAgency',
         header: 'Uitzendbureau',
-        cell: ({ row }) => (
-          <SelectAgency
-            tempAgencies={tempAgencies}
-            selectedAgency={row.getValue('tempAgency')}
-            shiftId={row.getValue('id')}
-            request={request}
-          />
-        ),
+        cell: ({ row }) => {
+          return currentUser.roles.includes('CLIENT') ? (
+            <>{row.original.tempAgency?.name || 'geen toegewezen'}</>
+          ) : (
+            <SelectAgency
+              tempAgencies={tempAgencies}
+              selectedAgency={row.getValue('tempAgency')}
+              shiftId={row.getValue('id')}
+              request={request}
+            />
+          )
+        },
       },
       {
         accessorKey: 'assignWorker',
@@ -108,6 +97,7 @@ const ShiftTable = ({ request, tempAgencies }: ShiftTableProps) => {
         columnVisibility: {
           status: false,
           tempAgency: false,
+          assignTempAgency: showAssignTempAgencyAction,
           assignWorker: showAssignWorkerAction,
           checkInOut: showCheckInOutAction,
         },
