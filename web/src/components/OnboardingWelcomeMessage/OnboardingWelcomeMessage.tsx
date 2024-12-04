@@ -19,7 +19,7 @@ const OnboardingWelcomeMessage = ({
       </span>
       <Button
         onClick={() => setOnboardingStep('emailAndPassword')}
-        className="my-20 bg-accent text-lg text-primary hover:bg-black hover:text-accent"
+        className="my-20 bg-accent py-4 text-lg text-primary hover:bg-black hover:text-accent"
       >
         Begginen
       </Button>
