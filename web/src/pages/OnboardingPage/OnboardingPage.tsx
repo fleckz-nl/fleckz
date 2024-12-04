@@ -4,6 +4,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
+import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 
 export type OnboardingStages =
@@ -31,7 +32,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'avatarAndName' && (
             <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'selectRole' && <>Hello</>}
+          {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
         </main>
       </div>
     </>
