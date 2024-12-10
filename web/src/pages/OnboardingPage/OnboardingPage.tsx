@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
@@ -16,8 +17,15 @@ export type OnboardingStages =
   | 'firstAction'
 
 const OnboardingPage = () => {
-  const [onboardingStep, setOnboardingStep] =
-    useState<OnboardingStages>('welcomeMessage')
+  const urlParams = useParams()
+  const [onboardingStep, setOnboardingStep] = useState<OnboardingStages>(
+    (urlParams.stage as OnboardingStages) || 'welcomeMessage'
+  )
+
+  useEffect(() => {
+    navigate(`?stage=${onboardingStep}`, { replace: true })
+  }, [onboardingStep])
+
   return (
     <>
       <Metadata title="Onboarding" description="Onboarding page" />
