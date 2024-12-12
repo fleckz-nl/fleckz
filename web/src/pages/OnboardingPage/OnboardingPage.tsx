@@ -40,7 +40,9 @@ const OnboardingPage = () => {
           {onboardingStep === 'avatarAndName' && (
             <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
+          {onboardingStep === 'selectRole' && (
+            <OnboardingSelectRole setOnboardingStep={setOnboardingStep} />
+          )}
         </main>
       </div>
     </>
