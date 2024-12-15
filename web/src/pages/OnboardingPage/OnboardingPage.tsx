@@ -7,6 +7,7 @@ import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/Onbo
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
+import SelectBusiness from 'src/components/SelectBusiness/SelectBusiness'
 
 export type OnboardingStages =
   | 'welcomeMessage'
@@ -40,7 +41,12 @@ const OnboardingPage = () => {
           {onboardingStep === 'avatarAndName' && (
             <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
+          {onboardingStep === 'selectRole' && (
+            <OnboardingSelectRole setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'addBusiness' && (
+            <SelectBusiness setOnboardingStep={setOnboardingStep} />
+          )}
         </main>
       </div>
     </>
