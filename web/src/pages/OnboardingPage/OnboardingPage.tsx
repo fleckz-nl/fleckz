@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
+import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
@@ -15,7 +16,7 @@ export type OnboardingStages =
   | 'avatarAndName'
   | 'selectRole'
   | 'addBusiness'
-  | 'firstAction'
+  | 'addAuthorizedSignatory'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -46,6 +47,9 @@ const OnboardingPage = () => {
           )}
           {onboardingStep === 'addBusiness' && (
             <SelectBusiness setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'addAuthorizedSignatory' && (
+            <AddAuthorizedSignatory />
           )}
         </main>
       </div>
