@@ -29,32 +29,32 @@ const AddAuthorizedSignatory = ({
       <div className="grid grid-cols-2 gap-2">
         <div>
           <Label>Voornaam</Label>
-          <TextInput placeholder={authSignatoryData[0].voornaam} />
+          <TextInput defaultValue={authSignatoryData[0].voornaam} />
         </div>
         <div>
           <Label>Achternaam</Label>
-          <TextInput placeholder={authSignatoryData[0].achternaam} />
+          <TextInput defaultValue={authSignatoryData[0].achternaam} />
         </div>
       </div>
       <div>
         <Label>Email</Label>
-        <TextInput placeholder={authSignatoryData[0].emailadres} />
+        <TextInput defaultValue={authSignatoryData[0].emailadres} />
       </div>
       <div>
         <Label>Telefoon</Label>
-        <TextInput placeholder={authSignatoryData[0].telefoonnummer} />
+        <TextInput defaultValue={authSignatoryData[0].telefoonnummer} />
       </div>
       <div>
         <Label>Emailadres facturatie</Label>
-        <TextInput placeholder={authSignatoryData[0].emailadresFacturatie} />
+        <TextInput defaultValue={authSignatoryData[0].emailadresFacturatie} />
       </div>
       <div>
         <Label>Naam rekeninghouder</Label>
-        <TextInput placeholder={authSignatoryData[0].naamRekeninghouder} />
+        <TextInput defaultValue={authSignatoryData[0].naamRekeninghouder} />
       </div>
       <div>
         <Label>Eigen IBAN</Label>
-        <TextInput placeholder={authSignatoryData[0].IBAN} />
+        <TextInput defaultValue={authSignatoryData[0].IBAN} />
       </div>
       <Button
         className="self-end bg-secondary py-4 text-lg"
