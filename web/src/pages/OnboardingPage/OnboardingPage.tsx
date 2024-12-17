@@ -49,7 +49,7 @@ const OnboardingPage = () => {
             <SelectBusiness setOnboardingStep={setOnboardingStep} />
           )}
           {onboardingStep === 'addAuthorizedSignatory' && (
-            <AddAuthorizedSignatory />
+            <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
           )}
         </main>
       </div>
