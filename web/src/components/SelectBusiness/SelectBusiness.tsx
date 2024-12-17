@@ -38,7 +38,7 @@ const SelectBusiness = ({ setOnboardingStep }: SelectBusinessProps) => {
   }
 
   function handleNextClick() {
-    setOnboardingStep('internalOrganization')
+    setOnboardingStep('addAuthorizedSignatory')
   }
 
   function handlePreviousClick() {
