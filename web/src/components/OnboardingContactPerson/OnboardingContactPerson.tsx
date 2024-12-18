@@ -6,11 +6,13 @@ import ContactPersonForm from 'src/components/ContactPersonForm/ContactPersonFor
 import { Button } from 'src/components/ui/button'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
-type ContactPersonProps = {
+type OnboardingContactPersonProps = {
   setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
 }
 
-const ContactPerson = ({ setOnboardingStep }: ContactPersonProps) => {
+const OnboardingContactPerson = ({
+  setOnboardingStep,
+}: OnboardingContactPersonProps) => {
   const [contactPersons, setContactPersons] = useState([
     createNewContactPerson(),
   ])
@@ -83,4 +85,4 @@ const ContactPerson = ({ setOnboardingStep }: ContactPersonProps) => {
   )
 }
 
-export default ContactPerson
+export default OnboardingContactPerson

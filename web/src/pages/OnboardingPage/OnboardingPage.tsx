@@ -4,8 +4,8 @@ import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
-import ContactPerson from 'src/components/ContactPerson/ContactPerson'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
+import OnboardingContactPerson from 'src/components/OnboardingContactPerson/OnboardingContactPerson'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingInternalOrganization from 'src/components/OnboardingInternalOrganization/OnboardingInternalOrganization'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
@@ -61,7 +61,7 @@ const OnboardingPage = () => {
             />
           )}
           {onboardingStep === 'contactPerson' && (
-            <ContactPerson setOnboardingStep={setOnboardingStep} />
+            <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
           )}
         </main>
       </div>

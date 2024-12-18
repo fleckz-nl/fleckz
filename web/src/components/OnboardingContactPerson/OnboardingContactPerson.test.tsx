@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
 
-import ContactPerson from './ContactPerson'
+import OnboardingContactPerson from './OnboardingContactPerson'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import ContactPerson from './ContactPerson'
 describe('ContactPerson', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<ContactPerson />)
+      render(<OnboardingContactPerson />)
     }).not.toThrow()
   })
 })
