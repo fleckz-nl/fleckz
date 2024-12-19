@@ -88,7 +88,7 @@ const OnboardingInternalOrganization = ({
           {selectedCultures.map((culture) => (
             <Badge
               key={culture}
-              className="cursor-pointer rounded-3xl bg-secondary px-4 py-2 text-base text-white"
+              className="w-fit cursor-pointer rounded-3xl border border-secondary bg-accent/80 px-4 py-2 text-base text-white"
               onClick={() =>
                 setSelectedCultures((current) =>
                   current.filter((c) => c !== culture)
