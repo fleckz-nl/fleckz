@@ -84,7 +84,7 @@ const OnboardingInternalOrganization = ({
           />
         )}
         <h2 className="mb-2 mt-16 font-bold">Bedrijfscultuur</h2>
-        <div className="my-4 grid grid-cols-2 gap-2">
+        <div className="my-4 flex flex-wrap gap-2">
           {selectedCultures.map((culture) => (
             <Badge
               key={culture}
