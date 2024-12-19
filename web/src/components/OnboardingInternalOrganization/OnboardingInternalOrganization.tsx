@@ -62,7 +62,7 @@ const OnboardingInternalOrganization = ({
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4">
       <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
-      <h1 className="text-2xl font-bold">Internet organisatie</h1>
+      <h1 className="text-2xl font-bold">Interne organisatie</h1>
       <div className="flex max-w-2xl flex-col">
         <h2 className="mb-2 font-bold">Bedrijfsfilm toevoegen</h2>
         {videoUrl ? (
