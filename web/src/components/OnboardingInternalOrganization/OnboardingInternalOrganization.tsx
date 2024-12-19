@@ -56,8 +56,7 @@ const OnboardingInternalOrganization = ({
   }
 
   function handleNextClick() {
-    // TODO: add the next step
-    setOnboardingStep('addBusiness')
+    setOnboardingStep('contactPerson')
   }
 
   return (

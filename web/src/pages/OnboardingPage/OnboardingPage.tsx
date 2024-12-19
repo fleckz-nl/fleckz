@@ -5,6 +5,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
+import OnboardingContactPerson from 'src/components/OnboardingContactPerson/OnboardingContactPerson'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingInternalOrganization from 'src/components/OnboardingInternalOrganization/OnboardingInternalOrganization'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
@@ -19,6 +20,7 @@ export type OnboardingStages =
   | 'addBusiness'
   | 'addAuthorizedSignatory'
   | 'internalOrganization'
+  | 'contactPerson'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -33,7 +35,7 @@ const OnboardingPage = () => {
   return (
     <>
       <Metadata title="Onboarding" description="Onboarding page" />
-      <div className="flex min-h-screen flex-col bg-primary text-primary-foreground">
+      <div className="flex min-h-screen flex-col bg-primary text-white">
         <main className="container">
           {onboardingStep === 'welcomeMessage' && (
             <OnboardingWelcomeMessage setOnboardingStep={setOnboardingStep} />
@@ -57,6 +59,9 @@ const OnboardingPage = () => {
             <OnboardingInternalOrganization
               setOnboardingStep={setOnboardingStep}
             />
+          )}
+          {onboardingStep === 'contactPerson' && (
+            <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
           )}
         </main>
       </div>
