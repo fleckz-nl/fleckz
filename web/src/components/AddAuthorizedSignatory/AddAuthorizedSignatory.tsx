@@ -15,8 +15,7 @@ const AddAuthorizedSignatory = ({
   setOnboardingStep,
 }: AddAuthorizedSignatoryProps) => {
   function handleNextClick() {
-    // TODO: add the next step
-    setOnboardingStep('selectRole')
+    setOnboardingStep('addFinancialInfo')
   }
 
   function handlePreviousClick() {

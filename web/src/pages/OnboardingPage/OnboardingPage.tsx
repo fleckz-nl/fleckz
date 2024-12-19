@@ -7,6 +7,7 @@ import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAut
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
 import OnboardingContactPerson from 'src/components/OnboardingContactPerson/OnboardingContactPerson'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
+import OnboardingFinancial from 'src/components/OnboardingFinancial/OnboardingFinancial'
 import OnboardingInternalOrganization from 'src/components/OnboardingInternalOrganization/OnboardingInternalOrganization'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
@@ -21,6 +22,7 @@ export type OnboardingStages =
   | 'addAuthorizedSignatory'
   | 'internalOrganization'
   | 'contactPerson'
+  | 'addFinancialInfo'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -54,6 +56,9 @@ const OnboardingPage = () => {
           )}
           {onboardingStep === 'addAuthorizedSignatory' && (
             <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'addFinancialInfo' && (
+            <OnboardingFinancial setOnboardingStep={setOnboardingStep} />
           )}
           {onboardingStep === 'internalOrganization' && (
             <OnboardingInternalOrganization
