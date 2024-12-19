@@ -65,25 +65,33 @@ const OnboardingInternalOrganization = ({
       <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
       <h1 className="text-2xl font-bold">Interne organisatie</h1>
       <div className="flex max-w-2xl flex-col">
+        <div>
           <Label>Bedrijfsfilm toevoegen</Label>
+          {videoUrl ? (
+            // eslint-disable-next-line react/jsx-no-comment-textnodes
+            <>
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video width="100%" controls>
+                <source src={videoUrl} />
+              </video>
 
-            <Button
-              variant="link"
-              className="self-start text-destructive"
-              onClick={() => setVideoUrl('')}
-            >
-              Verwijderen
-            </Button>
-          </>
-        ) : (
-          <FileUploaderInline
-            pubkey={process.env.UPLOADCARE_PUBLIC_KEY}
-            apiRef={uploaderRef}
-            multiple={false}
-            onDoneClick={handleUploadcareDone}
-          />
-        )}
-        <h2 className="mb-2 mt-16 font-bold">Bedrijfscultuur</h2>
+              <Button
+                variant="link"
+                className="self-start text-destructive"
+                onClick={() => setVideoUrl('')}
+              >
+                Verwijderen
+              </Button>
+            </>
+          ) : (
+            <FileUploaderInline
+              pubkey={process.env.UPLOADCARE_PUBLIC_KEY}
+              apiRef={uploaderRef}
+              multiple={false}
+              onDoneClick={handleUploadcareDone}
+            />
+          )}
+        </div>
         <div className="my-4 flex flex-wrap gap-2">
           {selectedCultures.map((culture) => (
             <Badge
@@ -99,7 +107,60 @@ const OnboardingInternalOrganization = ({
             </Badge>
           ))}
         </div>
+        <div>
           <Label className="font-bold">Bedrijfscultuur</Label>
+          <Command className="bg-white">
+            <CommandInput
+              className="my-2 text-lg"
+              placeholder="Voeg cultuur toe"
+              onFocus={() => setCommandOpen(true)}
+              value={cultureInput}
+              onChangeCapture={(v) => setCultureInput(v.currentTarget.value)}
+            />
+            {commandOpen && (
+              <CommandList>
+                <CommandEmpty>Geen cultuur gevonden</CommandEmpty>
+                <CommandGroup>
+                  {businessCultures.map((culture) => {
+                    if (
+                      selectedCultures.find(
+                        (c) => culture.businessCulture === c
+                      )
+                    )
+                      return
+                    return (
+                      <CommandItem
+                        key={culture.id}
+                        value={culture.businessCulture}
+                        className="cursor-pointer"
+                        onSelect={handleOnSelectCulture}
+                      >
+                        <div className="my-2 flex flex-col text-base">
+                          <div className="mb-2 text-gray-700">
+                            {culture.businessCulture
+                              .split(new RegExp(`(${cultureInput})`))
+                              .map((part, index) =>
+                                index === 1 ? (
+                                  <mark
+                                    className="bg-inherit font-bold text-black"
+                                    key={index}
+                                  >
+                                    {part}
+                                  </mark>
+                                ) : (
+                                  part
+                                )
+                              )}
+                          </div>
+                        </div>
+                      </CommandItem>
+                    )
+                  })}
+                </CommandGroup>
+              </CommandList>
+            )}
+          </Command>
+        </div>
       </div>
       <Button
         className="self-end bg-secondary py-4 text-lg"
