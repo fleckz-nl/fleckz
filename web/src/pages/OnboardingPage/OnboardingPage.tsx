@@ -10,6 +10,7 @@ import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPasswor
 import OnboardingFinancial from 'src/components/OnboardingFinancial/OnboardingFinancial'
 import OnboardingInternalOrganization from 'src/components/OnboardingInternalOrganization/OnboardingInternalOrganization'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
+import OnboardingSuccess from 'src/components/OnboardingSuccess/OnboardingSuccess'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 import SelectBusiness from 'src/components/SelectBusiness/SelectBusiness'
 
@@ -23,6 +24,7 @@ export type OnboardingStages =
   | 'internalOrganization'
   | 'contactPerson'
   | 'addFinancialInfo'
+  | 'successMessage'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -68,6 +70,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'contactPerson' && (
             <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
           )}
+          {onboardingStep === 'successMessage' && <OnboardingSuccess />}
         </main>
       </div>
     </>
