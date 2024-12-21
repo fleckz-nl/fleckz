@@ -1,3 +1,4 @@
+import Confetti from 'src/components/Confetti/Confetti'
 import { Button } from 'src/components/ui/button'
 
 const OnboardingSuccess = () => {
@@ -6,6 +7,7 @@ const OnboardingSuccess = () => {
   }
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4 text-center text-white">
+      <Confetti />
       <img
         src="images/gold-cup.png"
         alt="Gold cup"
