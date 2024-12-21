@@ -22,7 +22,7 @@ const OnboardingFinancial = ({
   setOnboardingStep,
 }: OnboardingFinancialProps) => {
   function handleNextClick() {
-    setOnboardingStep('addAuthorizedSignatory')
+    setOnboardingStep('addBranch')
   }
   function handlePreviousClick() {
     setOnboardingStep('addAuthorizedSignatory')
