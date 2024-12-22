@@ -29,8 +29,7 @@ const OnboardingContactPerson = ({
   }
 
   function handleNextClick() {
-    // TODO: add the next step
-    setOnboardingStep('addBusiness')
+    setOnboardingStep('successMessage')
   }
 
   function createNewContactPerson() {
