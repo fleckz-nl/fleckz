@@ -1,9 +1,16 @@
+import { Dispatch, SetStateAction } from 'react'
+
 import Confetti from 'src/components/Confetti/Confetti'
 import { Button } from 'src/components/ui/button'
+import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
-const OnboardingSuccess = () => {
+type OnboardingSuccessProps = {
+  setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
+}
+
+const OnboardingSuccess = ({ setOnboardingStep }: OnboardingSuccessProps) => {
   function handleNextClick() {
-    // TODO: Set where to go after completing the onboarding
+    setOnboardingStep('addJobProfile')
   }
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4 text-center text-white">
