@@ -115,7 +115,7 @@ const JobFunctionCombobox = () => {
     setSelectedFunctions((currentFunctions) => [...currentFunctions, v])
     setCommandOpen(false)
   }
-  console.log(selectedFunctions)
+
   return (
     <div>
       <Label className="text-xl">Functie titel</Label>
