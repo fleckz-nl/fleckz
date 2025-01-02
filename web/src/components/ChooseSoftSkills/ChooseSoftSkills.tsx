@@ -28,23 +28,26 @@ const ChooseSoftSkills = () => {
   }
 
   return (
-    <>
-      <Label className="text-xl font-bold">Soft skills</Label>
-      <div className="my-4 flex flex-wrap gap-2">
-        {selectedSkills.map((culture) => (
-          <Badge
-            key={culture}
-            className="w-fit cursor-pointer rounded-3xl border border-secondary bg-accent/80 px-4 py-2 text-base text-white"
-            onClick={() =>
-              setSelectedSkills((current) =>
-                current.filter((c) => c !== culture)
-              )
-            }
-          >
-            {culture}
-          </Badge>
-        ))}
-      </div>
+    <div className="space-y-2">
+      <Label className="text-xl">Soft skills</Label>
+
+      {selectedSkills.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {selectedSkills.map((culture) => (
+            <Badge
+              key={culture}
+              className="w-fit cursor-pointer rounded-3xl border border-secondary bg-accent/80 px-4 py-2 text-base text-white"
+              onClick={() =>
+                setSelectedSkills((current) =>
+                  current.filter((c) => c !== culture)
+                )
+              }
+            >
+              {culture}
+            </Badge>
+          ))}
+        </div>
+      )}
       <div>
         <Command className="bg-white">
           <CommandInput
@@ -93,7 +96,7 @@ const ChooseSoftSkills = () => {
           )}
         </Command>
       </div>
-    </>
+    </div>
   )
 }
 
