@@ -2,6 +2,7 @@ import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react'
 
 import { ArrowLeft, CirclePlus } from 'lucide-react'
 
+import ChooseSoftSkills from 'src/components/ChooseSoftSkills/ChooseSoftSkills'
 import { Badge } from 'src/components/ui/badge'
 import { Button } from 'src/components/ui/button'
 import {
@@ -12,7 +13,10 @@ import {
   CommandItem,
   CommandList,
 } from 'src/components/ui/command'
+import { CurrencyInput, Input } from 'src/components/ui/input'
 import { Label } from 'src/components/ui/label'
+import { SwitchWhite } from 'src/components/ui/switch'
+import { Textarea } from 'src/components/ui/textarea'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
 type OnboardingAddJobProfileProps = {
@@ -93,14 +97,55 @@ const EmptyState = ({ handleMakeProfile }: EmptyStateProps) => {
 
 const AddProfileForm = () => {
   return (
-    <>
+    <div className="space-y-8">
       <h1 className="my-4 text-center font-bold">Functieprofiel aanmaken</h1>
       <p>
         De uurlonen, kilometer vergoeding en andere emolumenten worden
         automatisch opgehaald vanuit de CAO.
       </p>
       <JobFunctionCombobox />
-    </>
+      <div className="flex items-center gap-4">
+        <Label htmlFor="percentage" className="text-xl">
+          Jaren werkervaring
+        </Label>
+        <Input
+          id="percentage"
+          type="number"
+          max={99}
+          min={0}
+          className="max-w-20 bg-white text-black"
+          defaultValue={0}
+          onClick={(e) => e.currentTarget.select()}
+        />{' '}
+        jaar
+      </div>
+      <div className="flex items-center gap-4">
+        <Label htmlFor="percentage" className="text-xl">
+          Budget per uur bruto{' '}
+          <span className="text-base">(regulier dagloon)</span>
+        </Label>
+        <CurrencyInput
+          id="percentage"
+          min={0}
+          className="max-w-40 bg-white text-black"
+          defaultValue={0}
+          onClick={(e) => e.currentTarget.select()}
+        />
+      </div>
+      <div>
+        <Label htmlFor="isCarAvailable" className="text-xl">
+          Auto beschikbaar
+        </Label>
+        <SwitchWhite id="isCarAvailable" className="ml-8 align-middle" />
+      </div>
+      <ChooseSoftSkills />
+      <div className="space-y-2">
+        <Label htmlFor="notes" className="text-xl">
+          Notities
+        </Label>
+        <Textarea className="bg-white text-black" />
+      </div>
+    </div>
   )
 }
 
