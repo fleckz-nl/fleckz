@@ -36,7 +36,7 @@ const OnboardingAddJobProfile = ({
   }
 
   function handleNextClick() {
-    // TODO:  setOnboardingStep("scheduleWork")
+    setOnboardingStep('planWork')
   }
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4 text-xl text-white">
