@@ -5,6 +5,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
 import AddBranch from 'src/components/AddBranch/AddBranch'
+import OnboardingAddJobProfile from 'src/components/OnboardingAddJobProfile/OnboardingAddJobProfile'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
 import OnboardingContactPerson from 'src/components/OnboardingContactPerson/OnboardingContactPerson'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
@@ -27,6 +28,7 @@ export type OnboardingStages =
   | 'contactPerson'
   | 'addFinancialInfo'
   | 'successMessage'
+  | 'addJobProfile'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -75,7 +77,12 @@ const OnboardingPage = () => {
           {onboardingStep === 'contactPerson' && (
             <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'successMessage' && <OnboardingSuccess />}
+          {onboardingStep === 'successMessage' && (
+            <OnboardingSuccess setOnboardingStep={setOnboardingStep} />
+          )}
+          {onboardingStep === 'addJobProfile' && (
+            <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
+          )}
         </main>
       </div>
     </>
