@@ -14,6 +14,7 @@ const OnboardingPlanWork = ({ setOnboardingStep }: OnboardingPlanWorkProps) => {
       <h1 className="text-2xl font-bold text-white">
         Wanneer zijn er medewerkers nodig?
       </h1>
+      <p>Klik in de agenda of klik op werk plaatsen.</p>
     </div>
   )
 }
