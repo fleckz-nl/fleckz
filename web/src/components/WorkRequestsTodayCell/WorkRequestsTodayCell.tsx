@@ -2,7 +2,6 @@ import type {
   WorkRequestsTodayQuery,
   WorkRequestsTodayQueryVariables,
 } from 'types/graphql'
-import workers from 'web/public/images/workers.png'
 
 import type {
   CellSuccessProps,
@@ -20,6 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from 'src/components/ui/table'
+
+import EmptyStateImage from './cartoon-exhausted-woman-sitting-table-working.svg'
 
 export const QUERY: TypedDocumentNode<
   WorkRequestsTodayQuery,
@@ -83,7 +84,18 @@ export const Empty = () => {
   return (
     <div className="center w-full flex-col">
       <div className="center mb-8 flex-col">
-        <img src={workers} alt="workers illustration" className="h-36" />
+        <div className="relative">
+          <img
+            src={EmptyStateImage}
+            alt="Cartoon exhausted woman sitting and table and working"
+            className="h-48"
+          />
+          <div className="absolute bottom-0 right-0 text-xs opacity-40">
+            <a href="http://www.freepik.com">
+              Designed by pch.vector / Freepik
+            </a>
+          </div>
+        </div>
         <span className="text-center text-lg italic">
           Vandaag geen werk, geen diensten.
         </span>
