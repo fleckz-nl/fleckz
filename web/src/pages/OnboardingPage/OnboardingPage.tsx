@@ -11,6 +11,7 @@ import OnboardingContactPerson from 'src/components/OnboardingContactPerson/Onbo
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingFinancial from 'src/components/OnboardingFinancial/OnboardingFinancial'
 import OnboardingInternalOrganization from 'src/components/OnboardingInternalOrganization/OnboardingInternalOrganization'
+import OnboardingPlanWork from 'src/components/OnboardingPlanWork/OnboardingPlanWork'
 import OnboardingSelectRole from 'src/components/OnboardingSelectRole/OnboardingSelectRole'
 import OnboardingSuccess from 'src/components/OnboardingSuccess/OnboardingSuccess'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
@@ -29,6 +30,7 @@ export type OnboardingStages =
   | 'addFinancialInfo'
   | 'successMessage'
   | 'addJobProfile'
+  | 'planWork'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
@@ -83,6 +85,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'addJobProfile' && (
             <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
           )}
+          {onboardingStep === 'planWork' && <OnboardingPlanWork />}
         </main>
       </div>
     </>
