@@ -17,7 +17,7 @@ const TempAgencyWorker = ({
   const avatarId = Math.random() * 100
   return (
     <>
-      <div className="flex gap-8">
+      <div className="flex items-center gap-8">
         <div className={cn('flex flex-col', className)}>
           <span className="font-semibold">
             {workerName || 'Achternaam Voornaam'}
