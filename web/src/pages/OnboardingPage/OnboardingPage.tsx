@@ -85,7 +85,9 @@ const OnboardingPage = () => {
           {onboardingStep === 'addJobProfile' && (
             <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
           )}
-          {onboardingStep === 'planWork' && <OnboardingPlanWork />}
+          {onboardingStep === 'planWork' && (
+            <OnboardingPlanWork setOnboardingStep={setOnboardingStep} />
+          )}
         </main>
       </div>
     </>

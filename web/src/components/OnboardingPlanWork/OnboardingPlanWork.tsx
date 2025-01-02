@@ -1,12 +1,16 @@
-const OnboardingPlanWork = () => {
+import { ArrowLeft } from 'lucide-react'
+
+import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+type OnboardingPlanWorkProps = {
+  setOnboardingStep: React.Dispatch<React.SetStateAction<OnboardingStages>>
+}
+const OnboardingPlanWork = ({ setOnboardingStep }: OnboardingPlanWorkProps) => {
+  function handlePreviousClick() {
+    setOnboardingStep('addJobProfile')
+  }
   return (
-    <div>
-      <h2>{'OnboardingPlanWork'}</h2>
-      <p>
-        {
-          'Find me in ./web/src/components/OnboardingPlanWork/OnboardingPlanWork.tsx'
-        }
-      </p>
+    <div className="mx-auto mt-8 flex max-w-xl flex-col gap-6 text-white">
+      <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
     </div>
   )
 }
