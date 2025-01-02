@@ -11,6 +11,9 @@ const OnboardingPlanWork = ({ setOnboardingStep }: OnboardingPlanWorkProps) => {
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-6 text-white">
       <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
+      <h1 className="text-2xl font-bold text-white">
+        Wanneer zijn er medewerkers nodig?
+      </h1>
     </div>
   )
 }
