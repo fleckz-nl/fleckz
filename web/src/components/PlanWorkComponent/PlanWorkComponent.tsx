@@ -34,7 +34,8 @@ import {
   FormItem,
   FormLabel,
 } from 'src/components/ui/form'
-import { Input } from 'src/components/ui/input'
+import { Input, CurrencyInput, NumericInput } from 'src/components/ui/input'
+import { SwitchWhite } from 'src/components/ui/switch'
 import { QUERY as WorkSchedularQuery } from 'src/components/WorkSchedularCell'
 
 import ButtonWithLoader from '../ButtonWithLoader/ButtonWithLoader'
@@ -428,7 +429,115 @@ const PlanWorkComponent = ({
                   </FormItem>
                 )}
               />
-              <DialogFooter className="gap-1">
+              <FormField
+                control={form.control}
+                name="carAvailable"
+                render={() => (
+                  <FormItem className="flex flex-row">
+                    <FormLabel className="mr-4 font-semibold text-primary/90">
+                      Auto Beschikbaar
+                    </FormLabel>
+                    <FormControl>
+                      <SwitchWhite />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="maxTravelDistance"
+                render={({ field, fieldState }) => (
+                  <FormItem className="flex items-center gap-2">
+                    <FormLabel className="mt-1 font-semibold">
+                      Maximale reisafstand
+                    </FormLabel>
+                    <div className="flex items-center gap-1">
+                      <FormControl>
+                        <NumericInput
+                          placeholder="10 km"
+                          {...field}
+                          prefix=""
+                          suffix=" km"
+                          decimalScale={0}
+                          min={0}
+                          className={`w-36 ${
+                            fieldState.error && ' border-red-500'
+                          }`}
+                        />
+                      </FormControl>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isTravelReimbursed"
+                render={() => (
+                  <FormItem className="flex flex-row">
+                    <FormLabel className="mr-4 font-semibold text-primary/90">
+                      Reiskostenvergoeding
+                    </FormLabel>
+                    <FormControl>
+                      <SwitchWhite />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="kmAllowance"
+                render={({ field, fieldState }) => (
+                  <FormItem className="flex items-center gap-2">
+                    <FormLabel className="mt-1 flex flex-wrap font-semibold">
+                      Kilometervergoeding
+                    </FormLabel>
+                    <div className="flex items-center gap-1">
+                      <FormControl>
+                        <CurrencyInput
+                          className={`w-36 ${fieldState.error && ' border-red-500'}`}
+                          onValueChange={({ floatValue }) =>
+                            field.onChange(floatValue)
+                          }
+                          value={field.value}
+                          ref={field.ref}
+                          onFocusCapture={(e) => e.target.select()}
+                          suffix=" per km"
+                          placeholder="€ 0.20 per km"
+                        />
+                      </FormControl>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="vca"
+                render={() => (
+                  <FormItem className="flex flex-row">
+                    <FormLabel className="mr-4 font-semibold text-primary/90">
+                      VCA
+                    </FormLabel>
+                    <FormControl>
+                      <SwitchWhite />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="pbaProvided"
+                render={() => (
+                  <FormItem className="flex flex-row">
+                    <FormLabel className="mr-4 font-semibold text-primary/90">
+                      PBM&apos;s worden geleverd
+                    </FormLabel>
+                    <FormControl>
+                      <SwitchWhite />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <DialogFooter className="gap-1 pt-8">
                 {!isEditing && (
                   <ButtonWithLoader
                     variant="outline"
