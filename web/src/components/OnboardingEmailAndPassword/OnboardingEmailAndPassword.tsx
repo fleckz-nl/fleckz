@@ -28,6 +28,8 @@ const OnboardingEmailAndPassword = ({
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
+    return setOnboardingStep('avatarAndName')
+
     const response = await signUp({
       username: data.email,
       password: data.password,
@@ -38,14 +40,16 @@ const OnboardingEmailAndPassword = ({
     } else if (response.error) {
       toast.error(response.error)
     }
-
-    setOnboardingStep('avatarAndName')
   }
   return (
     <div className="rw-scaffold mx-auto my-40 max-w-md py-4">
       <div className="rw-segment-main">
         <div className="rw-form-wrapper">
-          <Form onSubmit={onSubmit} className="rw-form-wrapper">
+          <Form
+            onSubmit={onSubmit}
+            className="rw-form-wrapper"
+            noValidate={true}
+          >
             <Label
               name="email"
               className="rw-label"
@@ -58,12 +62,14 @@ const OnboardingEmailAndPassword = ({
               className="rw-input"
               errorClassName="rw-input rw-input-error"
               ref={emailRef}
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Email is verplicht',
-                },
-              }}
+              validation={
+                {
+                  // required: {
+                  //   value: true,
+                  //   message: 'Email is verplicht',
+                  // },
+                }
+              }
             />
             <FieldError name="email" className="rw-field-error" />
 
@@ -79,12 +85,14 @@ const OnboardingEmailAndPassword = ({
               className="rw-input text-accent"
               errorClassName="rw-input rw-input-error"
               autoComplete="current-password"
-              validation={{
-                required: {
-                  value: true,
-                  message: 'Wachtwoord is verplicht',
-                },
-              }}
+              validation={
+                {
+                  // required: {
+                  //   value: true,
+                  //   message: 'Wachtwoord is verplicht',
+                  // },
+                }
+              }
             />
             <FieldError name="password" className="rw-field-error" />
             <div className="rw-button-group">
