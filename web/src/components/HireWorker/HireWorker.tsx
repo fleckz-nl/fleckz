@@ -1,4 +1,16 @@
-const HireWorker = () => {
+import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+
+type HireWorkerProps = {
+  setOnboardingStep: React.Dispatch<React.SetStateAction<OnboardingStages>>
+}
+
+const HireWorker = ({ setOnboardingStep }: HireWorkerProps) => {
+  function handlePreviousClick() {
+    setOnboardingStep('planWork')
+  }
+  function handleNextClick() {
+    // setOnboardingStep('')
+  }
   return (
     <div>
       <h2>{'HireWorker'}</h2>
