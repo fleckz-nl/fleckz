@@ -280,7 +280,7 @@ const PlanWorkComponent = ({
               <FormError error={error || updateError} />
             </div>
           )}
-          <form>
+          <form className="*:space-y-2">
             <fieldset
               disabled={createLoading || createDraftLoading || updateLoading}
             >
