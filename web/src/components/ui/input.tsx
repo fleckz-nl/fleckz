@@ -25,6 +25,29 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 Input.displayName = 'Input'
 
+type NumericInputProps = {
+  className: string
+}
+const NumericInput = React.forwardRef<HTMLInputElement, NumericFormatProps>(
+  ({ className, ...props }: NumericInputProps & NumericFormatProps, ref) => {
+    return (
+      <NumericFormat
+        className={cn(
+          'flex h-9 w-full rounded-md border border-muted-foreground bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-primary-foreground focus:border-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-50',
+          className
+        )}
+        decimalSeparator=","
+        thousandSeparator={'.'}
+        prefix="€ "
+        decimalScale={2}
+        fixedDecimalScale={true}
+        {...props}
+        getInputRef={ref}
+      />
+    )
+  }
+)
+
 type CurrencyInputProps = {
   className: string
 }
@@ -38,7 +61,6 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, NumericFormatProps>(
         )}
         decimalSeparator=","
         thousandSeparator={'.'}
-        prefix="€ "
         decimalScale={2}
         fixedDecimalScale={true}
         {...props}
@@ -71,4 +93,4 @@ const PercentageInput = React.forwardRef<HTMLInputElement, NumericFormatProps>(
   }
 )
 
-export { Input, CurrencyInput, PercentageInput }
+export { Input, NumericInput, CurrencyInput, PercentageInput }
