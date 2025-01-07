@@ -11,7 +11,7 @@ const OnboardingPlanWork = ({ setOnboardingStep }: OnboardingPlanWorkProps) => {
     setOnboardingStep('addJobProfile')
   }
   function handleNextClick() {
-    // setOnboardingStep('')
+    setOnboardingStep('hireWorker')
   }
   return (
     <div className="mx-auto my-8 flex max-w-xl flex-col gap-6 text-white">
