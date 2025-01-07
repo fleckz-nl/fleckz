@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { ArrowLeft, Filter, UserRound, UserRoundCheck } from 'lucide-react'
 
+import Confetti from 'src/components/Confetti/Confetti'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import { Separator } from 'src/components/ui/separator'
@@ -45,6 +46,7 @@ const HireWorker = ({ setOnboardingStep }: HireWorkerProps) => {
       >
         Volgende
       </Button>
+      {stage === 'Confirmed' && <Confetti />}
     </div>
   )
 }
