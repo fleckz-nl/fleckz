@@ -65,7 +65,6 @@ type WorkerProfileProps = {
 const WorkerProfile = ({
   worker: { avatarId, softSkills, hardSkills, brutoloon, hourlyWage },
 }: WorkerProfileProps) => {
-  console.log(hardSkills * 100)
   return (
     <div>
       <div className="flex space-x-4">
