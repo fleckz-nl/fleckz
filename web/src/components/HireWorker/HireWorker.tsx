@@ -37,6 +37,7 @@ const HireWorker = ({ setOnboardingStep }: HireWorkerProps) => {
       </p>
       {stage === 'selectWorker' && <SelectWorker />}
       {stage === 'pendingConfirmation' && <PendingConfirmation />}
+      {stage === 'Confirmed' && <Confirmed />}
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
@@ -197,6 +198,30 @@ const WorkerConfirmationStatus = ({
       <div className="mt-2 flex justify-between">
         <div className="ml-4">{formatToEuros(hourlyWage)}</div>
       </div>
+    </div>
+  )
+}
+
+const Confirmed = () => {
+  const confirmedWorkers = workers.map((worker) => ({
+    ...worker,
+    status: 'confirmed',
+  }))
+
+  return (
+    <div className="mb-16 space-y-6">
+      <div className="text-center text-xl font-bold">
+        Alle medewerkers zijn bevestigd!
+      </div>
+      {confirmedWorkers.map((confirmedWorker) => (
+        <>
+          <WorkerConfirmationStatus
+            key={confirmedWorker.id}
+            worker={confirmedWorker}
+          />
+          <Separator />
+        </>
+      ))}
     </div>
   )
 }
