@@ -3,6 +3,7 @@ import { ArrowLeft, Filter } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import { Separator } from 'src/components/ui/separator'
+import { formatToEuros } from 'src/lib/formatToEuros'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
 type HireWorkerProps = {
@@ -58,10 +59,11 @@ type WorkerProfileProps = {
     softSkills: number
     hardSkills: number
     brutoloon: number
+    hourlyWage: number
   }
 }
 const WorkerProfile = ({
-  worker: { avatarId, softSkills, hardSkills, brutoloon },
+  worker: { avatarId, softSkills, hardSkills, brutoloon, hourlyWage },
 }: WorkerProfileProps) => {
   console.log(hardSkills * 100)
   return (
@@ -110,7 +112,7 @@ const WorkerProfile = ({
         </div>
       </div>
       <div className="mt-2 flex justify-between">
-        <div className="ml-4">€ 27, 00</div>
+        <div className="ml-4">{formatToEuros(hourlyWage)}</div>
         <Button variant="secondary" className="bg-accent py-4 text-primary">
           Inlenen
         </Button>
@@ -126,6 +128,7 @@ const workers = [
     softSkills: 0.6,
     hardSkills: 1,
     brutoloon: 0.5,
+    hourlyWage: 27,
   },
   {
     id: 2,
@@ -133,6 +136,7 @@ const workers = [
     softSkills: 0.8,
     hardSkills: 0.7,
     brutoloon: 0.6,
+    hourlyWage: 30,
   },
   {
     id: 3,
@@ -140,6 +144,7 @@ const workers = [
     softSkills: 0.9,
     hardSkills: 0.9,
     brutoloon: 0.7,
+    hourlyWage: 33,
   },
 ]
 
