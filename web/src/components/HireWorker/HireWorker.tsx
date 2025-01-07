@@ -86,10 +86,17 @@ const PendingConfirmation = () => {
         </div>
       </div>
       {workers.map((worker) => (
-        <>
-          <WorkerConfirmationStatus key={worker.id} worker={worker} />
-          <Separator />
-        </>
+        <div key={worker.id}>
+          <WorkerConfirmationStatus worker={worker} />
+          {worker.status === 'pending' && (
+            <div className="flex justify-center">
+              <Button className="bg-secondary">
+                Andere medewerker inlenen
+              </Button>
+            </div>
+          )}
+          <Separator className="mt-6" />
+        </div>
       ))}
     </div>
   )
