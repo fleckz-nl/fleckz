@@ -93,14 +93,7 @@ const PendingConfirmation = () => {
 }
 
 type WorkerProfileProps = {
-  worker: {
-    id: number
-    avatarId: number
-    softSkills: number
-    hardSkills: number
-    brutoloon: number
-    hourlyWage: number
-  }
+  worker: Worker
 }
 const WorkerProfile = ({
   worker: { avatarId, softSkills, hardSkills, brutoloon, hourlyWage },
