@@ -1,19 +1,13 @@
 import { format } from 'date-fns/format'
 import { nl } from 'date-fns/locale/nl'
-import { CheckCircle2, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
 import { navigate } from '@redwoodjs/router'
 
 import { OverviewHeader } from 'src/components/OverviewSection'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from 'src/components/ui/table'
+import SearchInput from 'src/components/SearchInput/SearchInput'
+import SortButton from 'src/components/SortButton/SortButton'
 
 type AcceptedRequestsTableProps = {
   workRequests: WorkRequestsQuery['workRequests']
@@ -22,46 +16,126 @@ const AcceptedRequestsTable = ({
   workRequests,
 }: AcceptedRequestsTableProps) => {
   const acceptedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
+  const pendingRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
+  const completedRequests = workRequests.filter((r) => r.status === 'DONE')
   return (
-    <div className="flex flex-col">
-      <OverviewHeader>
-        <CheckCircle2 className="mr-1 inline" />
-        Geaccepteerd
-      </OverviewHeader>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-gray-400">Datum</TableHead>
-            <TableHead className="text-gray-400">Functienaam</TableHead>
-            <TableHead className="text-gray-400">Werknemers</TableHead>
-            <TableHead className="text-gray-400">Werktijd</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {acceptedRequests.map((request) => (
-            <TableRow
-              key={request.id}
-              className="bg-primary text-white hover:cursor-pointer hover:bg-white hover:text-secondary"
-              onClick={() => navigate(`/requests/${request.id}`)}
-            >
-              <TableCell className="font-bold">
-                {format(request.startDate, 'd MMMM, yyyy', {
-                  locale: nl,
-                })}
-              </TableCell>
-              <TableCell>{request.jobProfile.name}</TableCell>
-              <TableCell className="pl-10">
-                {request.shifts.length}
-                <Users className="relative -top-0.5 ml-1 inline size-4" />
-              </TableCell>
-              <TableCell>
-                {format(request.startDate, 'H:MM')}–
-                {format(request.endDate, 'H:MM')}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="flex flex-col gap-4 text-white">
+      <OverviewHeader>Werklijst</OverviewHeader>
+      <div className="flex justify-between gap-2">
+        <SortButton />
+        <SearchInput />
+      </div>
+      <div>
+        <h3 className="font-medium">Nog niet volledig bevestigd</h3>
+        {pendingRequests.map((request) => (
+          <div
+            key={request.id}
+            role="button"
+            tabIndex={0}
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-red-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-red-800 xs:pl-6"
+            onClick={() => navigate(`/requests/${request.id}`)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                navigate(`/requests/${request.id}`)
+              }
+            }}
+          >
+            <div className="font-semibold">
+              {format(request.startDate, 'd MMM yyyy', {
+                locale: nl,
+              })}
+            </div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
+            <div className="center gap-1">
+              {request.shifts.length}
+              <Users className="size-4 flex-shrink-0" />
+            </div>
+            <div className="col-span-2">{request.jobProfile.name}</div>
+            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
+              <span>#id</span>
+              <span className="col-span-3">Updated __ hours ago</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3 className="font-medium">In te checken</h3>
+        {acceptedRequests.map((request) => (
+          <div
+            key={request.id}
+            role="button"
+            tabIndex={0}
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-secondary p-2 hover:cursor-pointer hover:bg-white/80 hover:text-secondary xs:pl-6"
+            onClick={() => navigate(`/requests/${request.id}`)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                navigate(`/requests/${request.id}`)
+              }
+            }}
+          >
+            <div className="font-semibold">
+              {format(request.startDate, 'd MMM yyyy', {
+                locale: nl,
+              })}
+            </div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
+            <div className="center gap-1">
+              {request.shifts.length}
+              <Users className="size-4 flex-shrink-0" />
+            </div>
+            <div className="col-span-2">{request.jobProfile.name}</div>
+            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
+              <span>#id</span>
+              <span className="col-span-3">Updated __ hours ago</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3 className="font-medium">Afgerond</h3>
+        {completedRequests.map((request) => (
+          <div
+            key={request.id}
+            role="button"
+            tabIndex={0}
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-green-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-green-800 xs:pl-6"
+            onClick={() => navigate(`/requests/${request.id}`)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                navigate(`/requests/${request.id}`)
+              }
+            }}
+          >
+            <div className="font-semibold">
+              {format(request.startDate, 'd MMM yyyy', {
+                locale: nl,
+              })}
+            </div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
+            <div className="center gap-1">
+              {request.shifts.length}
+              <Users className="size-4 flex-shrink-0" />
+            </div>
+            <div className="col-span-2">{request.jobProfile.name}</div>
+            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
+              <span>#id</span>
+              <span className="col-span-3">Updated __ hours ago</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
