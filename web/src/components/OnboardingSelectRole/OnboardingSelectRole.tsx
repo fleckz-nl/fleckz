@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
 
-import workersMarch from 'web/public/images/workers-march.png'
-
 import { Button } from 'src/components/ui/button'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
