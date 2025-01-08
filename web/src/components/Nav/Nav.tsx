@@ -1,7 +1,7 @@
-import { LogOutIcon, LucideSettings, User } from 'lucide-react'
+import { Flag, LogOutIcon, LucideSettings, User } from 'lucide-react'
 import noTextLogo from 'web/public/images/logo-no-text.png'
 
-import { Link, routes } from '@redwoodjs/router'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { toast } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
@@ -116,6 +116,15 @@ const Nav = ({ className }: NavProps) => {
                 </button>
               </DropdownMenuItem>
             </Link>
+            <DropdownMenuItem>
+              <button
+                className="flex w-full items-center"
+                onClick={() => navigate(routes.onboarding())}
+              >
+                <Flag size={16} className="mr-1" />
+                Onboarding
+              </button>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <button
                 className="flex w-full items-center"
