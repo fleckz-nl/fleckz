@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { Role } from 'types/graphql'
+
 import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
@@ -57,6 +59,8 @@ const OnboardingPage = () => {
     (urlParams.stage as OnboardingStages) || 'welcomeMessage'
   )
 
+  const [role, setRole] = useState<Role>(null)
+
   useEffect(() => {
     navigate(`?stage=${onboardingStep}`, { replace: true })
   }, [onboardingStep])
@@ -76,7 +80,10 @@ const OnboardingPage = () => {
             <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
           )}
           {onboardingStep === 'selectRole' && (
-            <OnboardingSelectRole setOnboardingStep={setOnboardingStep} />
+            <OnboardingSelectRole
+              setOnboardingStep={setOnboardingStep}
+              setRole={setRole}
+            />
           )}
           {onboardingStep === 'addBusiness' && (
             <SelectBusiness setOnboardingStep={setOnboardingStep} />
