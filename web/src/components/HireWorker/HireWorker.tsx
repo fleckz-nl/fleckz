@@ -1,6 +1,14 @@
 import { useState } from 'react'
 
-import { ArrowLeft, Filter, UserRound, UserRoundCheck } from 'lucide-react'
+import {
+  ArrowLeft,
+  Filter,
+  Flag,
+  UserRound,
+  UserRoundCheck,
+} from 'lucide-react'
+
+import { navigate, routes } from '@redwoodjs/router'
 
 import Confetti from 'src/components/Confetti/Confetti'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
@@ -39,13 +47,23 @@ const HireWorker = ({ setOnboardingStep }: HireWorkerProps) => {
       {stage === 'selectWorker' && <SelectWorker />}
       {stage === 'pendingConfirmation' && <PendingConfirmation />}
       {stage === 'Confirmed' && <Confirmed />}
-      <Button
-        className="self-end bg-secondary py-4 text-lg"
-        type="submit"
-        onClick={handleNextClick}
-      >
-        Volgende
-      </Button>
+      {stage === 'Confirmed' ? (
+        <Button
+          className="self-end py-4 text-lg text-accent"
+          onClick={() => navigate(routes.overview())}
+        >
+          <Flag className="mr-1 size-4" />
+          Klaar
+        </Button>
+      ) : (
+        <Button
+          className="self-end bg-secondary py-4 text-lg"
+          type="submit"
+          onClick={handleNextClick}
+        >
+          Volgende
+        </Button>
+      )}
       {stage === 'Confirmed' && <Confetti />}
     </div>
   )
