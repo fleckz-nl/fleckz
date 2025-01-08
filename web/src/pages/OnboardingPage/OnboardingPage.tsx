@@ -85,42 +85,78 @@ const OnboardingPage = () => {
               setRole={setRole}
             />
           )}
-          {onboardingStep === 'addBusiness' && (
-            <SelectBusiness setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'addAuthorizedSignatory' && (
-            <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'addFinancialInfo' && (
-            <OnboardingFinancial setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'addBranch' && (
-            <AddBranch setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'internalOrganization' && (
-            <OnboardingInternalOrganization
+          {role === 'CLIENT' && (
+            <ClientOnboarding
+              onboardingStep={onboardingStep}
               setOnboardingStep={setOnboardingStep}
             />
           )}
-          {onboardingStep === 'contactPerson' && (
-            <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'successMessage' && (
-            <OnboardingSuccess setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'addJobProfile' && (
-            <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'planWork' && (
-            <OnboardingPlanWork setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'hireWorker' && (
-            <HireWorker setOnboardingStep={setOnboardingStep} />
+          {role === 'TEMP_AGENCY_REP' && (
+            <TempAgencyRepOnboarding
+              onboardingStep={onboardingStep}
+              setOnboardingStep={setOnboardingStep}
+            />
           )}
         </main>
       </div>
     </>
   )
+}
+
+type ClientOnboardingProps = {
+  onboardingStep: OnboardingStages
+  setOnboardingStep: (step: OnboardingStages) => void
+}
+const ClientOnboarding = ({
+  onboardingStep,
+  setOnboardingStep,
+}: ClientOnboardingProps) => {
+  return (
+    <>
+      {onboardingStep === 'addBusiness' && (
+        <SelectBusiness setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'addAuthorizedSignatory' && (
+        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'addFinancialInfo' && (
+        <OnboardingFinancial setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'addBranch' && (
+        <AddBranch setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'internalOrganization' && (
+        <OnboardingInternalOrganization setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'contactPerson' && (
+        <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'successMessage' && (
+        <OnboardingSuccess setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'addJobProfile' && (
+        <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'planWork' && (
+        <OnboardingPlanWork setOnboardingStep={setOnboardingStep} />
+      )}
+      {onboardingStep === 'hireWorker' && (
+        <HireWorker setOnboardingStep={setOnboardingStep} />
+      )}
+    </>
+  )
+}
+
+type TempAgencyRepOnboardingProps = {
+  onboardingStep: OnboardingStages
+  setOnboardingStep: (step: OnboardingStages) => void
+}
+
+const TempAgencyRepOnboarding = ({
+  onboardingStep,
+  setOnboardingStep,
+}: TempAgencyRepOnboardingProps) => {
+  return <></>
 }
 
 export default OnboardingPage
