@@ -28,7 +28,7 @@ const OnboardingFinancial = ({
     setOnboardingStep('addAuthorizedSignatory')
   }
   return (
-    <div className="mx-auto mt-8 flex max-w-xl flex-col gap-6 text-white">
+    <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4">
       <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
       <h1 className="text-2xl font-bold text-white">Financieel</h1>
       <div>
