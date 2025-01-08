@@ -76,8 +76,13 @@ const EmptyState = ({ handleMakeProfile }: EmptyStateProps) => {
         src="images/active-tourist-hiking-mountain-man-wearing-backpack-enjoying-trekking-looking-snowcapped-peaks.svg"
         alt="A man with a backpack in mountains"
         width={300}
-        className="self-center"
+        className="self-center pb-2"
       />
+      <span className="-mt-6 text-center text-xs text-gray-500">
+        <a href="http://www.freepik.com">
+          Image designed by pch.vector / Freepik
+        </a>
+      </span>
       <Button
         className="mt-8 self-center bg-secondary py-4 text-lg"
         type="submit"
@@ -86,11 +91,6 @@ const EmptyState = ({ handleMakeProfile }: EmptyStateProps) => {
         <CirclePlus className="mr-2" size={20} />
         Aanmaken
       </Button>
-      <span className="mt-12 text-right text-xs text-gray-500">
-        <a href="http://www.freepik.com">
-          Image designed by pch.vector / Freepik
-        </a>
-      </span>
     </>
   )
 }
