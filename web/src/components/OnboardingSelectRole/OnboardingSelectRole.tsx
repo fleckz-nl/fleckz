@@ -1,14 +1,19 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { Role } from 'types/graphql'
+import workersMarch from 'web/public/images/workers-march.png'
+
 import { Button } from 'src/components/ui/button'
 import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
 type OnboardingSelectRoleProps = {
   setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
+  setRole: Dispatch<SetStateAction<Role>>
 }
 
 const OnboardingSelectRole = ({
   setOnboardingStep,
+  setRole,
 }: OnboardingSelectRoleProps) => {
   return (
     <>
@@ -28,11 +33,20 @@ const OnboardingSelectRole = ({
       <div className="mx-auto mt-8 flex max-w-md flex-col gap-2">
         <Button
           className="h-36 bg-accent hover:bg-accent hover:brightness-110"
-          onClick={() => setOnboardingStep('addBusiness')}
+          onClick={() => {
+            setOnboardingStep('addBusiness')
+            setRole('CLIENT')
+          }}
         >
           Ik wil uitzendkrachten
         </Button>
-        <Button className="h-36 bg-blue-600 hover:bg-blue-600 hover:brightness-110">
+        <Button
+          className="h-36 bg-blue-600 hover:bg-blue-600 hover:brightness-110"
+          onClick={() => {
+            setOnboardingStep('addBusiness')
+            setRole('TEMP_AGENCY_REP')
+          }}
+        >
           Ik wil mijn <br /> uitzendkrachten aanbieden
         </Button>
       </div>
