@@ -69,7 +69,7 @@ const AcceptedRequestsTable = ({
             key={request.id}
             role="button"
             tabIndex={0}
-            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-secondary py-2 hover:cursor-pointer hover:bg-white/80 hover:text-secondary xs:pl-6"
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-secondary p-2 hover:cursor-pointer hover:bg-white/80 hover:text-secondary xs:pl-6"
             onClick={() => navigate(`/requests/${request.id}`)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -106,7 +106,7 @@ const AcceptedRequestsTable = ({
             key={request.id}
             role="button"
             tabIndex={0}
-            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-green-800 py-2 pl-6 hover:cursor-pointer hover:bg-white/80 hover:text-green-800"
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-green-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-green-800 xs:pl-6"
             onClick={() => navigate(`/requests/${request.id}`)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
