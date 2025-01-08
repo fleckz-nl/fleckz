@@ -23,6 +23,10 @@ export type OnboardingStages =
   | 'emailAndPassword'
   | 'avatarAndName'
   | 'selectRole'
+  | ClientOnboardingStages
+  | TempAgencyRepOnboardingStages
+
+type ClientOnboardingStages =
   | 'addBusiness'
   | 'addAuthorizedSignatory'
   | 'addBranch'
@@ -33,6 +37,19 @@ export type OnboardingStages =
   | 'addJobProfile'
   | 'planWork'
   | 'hireWorker'
+
+type TempAgencyRepOnboardingStages =
+  | 'addBusiness'
+  | 'addAuthorizedSignatory'
+  | 'addBranch'
+  | 'addFinancialInfo'
+  | 'contactPerson'
+  | 'certificates'
+  | 'internalOrganization'
+  | 'confirmInformation'
+  | 'successMessage'
+  | 'cvUpload'
+  | 'cvsList'
 
 const OnboardingPage = () => {
   const urlParams = useParams()
