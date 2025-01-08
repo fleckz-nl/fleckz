@@ -84,12 +84,12 @@ const EmptyState = ({ handleMakeProfile }: EmptyStateProps) => {
         </a>
       </span>
       <Button
-        className="mt-8 self-center bg-secondary py-4 text-lg"
+        className="mb-4 mt-12 flex gap-1 self-center bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white"
         type="submit"
         onClick={handleMakeProfile}
       >
         <CirclePlus className="mr-2" size={20} />
-        Aanmaken
+        <span className="text-white">Aanmaken</span>
       </Button>
     </>
   )
