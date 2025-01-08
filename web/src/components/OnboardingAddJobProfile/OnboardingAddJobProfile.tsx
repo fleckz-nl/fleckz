@@ -76,21 +76,21 @@ const EmptyState = ({ handleMakeProfile }: EmptyStateProps) => {
         src="images/active-tourist-hiking-mountain-man-wearing-backpack-enjoying-trekking-looking-snowcapped-peaks.svg"
         alt="A man with a backpack in mountains"
         width={300}
-        className="self-center"
+        className="self-center pb-2"
       />
-      <Button
-        className="mt-8 self-center bg-secondary py-4 text-lg"
-        type="submit"
-        onClick={handleMakeProfile}
-      >
-        <CirclePlus className="mr-2" size={20} />
-        Aanmaken
-      </Button>
-      <span className="mt-12 text-right text-xs text-gray-500">
+      <span className="-mt-6 text-center text-xs text-gray-500">
         <a href="http://www.freepik.com">
           Image designed by pch.vector / Freepik
         </a>
       </span>
+      <Button
+        className="mb-4 mt-12 flex gap-1 self-center bg-black p-5 text-lg text-accent shadow-md shadow-accent/20 hover:bg-accent hover:text-white"
+        type="submit"
+        onClick={handleMakeProfile}
+      >
+        <CirclePlus className="mr-2" size={20} />
+        <span className="text-white">Aanmaken</span>
+      </Button>
     </>
   )
 }
