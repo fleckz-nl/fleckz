@@ -42,7 +42,7 @@ const OnboardingFinancial = ({
       <div>
         <Label>Factuur splitsen op</Label>
         <Select>
-          <SelectTrigger className="max-w-sm bg-white text-black hover:bg-white">
+          <SelectTrigger className="bg-white text-black hover:bg-white">
             <SelectValue placeholder="Kies..." />
           </SelectTrigger>
           <SelectContent>
@@ -54,7 +54,7 @@ const OnboardingFinancial = ({
       </div>
       <div>
         <Label htmlFor="g-rekening">G-rekening nummer</Label>
-        <TextInput id="g-rekening" className="max-w-sm" />
+        <TextInput id="g-rekening" />
       </div>
       <div className="flex items-center gap-4">
         <Label htmlFor="percentage">Percentage</Label>
