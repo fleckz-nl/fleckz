@@ -32,7 +32,7 @@ const AcceptedRequestsTable = ({
             key={request.id}
             role="button"
             tabIndex={0}
-            className="my-2 grid grid-cols-4 items-center gap-2 rounded-md bg-red-800 py-2 pl-6 hover:cursor-pointer hover:bg-white/80 hover:text-red-800"
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-red-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-red-800 xs:pl-6"
             onClick={() => navigate(`/requests/${request.id}`)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -45,15 +45,16 @@ const AcceptedRequestsTable = ({
                 locale: nl,
               })}
             </div>
-            <div>{request.jobProfile.name}</div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
             <div className="center gap-1">
               {request.shifts.length}
               <Users className="size-4 flex-shrink-0" />
             </div>
-            <div className="flex">
-              {format(request.startDate, 'H:MM')}–
-              {format(request.endDate, 'H:MM')}
-            </div>
+            <div className="col-span-2">{request.jobProfile.name}</div>
             <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
               <span>#id</span>
               <span className="col-span-3">Updated __ hours ago</span>
@@ -68,7 +69,7 @@ const AcceptedRequestsTable = ({
             key={request.id}
             role="button"
             tabIndex={0}
-            className="my-2 grid grid-cols-4 items-center rounded-md bg-secondary py-2 pl-6 hover:cursor-pointer hover:bg-white/80 hover:text-secondary"
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-secondary py-2 hover:cursor-pointer hover:bg-white/80 hover:text-secondary xs:pl-6"
             onClick={() => navigate(`/requests/${request.id}`)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -81,16 +82,17 @@ const AcceptedRequestsTable = ({
                 locale: nl,
               })}
             </div>
-            <div>{request.jobProfile.name}</div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
             <div className="center gap-1">
               {request.shifts.length}
               <Users className="size-4 flex-shrink-0" />
             </div>
-            <div className="flex">
-              {format(request.startDate, 'H:MM')}–
-              {format(request.endDate, 'H:MM')}
-            </div>
-            <div className="col-span-4 flex gap-6 text-xs font-thin">
+            <div className="col-span-2">{request.jobProfile.name}</div>
+            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
               <span>#id</span>
               <span className="col-span-3">Updated __ hours ago</span>
             </div>
@@ -104,7 +106,7 @@ const AcceptedRequestsTable = ({
             key={request.id}
             role="button"
             tabIndex={0}
-            className="my-2 grid grid-cols-4 items-center rounded-md bg-green-800 py-2 pl-6 hover:cursor-pointer hover:bg-white/80 hover:text-green-800"
+            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-green-800 py-2 pl-6 hover:cursor-pointer hover:bg-white/80 hover:text-green-800"
             onClick={() => navigate(`/requests/${request.id}`)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -117,16 +119,17 @@ const AcceptedRequestsTable = ({
                 locale: nl,
               })}
             </div>
-            <div>{request.jobProfile.name}</div>
+            <div className="flex flex-wrap gap-0.5">
+              {format(request.startDate, 'H:MM')}
+              <span>-</span>
+              {format(request.endDate, 'H:MM')}
+            </div>
             <div className="center gap-1">
               {request.shifts.length}
               <Users className="size-4 flex-shrink-0" />
             </div>
-            <div className="flex">
-              {format(request.startDate, 'H:MM')}–
-              {format(request.endDate, 'H:MM')}
-            </div>
-            <div className="col-span-4 flex gap-6 text-xs font-thin">
+            <div className="col-span-2">{request.jobProfile.name}</div>
+            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
               <span>#id</span>
               <span className="col-span-3">Updated __ hours ago</span>
             </div>
