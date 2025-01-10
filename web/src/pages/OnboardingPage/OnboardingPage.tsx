@@ -167,6 +167,9 @@ const TempAgencyRepOnboarding = ({
       {onboardingStep === 'addBusiness' && (
         <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
       )}
+      {onboardingStep === 'addAuthorizedSignatory' && (
+        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+      )}
     </>
   )
 }
