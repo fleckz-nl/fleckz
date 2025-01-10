@@ -106,9 +106,7 @@ const ClientOnboarding = () => {
       {onboardingStep === 'internalOrganization' && (
         <OnboardingInternalOrganization />
       )}
-      {onboardingStep === 'contactPerson' && (
-        <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
-      )}
+      {onboardingStep === 'contactPerson' && <OnboardingContactPerson />}
       {onboardingStep === 'successMessage' && (
         <OnboardingSuccess setOnboardingStep={setOnboardingStep} />
       )}

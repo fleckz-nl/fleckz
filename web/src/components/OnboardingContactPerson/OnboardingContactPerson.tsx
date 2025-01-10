@@ -1,18 +1,13 @@
-import { Fragment, SetStateAction, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 
 import { ArrowLeft, Plus, X } from 'lucide-react'
 
 import ContactPersonForm from 'src/components/ContactPersonForm/ContactPersonForm'
 import { Button } from 'src/components/ui/button'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingContactPersonProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-}
-
-const OnboardingContactPerson = ({
-  setOnboardingStep,
-}: OnboardingContactPersonProps) => {
+const OnboardingContactPerson = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
   const [contactPersons, setContactPersons] = useState([
     createNewContactPerson(),
   ])
