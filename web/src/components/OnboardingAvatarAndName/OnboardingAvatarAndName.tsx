@@ -1,4 +1,4 @@
-import { SetStateAction, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoaderCircle, MessageSquareWarningIcon } from 'lucide-react'
@@ -20,7 +20,7 @@ import {
 } from 'src/components/ui/form'
 import { Input } from 'src/components/ui/input'
 import UpdateAvatar from 'src/components/UpdateAvatar/UpdateAvatar'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const UPDATE_ACCOUNT_INFO = gql`
   mutation UpdateUser($id: String!, $input: UpdateUserInput!) {
@@ -30,13 +30,8 @@ const UPDATE_ACCOUNT_INFO = gql`
     }
   }
 `
-type OnboardingAvatarAndNameProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-}
-
-const OnboardingAvatarAndName = ({
-  setOnboardingStep,
-}: OnboardingAvatarAndNameProps) => {
+const OnboardingAvatarAndName = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
   const { currentUser, reauthenticate } = useAuth()
 
   const formSchema = z.object({

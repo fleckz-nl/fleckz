@@ -77,9 +77,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'emailAndPassword' && (
             <OnboardingEmailAndPassword />
           )}
-          {onboardingStep === 'avatarAndName' && (
-            <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
-          )}
+          {onboardingStep === 'avatarAndName' && <OnboardingAvatarAndName />}
           {onboardingStep === 'selectRole' && (
             <OnboardingSelectRole
               setOnboardingStep={setOnboardingStep}
