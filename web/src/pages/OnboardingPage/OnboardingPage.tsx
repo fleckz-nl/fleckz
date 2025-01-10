@@ -80,13 +80,7 @@ const OnboardingPage = () => {
           {onboardingStep === 'avatarAndName' && <OnboardingAvatarAndName />}
           {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
           {role === 'CLIENT' && <ClientOnboarding />}
-          {role === 'TEMP_AGENCY_REP' && (
-            <TempAgencyRepOnboarding
-              onboardingStep={onboardingStep}
-              setOnboardingStep={setOnboardingStep}
-              role={role}
-            />
-          )}
+          {role === 'TEMP_AGENCY_REP' && <TempAgencyRepOnboarding />}
         </main>
       </div>
     </OnboardingContext.Provider>
@@ -115,15 +109,8 @@ const ClientOnboarding = () => {
   )
 }
 
-type TempAgencyRepOnboardingProps = {
-  onboardingStep: OnboardingStages
-  setOnboardingStep: (step: OnboardingStages) => void
-  role: Role
-}
-
-const TempAgencyRepOnboarding = ({
-  onboardingStep,
-}: TempAgencyRepOnboardingProps) => {
+const TempAgencyRepOnboarding = () => {
+  const { onboardingStep } = useContext(OnboardingContext)
   return (
     <>
       {onboardingStep === 'addBusiness' && <SelectBusiness />}
