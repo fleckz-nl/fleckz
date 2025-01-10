@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Role } from 'types/graphql'
 
-import { navigate, useParams } from '@redwoodjs/router'
+import { navigate, routes, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
@@ -59,11 +59,11 @@ const OnboardingPage = () => {
     (urlParams.stage as OnboardingStages) || 'welcomeMessage'
   )
 
-  const [role, setRole] = useState<Role>(null)
+  const [role, setRole] = useState<Role>((urlParams.role as Role) || null)
 
   useEffect(() => {
-    navigate(`?stage=${onboardingStep}`, { replace: true })
-  }, [onboardingStep])
+    navigate(`?stage=${onboardingStep}&role=${role}`, { replace: true })
+  }, [onboardingStep, role])
 
   return (
     <>
@@ -113,11 +113,12 @@ type ClientOnboardingProps = {
 const ClientOnboarding = ({
   onboardingStep,
   setOnboardingStep,
+  role,
 }: ClientOnboardingProps) => {
   return (
     <>
       {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} />
+        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
       )}
       {onboardingStep === 'addAuthorizedSignatory' && (
         <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
@@ -165,6 +166,9 @@ const TempAgencyRepOnboarding = ({
     <>
       {onboardingStep === 'addBusiness' && (
         <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
+      )}
+      {onboardingStep === 'addAuthorizedSignatory' && (
+        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
       )}
     </>
   )
