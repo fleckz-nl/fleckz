@@ -19,6 +19,7 @@ import OnboardingSelectRole from 'src/components/OnboardingSelectRole/Onboarding
 import OnboardingSuccess from 'src/components/OnboardingSuccess/OnboardingSuccess'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 import SelectBusiness from 'src/components/SelectBusiness/SelectBusiness'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 export type OnboardingStages =
   | 'welcomeMessage'
@@ -66,7 +67,9 @@ const OnboardingPage = () => {
   }, [onboardingStep])
 
   return (
-    <>
+    <OnboardingContext.Provider
+      value={{ onboardingStep, setOnboardingStep, role, setRole }}
+    >
       <Metadata title="Onboarding" description="Onboarding page" />
       <div className="flex min-h-screen flex-col bg-primary text-white">
         <main className="container">
@@ -99,7 +102,7 @@ const OnboardingPage = () => {
           )}
         </main>
       </div>
-    </>
+    </OnboardingContext.Provider>
   )
 }
 
