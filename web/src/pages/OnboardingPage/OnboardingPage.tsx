@@ -113,11 +113,12 @@ type ClientOnboardingProps = {
 const ClientOnboarding = ({
   onboardingStep,
   setOnboardingStep,
+  role,
 }: ClientOnboardingProps) => {
   return (
     <>
       {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} />
+        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
       )}
       {onboardingStep === 'addAuthorizedSignatory' && (
         <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
