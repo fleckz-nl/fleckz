@@ -89,12 +89,14 @@ const OnboardingPage = () => {
             <ClientOnboarding
               onboardingStep={onboardingStep}
               setOnboardingStep={setOnboardingStep}
+              role={role}
             />
           )}
           {role === 'TEMP_AGENCY_REP' && (
             <TempAgencyRepOnboarding
               onboardingStep={onboardingStep}
               setOnboardingStep={setOnboardingStep}
+              role={role}
             />
           )}
         </main>
@@ -106,6 +108,7 @@ const OnboardingPage = () => {
 type ClientOnboardingProps = {
   onboardingStep: OnboardingStages
   setOnboardingStep: (step: OnboardingStages) => void
+  role: Role
 }
 const ClientOnboarding = ({
   onboardingStep,
@@ -150,13 +153,21 @@ const ClientOnboarding = ({
 type TempAgencyRepOnboardingProps = {
   onboardingStep: OnboardingStages
   setOnboardingStep: (step: OnboardingStages) => void
+  role: Role
 }
 
 const TempAgencyRepOnboarding = ({
   onboardingStep,
   setOnboardingStep,
+  role,
 }: TempAgencyRepOnboardingProps) => {
-  return <></>
+  return (
+    <>
+      {onboardingStep === 'addBusiness' && (
+        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
+      )}
+    </>
+  )
 }
 
 export default OnboardingPage
