@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Role } from 'types/graphql'
 
-import { navigate, useParams } from '@redwoodjs/router'
+import { navigate, routes, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
@@ -60,11 +60,11 @@ const OnboardingPage = () => {
     (urlParams.stage as OnboardingStages) || 'welcomeMessage'
   )
 
-  const [role, setRole] = useState<Role>(null)
+  const [role, setRole] = useState<Role>((urlParams.role as Role) || null)
 
   useEffect(() => {
-    navigate(`?stage=${onboardingStep}`, { replace: true })
-  }, [onboardingStep])
+    navigate(`?stage=${onboardingStep}&role=${role}`, { replace: true })
+  }, [onboardingStep, role])
 
   return (
     <OnboardingContext.Provider
@@ -92,12 +92,14 @@ const OnboardingPage = () => {
             <ClientOnboarding
               onboardingStep={onboardingStep}
               setOnboardingStep={setOnboardingStep}
+              role={role}
             />
           )}
           {role === 'TEMP_AGENCY_REP' && (
             <TempAgencyRepOnboarding
               onboardingStep={onboardingStep}
               setOnboardingStep={setOnboardingStep}
+              role={role}
             />
           )}
         </main>
@@ -109,15 +111,17 @@ const OnboardingPage = () => {
 type ClientOnboardingProps = {
   onboardingStep: OnboardingStages
   setOnboardingStep: (step: OnboardingStages) => void
+  role: Role
 }
 const ClientOnboarding = ({
   onboardingStep,
   setOnboardingStep,
+  role,
 }: ClientOnboardingProps) => {
   return (
     <>
       {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} />
+        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
       )}
       {onboardingStep === 'addAuthorizedSignatory' && (
         <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
@@ -153,13 +157,24 @@ const ClientOnboarding = ({
 type TempAgencyRepOnboardingProps = {
   onboardingStep: OnboardingStages
   setOnboardingStep: (step: OnboardingStages) => void
+  role: Role
 }
 
 const TempAgencyRepOnboarding = ({
   onboardingStep,
   setOnboardingStep,
+  role,
 }: TempAgencyRepOnboardingProps) => {
-  return <></>
+  return (
+    <>
+      {onboardingStep === 'addBusiness' && (
+        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
+      )}
+      {onboardingStep === 'addAuthorizedSignatory' && (
+        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+      )}
+    </>
+  )
 }
 
 export default OnboardingPage
