@@ -17,7 +17,7 @@ import { Label } from 'src/components/ui/label'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const AddBranch = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
 
   const [regionInput, setRegionInput] = useState('')
   const [selectedRegions, setSelectedRegions] = useState([])
@@ -35,9 +35,12 @@ const AddBranch = () => {
     setCommandOpen(false)
   }
   function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('addFinancialInfo')
     setOnboardingStep('internalOrganization')
   }
   function handlePreviousClick() {
+    if (role === 'TEMP_AGENCY_REP')
+      return setOnboardingStep('addAuthorizedSignatory')
     setOnboardingStep('addFinancialInfo')
   }
   return (
@@ -121,11 +124,13 @@ const AddBranch = () => {
           )}
         </Command>
       </div>
-      <div>
-        <Label>CAO</Label>
+      {role === 'CLIENT' && (
+        <div>
+          <Label>CAO</Label>
 
-        <SelectCao />
-      </div>
+          <SelectCao />
+        </div>
+      )}
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
