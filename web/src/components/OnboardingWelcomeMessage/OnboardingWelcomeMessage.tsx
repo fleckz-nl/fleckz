@@ -1,16 +1,13 @@
-import { SetStateAction } from 'react'
+import { useContext } from 'react'
 
 import logo from 'web/public/images/logo-white-text.png'
 
 import { Button } from 'src/components/ui/button'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingWelcomeMessageProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<string>>
-}
+const OnboardingWelcomeMessage = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const OnboardingWelcomeMessage = ({
-  setOnboardingStep,
-}: OnboardingWelcomeMessageProps) => {
   return (
     <div className="center mx-auto flex-col gap-4 py-40">
       <img src={logo} alt="logo" className="w-56" />
