@@ -240,7 +240,7 @@ const Confirmed = () => {
       <div className="text-center text-xl font-bold">
         Alle medewerkers zijn bevestigd!
       </div>
-      {confirmedWorkers.map((confirmedWorker) => (
+      {confirmedWorkers.map((confirmedWorker: Worker) => (
         <>
           <WorkerConfirmationStatus
             key={confirmedWorker.id}
