@@ -94,7 +94,7 @@ const OnboardingPage = () => {
 }
 
 const ClientOnboarding = () => {
-  const { onboardingStep, setOnboardingStep } = useContext(OnboardingContext)
+  const { onboardingStep } = useContext(OnboardingContext)
   return (
     <>
       {onboardingStep === 'addBusiness' && <SelectBusiness />}
@@ -110,9 +110,7 @@ const ClientOnboarding = () => {
       {onboardingStep === 'successMessage' && <OnboardingSuccess />}
       {onboardingStep === 'addJobProfile' && <OnboardingAddJobProfile />}
       {onboardingStep === 'planWork' && <OnboardingPlanWork />}
-      {onboardingStep === 'hireWorker' && (
-        <HireWorker setOnboardingStep={setOnboardingStep} />
-      )}
+      {onboardingStep === 'hireWorker' && <HireWorker />}
     </>
   )
 }
