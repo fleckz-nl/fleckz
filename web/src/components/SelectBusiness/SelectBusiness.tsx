@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { ArrowLeft, RotateCw } from 'lucide-react'
 import { Role } from 'types/graphql'
@@ -13,14 +13,10 @@ import {
   CommandList,
 } from 'src/components/ui/command'
 import { Separator } from 'src/components/ui/separator'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type SelectBusinessProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-  role: Role
-}
-
-const SelectBusiness = ({ setOnboardingStep, role }: SelectBusinessProps) => {
+const SelectBusiness = () => {
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
   const [kvkNumber, setKvkNumber] = useState('')
   const [commandOpen, setCommandOpen] = useState(kvkNumber || false)
   const [showCard, setShowCard] = useState(false)

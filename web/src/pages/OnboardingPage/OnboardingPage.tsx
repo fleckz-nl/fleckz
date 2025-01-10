@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Role } from 'types/graphql'
 
@@ -79,13 +79,7 @@ const OnboardingPage = () => {
           )}
           {onboardingStep === 'avatarAndName' && <OnboardingAvatarAndName />}
           {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
-          {role === 'CLIENT' && (
-            <ClientOnboarding
-              onboardingStep={onboardingStep}
-              setOnboardingStep={setOnboardingStep}
-              role={role}
-            />
-          )}
+          {role === 'CLIENT' && <ClientOnboarding />}
           {role === 'TEMP_AGENCY_REP' && (
             <TempAgencyRepOnboarding
               onboardingStep={onboardingStep}
@@ -99,21 +93,11 @@ const OnboardingPage = () => {
   )
 }
 
-type ClientOnboardingProps = {
-  onboardingStep: OnboardingStages
-  setOnboardingStep: (step: OnboardingStages) => void
-  role: Role
-}
-const ClientOnboarding = ({
-  onboardingStep,
-  setOnboardingStep,
-  role,
-}: ClientOnboardingProps) => {
+const ClientOnboarding = () => {
+  const { onboardingStep, setOnboardingStep } = useContext(OnboardingContext)
   return (
     <>
-      {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
-      )}
+      {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
         <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
       )}
@@ -154,13 +138,10 @@ type TempAgencyRepOnboardingProps = {
 const TempAgencyRepOnboarding = ({
   onboardingStep,
   setOnboardingStep,
-  role,
 }: TempAgencyRepOnboardingProps) => {
   return (
     <>
-      {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
-      )}
+      {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
         <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
       )}
