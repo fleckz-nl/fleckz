@@ -99,7 +99,7 @@ const ClientOnboarding = () => {
     <>
       {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
-        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+        <AddAuthorizedSignatory />
       )}
       {onboardingStep === 'addFinancialInfo' && (
         <OnboardingFinancial setOnboardingStep={setOnboardingStep} />
@@ -137,13 +137,12 @@ type TempAgencyRepOnboardingProps = {
 
 const TempAgencyRepOnboarding = ({
   onboardingStep,
-  setOnboardingStep,
 }: TempAgencyRepOnboardingProps) => {
   return (
     <>
       {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
-        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+        <AddAuthorizedSignatory />
       )}
     </>
   )
