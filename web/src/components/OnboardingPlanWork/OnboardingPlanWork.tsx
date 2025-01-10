@@ -1,12 +1,14 @@
+import { useContext } from 'react'
+
 import { ArrowLeft } from 'lucide-react'
 
 import { Button } from 'src/components/ui/button'
 import WorkSchedularCell from 'src/components/WorkSchedularCell'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
-type OnboardingPlanWorkProps = {
-  setOnboardingStep: React.Dispatch<React.SetStateAction<OnboardingStages>>
-}
-const OnboardingPlanWork = ({ setOnboardingStep }: OnboardingPlanWorkProps) => {
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
+
+const OnboardingPlanWork = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
+
   function handlePreviousClick() {
     setOnboardingStep('addJobProfile')
   }

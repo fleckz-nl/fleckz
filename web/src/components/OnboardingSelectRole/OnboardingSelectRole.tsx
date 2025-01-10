@@ -1,20 +1,10 @@
-import { Dispatch, SetStateAction } from 'react'
-
-import { Role } from 'types/graphql'
-import workersMarch from 'web/public/images/workers-march.png'
+import { useContext } from 'react'
 
 import { Button } from 'src/components/ui/button'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingSelectRoleProps = {
-  setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
-  setRole: Dispatch<SetStateAction<Role>>
-}
-
-const OnboardingSelectRole = ({
-  setOnboardingStep,
-  setRole,
-}: OnboardingSelectRoleProps) => {
+const OnboardingSelectRole = () => {
+  const { setOnboardingStep, setRole } = useContext(OnboardingContext)
   return (
     <>
       <header className="center mx-auto mt-8 flex max-w-md flex-col">

@@ -1,4 +1,4 @@
-import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react'
+import { MouseEventHandler, useContext, useState } from 'react'
 
 import { ArrowLeft, CirclePlus } from 'lucide-react'
 
@@ -17,15 +17,11 @@ import { CurrencyInput, Input } from 'src/components/ui/input'
 import { Label } from 'src/components/ui/label'
 import { SwitchWhite } from 'src/components/ui/switch'
 import { Textarea } from 'src/components/ui/textarea'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingAddJobProfileProps = {
-  setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
-}
+const OnboardingAddJobProfile = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const OnboardingAddJobProfile = ({
-  setOnboardingStep,
-}: OnboardingAddJobProfileProps) => {
   const [showProfileForm, setShowProfileForm] = useState(false)
   function handleMakeProfile() {
     setShowProfileForm(true)

@@ -1,14 +1,12 @@
-import { Dispatch, SetStateAction } from 'react'
+import { useContext } from 'react'
 
 import Confetti from 'src/components/Confetti/Confetti'
 import { Button } from 'src/components/ui/button'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingSuccessProps = {
-  setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
-}
+const OnboardingSuccess = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const OnboardingSuccess = ({ setOnboardingStep }: OnboardingSuccessProps) => {
   function handleNextClick() {
     setOnboardingStep('addJobProfile')
   }

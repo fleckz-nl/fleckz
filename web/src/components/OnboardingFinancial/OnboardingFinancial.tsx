@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import { ArrowLeft } from 'lucide-react'
 
 import TextInput from 'src/components/TextInput/TextInput'
@@ -12,15 +14,11 @@ import {
   SelectItem,
 } from 'src/components/ui/select'
 import { SwitchWhite } from 'src/components/ui/switch'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingFinancialProps = {
-  setOnboardingStep: React.Dispatch<React.SetStateAction<OnboardingStages>>
-}
+const OnboardingFinancial = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const OnboardingFinancial = ({
-  setOnboardingStep,
-}: OnboardingFinancialProps) => {
   function handleNextClick() {
     setOnboardingStep('addBranch')
   }

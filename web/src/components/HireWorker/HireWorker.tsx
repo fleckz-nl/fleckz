@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 import {
   ArrowLeft,
@@ -15,13 +15,11 @@ import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import { Separator } from 'src/components/ui/separator'
 import { formatToEuros } from 'src/lib/formatToEuros'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type HireWorkerProps = {
-  setOnboardingStep: React.Dispatch<React.SetStateAction<OnboardingStages>>
-}
+const HireWorker = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const HireWorker = ({ setOnboardingStep }: HireWorkerProps) => {
   const [stage, setStage] = useState<
     'selectWorker' | 'pendingConfirmation' | 'Confirmed'
   >('selectWorker')
@@ -240,7 +238,7 @@ const Confirmed = () => {
       <div className="text-center text-xl font-bold">
         Alle medewerkers zijn bevestigd!
       </div>
-      {confirmedWorkers.map((confirmedWorker) => (
+      {confirmedWorkers.map((confirmedWorker: Worker) => (
         <>
           <WorkerConfirmationStatus
             key={confirmedWorker.id}

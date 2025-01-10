@@ -1,4 +1,4 @@
-import { SetStateAction, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 
 import {
   FileUploaderInline,
@@ -19,15 +19,11 @@ import {
   CommandList,
 } from 'src/components/ui/command'
 import { Label } from 'src/components/ui/label'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingInternalOrganizationProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-}
+const OnboardingInternalOrganization = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const OnboardingInternalOrganization = ({
-  setOnboardingStep,
-}: OnboardingInternalOrganizationProps) => {
   const uploaderRef = useRef<InstanceType<UploadCtxProvider> | null>(null)
   const [cultureInput, setCultureInput] = useState('')
   const [selectedCultures, setSelectedCultures] = useState([])

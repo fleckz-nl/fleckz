@@ -1,19 +1,15 @@
-import { SetStateAction } from 'react'
+import { useContext } from 'react'
 
 import { ArrowLeft } from 'lucide-react'
 
 import TextInput from 'src/components/TextInput/TextInput'
 import { Button } from 'src/components/ui/button'
 import { Label } from 'src/components/ui/label'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type AddAuthorizedSignatoryProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-}
+const AddAuthorizedSignatory = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const AddAuthorizedSignatory = ({
-  setOnboardingStep,
-}: AddAuthorizedSignatoryProps) => {
   function handleNextClick() {
     setOnboardingStep('addFinancialInfo')
   }

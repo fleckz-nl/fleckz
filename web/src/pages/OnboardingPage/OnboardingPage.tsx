@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { Role } from 'types/graphql'
 
-import { navigate, routes, useParams } from '@redwoodjs/router'
+import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
@@ -19,6 +19,7 @@ import OnboardingSelectRole from 'src/components/OnboardingSelectRole/Onboarding
 import OnboardingSuccess from 'src/components/OnboardingSuccess/OnboardingSuccess'
 import OnboardingWelcomeMessage from 'src/components/OnboardingWelcomeMessage/OnboardingWelcomeMessage'
 import SelectBusiness from 'src/components/SelectBusiness/SelectBusiness'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 export type OnboardingStages =
   | 'welcomeMessage'
@@ -66,109 +67,55 @@ const OnboardingPage = () => {
   }, [onboardingStep, role])
 
   return (
-    <>
+    <OnboardingContext.Provider
+      value={{ onboardingStep, setOnboardingStep, role, setRole }}
+    >
       <Metadata title="Onboarding" description="Onboarding page" />
       <div className="flex min-h-screen flex-col bg-primary text-white">
         <main className="container">
-          {onboardingStep === 'welcomeMessage' && (
-            <OnboardingWelcomeMessage setOnboardingStep={setOnboardingStep} />
-          )}
+          {onboardingStep === 'welcomeMessage' && <OnboardingWelcomeMessage />}
           {onboardingStep === 'emailAndPassword' && (
-            <OnboardingEmailAndPassword setOnboardingStep={setOnboardingStep} />
+            <OnboardingEmailAndPassword />
           )}
-          {onboardingStep === 'avatarAndName' && (
-            <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />
-          )}
-          {onboardingStep === 'selectRole' && (
-            <OnboardingSelectRole
-              setOnboardingStep={setOnboardingStep}
-              setRole={setRole}
-            />
-          )}
-          {role === 'CLIENT' && (
-            <ClientOnboarding
-              onboardingStep={onboardingStep}
-              setOnboardingStep={setOnboardingStep}
-              role={role}
-            />
-          )}
-          {role === 'TEMP_AGENCY_REP' && (
-            <TempAgencyRepOnboarding
-              onboardingStep={onboardingStep}
-              setOnboardingStep={setOnboardingStep}
-              role={role}
-            />
-          )}
+          {onboardingStep === 'avatarAndName' && <OnboardingAvatarAndName />}
+          {onboardingStep === 'selectRole' && <OnboardingSelectRole />}
+          {role === 'CLIENT' && <ClientOnboarding />}
+          {role === 'TEMP_AGENCY_REP' && <TempAgencyRepOnboarding />}
         </main>
       </div>
-    </>
+    </OnboardingContext.Provider>
   )
 }
 
-type ClientOnboardingProps = {
-  onboardingStep: OnboardingStages
-  setOnboardingStep: (step: OnboardingStages) => void
-  role: Role
-}
-const ClientOnboarding = ({
-  onboardingStep,
-  setOnboardingStep,
-  role,
-}: ClientOnboardingProps) => {
+const ClientOnboarding = () => {
+  const { onboardingStep } = useContext(OnboardingContext)
   return (
     <>
-      {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
-      )}
+      {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
-        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+        <AddAuthorizedSignatory />
       )}
-      {onboardingStep === 'addFinancialInfo' && (
-        <OnboardingFinancial setOnboardingStep={setOnboardingStep} />
-      )}
-      {onboardingStep === 'addBranch' && (
-        <AddBranch setOnboardingStep={setOnboardingStep} />
-      )}
+      {onboardingStep === 'addFinancialInfo' && <OnboardingFinancial />}
+      {onboardingStep === 'addBranch' && <AddBranch />}
       {onboardingStep === 'internalOrganization' && (
-        <OnboardingInternalOrganization setOnboardingStep={setOnboardingStep} />
+        <OnboardingInternalOrganization />
       )}
-      {onboardingStep === 'contactPerson' && (
-        <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
-      )}
-      {onboardingStep === 'successMessage' && (
-        <OnboardingSuccess setOnboardingStep={setOnboardingStep} />
-      )}
-      {onboardingStep === 'addJobProfile' && (
-        <OnboardingAddJobProfile setOnboardingStep={setOnboardingStep} />
-      )}
-      {onboardingStep === 'planWork' && (
-        <OnboardingPlanWork setOnboardingStep={setOnboardingStep} />
-      )}
-      {onboardingStep === 'hireWorker' && (
-        <HireWorker setOnboardingStep={setOnboardingStep} />
-      )}
+      {onboardingStep === 'contactPerson' && <OnboardingContactPerson />}
+      {onboardingStep === 'successMessage' && <OnboardingSuccess />}
+      {onboardingStep === 'addJobProfile' && <OnboardingAddJobProfile />}
+      {onboardingStep === 'planWork' && <OnboardingPlanWork />}
+      {onboardingStep === 'hireWorker' && <HireWorker />}
     </>
   )
 }
 
-type TempAgencyRepOnboardingProps = {
-  onboardingStep: OnboardingStages
-  setOnboardingStep: (step: OnboardingStages) => void
-  role: Role
-}
-
-const TempAgencyRepOnboarding = ({
-  onboardingStep,
-  setOnboardingStep,
-  role,
-}: TempAgencyRepOnboardingProps) => {
+const TempAgencyRepOnboarding = () => {
+  const { onboardingStep } = useContext(OnboardingContext)
   return (
     <>
-      {onboardingStep === 'addBusiness' && (
-        <SelectBusiness setOnboardingStep={setOnboardingStep} role={role} />
-      )}
+      {onboardingStep === 'addBusiness' && <SelectBusiness />}
       {onboardingStep === 'addAuthorizedSignatory' && (
-        <AddAuthorizedSignatory setOnboardingStep={setOnboardingStep} />
+        <AddAuthorizedSignatory />
       )}
     </>
   )
