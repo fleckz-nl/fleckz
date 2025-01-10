@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useContext, useState } from 'react'
 
 import { ArrowLeft } from 'lucide-react'
 
@@ -14,13 +14,11 @@ import {
   CommandList,
 } from 'src/components/ui/command'
 import { Label } from 'src/components/ui/label'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type AddBranchProps = {
-  setOnboardingStep: Dispatch<SetStateAction<OnboardingStages>>
-}
+const AddBranch = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
 
-const AddBranch = ({ setOnboardingStep }: AddBranchProps) => {
   const [regionInput, setRegionInput] = useState('')
   const [selectedRegions, setSelectedRegions] = useState([])
   const [commandOpen, setCommandOpen] = useState(false)
