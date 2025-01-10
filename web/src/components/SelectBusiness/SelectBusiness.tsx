@@ -1,6 +1,7 @@
 import { SetStateAction, useState } from 'react'
 
 import { ArrowLeft, RotateCw } from 'lucide-react'
+import { Role } from 'types/graphql'
 
 import { Button } from 'src/components/ui/button'
 import {
@@ -16,9 +17,10 @@ import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
 
 type SelectBusinessProps = {
   setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
+  role: Role
 }
 
-const SelectBusiness = ({ setOnboardingStep }: SelectBusinessProps) => {
+const SelectBusiness = ({ setOnboardingStep, role }: SelectBusinessProps) => {
   const [kvkNumber, setKvkNumber] = useState('')
   const [commandOpen, setCommandOpen] = useState(kvkNumber || false)
   const [showCard, setShowCard] = useState(false)
@@ -57,7 +59,8 @@ const SelectBusiness = ({ setOnboardingStep }: SelectBusinessProps) => {
         {showCard ? (
           SelectedBusinessCard(
             kvkData.find((b) => b.kvkNummer === selectedBusiness),
-            handleResetClick
+            handleResetClick,
+            role
           )
         ) : (
           <Command className="bg-foreground bg-white">
@@ -131,7 +134,8 @@ const SelectBusiness = ({ setOnboardingStep }: SelectBusinessProps) => {
 
 const SelectedBusinessCard = (
   business: (typeof kvkData)[0],
-  handleResetClick: () => void
+  handleResetClick: () => void,
+  role: Role
 ) => {
   return (
     <div className="flex bg-gray-800 px-4 text-lg text-white">
@@ -145,14 +149,18 @@ const SelectedBusinessCard = (
           {business.adressen[0].postbusnummer} {business.adressen[0].postcode}{' '}
           {business.adressen[0].plaats}
         </div>
-        <h3 className="mt-4">SBI Codes</h3>
-        <ul>
-          {business.sbiActiviteiten.map((a) => (
-            <li key={a.sbiCode}>
-              {a.sbiCode}: {a.sbiOmschrijving}
-            </li>
-          ))}
-        </ul>
+        {role === 'CLIENT' && (
+          <>
+            <h3 className="mt-4">SBI Codes</h3>
+            <ul>
+              {business.sbiActiviteiten.map((a) => (
+                <li key={a.sbiCode}>
+                  {a.sbiCode}: {a.sbiOmschrijving}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
 
       <div className="my-12 ml-8 mr-2 flex-shrink">
