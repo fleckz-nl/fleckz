@@ -109,9 +109,7 @@ const ClientOnboarding = () => {
       {onboardingStep === 'contactPerson' && <OnboardingContactPerson />}
       {onboardingStep === 'successMessage' && <OnboardingSuccess />}
       {onboardingStep === 'addJobProfile' && <OnboardingAddJobProfile />}
-      {onboardingStep === 'planWork' && (
-        <OnboardingPlanWork setOnboardingStep={setOnboardingStep} />
-      )}
+      {onboardingStep === 'planWork' && <OnboardingPlanWork />}
       {onboardingStep === 'hireWorker' && (
         <HireWorker setOnboardingStep={setOnboardingStep} />
       )}
