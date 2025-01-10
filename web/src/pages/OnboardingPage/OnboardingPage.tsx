@@ -104,7 +104,7 @@ const ClientOnboarding = () => {
       {onboardingStep === 'addFinancialInfo' && <OnboardingFinancial />}
       {onboardingStep === 'addBranch' && <AddBranch />}
       {onboardingStep === 'internalOrganization' && (
-        <OnboardingInternalOrganization setOnboardingStep={setOnboardingStep} />
+        <OnboardingInternalOrganization />
       )}
       {onboardingStep === 'contactPerson' && (
         <OnboardingContactPerson setOnboardingStep={setOnboardingStep} />
