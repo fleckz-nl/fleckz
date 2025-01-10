@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Role } from 'types/graphql'
 
-import { navigate, routes, useParams } from '@redwoodjs/router'
+import { navigate, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
