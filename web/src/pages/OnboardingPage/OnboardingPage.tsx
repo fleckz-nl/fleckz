@@ -75,7 +75,7 @@ const OnboardingPage = () => {
         <main className="container">
           {onboardingStep === 'welcomeMessage' && <OnboardingWelcomeMessage />}
           {onboardingStep === 'emailAndPassword' && (
-            <OnboardingEmailAndPassword setOnboardingStep={setOnboardingStep} />
+            <OnboardingEmailAndPassword />
           )}
           {onboardingStep === 'avatarAndName' && (
             <OnboardingAvatarAndName setOnboardingStep={setOnboardingStep} />

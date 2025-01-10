@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 
 import {
   FieldError,
@@ -8,20 +8,11 @@ import {
   Submit,
   TextField,
 } from '@redwoodjs/forms'
-import { toast } from '@redwoodjs/web/toast'
 
-import { useAuth } from 'src/auth'
-import { OnboardingStages } from 'src/pages/OnboardingPage/OnboardingPage'
+import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
-type OnboardingEmailAndPasswordProps = {
-  setOnboardingStep: React.Dispatch<SetStateAction<OnboardingStages>>
-}
-
-const OnboardingEmailAndPassword = ({
-  setOnboardingStep,
-}: OnboardingEmailAndPasswordProps) => {
-  const { signUp } = useAuth()
-
+const OnboardingEmailAndPassword = () => {
+  const { setOnboardingStep } = useContext(OnboardingContext)
   const emailRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
     emailRef.current?.focus()
@@ -30,17 +21,18 @@ const OnboardingEmailAndPassword = ({
   const onSubmit = async (data: Record<string, string>) => {
     return setOnboardingStep('avatarAndName')
 
-    const response = await signUp({
-      username: data.email,
-      password: data.password,
-    })
+    // const response = await signUp({
+    //   username: data.email,
+    //   password: data.password,
+    // })
 
-    if (response.message) {
-      toast(response.message)
-    } else if (response.error) {
-      toast.error(response.error)
-    }
+    // if (response.message) {
+    //   toast(response.message)
+    // } else if (response.error) {
+    //   toast.error(response.error)
+    // }
   }
+
   return (
     <div className="rw-scaffold mx-auto my-40 max-w-md py-4">
       <div className="rw-segment-main">
