@@ -32,7 +32,6 @@ const OnboardingInternalOrganization = () => {
 
   function handleOnSelectCulture(value: string) {
     setSelectedCultures((currentCultures) => {
-      console.log(value)
       if (currentCultures == null) return [value]
       if (currentCultures.includes(value))
         return currentCultures.filter((culture) => culture !== value)
