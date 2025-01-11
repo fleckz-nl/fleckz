@@ -122,6 +122,9 @@ const TempAgencyRepOnboarding = () => {
       {onboardingStep === 'addFinancialInfo' && <OnboardingFinancial />}
       {onboardingStep === 'contactPerson' && <OnboardingContactPerson />}
       {onboardingStep === 'certificates' && <Certificates />}
+      {onboardingStep === 'internalOrganization' && (
+        <OnboardingInternalOrganization />
+      )}
     </>
   )
 }

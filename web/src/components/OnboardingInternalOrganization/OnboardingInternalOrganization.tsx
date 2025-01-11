@@ -22,7 +22,7 @@ import { Label } from 'src/components/ui/label'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const OnboardingInternalOrganization = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
 
   const uploaderRef = useRef<InstanceType<UploadCtxProvider> | null>(null)
   const [cultureInput, setCultureInput] = useState('')
@@ -32,7 +32,6 @@ const OnboardingInternalOrganization = () => {
 
   function handleOnSelectCulture(value: string) {
     setSelectedCultures((currentCultures) => {
-      console.log(value)
       if (currentCultures == null) return [value]
       if (currentCultures.includes(value))
         return currentCultures.filter((culture) => culture !== value)
@@ -49,10 +48,13 @@ const OnboardingInternalOrganization = () => {
   }
 
   function handlePreviousClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('certificates')
     setOnboardingStep('addBusiness')
   }
 
   function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP')
+      return setOnboardingStep('confirmInformation')
     setOnboardingStep('contactPerson')
   }
 
