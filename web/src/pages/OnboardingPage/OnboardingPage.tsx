@@ -11,6 +11,7 @@ import Certificates from 'src/components/Certificates/Certificates'
 import HireWorker from 'src/components/HireWorker/HireWorker'
 import OnboardingAddJobProfile from 'src/components/OnboardingAddJobProfile/OnboardingAddJobProfile'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
+import OnboardingConfirmInfo from 'src/components/OnboardingConfirmInfo/OnboardingConfirmInfo'
 import OnboardingContactPerson from 'src/components/OnboardingContactPerson/OnboardingContactPerson'
 import OnboardingEmailAndPassword from 'src/components/OnboardingEmailAndPassword/OnboardingEmailAndPassword'
 import OnboardingFinancial from 'src/components/OnboardingFinancial/OnboardingFinancial'
@@ -125,6 +126,7 @@ const TempAgencyRepOnboarding = () => {
       {onboardingStep === 'internalOrganization' && (
         <OnboardingInternalOrganization />
       )}
+      {onboardingStep === 'confirmInformation' && <OnboardingConfirmInfo />}
     </>
   )
 }
