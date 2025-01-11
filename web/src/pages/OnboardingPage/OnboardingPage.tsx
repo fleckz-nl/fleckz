@@ -7,6 +7,7 @@ import { Metadata } from '@redwoodjs/web'
 
 import AddAuthorizedSignatory from 'src/components/AddAuthorizedSignatory/AddAuthorizedSignatory'
 import AddBranch from 'src/components/AddBranch/AddBranch'
+import Certificates from 'src/components/Certificates/Certificates'
 import HireWorker from 'src/components/HireWorker/HireWorker'
 import OnboardingAddJobProfile from 'src/components/OnboardingAddJobProfile/OnboardingAddJobProfile'
 import OnboardingAvatarAndName from 'src/components/OnboardingAvatarAndName/OnboardingAvatarAndName'
@@ -120,6 +121,7 @@ const TempAgencyRepOnboarding = () => {
       {onboardingStep === 'addBranch' && <AddBranch />}
       {onboardingStep === 'addFinancialInfo' && <OnboardingFinancial />}
       {onboardingStep === 'contactPerson' && <OnboardingContactPerson />}
+      {onboardingStep === 'certificates' && <Certificates />}
     </>
   )
 }
