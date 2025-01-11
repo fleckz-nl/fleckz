@@ -127,6 +127,7 @@ const TempAgencyRepOnboarding = () => {
         <OnboardingInternalOrganization />
       )}
       {onboardingStep === 'confirmInformation' && <OnboardingConfirmInfo />}
+      {onboardingStep === 'successMessage' && <OnboardingSuccess />}
     </>
   )
 }
