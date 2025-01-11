@@ -7,7 +7,7 @@ import { Button } from 'src/components/ui/button'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const OnboardingContactPerson = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
   const [contactPersons, setContactPersons] = useState([
     createNewContactPerson(),
   ])
@@ -20,10 +20,12 @@ const OnboardingContactPerson = () => {
   }
 
   function handlePreviousClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('addFinancialInfo')
     setOnboardingStep('internalOrganization')
   }
 
   function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('certificates')
     setOnboardingStep('successMessage')
   }
 
