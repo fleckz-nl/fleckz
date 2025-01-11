@@ -8,9 +8,10 @@ import { Label } from 'src/components/ui/label'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const AddAuthorizedSignatory = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
 
   function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('addBranch')
     setOnboardingStep('addFinancialInfo')
   }
 
