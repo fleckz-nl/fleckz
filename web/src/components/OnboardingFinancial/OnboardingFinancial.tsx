@@ -17,13 +17,15 @@ import { SwitchWhite } from 'src/components/ui/switch'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const OnboardingFinancial = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
 
-  function handleNextClick() {
-    setOnboardingStep('addBranch')
-  }
   function handlePreviousClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('addBranch')
     setOnboardingStep('addAuthorizedSignatory')
+  }
+  function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('contactPerson')
+    setOnboardingStep('addBranch')
   }
   return (
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4">

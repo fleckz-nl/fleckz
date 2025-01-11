@@ -118,6 +118,7 @@ const TempAgencyRepOnboarding = () => {
         <AddAuthorizedSignatory />
       )}
       {onboardingStep === 'addBranch' && <AddBranch />}
+      {onboardingStep === 'addFinancialInfo' && <OnboardingFinancial />}
     </>
   )
 }
