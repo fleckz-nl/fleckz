@@ -5,9 +5,10 @@ import { Button } from 'src/components/ui/button'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const OnboardingSuccess = () => {
-  const { setOnboardingStep } = useContext(OnboardingContext)
+  const { setOnboardingStep, role } = useContext(OnboardingContext)
 
   function handleNextClick() {
+    if (role === 'TEMP_AGENCY_REP') return setOnboardingStep('cvUpload')
     setOnboardingStep('addJobProfile')
   }
   return (
@@ -26,13 +27,19 @@ const OnboardingSuccess = () => {
           Wij nemen binnen 1 uur contact met u op om persoonlijk kennis te
           maken.
         </p>
+        {role === 'TEMP_AGENCY_REP' && (
+          <p>
+            Je kunt wel alvast CV&apos;s uploaden, zodat je straks direct aan de
+            slag kunt.
+          </p>
+        )}
       </div>
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
         onClick={handleNextClick}
       >
-        Volgende
+        {role === 'TEMP_AGENCY_REP' ? "CV's uploaden" : 'Volgende'}
       </Button>
     </div>
   )
