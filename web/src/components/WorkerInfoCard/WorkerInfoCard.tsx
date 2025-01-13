@@ -153,6 +153,9 @@ const WorkerInfoCard = () => {
             </div>
           </PopoverContent>
         </Popover>
+        <Button variant="accent" className="text-md">
+          Aanpassen
+        </Button>
       </div>
     </div>
   )
