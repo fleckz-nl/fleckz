@@ -16,7 +16,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'src/components/ui/select'
-import WorkerInfoCard from 'src/components/WorkerInfoCard/WorkerInfoCard'
+import WorkerInfoCard, {
+  Skill,
+} from 'src/components/WorkerInfoCard/WorkerInfoCard'
 import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const CvsList = () => {
@@ -41,7 +43,9 @@ const CvsList = () => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      <WorkerInfoCard />
+      {workers.map((worker) => (
+        <WorkerInfoCard key={worker.id} worker={worker} />
+      ))}
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
