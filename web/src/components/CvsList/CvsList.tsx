@@ -43,9 +43,11 @@ const CvsList = () => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      {workers.map((worker) => (
-        <WorkerInfoCard key={worker.id} worker={worker} />
-      ))}
+      <div className="mb-8 space-y-8">
+        {workers.map((worker) => (
+          <WorkerInfoCard key={worker.id} worker={worker} />
+        ))}
+      </div>
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
