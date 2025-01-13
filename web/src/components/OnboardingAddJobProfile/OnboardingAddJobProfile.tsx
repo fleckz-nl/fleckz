@@ -134,7 +134,10 @@ const AddProfileForm = () => {
         </Label>
         <SwitchWhite id="isCarAvailable" className="ml-8 align-middle" />
       </div>
-      <ChooseSoftSkills />
+      <div className="space-y-2">
+        <Label className="text-xl">Soft skills</Label>
+        <ChooseSoftSkills />
+      </div>
       <div className="space-y-2">
         <Label htmlFor="notes" className="text-xl">
           Notities
