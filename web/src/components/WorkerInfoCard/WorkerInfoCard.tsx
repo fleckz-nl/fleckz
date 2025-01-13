@@ -161,7 +161,24 @@ const WorkerInfoCard = () => {
   )
 }
 
-const softSkills = [
+export type Skill =
+  | 'Flexibiliteit'
+  | 'Collectiviteit'
+  | 'Resultaatgerichtheid'
+  | 'Innovatie'
+  | 'Toewijding'
+  | 'Diversiteit'
+  | 'Transparantie'
+  | 'Leren'
+  | 'Creativiteit'
+  | 'Teamwerk'
+
+export type SoftSkill = {
+  id: string
+  name: Skill
+}
+
+export const softSkills: SoftSkill[] = [
   {
     id: 'Q2K3M4N5L6O7P8',
     name: 'Flexibiliteit',
