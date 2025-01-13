@@ -1,10 +1,43 @@
+import { useState } from 'react'
+
 import { AvatarImage } from '@radix-ui/react-avatar'
 
 import { Avatar, AvatarFallback } from 'src/components/ui/avatar'
+import { Badge } from 'src/components/ui/badge'
+import { Button } from 'src/components/ui/button'
+import {
+  Command,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from 'src/components/ui/command'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from 'src/components/ui/popover'
 
 const WorkerInfoCard = () => {
+  const [commandOpen, setCommandOpen] = useState(false)
+  const [skillInput, setSkillInput] = useState('')
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([
+    'Flexibiliteit',
+    'Creativiteit',
+  ])
+
+  function handleOnSelectSkill(value: string) {
+    setSelectedSkills((currentSkills) => {
+      if (currentSkills == null) return [value]
+      if (currentSkills.includes(value))
+        return currentSkills.filter((skill) => skill !== value)
+
+      return [...currentSkills, value]
+    })
+    setCommandOpen(false)
+  }
   return (
-    <div className="flex w-11/12 max-w-sm flex-col gap-4 text-white">
+    <div className="container flex max-w-md flex-col gap-4 break-words bg-black/70  p-2 text-white">
       <div className="flex items-center gap-4">
         <Avatar className="size-16">
           {/* TODO: Get the photo of each temp agency worker for AvatarImage*/}
@@ -44,8 +77,128 @@ const WorkerInfoCard = () => {
           1,2
         </div>
       </div>
+      <div className="flex items-center gap-2">
+        {selectedSkills.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {selectedSkills.map((skill) => (
+              <Badge
+                key={skill}
+                className="w-fit cursor-pointer rounded-3xl border border-secondary bg-accent/80  text-white"
+                onClick={() =>
+                  setSelectedSkills((current) =>
+                    current.filter((c) => c !== skill)
+                  )
+                }
+              >
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="mx-auto flex flex-wrap justify-center gap-4">
+        <Popover>
+          <PopoverTrigger>
+            <Button variant="accent" className="text-md text-primary">
+              Soft skills toevoegen
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-full p-0">
+            <div>
+              <Command className="bg-white">
+                <CommandInput
+                  className="my-2"
+                  placeholder="Voeg soft skills toe"
+                  onFocus={() => setCommandOpen(true)}
+                  value={skillInput}
+                  onChangeCapture={(v) => setSkillInput(v.currentTarget.value)}
+                />
+                {commandOpen && (
+                  <CommandList>
+                    <CommandGroup>
+                      {softSkills.map((skill) => {
+                        if (selectedSkills.find((c) => skill.name === c)) return
+                        return (
+                          <CommandItem
+                            key={skill.id}
+                            value={skill.name}
+                            className="cursor-pointer"
+                            onSelect={handleOnSelectSkill}
+                          >
+                            <div className="my-2 flex flex-col text-base">
+                              <div className="mb-2 text-gray-700">
+                                {skill.name
+                                  .split(new RegExp(`(${skillInput})`))
+                                  .map((part, index) =>
+                                    index === 1 ? (
+                                      <mark
+                                        className="bg-inherit font-bold text-black"
+                                        key={index}
+                                      >
+                                        {part}
+                                      </mark>
+                                    ) : (
+                                      part
+                                    )
+                                  )}
+                              </div>
+                            </div>
+                          </CommandItem>
+                        )
+                      })}
+                    </CommandGroup>
+                  </CommandList>
+                )}
+              </Command>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
     </div>
   )
 }
+
+const softSkills = [
+  {
+    id: 'Q2K3M4N5L6O7P8',
+    name: 'Flexibiliteit',
+  },
+  {
+    id: 'T9G8F7E6D5C4B3A2',
+    name: 'Collectiviteit',
+  },
+  {
+    id: 'V1U0T9R8Q7P6O5N4M3L2',
+    name: 'Resultaatgerichtheid',
+  },
+  {
+    id: 'B8Y7X6W5V4U3T2S1R0',
+    name: 'Innovatie',
+  },
+  {
+    id: 'F6E5D4C3B2A1Z0Y9X8',
+    name: 'Toewijding',
+  },
+  {
+    id: 'G5H4F3E2D1C0B9A8',
+    name: 'Diversiteit',
+  },
+  {
+    id: 'P1Q0O9N8M7L6K5J4I3H2G1',
+    name: 'Transparantie',
+  },
+  {
+    id: 'X7Z6W5V4T3S2R1Q0P9',
+    name: 'Leren',
+  },
+  {
+    id: 'Y8F7E6D5C4B3A2O1N0M9',
+    name: 'Creativiteit',
+  },
+  {
+    id: 'Z9T8S7R6Q5P4O3N2L1K0J9',
+    name: 'Teamwerk',
+  },
+]
 
 export default WorkerInfoCard
