@@ -1,4 +1,4 @@
-import { FileSearch, FileText, Printer } from 'lucide-react'
+import { FileSearch, FileText, Printer, Users } from 'lucide-react'
 import { Button } from 'web/src/components/ui/button'
 
 import { Metadata } from '@redwoodjs/web'
@@ -6,6 +6,7 @@ import { Metadata } from '@redwoodjs/web'
 import SearchInput from 'src/components/SearchInput/SearchInput'
 import SortButton from 'src/components/SortButton/SortButton'
 import { Badge } from 'src/components/ui/badge'
+import { Separator } from 'src/components/ui/separator'
 
 const InvoicePage = () => {
   return (
@@ -17,24 +18,30 @@ const InvoicePage = () => {
           <SortButton />
           <SearchInput />
         </div>
-        <ul className="flex w-full flex-col items-center gap-1 pb-32 pt-20">
-          <li className="flex w-11/12 flex-wrap justify-end gap-2 rounded-md bg-primary/20 p-2 text-primary/70 xs:justify-between">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-1">
-                <FileText />
-                <span className="font-semibold">12 Okt 2024</span>
+        <ul className="mt-4 flex flex-col items-center">
+          <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="font-semibold">12 Okt 2024</div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="flex flex-wrap gap-0.5">
+                  08:00
+                  <span>-</span>
+                  15:00
+                </div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="center gap-1">
+                  3
+                  <Users className="size-4 flex-shrink-0" />
+                </div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="col-span-2">Afwasser</div>
               </div>
-              <span>Mollie Baker</span>
-              <Badge className="h-fit">Ongebetald</Badge>
+              <Badge className="h-fit text-secondary">Ongebetald</Badge>
             </div>
-            <div className="flex gap-4 px-2">
-              <Button className="bg-primary p-0">
-                <FileSearch />
-              </Button>
-              <Button className="bg-primary p-0">
-                <Printer />
-              </Button>
-            </div>
+            <Button variant="accent" className="self-end text-primary">
+              Details
+            </Button>
           </li>
         </ul>
       </div>
