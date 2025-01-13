@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import { ArrowLeft } from 'lucide-react'
 
 import { navigate, routes } from '@redwoodjs/router'
 
+import SearchInput from 'src/components/SearchInput/SearchInput'
 import { Button } from 'src/components/ui/button'
 import {
   Select,
@@ -20,6 +21,7 @@ import { OnboardingContext } from 'src/pages/OnboardingPage/OnboardingContext'
 
 const CvsList = () => {
   const { setOnboardingStep } = useContext(OnboardingContext)
+  const [searchValue, setSearchValue] = useState('')
   function handlePreviousClick() {
     setOnboardingStep('cvUpload')
   }
@@ -32,8 +34,12 @@ const CvsList = () => {
     <div className="mx-auto mt-8 flex max-w-xl flex-col gap-4">
       <ArrowLeft className="cursor-pointer" onClick={handlePreviousClick} />
       <h1 className="text-2xl font-bold text-white">CVs ingelezen</h1>
-      <div>
+      <div className="flex justify-between">
         <Filter />
+        <SearchInput
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
       </div>
       <WorkerInfoCard />
       <Button
