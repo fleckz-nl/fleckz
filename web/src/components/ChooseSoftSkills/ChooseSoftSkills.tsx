@@ -29,8 +29,6 @@ const ChooseSoftSkills = () => {
 
   return (
     <div className="space-y-2">
-      <Label className="text-xl">Soft skills</Label>
-
       {selectedSkills.length > 0 && (
         <div className="flex flex-wrap gap-2">
           {selectedSkills.map((culture) => (
