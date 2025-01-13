@@ -79,4 +79,52 @@ const Filter = () => {
   )
 }
 
+type Worker = {
+  id: number
+  name: string
+  jobFunction: string
+  yearOfExp: number
+  age: number
+  hasCar: boolean
+  livingPlace: string
+  factor: number
+  softSkills: Skill[]
+}
+
+const workers: Worker[] = [
+  {
+    id: 84,
+    name: 'Hans van der Veen',
+    jobFunction: 'Afwasser',
+    yearOfExp: 3,
+    age: 21,
+    hasCar: false,
+    livingPlace: 'Amsterdam',
+    factor: 1.2,
+    softSkills: ['Flexibiliteit', 'Creativiteit'],
+  },
+  {
+    id: 25,
+    name: 'Kees de Boer',
+    jobFunction: 'Kok',
+    yearOfExp: 6,
+    age: 34,
+    hasCar: true,
+    livingPlace: 'Rotterdam',
+    factor: 1.5,
+    softSkills: ['Diversiteit', 'Innovatie'],
+  },
+  {
+    id: 38,
+    name: 'Jan de Vries',
+    jobFunction: 'Keukenhulp',
+    yearOfExp: 1,
+    age: 18,
+    hasCar: false,
+    livingPlace: 'Utrecht',
+    factor: 1.1,
+    softSkills: ['Leren', 'Teamwerk'],
+  },
+]
+
 export default CvsList
