@@ -68,30 +68,9 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
         <Label htmlFor="living-place">Woonplaats</Label>
         <TextInput id="living-place" className="align-middle" />
       </div>
-      <div className="flex items-center justify-between">
-        <Label className="mr-8 text-xl" htmlFor={'drivingLicense'}>
-          Rijbewijs
-        </Label>
-        <SwitchWhite id="drivingLicense" />
-      </div>
-      <div className="flex items-center justify-between">
-        <Label className="mr-8 text-xl" htmlFor={'ownTransport'}>
-          Eigen vervoer
-        </Label>
-        <SwitchWhite id="ownTransport" />
-      </div>
-      <div className="flex items-center justify-between">
-        <Label className="mr-8 text-xl" htmlFor={'chronologicalExperience'}>
-          Chronologisch werkervaring
-        </Label>
-        <SwitchWhite id="chronologicalExperience" />
-      </div>
-      <div className="flex items-center justify-between">
-        <Label className="mr-8 text-xl" htmlFor={'noTimeGaps'}>
-          Geen tijdsgaten
-        </Label>
-        <SwitchWhite id="noTimeGaps" />
-      </div>
+      {checkBoxQuestions.map((question) => (
+        <CheckBoxQuestion key={question.id} {...question} />
+      ))}
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
@@ -102,5 +81,29 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
     </div>
   )
 }
+
+const CheckBoxQuestion = ({ label, id }) => {
+  return (
+    <div className="flex items-center justify-between">
+      <Label className="mr-8 text-xl" htmlFor={id}>
+        {label}
+      </Label>
+      <SwitchWhite id={id} />
+    </div>
+  )
+}
+
+const checkBoxQuestions = [
+  { label: 'Rijbewijs', id: 'drivingLicense' },
+  { label: 'Eigen vervoer', id: 'ownTransport' },
+  {
+    label: 'Chronologisch werkervaring',
+    id: 'chronologicalExperience',
+  },
+  {
+    label: 'Geen tijdsgaten',
+    id: 'noTimeGaps',
+  },
+]
 
 export default EditWorkerInfo
