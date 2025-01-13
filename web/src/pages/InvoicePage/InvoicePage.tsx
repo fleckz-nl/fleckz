@@ -3,6 +3,8 @@ import { Button } from 'web/src/components/ui/button'
 
 import { Metadata } from '@redwoodjs/web'
 
+import SearchInput from 'src/components/SearchInput/SearchInput'
+import SortButton from 'src/components/SortButton/SortButton'
 import { Badge } from 'src/components/ui/badge'
 
 const InvoicePage = () => {
@@ -10,6 +12,11 @@ const InvoicePage = () => {
     <>
       <Metadata title="Invoice" description="Invoice page" />
       <div className="mx-auto flex max-w-4xl flex-col text-white">
+        <h1 className="text-xl font-bold">Facturen</h1>
+        <div className="flex justify-between gap-2">
+          <SortButton />
+          <SearchInput />
+        </div>
         <ul className="flex w-full flex-col items-center gap-1 pb-32 pt-20">
           <li className="flex w-11/12 flex-wrap justify-end gap-2 rounded-md bg-primary/20 p-2 text-primary/70 xs:justify-between">
             <div className="flex flex-wrap items-center gap-4">
