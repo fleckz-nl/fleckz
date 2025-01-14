@@ -1,5 +1,6 @@
 import { ArrowLeft, BookOpen, GraduationCap, Palette, Plus } from 'lucide-react'
 
+import ChooseSoftSkills from 'src/components/ChooseSoftSkills/ChooseSoftSkills'
 import TextInput from 'src/components/TextInput/TextInput'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
@@ -117,6 +118,7 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
           </Button>
         </div>
       </div>
+      <ChooseSoftSkills />
       <Button
         className="mt-8 self-end bg-secondary py-4 text-lg"
         type="submit"
