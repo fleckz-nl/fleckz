@@ -1,9 +1,10 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, BookOpen, GraduationCap, Plus } from 'lucide-react'
 
 import TextInput from 'src/components/TextInput/TextInput'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import { Label } from 'src/components/ui/label'
+import { Separator } from 'src/components/ui/separator'
 import { SwitchWhite } from 'src/components/ui/switch'
 import { Skill } from 'src/components/WorkerInfoCard/WorkerInfoCard'
 
