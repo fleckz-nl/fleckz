@@ -68,6 +68,7 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
         <Label htmlFor="living-place">Woonplaats</Label>
         <TextInput id="living-place" className="align-middle" />
       </div>
+      <Separator className="my-4" />
       {checkBoxQuestions.map((question) => (
         <CheckBoxQuestion key={question.id} {...question} />
       ))}
