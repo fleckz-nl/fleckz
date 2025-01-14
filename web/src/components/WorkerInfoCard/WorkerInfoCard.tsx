@@ -17,14 +17,37 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from 'src/components/ui/popover'
-
-const WorkerInfoCard = () => {
+type WorkerInfoCardProps = {
+  worker: {
+    id: number
+    name: string
+    jobFunction: string
+    yearOfExp: number
+    age: number
+    hasCar: boolean
+    livingPlace: string
+    factor: number
+    softSkills: Skill[]
+  }
+}
+const WorkerInfoCard = ({
+  worker: {
+    id,
+    name,
+    jobFunction,
+    yearOfExp,
+    age,
+    hasCar,
+    livingPlace,
+    factor,
+    softSkills: defaultSoftSkills,
+  },
+}: WorkerInfoCardProps) => {
   const [commandOpen, setCommandOpen] = useState(false)
   const [skillInput, setSkillInput] = useState('')
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([
-    'Flexibiliteit',
-    'Creativiteit',
-  ])
+  const [selectedSkills, setSelectedSkills] = useState<string[]>(
+    defaultSoftSkills || ['Flexibiliteit', 'Creativiteit']
+  )
 
   function handleOnSelectSkill(value: string) {
     setSelectedSkills((currentSkills) => {
@@ -41,40 +64,40 @@ const WorkerInfoCard = () => {
       <div className="flex items-center gap-4">
         <Avatar className="size-16">
           {/* TODO: Get the photo of each temp agency worker for AvatarImage*/}
-          <AvatarImage src={`https://avatar.iran.liara.run/public/`} />
+          <AvatarImage src={`https://avatar.iran.liara.run/public/${id}`} />
           <AvatarFallback>
             <img
-              src={`https://avatar.iran.liara.run/public/`}
+              src={`https://avatar.iran.liara.run/public/${id}`}
               alt="Random avatar"
             />
           </AvatarFallback>
         </Avatar>
-        <h2 className="font-semibold">Hans van Manus</h2>
+        <h2 className="font-semibold">{name}</h2>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Functie</span>
-        <span>Afwasser</span>
+        <span>{jobFunction}</span>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Jaren werkervaring</span>
-        <span>3</span>
+        <span>{yearOfExp}</span>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Leeftijd</span>
-        <span>29</span>
+        <span>{age}</span>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Auto beschikbaar</span>
-        <span>Nee</span>
+        <span>{hasCar ? 'Ja' : 'Nee'}</span>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Woonplaats</span>
-        <span>&apos;s Hertogenbosch</span>
+        <span>{livingPlace}</span>
       </div>
       <div className="grid grid-cols-2 items-center gap-4">
         <span className="text-white/70">Factor</span>
         <div className="w-14 border-2 border-primary-foreground bg-white p-0.5 text-center text-black">
-          1,2
+          {factor}
         </div>
       </div>
       <div className="flex items-center gap-2">
@@ -161,7 +184,24 @@ const WorkerInfoCard = () => {
   )
 }
 
-const softSkills = [
+export type Skill =
+  | 'Flexibiliteit'
+  | 'Collectiviteit'
+  | 'Resultaatgerichtheid'
+  | 'Innovatie'
+  | 'Toewijding'
+  | 'Diversiteit'
+  | 'Transparantie'
+  | 'Leren'
+  | 'Creativiteit'
+  | 'Teamwerk'
+
+export type SoftSkill = {
+  id: string
+  name: Skill
+}
+
+export const softSkills: SoftSkill[] = [
   {
     id: 'Q2K3M4N5L6O7P8',
     name: 'Flexibiliteit',
