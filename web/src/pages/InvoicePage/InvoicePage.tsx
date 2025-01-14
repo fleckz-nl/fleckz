@@ -93,7 +93,7 @@ const InvoicePage = () => {
           <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <div className="font-semibold">14 Jan 2024</div>
+                <div className="font-semibold">14 Jan 2025</div>
                 <Separator orientation="vertical" className="h-4 opacity-40" />
                 <div className="flex flex-wrap gap-0.5">
                   08:00
