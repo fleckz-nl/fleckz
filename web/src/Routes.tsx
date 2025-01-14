@@ -44,7 +44,7 @@ const Routes = () => {
           <Route path="/requests/{id}" page={WorkRequestPage} name="workRequest" />
         </Set>
         <Set wrap={SecondaryLayout}>
-          <Route path="/invoices" page={IndividualInvoicePage} name="individualInvoice" />
+          <Route path="/invoices/{id}" page={IndividualInvoicePage} name="individualInvoice" />
         </Set>
         <Set wrap={SettingLayout}>
           <Route path="/settings" redirect="/settings/profile" />
