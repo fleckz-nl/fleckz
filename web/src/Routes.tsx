@@ -40,6 +40,7 @@ const Routes = () => {
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
           <Route path="/invoice" page={InvoicePage} name="invoice" />
           <Route path="/candidates" page={CandidatesPage} name="candidates" />
+          <Route path="/confirm-work-request" page={ConfirmWorkRequestPage} name="confirmWorkRequest" />
         </Set>
         <Set wrap={WorkRequestPageLayout}>
           <Route path="/requests/{id}" page={WorkRequestPage} name="workRequest" />
