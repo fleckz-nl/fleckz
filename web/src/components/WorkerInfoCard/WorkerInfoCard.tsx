@@ -68,7 +68,10 @@ const WorkerInfoCard = ({ worker }: WorkerInfoCardProps) => {
   return (
     <>
       {editOpen ? (
-        <dialog className="fixed inset-0 z-20 h-full w-full bg-primary" open>
+        <dialog
+          className="fixed inset-0 z-20 h-full w-full overflow-y-auto bg-primary py-8"
+          open
+        >
           <EditWorkerInfo worker={worker} setEditOpen={setEditOpen} />
         </dialog>
       ) : (
