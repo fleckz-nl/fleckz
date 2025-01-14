@@ -11,10 +11,14 @@ import {
 } from 'src/components/ui/command'
 import { Label } from 'src/components/ui/label'
 
-const ChooseSoftSkills = () => {
+type ChooseSoftSkillsProps = {
+  defaultSkills?: string[]
+}
+
+const ChooseSoftSkills = ({ defaultSkills }: ChooseSoftSkillsProps) => {
   const [commandOpen, setCommandOpen] = useState(false)
   const [skillInput, setSkillInput] = useState('')
-  const [selectedSkills, setSelectedSkills] = useState([])
+  const [selectedSkills, setSelectedSkills] = useState(defaultSkills || [])
 
   function handleOnSelectSkill(value: string) {
     setSelectedSkills((currentCultures) => {
