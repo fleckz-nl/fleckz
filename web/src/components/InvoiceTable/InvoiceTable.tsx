@@ -32,7 +32,7 @@ const InvoiceTable = () => {
       <TableBody>
         <TableRow className="border-b-0 bg-gray-100">
           <TableCell className="text-secondary">
-            12-Okt-2024 <br /> 13:30-23:30
+            12-Jan-2025 <br /> 13:30-23:30
           </TableCell>
           <TableCell className="font-semibold text-secondary">098765</TableCell>
           <TableCell>Hans van Manus</TableCell>
