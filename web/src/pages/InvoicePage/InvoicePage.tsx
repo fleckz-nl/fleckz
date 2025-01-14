@@ -40,12 +40,14 @@ const InvoicePage = () => {
               </div>
               <Badge className="h-fit bg-green-600 text-primary">Betaald</Badge>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <span className="font-light ">Hans van Manus</span>
-              <span className="text-lg text-white">€ 178,39</span>
-            </div>
+            <ul className="flex flex-col">
+              <li className="mt-4 grid grid-cols-2 gap-4">
+                <span className="font-light ">Hans van Manus</span>
+                <span className="text-lg text-white">€ 178,39</span>
+              </li>
+            </ul>
             <Link
-              to={routes.individualInvoice()}
+              to={routes.individualInvoice({ id: '1', paid: true })}
               className="self-end text-primary"
             >
               <Button variant="accent" className="self-end text-primary">
@@ -69,16 +71,26 @@ const InvoicePage = () => {
                   <Users className="size-4 flex-shrink-0" />
                 </div>
                 <Separator orientation="vertical" className="h-4 opacity-40" />
-                <div className="col-span-2">Afwasser</div>
+                <div className="col-span-2">Schoonmaker</div>
               </div>
               <Badge className="h-fit text-secondary">Nog te betalen</Badge>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <span className="font-light">Hans van Manus</span>
-              <span className="text-lg text-white">€ 178,39</span>
-            </div>
+            <ul className="flex flex-col">
+              <li className="mt-4 grid grid-cols-2 gap-4">
+                <span className="font-light">Rinus Verkerk</span>
+                <span className="text-lg text-white">€ 396,25</span>
+              </li>
+              <li className="mt-4 grid grid-cols-2 gap-4">
+                <span className="font-light">Marieke Bosch</span>
+                <span className="text-lg text-white">€ 148,21</span>
+              </li>
+              <li className="mt-4 grid grid-cols-2 gap-4">
+                <span className="font-light">Noah de Vries</span>
+                <span className="text-lg text-white">€ 287,18</span>
+              </li>
+            </ul>
             <Link
-              to={routes.individualInvoice()}
+              to={routes.individualInvoice({ id: '1', paid: false })}
               className="self-end text-primary"
             >
               <Button variant="accent" className="self-end text-primary">

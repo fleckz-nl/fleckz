@@ -5,7 +5,12 @@ import InvoiceHeader from 'src/components/InvoiceHeader/InvoiceHeader'
 import InvoiceTable from 'src/components/InvoiceTable/InvoiceTable'
 import { Button } from 'src/components/ui/button'
 
-const IndividualInvoicePage = ({ paid }) => {
+type IndividualInvoicePageProps = { id: number; paid: string }
+
+const IndividualInvoicePage = ({ id, paid }: IndividualInvoicePageProps) => {
+  console.log(paid)
+  console.log(typeof paid)
+
   return (
     <>
       <Metadata
@@ -13,10 +18,11 @@ const IndividualInvoicePage = ({ paid }) => {
         description="IndividualInvoice page"
       />
       <main className="container mx-auto rounded-lg bg-white p-6 shadow-lg">
+        {id}
         <InvoiceHeader />
         <InvoiceTable />
         <div className="flex justify-end gap-2 pt-8">
-          {paid ? (
+          {paid === 'true' ? (
             <Button
               variant="outline"
               className="self-end text-primary"
