@@ -2,8 +2,8 @@ import { useContext, useState } from 'react'
 
 import {
   ArrowLeft,
+  CreditCard,
   Filter,
-  Flag,
   UserRound,
   UserRoundCheck,
 } from 'lucide-react'
@@ -48,10 +48,10 @@ const HireWorker = () => {
       {stage === 'Confirmed' ? (
         <Button
           className="self-end py-4 text-lg text-accent"
-          onClick={() => navigate(routes.overview())}
+          onClick={() => navigate(routes.invoice())}
         >
-          <Flag className="mr-1 size-4" />
-          Klaar
+          <CreditCard className="mr-1 size-4" />
+          Betaal nu
         </Button>
       ) : (
         <Button
