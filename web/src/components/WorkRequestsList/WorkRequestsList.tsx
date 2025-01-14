@@ -9,12 +9,10 @@ import { OverviewHeader } from 'src/components/OverviewSection'
 import SearchInput from 'src/components/SearchInput/SearchInput'
 import SortButton from 'src/components/SortButton/SortButton'
 
-type AcceptedRequestsTableProps = {
+type WorkRequestsListProps = {
   workRequests: WorkRequestsQuery['workRequests']
 }
-const AcceptedRequestsTable = ({
-  workRequests,
-}: AcceptedRequestsTableProps) => {
+const WorkRequestsList = ({ workRequests }: WorkRequestsListProps) => {
   const acceptedRequests = workRequests.filter((r) => r.status === 'CONFIRMED')
   const pendingRequests = workRequests.filter((r) => r.status === 'SUBMITTED')
   const completedRequests = workRequests.filter((r) => r.status === 'DONE')
@@ -140,4 +138,4 @@ const AcceptedRequestsTable = ({
   )
 }
 
-export default AcceptedRequestsTable
+export default WorkRequestsList
