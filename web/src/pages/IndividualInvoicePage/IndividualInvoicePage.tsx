@@ -8,9 +8,6 @@ import { Button } from 'src/components/ui/button'
 type IndividualInvoicePageProps = { id: number; paid: string }
 
 const IndividualInvoicePage = ({ id, paid }: IndividualInvoicePageProps) => {
-  console.log(paid)
-  console.log(typeof paid)
-
   return (
     <>
       <Metadata
