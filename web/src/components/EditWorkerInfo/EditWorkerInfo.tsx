@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, GraduationCap, Plus } from 'lucide-react'
+import { ArrowLeft, BookOpen, GraduationCap, Palette, Plus } from 'lucide-react'
 
 import TextInput from 'src/components/TextInput/TextInput'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
@@ -94,6 +94,22 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
         </Label>
         <div className="my-4 flex">
           <BookOpen className="mr-4" /> <div>Business Analytics, edX, 2020</div>
+        </div>
+        <div className="mx-auto max-w-md">
+          <Button className="w-full bg-gray-500">
+            <Plus />
+          </Button>
+        </div>
+      </div>
+      <div className="my-4 text-white">
+        <Label htmlFor="hobbies" className="text-xl">
+          Hobby&apos;s
+        </Label>
+        <div className="my-4 flex">
+          <Palette className="mr-4" /> <div>fietsen</div>
+        </div>
+        <div className="my-4 flex">
+          <Palette className="mr-4" /> <div>fotografie</div>
         </div>
         <div className="mx-auto max-w-md">
           <Button className="w-full bg-gray-500">
