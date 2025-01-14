@@ -1,26 +1,16 @@
 import { ArrowLeft, BookOpen, GraduationCap, Palette, Plus } from 'lucide-react'
 
 import ChooseSoftSkills from 'src/components/ChooseSoftSkills/ChooseSoftSkills'
+import { Worker } from 'src/components/CvsList/CvsList'
 import TextInput from 'src/components/TextInput/TextInput'
 import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import { Button } from 'src/components/ui/button'
 import { Label } from 'src/components/ui/label'
 import { Separator } from 'src/components/ui/separator'
 import { SwitchWhite } from 'src/components/ui/switch'
-import { Skill } from 'src/components/WorkerInfoCard/WorkerInfoCard'
 
 type EditWorkerInfoProps = {
-  worker: {
-    id: number
-    name: string
-    jobFunction: string
-    yearOfExp: number
-    age: number
-    hasCar: boolean
-    livingPlace: string
-    factor: number
-    softSkills: Skill[]
-  }
+  worker: Worker
   setEditOpen: (open: boolean) => void
 }
 
@@ -52,23 +42,43 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
       </Avatar>
       <div>
         <Label htmlFor="first-name">Voornaam</Label>
-        <TextInput id="first-name" className="align-middle" />
+        <TextInput
+          id="first-name"
+          className="align-middle"
+          defaultValue={worker.firstName}
+        />
       </div>
       <div>
         <Label htmlFor="last-name">Achternaam</Label>
-        <TextInput id="last-name" className="align-middle" />
+        <TextInput
+          id="last-name"
+          className="align-middle"
+          defaultValue={worker.lastName}
+        />
       </div>
       <div>
         <Label htmlFor="phone">Telefoon</Label>
-        <TextInput id="phone" className="align-middle" />
+        <TextInput
+          id="phone"
+          className="align-middle"
+          defaultValue={'0123456789'}
+        />
       </div>
       <div>
         <Label htmlFor="age">Leeftijd</Label>
-        <TextInput id="age" className="align-middle" />
+        <TextInput
+          id="age"
+          className="align-middle"
+          defaultValue={worker.age}
+        />
       </div>
       <div>
         <Label htmlFor="living-place">Woonplaats</Label>
-        <TextInput id="living-place" className="align-middle" />
+        <TextInput
+          id="living-place"
+          className="align-middle"
+          defaultValue={worker.livingPlace}
+        />
       </div>
       <Separator className="my-4" />
       {checkBoxQuestions.map((question) => (
