@@ -31,6 +31,7 @@ const Routes = () => {
       </PrivateSet>
       <Route path="/" page={HomePage} name="home" />
       <Route path="/onboarding" page={OnboardingPage} name="onboarding" />
+      <Route path="/candidates" page={CandidatesPage} name="candidates" />
       <PrivateSet unauthenticated="home">
         <Set wrap={AppLayout}>
           <Route path="/today" page={TodayPage} name="today" />
