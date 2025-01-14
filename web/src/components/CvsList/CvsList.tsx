@@ -85,9 +85,10 @@ const Filter = () => {
   )
 }
 
-type Worker = {
+export type Worker = {
   id: number
-  name: string
+  firstName: string
+  lastName: string
   jobFunction: string
   yearOfExp: number
   age: number
