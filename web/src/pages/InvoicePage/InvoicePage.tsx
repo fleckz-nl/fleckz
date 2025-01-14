@@ -40,6 +40,10 @@ const InvoicePage = () => {
               </div>
               <Badge className="h-fit text-secondary">Ongebetald</Badge>
             </div>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <span className="font-light ">Hans van Manus</span>
+              <span className="text-lg text-white">€ 178,39</span>
+            </div>
             <Link
               to={routes.individualInvoice()}
               className="self-end text-primary"
