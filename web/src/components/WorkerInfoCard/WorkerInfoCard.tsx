@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { AvatarImage } from '@radix-ui/react-avatar'
 
+import { Worker } from 'src/components/CvsList/CvsList'
 import EditWorkerInfo from 'src/components/EditWorkerInfo/EditWorkerInfo'
 import { Avatar, AvatarFallback } from 'src/components/ui/avatar'
 import { Badge } from 'src/components/ui/badge'
@@ -18,23 +19,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from 'src/components/ui/popover'
+
 type WorkerInfoCardProps = {
-  worker: {
-    id: number
-    name: string
-    jobFunction: string
-    yearOfExp: number
-    age: number
-    hasCar: boolean
-    livingPlace: string
-    factor: number
-    softSkills: Skill[]
-  }
+  worker: Worker
 }
+
 const WorkerInfoCard = ({ worker }: WorkerInfoCardProps) => {
   const {
     id,
-    name,
+    firstName,
+    lastName,
     jobFunction,
     yearOfExp,
     age,
@@ -87,7 +81,9 @@ const WorkerInfoCard = ({ worker }: WorkerInfoCardProps) => {
                 />
               </AvatarFallback>
             </Avatar>
-            <h2 className="font-semibold">{name}</h2>
+            <h2 className="font-semibold">
+              {firstName} {lastName}
+            </h2>
           </div>
           <div className="grid grid-cols-2 items-center gap-4">
             <span className="text-white/70">Functie</span>
