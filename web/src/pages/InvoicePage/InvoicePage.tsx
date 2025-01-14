@@ -1,4 +1,8 @@
-import { Users } from 'lucide-react'
+import { useState } from 'react'
+
+import { addDays, addWeeks, format, isToday, subDays, subWeeks } from 'date-fns'
+import { nl } from 'date-fns/locale/nl'
+import { ChevronLeft, ChevronRight, RotateCw, Users } from 'lucide-react'
 import { Button } from 'web/src/components/ui/button'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -10,6 +14,7 @@ import { Badge } from 'src/components/ui/badge'
 import { Separator } from 'src/components/ui/separator'
 
 const InvoicePage = () => {
+  const [date, setDate] = useState(new Date())
   return (
     <>
       <Metadata title="Invoice" description="Invoice page" />
@@ -19,11 +24,41 @@ const InvoicePage = () => {
           <SortButton />
           <SearchInput />
         </div>
-        <ul className="mt-4 flex flex-col items-center gap-4">
+        <div className="my-8 flex flex-row items-center justify-center">
+          <ChevronLeft
+            className="hover:cursor-pointer"
+            onClick={() => setDate((d) => subWeeks(d, 1))}
+          />
+          <div className="relative mx-4 flex flex-col items-center text-xl">
+            <span className="text-2xl font-medium text-accent">
+              {`Week ${format(date, 'I yyyy', { locale: nl })}`}
+            </span>
+            <h1 className="text-lg text-primary-foreground">
+              {format(subDays(date, date.getDay()), 'dd MMM yyyy', {
+                locale: nl,
+              })}{' '}
+              -{' '}
+              {format(addDays(date, 6 - date.getDay()), 'dd MMM yyyy', {
+                locale: nl,
+              })}
+            </h1>
+            <RotateCw
+              className={`absolute -right-6 -top-2 size-[22px] rounded-full bg-white/60 p-1 text-primary
+                hover:cursor-pointer
+                hover:bg-accent ${isToday(date) && 'invisible'}`}
+              onClick={() => setDate(new Date())}
+            />
+          </div>
+          <ChevronRight
+            className="hover:cursor-pointer"
+            onClick={() => setDate((d) => addWeeks(d, 1))}
+          />
+        </div>
+        <ul className="flex flex-col items-center gap-4">
           <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <div className="font-semibold">12 Okt 2024</div>
+                <div className="font-semibold">12 Jan 2025</div>
                 <Separator orientation="vertical" className="h-4 opacity-40" />
                 <div className="flex flex-wrap gap-0.5">
                   13:30
@@ -58,7 +93,7 @@ const InvoicePage = () => {
           <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
-                <div className="font-semibold">12 Okt 2024</div>
+                <div className="font-semibold">14 Jan 2024</div>
                 <Separator orientation="vertical" className="h-4 opacity-40" />
                 <div className="flex flex-wrap gap-0.5">
                   08:00
