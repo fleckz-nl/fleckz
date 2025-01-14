@@ -59,7 +59,7 @@ const CvsList = () => {
   )
 }
 
-const Filter = () => {
+export const Filter = () => {
   const functionFilters = [
     { value: 'afwasser', label: 'Afwasser' },
     { value: 'keukenhulp', label: 'Keukenhulp' },
@@ -98,7 +98,7 @@ export type Worker = {
   softSkills: Skill[]
 }
 
-const workers: Worker[] = [
+export const workers: Worker[] = [
   {
     id: 84,
     firstName: 'Hans',
