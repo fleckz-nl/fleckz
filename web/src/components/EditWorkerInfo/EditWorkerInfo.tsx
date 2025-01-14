@@ -101,7 +101,7 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
         </div>
       </div>
       <Button
-        className="self-end bg-secondary py-4 text-lg"
+        className="mt-8 self-end bg-secondary py-4 text-lg"
         type="submit"
         onClick={handleNextClick}
       >
