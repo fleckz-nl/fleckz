@@ -15,7 +15,6 @@ const IndividualInvoicePage = ({ id, paid }: IndividualInvoicePageProps) => {
         description="IndividualInvoice page"
       />
       <main className="container mx-auto rounded-lg bg-white p-6 shadow-lg">
-        {id}
         <InvoiceHeader />
         <InvoiceTable />
         <div className="flex justify-end gap-2 pt-8">
