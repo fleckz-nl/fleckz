@@ -128,7 +128,7 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
           </Button>
         </div>
       </div>
-      <ChooseSoftSkills />
+      <ChooseSoftSkills defaultSkills={worker.softSkills} />
       <Button
         className="mt-8 self-end bg-secondary py-4 text-lg"
         type="submit"
