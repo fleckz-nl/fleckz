@@ -101,7 +101,8 @@ export type Worker = {
 const workers: Worker[] = [
   {
     id: 84,
-    name: 'Hans van der Veen',
+    firstName: 'Hans',
+    lastName: 'van der Veen',
     jobFunction: 'Afwasser',
     yearOfExp: 3,
     age: 21,
@@ -112,7 +113,8 @@ const workers: Worker[] = [
   },
   {
     id: 25,
-    name: 'Kees de Boer',
+    firstName: 'Kees',
+    lastName: 'de Boer',
     jobFunction: 'Kok',
     yearOfExp: 6,
     age: 34,
@@ -123,7 +125,8 @@ const workers: Worker[] = [
   },
   {
     id: 38,
-    name: 'Jan de Vries',
+    firstName: 'Jan',
+    lastName: 'de Vries',
     jobFunction: 'Keukenhulp',
     yearOfExp: 1,
     age: 18,
