@@ -72,6 +72,8 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
       {checkBoxQuestions.map((question) => (
         <CheckBoxQuestion key={question.id} {...question} />
       ))}
+      <Separator className="my-6" />
+      <div className="my-4 text-white">
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
