@@ -1,6 +1,7 @@
-import { FileSearch, FileText, Printer, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { Button } from 'web/src/components/ui/button'
 
+import { Link, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 
 import SearchInput from 'src/components/SearchInput/SearchInput'
@@ -39,9 +40,14 @@ const InvoicePage = () => {
               </div>
               <Badge className="h-fit text-secondary">Ongebetald</Badge>
             </div>
-            <Button variant="accent" className="self-end text-primary">
-              Details
-            </Button>
+            <Link
+              to={routes.individualInvoice()}
+              className="self-end text-primary"
+            >
+              <Button variant="accent" className="self-end text-primary">
+                Details
+              </Button>
+            </Link>
           </li>
         </ul>
       </div>
