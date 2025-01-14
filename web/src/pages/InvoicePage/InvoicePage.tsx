@@ -56,106 +56,112 @@ const InvoicePage = () => {
           />
         </div>
         {isToday(date) && (
-          <ul className="flex flex-col items-center gap-4">
-            <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="font-semibold">12 Jan 2025</div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="flex flex-wrap gap-0.5">
-                    13:30
-                    <span>-</span>
-                    23:30
+          <>
+            <div className="center mb-4 gap-2">
+              <span className="font-thin">Totale bedrag te betalen:</span>
+              <span className="text-2xl font-bold">€ 831,64</span>
+            </div>
+            <ul className="flex flex-col items-center gap-4">
+              <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="font-semibold">12 Jan 2025</div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="flex flex-wrap gap-0.5">
+                      13:30
+                      <span>-</span>
+                      23:30
+                    </div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="center gap-1">
+                      1
+                      <Users className="size-4 flex-shrink-0" />
+                    </div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="col-span-2">Afwasser</div>
                   </div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="center gap-1">
-                    1
-                    <Users className="size-4 flex-shrink-0" />
-                  </div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="col-span-2">Afwasser</div>
+                  <Badge className="h-fit bg-green-600 text-primary">
+                    Betaald
+                  </Badge>
                 </div>
-                <Badge className="h-fit bg-green-600 text-primary">
-                  Betaald
-                </Badge>
-              </div>
-              <ul className="flex flex-col">
-                <li className="mt-4 grid grid-cols-2 gap-4">
-                  <span className="font-light ">Hans van Manus</span>
-                  <span className="text-lg text-white">€ 178,39</span>
-                </li>
-              </ul>
-              <Link
-                to={routes.individualInvoice({ id: '1', paid: true })}
-                className="self-end text-primary"
-              >
-                <Button variant="accent" className="self-end text-primary">
-                  Details
-                </Button>
-              </Link>
-            </li>
-            <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="font-semibold">14 Jan 2025</div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="flex flex-wrap gap-0.5">
-                    08:00
-                    <span>-</span>
-                    15:00
+                <ul className="flex flex-col">
+                  <li className="mt-4 grid grid-cols-2 gap-4">
+                    <span className="font-light ">Hans van Manus</span>
+                    <span className="text-lg text-white">€ 178,39</span>
+                  </li>
+                </ul>
+                <Link
+                  to={routes.individualInvoice({ id: '1', paid: true })}
+                  className="self-end text-primary"
+                >
+                  <Button variant="accent" className="self-end text-primary">
+                    Details
+                  </Button>
+                </Link>
+              </li>
+              <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <div className="font-semibold">14 Jan 2025</div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="flex flex-wrap gap-0.5">
+                      08:00
+                      <span>-</span>
+                      15:00
+                    </div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="center gap-1">
+                      3
+                      <Users className="size-4 flex-shrink-0" />
+                    </div>
+                    <Separator
+                      orientation="vertical"
+                      className="h-4 opacity-40"
+                    />
+                    <div className="col-span-2">Schoonmaker</div>
                   </div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="center gap-1">
-                    3
-                    <Users className="size-4 flex-shrink-0" />
-                  </div>
-                  <Separator
-                    orientation="vertical"
-                    className="h-4 opacity-40"
-                  />
-                  <div className="col-span-2">Schoonmaker</div>
+                  <Badge className="h-fit text-secondary">Nog te betalen</Badge>
                 </div>
-                <Badge className="h-fit text-secondary">Nog te betalen</Badge>
-              </div>
-              <ul className="flex flex-col">
-                <li className="mt-4 grid grid-cols-2 gap-4">
-                  <span className="font-light">Rinus Verkerk</span>
-                  <span className="text-lg text-white">€ 396,25</span>
-                </li>
-                <li className="mt-4 grid grid-cols-2 gap-4">
-                  <span className="font-light">Marieke Bosch</span>
-                  <span className="text-lg text-white">€ 148,21</span>
-                </li>
-                <li className="mt-4 grid grid-cols-2 gap-4">
-                  <span className="font-light">Noah de Vries</span>
-                  <span className="text-lg text-white">€ 287,18</span>
-                </li>
-              </ul>
-              <Link
-                to={routes.individualInvoice({ id: '1', paid: false })}
-                className="self-end text-primary"
-              >
-                <Button variant="accent" className="self-end text-primary">
-                  Details
-                </Button>
-              </Link>
-            </li>
-          </ul>
+                <ul className="flex flex-col">
+                  <li className="mt-4 grid grid-cols-2 gap-4">
+                    <span className="font-light">Rinus Verkerk</span>
+                    <span className="text-lg text-white">€ 396,25</span>
+                  </li>
+                  <li className="mt-4 grid grid-cols-2 gap-4">
+                    <span className="font-light">Marieke Bosch</span>
+                    <span className="text-lg text-white">€ 148,21</span>
+                  </li>
+                  <li className="mt-4 grid grid-cols-2 gap-4">
+                    <span className="font-light">Noah de Vries</span>
+                    <span className="text-lg text-white">€ 287,18</span>
+                  </li>
+                </ul>
+                <Link
+                  to={routes.individualInvoice({ id: '1', paid: false })}
+                  className="self-end text-primary"
+                >
+                  <Button variant="accent" className="self-end text-primary">
+                    Details
+                  </Button>
+                </Link>
+              </li>
+            </ul>
+          </>
         )}
       </div>
     </>
