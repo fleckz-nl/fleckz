@@ -87,6 +87,19 @@ const EditWorkerInfo = ({ worker, setEditOpen }: EditWorkerInfoProps) => {
           </Button>
         </div>
       </div>
+      <div className="my-4 text-white">
+        <Label htmlFor="courses" className="text-xl">
+          Cursussen
+        </Label>
+        <div className="my-4 flex">
+          <BookOpen className="mr-4" /> <div>Business Analytics, edX, 2020</div>
+        </div>
+        <div className="mx-auto max-w-md">
+          <Button className="w-full bg-gray-500">
+            <Plus />
+          </Button>
+        </div>
+      </div>
       <Button
         className="self-end bg-secondary py-4 text-lg"
         type="submit"
