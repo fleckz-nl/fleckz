@@ -13,7 +13,6 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
-import AcceptedRequestsTable from 'src/components/AcceptedRequestsTable'
 import OverviewCards from 'src/components/OverviewCards'
 import OverviewCardsSkeleton from 'src/components/OverviewCardsSkeleton/OverviewCardsSkeleton'
 import TableSkeleton from 'src/components/TableSkeleton/TableSkeleton'
@@ -24,6 +23,7 @@ import {
   TabsList,
   TabsTrigger,
 } from 'src/components/ui/tabs'
+import WorkRequestsList from 'src/components/WorkRequestsList'
 
 const TABS = {
   cards: 'cards',
@@ -135,7 +135,7 @@ export const Success = ({
           <OverviewCards workRequests={workRequests} />
         </TabsContent>
         <TabsContent value={TABS.table}>
-          <AcceptedRequestsTable workRequests={workRequests} />
+          <WorkRequestsList workRequests={workRequests} />
         </TabsContent>
       </Tabs>
     </>
