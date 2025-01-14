@@ -35,7 +35,7 @@ const InvoiceTable = () => {
             12-Okt-2024 <br /> 13:30-23:30
           </TableCell>
           <TableCell className="font-semibold text-secondary">098765</TableCell>
-          <TableCell>Mollie Bakker</TableCell>
+          <TableCell>Hans van Manus</TableCell>
           <TableCell>ProjectNaam: FunctieNaam</TableCell>
           <TableCell>€ 12,30</TableCell>
           <TableCell>10.00</TableCell>
