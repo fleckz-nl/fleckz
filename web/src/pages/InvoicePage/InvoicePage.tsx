@@ -19,7 +19,40 @@ const InvoicePage = () => {
           <SortButton />
           <SearchInput />
         </div>
-        <ul className="mt-4 flex flex-col items-center">
+        <ul className="mt-4 flex flex-col items-center gap-4">
+          <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="font-semibold">12 Okt 2024</div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="flex flex-wrap gap-0.5">
+                  13:30
+                  <span>-</span>
+                  23:30
+                </div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="center gap-1">
+                  1
+                  <Users className="size-4 flex-shrink-0" />
+                </div>
+                <Separator orientation="vertical" className="h-4 opacity-40" />
+                <div className="col-span-2">Afwasser</div>
+              </div>
+              <Badge className="h-fit bg-green-600 text-primary">Betaald</Badge>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <span className="font-light ">Hans van Manus</span>
+              <span className="text-lg text-white">€ 178,39</span>
+            </div>
+            <Link
+              to={routes.individualInvoice()}
+              className="self-end text-primary"
+            >
+              <Button variant="accent" className="self-end text-primary">
+                Details
+              </Button>
+            </Link>
+          </li>
           <li className="flex w-full flex-col justify-end gap-2 rounded-md bg-secondary/50 p-4 text-white/90 xs:justify-between">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-4">
@@ -38,10 +71,10 @@ const InvoicePage = () => {
                 <Separator orientation="vertical" className="h-4 opacity-40" />
                 <div className="col-span-2">Afwasser</div>
               </div>
-              <Badge className="h-fit text-secondary">Ongebetald</Badge>
+              <Badge className="h-fit text-secondary">Nog te betalen</Badge>
             </div>
             <div className="mt-4 grid grid-cols-2 gap-4">
-              <span className="font-light ">Hans van Manus</span>
+              <span className="font-light">Hans van Manus</span>
               <span className="text-lg text-white">€ 178,39</span>
             </div>
             <Link
