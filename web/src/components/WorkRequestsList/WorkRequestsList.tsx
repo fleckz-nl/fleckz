@@ -1,13 +1,9 @@
-import { format } from 'date-fns/format'
-import { nl } from 'date-fns/locale/nl'
-import { Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
-
-import { navigate } from '@redwoodjs/router'
 
 import { OverviewHeader } from 'src/components/OverviewSection'
 import SearchInput from 'src/components/SearchInput/SearchInput'
 import SortButton from 'src/components/SortButton/SortButton'
+import WorkRequestsListItem from 'src/components/WorkRequestsListItem/WorkRequestsListItem'
 
 type WorkRequestsListProps = {
   workRequests: WorkRequestsQuery['workRequests']
@@ -26,112 +22,19 @@ const WorkRequestsList = ({ workRequests }: WorkRequestsListProps) => {
       <div>
         <h3 className="font-medium">Nog niet volledig bevestigd</h3>
         {pendingRequests.map((request) => (
-          <div
-            key={request.id}
-            role="button"
-            tabIndex={0}
-            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-red-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-red-800 xs:pl-6"
-            onClick={() => navigate(`/requests/${request.id}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                navigate(`/requests/${request.id}`)
-              }
-            }}
-          >
-            <div className="font-semibold">
-              {format(request.startDate, 'd MMM yyyy', {
-                locale: nl,
-              })}
-            </div>
-            <div className="flex flex-wrap gap-0.5">
-              {format(request.startDate, 'H:MM')}
-              <span>-</span>
-              {format(request.endDate, 'H:MM')}
-            </div>
-            <div className="center gap-1">
-              {request.shifts.length}
-              <Users className="size-4 flex-shrink-0" />
-            </div>
-            <div className="col-span-2">{request.jobProfile.name}</div>
-            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
-              <span>#id</span>
-              <span className="col-span-3">Updated __ hours ago</span>
-            </div>
-          </div>
+          <WorkRequestsListItem key={request.id} request={request} />
         ))}
       </div>
       <div>
         <h3 className="font-medium">In te checken</h3>
         {acceptedRequests.map((request) => (
-          <div
-            key={request.id}
-            role="button"
-            tabIndex={0}
-            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-secondary p-2 hover:cursor-pointer hover:bg-white/80 hover:text-secondary xs:pl-6"
-            onClick={() => navigate(`/requests/${request.id}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                navigate(`/requests/${request.id}`)
-              }
-            }}
-          >
-            <div className="font-semibold">
-              {format(request.startDate, 'd MMM yyyy', {
-                locale: nl,
-              })}
-            </div>
-            <div className="flex flex-wrap gap-0.5">
-              {format(request.startDate, 'H:MM')}
-              <span>-</span>
-              {format(request.endDate, 'H:MM')}
-            </div>
-            <div className="center gap-1">
-              {request.shifts.length}
-              <Users className="size-4 flex-shrink-0" />
-            </div>
-            <div className="col-span-2">{request.jobProfile.name}</div>
-            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
-              <span>#id</span>
-              <span className="col-span-3">Updated __ hours ago</span>
-            </div>
-          </div>
+          <WorkRequestsListItem key={request.id} request={request} />
         ))}
       </div>
       <div>
         <h3 className="font-medium">Afgerond</h3>
         {completedRequests.map((request) => (
-          <div
-            key={request.id}
-            role="button"
-            tabIndex={0}
-            className="my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-green-800 p-2 hover:cursor-pointer hover:bg-white/80 hover:text-green-800 xs:pl-6"
-            onClick={() => navigate(`/requests/${request.id}`)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                navigate(`/requests/${request.id}`)
-              }
-            }}
-          >
-            <div className="font-semibold">
-              {format(request.startDate, 'd MMM yyyy', {
-                locale: nl,
-              })}
-            </div>
-            <div className="flex flex-wrap gap-0.5">
-              {format(request.startDate, 'H:MM')}
-              <span>-</span>
-              {format(request.endDate, 'H:MM')}
-            </div>
-            <div className="center gap-1">
-              {request.shifts.length}
-              <Users className="size-4 flex-shrink-0" />
-            </div>
-            <div className="col-span-2">{request.jobProfile.name}</div>
-            <div className="col-span-4 -mt-2 flex gap-6 text-xs font-thin">
-              <span>#id</span>
-              <span className="col-span-3">Updated __ hours ago</span>
-            </div>
-          </div>
+          <WorkRequestsListItem key={request.id} request={request} />
         ))}
       </div>
     </div>
