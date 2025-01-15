@@ -23,13 +23,13 @@ const ConfirmWorkRequestPage = ({ request }: ConfirmWorkRequestPageProps) => {
         <h1 className="flex items-center gap-1 text-xl font-bold">
           Te bevestigen
         </h1>
-        <div className="mt-2 flex flex-col gap-4 rounded-md bg-red-800 p-4 hover:bg-white hover:text-red-800">
+        <ul className="mt-2 flex flex-col gap-4 rounded-md bg-red-800 p-4 hover:bg-white hover:text-red-800">
           <WorkRequestsListItem
             key={workRequest.id}
             request={workRequest}
             className="mt-0 bg-red-800 text-white hover:cursor-none hover:bg-red-800 hover:text-white"
           />
-          <li className="mx-auto flex w-full max-w-xl items-center justify-between gap-4">
+          <li className="mx-auto my-2 flex w-full max-w-xl items-center justify-between gap-4">
             <div className="flex w-full items-center gap-4 xs:gap-12">
               <Avatar className="size-12">
                 <AvatarImage src={`https://avatar.iran.liara.run/public`} />
@@ -51,7 +51,7 @@ const ConfirmWorkRequestPage = ({ request }: ConfirmWorkRequestPageProps) => {
               }}
             />
           </li>
-        </div>
+        </ul>
       </div>
     </>
   )
