@@ -29,7 +29,7 @@ import {
 } from '../ui/navigation-menu'
 
 const DrawerMenu = () => {
-  const [showFullMenu, setShowFullMenu] = useState(false)
+  const [showUZBMenu, setShowUZBMenu] = useState(false)
   return (
     <Drawer direction="left">
       <DrawerTrigger className="absolute">
@@ -50,30 +50,13 @@ const DrawerMenu = () => {
         </DrawerHeader>
         <DrawerBar className="absolute bottom-1/2 right-4 m-0 h-[100px] w-2 bg-muted/10" />
         <section className="container">
-          <ul className="mt-5 space-y-5 text-2xl">
-            <li className="hover:text-accent">
-              <Link to={routes.overview()}>
-                <DrawerClose>Werklijst</DrawerClose>
-              </Link>
-            </li>
-            <li className="hover:text-accent">
-              <Link to={routes.candidates()}>
-                <DrawerClose>Kandidaten</DrawerClose>
-              </Link>
-            </li>
-            <li className="hover:text-accent">
-              <Link to={routes.invoice()}>
-                <DrawerClose>Facturen</DrawerClose>
-              </Link>
-            </li>
-            <li className="hover:text-accent">
-              <Link to={'#'}>
-                <DrawerClose>Support</DrawerClose>
-              </Link>
-            </li>
-          </ul>
-          {showFullMenu && (
+          {!showUZBMenu && (
             <ul className="mt-5 space-y-5 text-2xl">
+              <li className="hover:text-accent">
+                <Link to={routes.dashboard()}>
+                  <DrawerClose>Dashboard</DrawerClose>
+                </Link>
+              </li>
               <li className="hover:text-accent">
                 <Link to={routes.today()}>
                   <DrawerClose>Vandaag</DrawerClose>
@@ -81,7 +64,7 @@ const DrawerMenu = () => {
               </li>
               <li className="hover:text-accent">
                 <Link to={routes.overview()}>
-                  <DrawerClose>Overzicht</DrawerClose>
+                  <DrawerClose>Werklijst</DrawerClose>
                 </Link>
               </li>
               <li className="hover:text-accent">
@@ -95,13 +78,27 @@ const DrawerMenu = () => {
                 </Link>
               </li>
               <li className="hover:text-accent">
+                <Link to={routes.invoice()}>
+                  <DrawerClose>Facturen</DrawerClose>
+                </Link>
+              </li>
+              <li className="hover:text-accent">
+                <Link to={'#'}>
+                  <DrawerClose>Support</DrawerClose>
+                </Link>
+              </li>
+            </ul>
+          )}
+          {showUZBMenu && (
+            <ul className="mt-5 space-y-5 text-2xl">
+              <li className="hover:text-accent">
                 <Link to={routes.dashboard()}>
                   <DrawerClose>Dashboard</DrawerClose>
                 </Link>
               </li>
               <li className="hover:text-accent">
-                <Link to={routes.invoice()}>
-                  <DrawerClose>Factuur</DrawerClose>
+                <Link to={routes.overview()}>
+                  <DrawerClose>Werklijst</DrawerClose>
                 </Link>
               </li>
               <li className="hover:text-accent">
@@ -109,18 +106,28 @@ const DrawerMenu = () => {
                   <DrawerClose>Kandidaten</DrawerClose>
                 </Link>
               </li>
+              <li className="hover:text-accent">
+                <Link to={routes.invoice()}>
+                  <DrawerClose>Facturen</DrawerClose>
+                </Link>
+              </li>
+              <li className="hover:text-accent">
+                <Link to={'#'}>
+                  <DrawerClose>Support</DrawerClose>
+                </Link>
+              </li>
             </ul>
           )}
         </section>
         <DrawerFooter className="relative self-center">
           <div className="flex items-center space-x-2 text-sm">
-            <Label className="text-secondary" htmlFor="show-full-menu">
-              Show full menu
+            <Label className="text-secondary" htmlFor="show-uzb-menu">
+              Show UZB menu
             </Label>{' '}
             <SwitchWhite
               id="show-full-menu"
-              checked={showFullMenu}
-              onCheckedChange={() => setShowFullMenu((c) => !c)}
+              checked={showUZBMenu}
+              onCheckedChange={() => setShowUZBMenu((c) => !c)}
             />
           </div>
           <NavigationMenu>
