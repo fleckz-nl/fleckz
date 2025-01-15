@@ -3,26 +3,42 @@ import { nl } from 'date-fns/locale/nl'
 import { Users } from 'lucide-react'
 import { WorkRequestsQuery } from 'types/graphql'
 
-import { navigate } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
+
+import { cn } from 'src/lib/utils'
 
 type WorkRequestsListItemProps = {
   request: WorkRequestsQuery['workRequests'][0]
+  className?: string
 }
 
-const WorkRequestsListItem = ({ request }: WorkRequestsListItemProps) => {
+const WorkRequestsListItem = ({
+  request,
+  className,
+}: WorkRequestsListItemProps) => {
   const accentColor =
     request.status === 'CONFIRMED'
       ? 'secondary'
       : request.status === 'DONE'
         ? 'green-800'
         : 'red-800'
+  function handleItemClick() {
+    if (request.status === 'SUBMITTED')
+      return navigate(
+        routes.confirmWorkRequest({ request: JSON.stringify(request) })
+      )
+    navigate(`/requests/${request.id}`)
+  }
   return (
     <div
       key={request.id}
       role="button"
       tabIndex={0}
-      className={`my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-${accentColor} p-2 hover:cursor-pointer hover:bg-white/80 hover:text-${accentColor} xs:pl-6`}
-      onClick={() => navigate(`/requests/${request.id}`)}
+      className={cn(
+        `my-2 grid grid-cols-5 items-center gap-2 rounded-md bg-${accentColor} p-2 hover:cursor-pointer hover:bg-white/80 hover:text-${accentColor} xs:pl-6`,
+        className
+      )}
+      onClick={handleItemClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           navigate(`/requests/${request.id}`)
