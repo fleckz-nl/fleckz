@@ -12,9 +12,14 @@ Set the environment variables:
 
 ```bash
 # .env
-DATABASE_URL="YOUR_DATABASE_URL"
-TEST_DATABASE_URL="YOUR_TEST_DATABASE_URL"
+DATABASE_URL=YOUR_DATABASE_URL
+SESSION_SECRET=YOUR_SESSION_SECRET
+POSTMARK_KEY=YOUR_POSTMARK_KEY
+SESSION_SECRET=YOUR_SESSION_SECRET # yarn redwood generate secret
+UPLOADCARE_PUBLIC_KEY=YOUR_UPLOADCARE_PUBLIC_KEY
 ```
+
+> Note: the app relies on two external services, [Postmark](https://postmarkapp.com/) (to send emails) and [Uploadcare](https://uploadcare.com/) (to manage file uploads)
 
 Install dependencies:
 
