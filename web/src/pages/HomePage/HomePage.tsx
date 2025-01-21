@@ -66,7 +66,7 @@ const HomePage = () => {
               className="mx-auto w-48 drop-shadow-sm"
             />
             <section className="m-0 mt-4 px-2 text-center text-xl italic text-white/70 drop-shadow-sm md:text-2xl">
-              <p>De zoekmachine voor uitzendkrachten</p>
+              <p>De beste uitzendkracht, snel gevonden.</p>
             </section>
           </div>
           <div className="form-wrapper m-0 flex w-11/12 max-w-sm flex-col rounded-md bg-black drop-shadow-sm">
