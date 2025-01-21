@@ -12,7 +12,7 @@ const OnboardingWelcomeMessage = () => {
     <div className="center mx-auto flex-col gap-4 py-40">
       <img src={logo} alt="logo" className="w-56" />
       <span className="text-center text-xl italic">
-        De zoekmachine voor uitzendkrachten
+        De beste uitzendkracht, snel gevonden.
       </span>
       <Button
         onClick={() => setOnboardingStep('emailAndPassword')}
