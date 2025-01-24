@@ -28,7 +28,7 @@ const OnboardingSelectRole = () => {
             setRole('CLIENT')
           }}
         >
-          Ik wil uitzendkrachten
+          Ik wil uitzendkrachten inlenen
         </Button>
         <Button
           className="h-36 bg-blue-600 hover:bg-blue-600 hover:brightness-110"
@@ -37,7 +37,7 @@ const OnboardingSelectRole = () => {
             setRole('TEMP_AGENCY_REP')
           }}
         >
-          Ik wil mijn <br /> uitzendkrachten aanbieden
+          Ik wil uitzendkrachten aanbieden
         </Button>
       </div>
     </>
