@@ -11,7 +11,7 @@ import { WelcomeEmail } from 'src/mail/Welcome/Welcome'
 
 const ROOT_URL = process.env.NETLIFY
   ? process.env.DEPLOY_URL
-  : 'https://fleckz.nl'
+  : 'https://app.fleckz.nl'
 
 const DEVELOPMENT_ROOT_URL = 'http://localhost:8910'
 
